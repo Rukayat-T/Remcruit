@@ -1,0 +1,29 @@
+nav {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  padding: 0;
+  justify-self: center;
+  margin: 0 auto;
+}
+nav img {
+  width: 150px;
+  margin-right: auto;
+}
+ul {
+  display: inline-flex;
+}
+li {
+  padding: 20px 30px;
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.register {
+  background-color: #ca61c3;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+}
