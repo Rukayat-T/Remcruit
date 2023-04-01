@@ -43,9 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'djoser',
     'rest_framework',
-    'authentication_app',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -139,3 +138,19 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "authentication.User"
+ACCOUNT_UNIQUE_EMAIL = True
+
+# smtp stuff:
+# outlook
+# Server/smart host	smtp.office365.com
+# Port	Port 587 (recommended) or port 25
+# TLS/StartTLS	Enabled
+# Username/email address and password	Enter the sign-in credentials of the hosted mailbox being used
+# EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'jainedoeeee@gmail.com'
+# EMAIL_HOST_PASSWORD = 'omnshxeisxjebxhf'
+# EMAIL_USE_TLS = True
