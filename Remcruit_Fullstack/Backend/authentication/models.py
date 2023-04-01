@@ -28,17 +28,17 @@ class Employer(models.Model):
     phone_number = models.CharField(max_length=12)
     organisation_name = models.CharField(max_length=225)
     office_address = models.CharField(max_length=225)
-    organisation_description = models.CharField(max_length=225)
-    website = models.CharField(max_length=225)
+    organisation_description = models.CharField(max_length=225,null=True, blank=True)
+    website = models.CharField(max_length=225,null=True, blank=True)
     employees = models.IntegerField()
-    recruitment_agency = models.BooleanField(default=False)
+    recruitment_agency = models.BooleanField(default=False,null=True, blank=True)
     industry = models.CharField(max_length=225)
-    company_logo = models.ImageField(upload_to='images/')
+    company_logo = models.ImageField(upload_to='images/',null=True, blank=True)
     terms_and_conditions = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'title', 'phone_number',
-                       'organisation_name', 'recruitment_agency', 'terms_and_conditions']
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'title', 'phone_number','company_logo',
+                       'organisation_name', 'recruitment_agency', 'terms_and_conditions', 'job_title', 'office_address','industry']
 
     def __str__(self):
         return self.organisation_name
@@ -124,11 +124,11 @@ class JobSeeker(models.Model):
 
     user = models.OneToOneField(User, related_name="jobSeeker", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
-    university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, default=FEMALE)
-    subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES, default=FEMALE)
-    year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES, default=FEMALE)
-    degree_classification = models.CharField(max_length=200, choices=DEGREE_CLASSIFICATION_CHOICES, default=FEMALE)
-    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, default=FEMALE)
+    university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, default=FEMALE,null=True, blank=True)
+    subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES, default=FEMALE,null=True, blank=True)
+    year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES, default=FEMALE,null=True, blank=True)
+    degree_classification = models.CharField(max_length=200, choices=DEGREE_CLASSIFICATION_CHOICES, default=FEMALE,null=True, blank=True)
+    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, default=FEMALE,null=True, blank=True)
     gender = models.CharField(max_length=200, choices=GENDER_CHOICES, default=FEMALE)
     terms_and_conditions = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='images/')
