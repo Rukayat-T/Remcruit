@@ -4,6 +4,6 @@ from .views import  EmployerRegisterView, JobSeekerRegisterView
 
 
 urlpatterns = [
-    path('Register/employer/',EmployerRegisterView.as_view()),
-    path('Register/jobseeker/',JobSeekerRegisterView.as_view()),
+    path('register/employer/',EmployerRegisterView.as_view()),
+    path('register/jobseeker/',JobSeekerRegisterView.as_view()),
 ]
