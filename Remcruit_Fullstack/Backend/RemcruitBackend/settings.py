@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 import environ
 
 # Initialise environment variables
@@ -156,3 +157,23 @@ ACCOUNT_UNIQUE_EMAIL = True
 # EMAIL_HOST_USER = 'jainedoeeee@gmail.com'
 # EMAIL_HOST_PASSWORD = 'omnshxeisxjebxhf'
 # EMAIL_USE_TLS = True
+
+# EMAIL_HOST = env("EMAIL_HOST", "smtp.office365.com")
+# EMAIL_PORT = env("EMAIL_PORT", 587)
+# EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+# SERVER_EMAIL = EMAIL_HOST_USER
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+# EMAIL_USE_TLS = env("EMAIL_USE_TLS", True)
+# EMAIL_TIMEOUT = env("EMAIL_TIMEOUT", 60)
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'contact@remcruit.com'
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# EMAIL_TIMEOUT = ""
+
+# smtp-mail.outlook.com - server
