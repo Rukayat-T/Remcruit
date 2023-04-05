@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class User(AbstractUser):
-   
+    email = models.CharField( max_length=150, blank=False)
     first_name = models.CharField(_('first name'), max_length=150, blank=False)
     last_name = models.CharField(_('last name'), max_length=150, blank=False)
     is_employer = models.BooleanField(default=False)
@@ -145,7 +145,7 @@ class JobSeeker(models.Model):
     subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES,null=True, blank=True)
     year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES,null=True, blank=True)
     degree_classification = models.CharField(max_length=200, choices=DEGREE_CLASSIFICATION_CHOICES, null=True, blank=True)
-    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES,null=True, blank=True)
+    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, null=True, blank=True)
     gender = models.CharField(max_length=200, choices=GENDER_CHOICES, default=FEMALE)
     terms_and_conditions = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='images/')
