@@ -79,7 +79,7 @@ class JobSeeker(models.Model):
     )
 
 
-    d = "CS"
+    COMPUTER_SCIENCE = ""
     PETROLEUM_ENGINEERING = ""
     PHARMACY = ""
     ECONOMICS = ""
@@ -141,11 +141,11 @@ class JobSeeker(models.Model):
 
     user = models.OneToOneField(User, related_name="jobSeeker", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
-    university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, default=FEMALE,null=True, blank=True)
-    subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES, default=FEMALE,null=True, blank=True)
-    year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES, default=FEMALE,null=True, blank=True)
-    degree_classification = models.CharField(max_length=200, choices=DEGREE_CLASSIFICATION_CHOICES, default=FEMALE,null=True, blank=True)
-    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, default=FEMALE,null=True, blank=True)
+    university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, null=True, blank=True)
+    subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES,null=True, blank=True)
+    year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES,null=True, blank=True)
+    degree_classification = models.CharField(max_length=200, choices=DEGREE_CLASSIFICATION_CHOICES, null=True, blank=True)
+    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES,null=True, blank=True)
     gender = models.CharField(max_length=200, choices=GENDER_CHOICES, default=FEMALE)
     terms_and_conditions = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='images/')
