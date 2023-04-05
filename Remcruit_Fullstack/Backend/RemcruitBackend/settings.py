@@ -46,8 +46,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'authentication',
-
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -153,34 +152,11 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
 # smtp stuff:
-# outlook
-# Server/smart host	smtp.office365.com
-# Port	Port 587 (recommended) or port 25
-# TLS/StartTLS	Enabled
-# Username/email address and password	Enter the sign-in credentials of the hosted mailbox being used
-# EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'jainedoeeee@gmail.com'
-# EMAIL_HOST_PASSWORD = 'omnshxeisxjebxhf'
-# EMAIL_USE_TLS = True
-
-# EMAIL_HOST = env("EMAIL_HOST", "smtp.office365.com")
-# EMAIL_PORT = env("EMAIL_PORT", 587)
-# EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-# SERVER_EMAIL = EMAIL_HOST_USER
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-# EMAIL_USE_TLS = env("EMAIL_USE_TLS", True)
-# EMAIL_TIMEOUT = env("EMAIL_TIMEOUT", 60)
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
-EMAIL_PORT = 587
+EMAIL_PORT = 25
 EMAIL_HOST_USER = 'contact@remcruit.com'
-# EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-# EMAIL_TIMEOUT = ""
-
-# smtp-mail.outlook.com - server
+EMAIL_TIMEOUT = 1200 #20 minutes
