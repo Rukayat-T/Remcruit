@@ -51,13 +51,15 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
         
 
     def create(self, validated_data):
-        email = validated_data.pop('email')
+        username= validated_data.pop('email')
         first_name = validated_data.pop('first_name')
         last_name = validated_data.pop('last_name')
         password = validated_data.pop('password')
 
-        user = User(email=email, first_name=first_name, last_name=last_name)
+        user = User(username=username, first_name=first_name, last_name=last_name)
         user.set_password(password)
+        user.is_active= False
+        user.is_jobSeeker=True
         user.save()
 
 
@@ -69,12 +71,16 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
 
 class EmployerRegisterSerializer(serializers.ModelSerializer):
     password2=serializers.CharField(style={"input_type":"password"}, write_only=True)
-    year_of_graduation = serializers.ChoiceField(choices=JobSeeker.YEAR_OF_GRADUATION_CHOICES, required=True)
-    university_name = serializers.ChoiceField(choices=JobSeeker.UNIVERSITY_CHOICES, required=True)
-    subject_of_study = serializers.ChoiceField(choices=JobSeeker.SUBJECT_OF_STUDY_CHOICES, required=True)
-    degree_classification = serializers.ChoiceField(choices=JobSeeker.DEGREE_CLASSIFICATION_CHOICES,required=True)
-    highest_qualification = serializers.ChoiceField(choices=JobSeeker.HIGHEST_QUALIFICATION_CHOICES, required=True)
-    gender = serializers.ChoiceField(choices=JobSeeker.GENDER_CHOICES, required=True)
+    job_title = serializers.CharField(required=True)
+    title = serializers.CharField(required=True)
+    organisation_name = serializers.CharField(required=True)
+    office_address = serializers.CharField(required=True)
+    industry = serializers.CharField(required=True)
+    employees = serializers.CharField(required=True)
+    phone_number = serializers.CharField(required=True)
+    organisation_description = serializers.CharField(required=True)
+    recruitment_agency = serializers.BooleanField(required=True)
+    gender = serializers.ChoiceField(choices=Employer.GENDER_CHOICES, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
 
     class Meta:
@@ -93,11 +99,9 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             'organisation_name',
             'office_address',
             'organisation_description',
-            'website',
             'employees',
             'recruitment_agency',
             'industry',
-            'company_logo',
             'terms_and_conditions',
         ]
         read_only_fields = ["id"]
@@ -116,16 +120,24 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
         
 
     def create(self, validated_data):
-        email = validated_data.pop('email')
+        username= validated_data.pop('email')
         first_name = validated_data.pop('first_name')
         last_name = validated_data.pop('last_name')
         password = validated_data.pop('password')
 
-        user = User(email=email, first_name=first_name, last_name=last_name)
+        user = User(username=username, first_name=first_name, last_name=last_name)
         user.set_password(password)
+        user.is_active= False
+        user.is_employer=True
         user.save()
 
 
         employer = Employer.objects.create(**validated_data, user=user)
         return employer
         
+
+# class ChangePasswordSerializer(serializers.Serializer):
+#     model = User
+
+#     old_password = serializers.CharField(required=True)
+#     new_password = serializers.CharField(required=True)        
