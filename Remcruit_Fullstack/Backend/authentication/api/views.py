@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.views import APIView
 from rest_framework import status
+
 from .permissions import IsEmployerUser, IsJobSeekerUser
 from rest_framework.permissions import IsAuthenticated
 

@@ -10,14 +10,15 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class User(AbstractUser):
-    email = models.CharField(_('email'), max_length=150, blank=False)
+   
     first_name = models.CharField(_('first name'), max_length=150, blank=False)
     last_name = models.CharField(_('last name'), max_length=150, blank=False)
     is_employer = models.BooleanField(default=False)
     is_jobSeeker = models.BooleanField(default=False)
+ 
      
     def __str__(self):
-        return self.email
+        return self.username
     
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
@@ -33,6 +34,8 @@ class Employer(models.Model):
         ("FEMALE", "Female"),
         ("MALE", "Male")
     )
+   
+
 
 
     user = models.OneToOneField(User, related_name="employer", on_delete=models.CASCADE)
@@ -45,13 +48,13 @@ class Employer(models.Model):
     organisation_description = models.CharField(max_length=225,null=True, blank=True)
     website = models.CharField(max_length=225,null=True, blank=True)
     employees = models.IntegerField()
-    recruitment_agency = models.BooleanField(default=False,null=True, blank=True)
+    recruitment_agency = models.BooleanField(max_length=200, default=False,null=True, blank=True)
     industry = models.CharField(max_length=225)
     company_logo = models.ImageField(upload_to='images/',null=True, blank=True)
     terms_and_conditions = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'title', 'phone_number','company_logo',
+    REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'title', 'phone_number',
                        'organisation_name', 'recruitment_agency', 'terms_and_conditions', 'job_title', 'office_address','industry']
 
     def __str__(self):
