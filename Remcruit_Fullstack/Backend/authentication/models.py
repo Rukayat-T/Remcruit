@@ -5,13 +5,19 @@ from django.conf import settings
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 
+from django.utils.translation import gettext_lazy as _
+
+
 # Create your models here.
 class User(AbstractUser):
+    email = models.CharField(_('email'), max_length=150, blank=False)
+    first_name = models.CharField(_('first name'), max_length=150, blank=False)
+    last_name = models.CharField(_('last name'), max_length=150, blank=False)
     is_employer = models.BooleanField(default=False)
     is_jobSeeker = models.BooleanField(default=False)
      
     def __str__(self):
-        return self.username
+        return self.email
     
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
@@ -70,7 +76,7 @@ class JobSeeker(models.Model):
     )
 
 
-    COMPUTER_SCIENCE = ""
+    d = "CS"
     PETROLEUM_ENGINEERING = ""
     PHARMACY = ""
     ECONOMICS = ""
