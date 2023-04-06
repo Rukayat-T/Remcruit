@@ -1,4 +1,4 @@
-from django.shortcuts import render
+
 from rest_framework import generics, permissions
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -15,11 +15,10 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
+from django.shortcuts import render
 
 from .serializers import *
 from .permissions import IsEmployerUser, IsJobSeekerUser
-
-# from ..models import User
 
 
 def send_confirmation_email(user, request):
@@ -77,7 +76,7 @@ class LoginAuthToken(ObtainAuthToken):
         return Response({
             'token':token.key,
             'user_id': user.pk,
-            'email': user.email,
+            'username': user.username,
             "is_jobSeeker": user.is_jobSeeker,
             "is_employer": user.is_employer
         })
