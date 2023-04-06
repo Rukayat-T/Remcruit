@@ -10,7 +10,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class User(AbstractUser):
-    email = models.CharField( max_length=150, blank=False)
+    email = models.CharField( max_length=150, blank=False, unique=True)
     first_name = models.CharField(_('first name'), max_length=150, blank=False)
     last_name = models.CharField(_('last name'), max_length=150, blank=False)
     is_employer = models.BooleanField(default=False)
