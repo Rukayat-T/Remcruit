@@ -1,0 +1,9 @@
+body{
+    width:600px;
+    margin: auto; 
+    background-color: #1e161c;
+    color: white;
+    align-items: center;
+    height: 100vh;
+    display: flex;
+}
