@@ -1,21 +1,21 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
-import Logo from '../../assets/logo.svg'
+import Logo from '../../assets/fullLogo.svg'
 
 const Navbar = () => {
   return (
     <div>
       <nav>
-        <img src= {Logo} alt="" srcset="" />
+        <img src={Logo} alt="" srcset="" />
         <ul>
-        <li><Link to='/' >Home</Link></li>
-        <li><Link to='/login' >Login</Link></li>
-        <li><Link to='/register' >Register</Link></li>
-        <li><Link to='/aboutus' >About Us</Link></li>
-        <li><Link to='/recruiter' className='register'>Recruiter?</Link></li>
+          <li><Link to='/' >Home</Link></li>
+          <li><Link to='/login' >Login</Link></li>
+          <li><Link to='/jobseeker/register' >Register</Link></li>
+          <li><Link to='/aboutus' >About Us</Link></li>
+          <li><Link to='/employer/register' className='register'>Recruiter?</Link></li>
         </ul>
-        </nav>
+      </nav>
     </div>
   )
 }
