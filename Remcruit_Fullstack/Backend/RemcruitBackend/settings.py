@@ -130,7 +130,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -154,9 +153,16 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 # smtp stuff:
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
-EMAIL_PORT = 25
+# EMAIL_PORT = 25
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'contact@remcruit.com'
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_TIMEOUT = 1200 #20 minutes
+
+# sending email from shell
+# from django.core.mail import send_mail
+#  email = EmailMessage(subject='testing testing', body="testing smtp again", from_email='contact@remcruit.com', to=["jainedoeeee@gmail.com"])
+#  email.send()
+

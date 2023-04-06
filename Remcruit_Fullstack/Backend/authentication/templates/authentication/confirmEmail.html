@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML ">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="width:600px;margin: auto; background-color: #1e161c; ">
+    <div id="email" align="center" style="width:600px;margin: auto; ">
+        <table role="presentation" border="0" align="center" cellspacing="0">
+            <tr>
+              <td >
+                <a href="#" style="font-size: 9px; text-transform:uppercase; letter-spacing: 1px; color: #99ACC2;  font-family:Arial;">View in Browser</a>
+              </td>
+            </tr>
+          </table>
+          
+        <!-- header -->
+        <table role="presentation" border="0" cellspacing="0" width="85%">
+            <tr>
+                <td bgcolor="#CA61C3" align="center" style="color: white; border-radius: 10px 10px 0px 0px; height: 120px; padding: 20px; "  >
+                    <h1 style="font-size: 40px; margin:0 0 20px 0; font-family:Arial;">Confirm your email</h1>
+                    <p style="margin: 0;">Thanks for signing up</p>
+                </td>
+            </tr>
+        </table>
+        <!-- body -->
+        <table role="presentation" border="0" cellspacing="0" width="85%">
+            <tr>
+                <td bgcolor="white" style="text-align: center; padding: 20px 30px 30px 10px; margin:50px 20px 10px 50px;">
+                    <h1 style="font-size: 25px; padding-bottom: 20px; ">Hi {{request.user.first_name}} {{request.user.last_name}} </h1>
+                    <p class="welcome" style="font-size: 18px;"> Welcome to Remcruit. <br/>Your almost ready to start your journey with remcruit. Click the link to confirm your email address.</p>
+                        http://{{ domain }}{% url 'activate' uid64=uid token=token %}  
+                    <!-- <button style="background-color: #CA61C3; color: white; border: 0; border-radius: 10px; height: 50px;
+                    width: 200px;
+                    font-size: larger; margin-top: 10px;">Confirm your Email</button> -->
+                    <p style="font-size: 16px;  ">Thanks, <br/> The Remcruit Team</p>
+                </td>
+            </tr>
+        </table>
+        <!-- footer -->
+        <table role="presentation" border="0" cellspacing="0" width="85%">
+            <tr style="margin-bottom: 0;">
+                <td style=" background-color: black; color: white; text-align: center;">
+                    <p>get in touch</p>
+                    <p>contact@remcruit.com</p>
+                </td>
+                
+            </tr>
+            <tr>
+                <td style=" background-color: #FFCC33;
+                color: black;
+                border-radius: 0px 0px 10px 10px;
+                height: 6vh; text-align: center;"> 
+                    <div class="copyright" >
+                    <p> Copyrights &copy Remcruit All Rights Reserved</p>
+                </div></td></tr>
+        </table>
+        
+    </div>
+    
+</body>
+</html>
