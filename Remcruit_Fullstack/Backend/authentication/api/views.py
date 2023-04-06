@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import generics, permissions
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -118,7 +119,8 @@ def activate_user(request, uid64, token):
     if user is not None:
         user.is_active = True
         user.save()
-        return HttpResponse('Thank you for your email confirmation. Your account is ready now')  
+        return  render(request, "authentication/activatePage.html", {"user" : user,} )
+    #HttpResponse('Thank you for your email confirmation. Your account is ready now')  
     else:  
         return HttpResponse('Activation link is invalid!')  
 
