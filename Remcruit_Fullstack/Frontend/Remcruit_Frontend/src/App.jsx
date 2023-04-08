@@ -1,28 +1,32 @@
 import { BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Route } from 'react-router';
-import Home from './Pages/Home/Home'
-import Login from './Pages/Login/Login'
+import LandingPage from './pages/LandingPage/LandingPage'
+import Login from '../src/pages/Login/Login'
 import Navbar from './components/Navbar/Navbar'
 import EmployerRegister from './Employer/Pages/Register/register'
 import AboutUs from './Pages/AboutUs/AboutUs'
-import JobseekerRegister from './Jobseeker/Pages/Register/Register'
+import JobseekerRegister from './pages/Register'
+import { AuthProvider } from './context/AuthContext';
+import LoginForm from './pages/components/LoginForm/LoginForm';
+import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
-
       <Router>
-        <Navbar />
-        {/* {<Home />} */}
+        <AuthProvider> 
         <Routes>
-          <Route path='/' exact element={<Home />} />
+          <Route path='/' exact element={<LandingPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/employer/register' element={<EmployerRegister />} />
-          <Route path='/aboutus' element={<AboutUs />} />
+          <Route element = {<PrivateRoute/>} >
+            <Route element = {<AboutUs/>} path='/aboutus'/>
+          </Route>
           <Route path='/jobseeker/register' element={<JobseekerRegister />} />
         </Routes>
+        </AuthProvider>   
       </Router>
-      <h1>app</h1>
+      
     </div>
   );
 }
