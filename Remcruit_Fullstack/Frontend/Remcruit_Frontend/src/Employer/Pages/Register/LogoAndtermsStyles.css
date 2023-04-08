@@ -1,0 +1,17 @@
+.termsAndConditions label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;   
+}
+
+#registerBtn{
+    background-color: #FFCC33;
+    border-radius: 10px;
+    width: 130px;
+    height: 42px;
+    font-size: 20px;
+    border: 0;
+    font-weight: 500;
+}

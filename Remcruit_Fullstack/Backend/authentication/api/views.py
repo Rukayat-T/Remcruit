@@ -122,26 +122,3 @@ def activate_user(request, uid64, token):
     #HttpResponse('Thank you for your email confirmation. Your account is ready now')  
     else:  
         return HttpResponse('Activation link is invalid!')  
-
-"""
------ My logic for account activation -----
-send a link to user.email on register. 
-The link would be the domain(the current site, 
-which is our site)/their uid encrypted (to protect it)
-/their token also encrypted. In the email template :
-http://{{domain}}{% url 'activateEmail' uid64 token%} is the link
-in the urls.py:
-path('activate/<uid64>/<token>', views.activateEmail(), name = "activateEmail")
-in the activate function:
-decode the uid and token, then check to make sure they are the same ones we sent. 
-and then set user.is_active = True. the link will bring them to a page that will 
-display the message account activated or something if the link is valid, 
-and then they'll be taken to to the home page.
-i think i should add a button that will redirect them to home.
-
-question:
-if their account is not active, they cant log in so call the activate email function.
-then they can log in?.
-
------ End -----
-"""
