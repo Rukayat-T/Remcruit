@@ -1,6 +1,12 @@
 from rest_framework import serializers
 from authentication.models import User, Employer, JobSeeker
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from rest_framework.exceptions import AuthenticationFailed
+from django.utils.encoding import smart_str, force_str, smart_bytes, DjangoUnicodeDecodeError
+from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+
+
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -136,8 +142,4 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
         return employer
         
 
-# class ChangePasswordSerializer(serializers.Serializer):
-#     model = User
 
-#     old_password = serializers.CharField(required=True)
-#     new_password = serializers.CharField(required=True)        
