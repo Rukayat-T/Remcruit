@@ -1,5 +1,5 @@
 from email import message
-from profile import Profile
+
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -19,7 +19,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
-from .helpers import send_forget_password_mail
+
 
 
 from rest_framework.response import Response
@@ -138,67 +138,58 @@ def activate_user(request, uid64, token):
     
 
 
-import uuid
-def ForgetPassword(request):
-    try:
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            
-            if not User.objects.filter(username=username).first():
-                messages.success(request, 'Not user found with this username.')
-                return redirect('/forget-password/')
-            
-            user_obj = User.objects.get(username = username)
-            token = str(uuid.uuid4())
-            profile_obj= Profile.objects.get(user = user_obj)
-            profile_obj.forget_password_token = token
-            profile_obj.save()
-            send_forget_password_mail(user_obj.email , token)
-            messages.success(request, 'An email is sent.')
-            return redirect('/forget-password/')
-                
+class ChangePasswordView(generics.UpdateAPIView):
     
-    
-    except Exception as e:
-        print(e)
-    return render(request , 'forget-password.html')    
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = (IsAuthenticated,)
 
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
 
-def ChangePassword(request , token):
-    context = {}
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            response = {
+                'status': 'success',
+                'code': status.HTTP_200_OK,
+                'message': 'Password updated successfully',
+                'data': []
+            }
+
+            return Response(response)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
-    try:
-        profile_obj = Profile.objects.filter(forget_password_token = token).first()
-        context = {'user_id' : profile_obj.user.id}
-        
-        if request.method == 'POST':
-            new_password = request.POST.get('new_password')
-            confirm_password = request.POST.get('reconfirm_password')
-            user_id = request.POST.get('user_id')
-            
-            if user_id is  None:
-                messages.success(request, 'No user id found.')
-                return redirect(f'/change-password/{token}/')
-                
-            
-            if  new_password != confirm_password:
-                messages.success(request, 'both should  be equal.')
-                return redirect(f'/change-password/{token}/')
-                         
-            
-            user_obj = User.objects.get(id = user_id)
-            user_obj.set_password(new_password)
-            user_obj.save()
-            return redirect('/login/')
-            
+  
+
+# def send_passwordreset_email(user, request):
+#     current_site = get_current_site(request)
+#     email_subject = "Change your Password"
+#     email_body = render_to_string('templates/changepassword.html', {'user': user, 'domain':current_site, 'uid': urlsafe_base64_encode(force_bytes(user.pk)), 'token': Token.objects.get(user_id=user.pk).key, })
+#     print(user)
+#     print(user.email)
+#     print(email_subject)
+#     email = EmailMessage(subject=email_subject, body=email_body, from_email='contact@remcruit.com', to=[user.username])
+#     email.content_subtype = "html"
+#     email.send(fail_silently=False)
+    
+   
             
             
         
         
-    except Exception as e:
-        print(e)
-    return render(request , 'change-password.html' , context)
+   
 
 
         

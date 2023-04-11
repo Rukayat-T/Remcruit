@@ -7,6 +7,12 @@ from rest_framework.authtoken.models import Token
 
 from django.utils.translation import gettext_lazy as _
 
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail  
+
+
 
 # Create your models here.
 class User(AbstractUser):
@@ -59,6 +65,99 @@ class Employer(models.Model):
 
     def __str__(self):
         return self.organisation_name
+    
+
+class JobApplication(models.Model):
+
+   LAGOS = "lagos"
+   ABUJA = "Abuja"
+   ABIA = "Abia"
+   ADAMAWA = "Adamawa"
+   AKWA_IBOM = "Akwa_Ibom"
+   ANAMBRA = "Anambra"
+   BAUCHI = "Bauchi"
+   BAYELSA =  "Bayelsa"
+   BENUE  = "Benue"
+   BORNO = "Borno"
+   CROSS_RIVER = "Cross_River"
+   DELTA = "Delta"
+   EBONYI  = "Ebonyi"
+   EDO = "Edo"
+   EKITI = "Ekiti"
+   ENUGU = "Enugu"
+   GOMBE = "Gombe"
+   IMO = "Imo"
+   JIGAWA = "Jigawa"
+   KADUNA = "Kaduna"
+   KANO = "Kano"
+   KATSINA = "Katsina"
+   KEBBI = "Kebbi"
+   KOGI  = "Kogi"
+   KWARA = "Kwara"
+   NASSARAWA = "Nassarawa"
+   NIGER = "Niger"
+   OGUN = "Ogun"
+   ONDO = "Ondo"
+   OSUN = "Osun"
+   OYO = "Oyo"
+   PLATEAU = "Plateau"
+   RIVERS = "Rivers"
+   SOKOTO = "Sokoto"
+   TARABA = "Taraba"
+   YOBE = "Yobe"
+   ZAMFARA = "Zamfara"
+
+
+STATE_CHOICES = (
+       ("LAGOS", "lagos"),
+       ("ABUJA" , "Abuja"),
+       ("ABIA" ,"Abia"),
+       ("ADAMAWA" , "Adamawa"),
+       ("AKWA_IBOM ", "Akwa_Ibom"),
+       ( "ANAMBRA" ,"Anambra"),
+       ("BAUCHI" , "Bauchi"),
+       ("BAYELSA" , "Bayelsa"),
+       ("BENUE " , "Benue"),
+       ("BORNO" , "Borno"),
+       ("CROSS_RIVER" , "Cross_River"),
+       ("DELTA" , "Delta"),
+       ( "EBONYI " , "Ebonyi"),
+       ("EDO" , "Edo"),
+       ("EKITI" , "Ekiti"),
+       ("ENUGU ", "Enugu"),
+       ("GOMBE" , "Gombe"),
+       ( "IMO" , "Imo"),
+       ("JIGAWA" , "Jigawa"),
+       ("KADUNA" , "Kaduna"),
+       ("KANO" , "Kano"),
+       ("KATSINA" , "Katsina"),
+       ("KEBBI" , "Kebbi"),
+       ("KOGI" , "Kogi"),
+       ("KWARA" , "Kwara"),
+       ("NASSARAWA" , "Nassarawa"),
+       ("NIGER", "Niger"),
+       ("OGUN" , "Ogun"),
+       ("ONDO" , "Ondo"),
+       ("OSUN" ,"Osun"),
+       ("OYO" , "Oyo"),
+       ("PLATEAU" ,"Plateau"),
+       ("RIVERS","Rivers"),
+       ("SOKOTO" ,"Sokoto"),
+       ("TARABA" , "Taraba"),
+       ("YOBE" ,"Yobe"),
+       ("ZAMFARA" ,"Zamfara"),
+
+   )
+
+
+first_name = models.CharField(_('first name'), max_length=150, blank=False)
+last_name = models.CharField(_('last name'), max_length=150, blank=False)
+phone_number = models.CharField(max_length=12)
+nin = models.CharField(max_length=11)
+cv = models.FileField(upload_to='cv', null=True, blank=True)
+email = models.CharField( max_length=150, blank=False, unique=True)
+state = models.CharField(max_length=200, choices=STATE_CHOICES)
+
 
 class JobSeeker(models.Model):
 
@@ -156,3 +255,22 @@ class JobSeeker(models.Model):
     
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name
+
+
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+    email_plaintext_message = "http://127.0.0.1:8000/api/change-password/"
+
+    send_mail(
+        # title:
+        "Password Reset for {title}".format(title="Remcruit"),
+        # message:
+        email_plaintext_message,
+        # from:
+        "contact@remcruit.com",
+        # to:
+        [reset_password_token.user.email]
+    )
