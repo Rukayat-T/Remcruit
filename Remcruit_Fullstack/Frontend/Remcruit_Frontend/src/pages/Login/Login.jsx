@@ -24,7 +24,10 @@ const Login = () => {
         <div className="right-container">
           <div className="right-container-content">
             <h1>Welcome back!</h1>
+            <div className="external">
             <ExternalLogin/>
+            </div>
+            
             <div className="horizontal-section">
               <p className="hr-lines">or</p>
             </div>

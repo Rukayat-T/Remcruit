@@ -14,13 +14,20 @@
     justify-content: center;
 }
 .right-container{
+    margin: 0 auto;
     width: 50%;
     display: flex;
     padding: 4rem;
-    max-height: 60vh;
     flex-shrink: 2;
+    align-items: center;
+    justify-content: center;
 }
-
+.external{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
 .right-container-content h1{
     font-size: 3rem;
 }
@@ -31,14 +38,16 @@
 
 .horizontal-section{
     /* display: flex; */
-    width: 90%;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
 }
 
 .hr-lines:before{
     content:" ";
     display: block;
     height: 2px;
-    width: 280px;
+    width: 45%;
     position: absolute;
     top: 50%;
     left: 0;
@@ -46,14 +55,14 @@
     opacity: 0.5;
   }
   .hr-lines{
-    position: relative;
+    position: r;
     max-width: 100%;
     text-align: center;
   }
   .hr-lines:after{
     content:" ";
     height: 2px;
-    width: 280px;
+    width: 45%;
     background: #C6C6C6;
     display: block;
     position: absolute;
