@@ -16,7 +16,7 @@ from django.core.mail import send_mail
 
 # Create your models here.
 class User(AbstractUser):
-    email = models.CharField( max_length=150, blank=False, unique=True)
+    email = models.CharField( max_length=150, blank=False)
     first_name = models.CharField(_('first name'), max_length=150, blank=False)
     last_name = models.CharField(_('last name'), max_length=150, blank=False)
     is_employer = models.BooleanField(default=False)

@@ -1,8 +1,4 @@
-from email import message
-
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
+from django.shortcuts import render
 from rest_framework import generics, permissions
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -20,19 +16,25 @@ from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
 
-
-
-from rest_framework.response import Response
-from django.contrib.auth.models import User
-
-
-
-
 from .serializers import *
 from .permissions import IsEmployerUser, IsJobSeekerUser
 
-# from ..models import User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+
+        # Add custom claims
+        token['username'] = user.username
+        # ...
+
+        return token
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+    
 
 def send_confirmation_email(user, request):
     current_site = get_current_site(request)
@@ -89,7 +91,7 @@ class LoginAuthToken(ObtainAuthToken):
         return Response({
             'token':token.key,
             'user_id': user.pk,
-            'email': user.email,
+            'username': user.username,
             "is_jobSeeker": user.is_jobSeeker,
             "is_employer": user.is_employer
         })

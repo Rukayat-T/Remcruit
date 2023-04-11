@@ -1,11 +1,21 @@
 from django import views
 from django.urls import path, include
 from .views import  *
+<<<<<<< HEAD
 
 
+=======
+from django.contrib.auth import views as auth_views
+from rest_framework_simplejwt.views import (
+    TokenRefreshView,
+)
+>>>>>>> 33e0134473573abfeaf2e1b6c4b25d3467f11fee
 
 
 urlpatterns = [
+    path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
     path('register/employer/',EmployerRegisterView),
     path('register/jobseeker/',JobSeekerRegisterView),
 
