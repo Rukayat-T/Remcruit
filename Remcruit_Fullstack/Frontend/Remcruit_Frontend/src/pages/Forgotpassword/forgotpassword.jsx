@@ -1,30 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import { useState, useContext } from "react";
+import './forgotpassword.css'
+import AuthContext from "../../../context/AuthContext";
 
+function forgotpassword() {
+  let {loginUser} = useContext(AuthContext)
+  const [inputs, setInputs] = useState({});
 
-const forgotPassword =({loginUser}) => {
-    const history = useHistory();
-    const {userEmail} = userParams();
+  <div className="contianer"> 
 
-    return (
-        <div>   
-            <Title>
-                Reset Password
-            </Title>
-            <Formik
-            
-            initialValues={{
-                email: userEmail,
-                redirectUrl:"http://localhost:3000/passwordreset"
-            }}
-            validatationSchema={Yup.object({
-                email: Yup.string()
-                .email("Invalid email address")
-                .required("Required"),
-            })}
-            
-            ></Formik>
-        </div>
-    )
-}
+  return (
+    
+    <form onSubmit={loginUser}>
+    <input 
+      type = 'text'
+      name="username" 
+      placeholder="Email address"
+    />
+  
+      <input type="submit"/>
+  </form>
+)</div>
    
+}
+
+export default forgotpassword;
