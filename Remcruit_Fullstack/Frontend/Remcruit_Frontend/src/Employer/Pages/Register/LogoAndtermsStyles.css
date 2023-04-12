@@ -1,0 +1,7 @@
+.termsAndConditions label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;   
+}
