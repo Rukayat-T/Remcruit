@@ -1,70 +1,117 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './AccountInformationStyles.css'
 import '/Users/ruka/Desktop/RemcruitFolder/Remcruit/Remcruit_Fullstack/Frontend/Remcruit_Frontend/src/Employer/Pages/Register/AccountInformationstyles.css'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 
-function AccountInformationTab() {
+function AccountInformationTab({ formData, setFormData }) {
+
     return (
         <>
             <div className='top'>
-
                 <div className="ti">
                     <label>Title*</label>
-                    <input type="text" name="name" placeholder='Miss' />
-                </div>
-                <div className='gen'>
-                    <div>
-                        <label>Gender*</label>
-                    </div>
-                    <div className='gender'>
-                        <div className='female'>
-                            <input type="radio" name="female" /> Female
-                        </div>
-                        <div className='male'>
-                            <input type="radio" name="male" /> Male
-                        </div>
-                    </div>
+                    <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                        placeholder='Miss'
+                    />
                 </div>
             </div>
             <div className="name">
                 <div className="firstName">
                     <label>First Name*</label>
-                    <input type="text" name="firstname" placeholder='Jane' />
+                    <input
+                        type="text"
+                        name="firstname"
+                        value={formData.first_name}
+                        onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
+                        placeholder='Jane' />
                 </div>
                 <div className="lastName">
                     <label>Last Name*</label>
-                    <input type="text" name="lastname" placeholder='Doe' />
+                    <input
+                        type="text"
+                        name="lastname"
+                        value={formData.last_name}
+                        onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
+                        placeholder='Doe' />
                 </div>
             </div>
-            <div className="job">
+            <div className="gend">
+                <div className='gen'>
+                    <label>Gender*</label>
+                    <div className='gender'>
+                        <div className='fem'>
+                            <input
+                                type="radio"
+                                name="female"
+                                value="FEMALE"
+                                onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                                checked={formData.gender === "FEMALE"}
+                            /> Female
+                        </div>
+                        <div className='mal'>
+                            <input
+                                type="radio"
+                                name="male"
+                                value="MALE"
+                                onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                                checked={formData.gender === "MALE"}
+                            /> Male
+                        </div>
+                    </div>
+                </div>
                 <div className="jobTitle">
                     <label>Job Title*</label>
-                    <input type="text" name="jobTitle" placeholder='Manager' />
+                    <input
+                        type="text"
+                        name="jobTitle"
+                        value={formData.job_title}
+                        onChange={(e) => setFormData({ ...formData, job_title: e.target.value })}
+                        placeholder='Manager' />
                 </div>
-                <div className="email">
-                    <label>Email*</label>
-                    <input type="text" name="email" placeholder='example@example.com' />
-                </div>
+
             </div>
             <div className="phone">
+
+                <div className="email">
+                    <label>Email*</label>
+                    <input
+                        type="text"
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder='example@example.com' />
+                </div>
                 <div className="phoneNo">
                     <label>Phone Number*</label>
-                    <input type="tel" name="phoneNumber" placeholder='' />
-                </div>
-                <div className="confPhoneNo">
-                    <label>Confirm Phone Number*</label>
-                    <input type="tel" name="confPhoneNumber" />
+                    <input
+                        type="tel"
+                        name="phoneNumber"
+                        value={formData.phone_number}
+                        onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
+                        placeholder='' />
                 </div>
             </div>
             <div className="pass">
                 <div className="password">
                     <label>Password*</label>
-                    <input type="password" name="passwprd" />
+                    <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
                 </div>
                 <div className="confPassword">
                     <label>Confirm Password*</label>
-                    <input type="password" name="password2" />
+                    <input
+                        type="password"
+                        name="password2"
+                        value={formData.password2}
+                        onChange={(e) => setFormData({ ...formData, password2: e.target.value })} />
                 </div>
             </div>
         </>

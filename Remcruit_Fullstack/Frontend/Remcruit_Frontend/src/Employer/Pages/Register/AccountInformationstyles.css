@@ -1,4 +1,3 @@
-
 .forms{
     margin-left: 10%;
     margin-right: 10%;
@@ -23,23 +22,14 @@
 .gender{
     border: 1px solid #C6C6C6;
     display: flex;
-    width: 400px;
-    justify-content: center;
+    width: 23rem;
+    justify-content: space-around;
     padding-left: 20px;
-    padding-right: 100px;
+    padding-right: 20px;
     align-items: center;
     background-color: #faf8f8;
     height: 1.7rem;
     border-radius: 5px;
-}
-
-.female{
-    margin-right: 80px;
-    margin-left: 80px;
-}
-
-.male{
-    margin-left: 60px;
 }
 
 .ti label{
@@ -132,13 +122,13 @@ input:focus ~ label
     border-radius: 5px;
 }
 
-.job{
+.gend{
     display: flex;
     justify-content: space-between;
     margin-bottom: 30px;
 }
 
-.job label{
+.jobTitle label{
     margin-top: 10px;
     position: relative;
     color: #242F40;
@@ -146,7 +136,7 @@ input:focus ~ label
     transition: all 0.3s ease-in;  
 }
 
-.job input{
+.jobTitle input{
     width: 25rem;
     height: 25px;
     border: 1px solid #C6C6C6;

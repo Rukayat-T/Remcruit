@@ -169,3 +169,13 @@ ul.tabsNav li.active{
     justify-content: center;
     align-items: center;
 }
+
+#submit{
+    background-color: #FFCC33;
+    border-radius: 10px;
+    width: 130px;
+    height: 42px;
+    font-size: 20px;
+    border: 0;
+    font-weight: 500;
+}
