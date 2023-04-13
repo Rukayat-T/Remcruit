@@ -65,6 +65,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #pageTwo {
@@ -78,6 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #pageThree {
@@ -91,6 +93,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .line{
@@ -125,6 +128,7 @@
 
 .pageNames p{
     margin-top: 0;
+    cursor: pointer;
 }
 
 ul.tabsNav li.active{
@@ -177,5 +181,10 @@ ul.tabsNav li.active{
     height: 42px;
     font-size: 20px;
     border: 0;
+    font-weight: 500;
+}
+
+#T.active{
+    font-size: 1.1em;
     font-weight: 500;
 }

@@ -10,6 +10,7 @@ import Navbar from './components/Navbar/Navbar'
 import EmployerRegister from './Employer/Pages/Register/register'
 import AboutUs from './Pages/AboutUs/AboutUs'
 import JobseekerRegister from './pages/Register'
+import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -22,6 +23,7 @@ function App() {
         <AuthProvider>
           <Routes>
             <Route path='/' exact element={<LandingPage />} />
+            <Route path='/employer' exact element={<EmployerLandingPage />} />
             <Route path='/login' element={<Login />} />
             <Route path='/employer/register' element={<EmployerRegister />} />
             <Route element={<PrivateRoute />} >

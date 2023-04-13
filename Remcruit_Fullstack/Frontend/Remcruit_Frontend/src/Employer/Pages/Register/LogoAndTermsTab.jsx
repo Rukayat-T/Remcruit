@@ -5,11 +5,9 @@ import './LogoAndtermsStyles.css'
 function LogoAndTermsTab({ formData, setFormData }) {
     const [checked, setChecked] = useState(false)
 
-
     const checkboxHandler = (e) => {
         setFormData({ ...formData, terms_and_conditions: e.target.value })
     }
-
 
     return (
         <>
