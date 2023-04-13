@@ -29,6 +29,7 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+
     
 
 class ApplicantCredential(models.Model):
@@ -71,3 +72,4 @@ class JobApplication(models.Model):
 
 # class JobSeekerProfile(models.Model):
 #     pass
+

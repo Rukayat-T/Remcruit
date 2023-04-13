@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'rest_framework.authtoken',
-    'jobs',  # required for serving swagger ui's css/js files
+    'jobs',
     'drf_yasg',
 
     # 'rest_framework_simplejwt.token_blacklist',
