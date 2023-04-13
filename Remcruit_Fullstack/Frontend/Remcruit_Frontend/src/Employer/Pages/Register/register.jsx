@@ -12,6 +12,7 @@ import LogoAndTermsTab from './LogoAndTermsTab'
 function EmployerRegister() {
 
   const navigate = useNavigate();
+
   const goBack = () => {
     navigate(-1);
   }
@@ -31,7 +32,17 @@ function EmployerRegister() {
     }
   }
 
-  const [message, setMessage] = useState("")
+  const handlePage1 = () => {
+    setPage(0)
+  }
+
+  const handlePage2 = () => {
+    setPage(1)
+  }
+
+  const handlePage3 = () => {
+    setPage(2)
+  }
 
   const [formData, setFormData] = useState({
     email: "",
@@ -80,14 +91,13 @@ function EmployerRegister() {
     }
     else {
       return <LogoAndTermsTab formData={formData} setFormData={setFormData} />
-      //terms={terms} setTerms={setTerms}
     }
   }
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://127.0.0.1:8000/api/register/employer/",
-        //let res = await fetch("http://0.0.0.0:8000/api/register/employer/", 
+      //let res = await fetch("http://127.0.0.1:8000/api/register/employer/",
+      let res = await fetch("http://0.0.0.0:8000/api/register/employer/",
         {
           method: "POST",
           headers: {
@@ -98,10 +108,11 @@ function EmployerRegister() {
         });
       let resJson = await res.json();
       if (res.status === 200) {
-        setMessage(resJson.response);
-        navigate('/')
+        console.log(resJson)
+        navigate('/employer')
       } else {
-        setMessage("Some error occured");
+        console.log(resJson)
+        alert("something went wrong")
       }
     } catch (err) {
       console.log(err);
@@ -129,16 +140,16 @@ function EmployerRegister() {
               </div>
               <div className="tabs">
                 <div className='pages'>
-                  <div className={page === 0 ? "active" : ""} id='pageOne'> 1</div>
+                  <div className={page === 0 ? "active" : ""} onClick={handlePage1} id='pageOne'> 1</div>
                   <hr className="line" />
-                  <div className={page === 1 ? "active" : ""} id='pageTwo'>2</div>
+                  <div className={page === 1 ? "active" : ""} onClick={handlePage2} id='pageTwo'>2</div>
                   <hr className="line" />
-                  <div className={page === 2 ? "active" : ""} id='pageThree'>3</div>
+                  <div className={page === 2 ? "active" : ""} onClick={handlePage3} id='pageThree'>3</div>
                 </div>
                 <div className='pageNames'>
-                  <p>Account Information</p>
-                  <p>Your Organisation</p>
-                  <p>Logo and Terms</p>
+                  <p className={page === 0 ? "active" : ""} onClick={handlePage1} id='T'>Account Information</p>
+                  <p className={page === 1 ? "active" : ""} onClick={handlePage2} id='T'>Your Organisation</p>
+                  <p className={page === 2 ? "active" : ""} onClick={handlePage3} id='T'>Logo and Terms</p>
                 </div>
                 <div className="outlet">
                   <div className="forms">

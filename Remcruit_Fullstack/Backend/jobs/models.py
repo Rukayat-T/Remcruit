@@ -29,3 +29,45 @@ class Job(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class ApplicantCredential(models.Model):
+
+    job_seeker = models.ForeignKey('authentication.JobSeeker', on_delete=models.CASCADE)
+    credential_name = models.CharField(max_length=30) 
+    credential = models.FileField(upload_to='credentials/')
+
+    def __str__(self):
+        return self.credential_name
+class JobApplication(models.Model):
+
+    ACCEPTED = 'accepted' #job has been accepted by job seeker
+    INTERVIEW = "interview" # application has been progressed to interview stage by employer
+    OFFER_SENT = 'offer sent' # job offer has been sent by employer
+    DECLINED = 'declined' # application has been declined by employer 
+    OFFER_DECLINED = 'offer unaccepted' #offer had been declined by job seeker
+    IN_REVIEW = 'in review' # new job application. employer is reviewing application
+
+    statusChoices = (
+        ("ACCEPTED", "accepted"),
+        ("INTERVIEW", "interview"),
+        ("OFFER_SENT", "offer sent"),
+        ("DECLINED", "declined"),
+        ("OFFER_DECLINED", "offer unaccepted"),
+        ("IN_REVIEW", "in review"),
+    )
+
+    job_seeker = models.ForeignKey('authentication.JobSeeker', on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE)
+    applicationStatus = models.CharField(max_length=30, choices=statusChoices, default = 'new')
+
+    def __str__(self):
+        return str(self.job_seeker) + 'applied for' + str(self.job)
+
+
+
+
+
+# class JobSeekerProfile(models.Model):
+#     pass

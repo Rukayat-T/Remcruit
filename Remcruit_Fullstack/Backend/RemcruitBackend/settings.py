@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'rest_framework.authtoken',
-    'jobs',
+    'jobs',  # required for serving swagger ui's css/js files
+    'drf_yasg',
 
     # 'rest_framework_simplejwt.token_blacklist',
 ]
@@ -57,6 +58,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
+}
+
+SWAGGER_SETTINGS = {
+'VALIDATOR_URL' : None,
 }
 
 

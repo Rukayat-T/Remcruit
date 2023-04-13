@@ -130,7 +130,6 @@ class JobSeeker(models.Model):
         ("HND", "Higher National Diploma"),
     )
 
-
     FEMALE = "Female"
     MALE = "Male"
 

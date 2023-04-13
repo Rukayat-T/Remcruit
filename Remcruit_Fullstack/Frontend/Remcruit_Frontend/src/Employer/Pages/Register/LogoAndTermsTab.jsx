@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
-import ImageUpload from './components/imageUpload/imageUpload'
+import ImageUpload from '../../components/imageUpload/imageUpload'
 import '/Users/ruka/Desktop/RemcruitFolder/Remcruit/Remcruit_Fullstack/Frontend/Remcruit_Frontend/src/Employer/Pages/Register/LogoAndtermsStyles.css'
 
 function LogoAndTermsTab({ formData, setFormData }) {
     const [checked, setChecked] = useState(false)
 
-
     const checkboxHandler = (e) => {
         setFormData({ ...formData, terms_and_conditions: e.target.value })
     }
-
 
     return (
         <>
