@@ -51,10 +51,6 @@ INSTALLED_APPS = [
     'Employers',
     'JobSeekers',  # required for serving swagger ui's css/js files
     'drf_yasg',
-=======
-    'Employers',
-    'JobSeekers',
->>>>>>> 62e0c390 (New apps)
 
     # 'rest_framework_simplejwt.token_blacklist',
 ]
