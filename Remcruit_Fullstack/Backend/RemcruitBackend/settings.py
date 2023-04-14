@@ -48,14 +48,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication',
     'rest_framework.authtoken',
-<<<<<<< HEAD
     'django_rest_passwordreset',
     
-=======
     'jobs',
 
     # 'rest_framework_simplejwt.token_blacklist',
->>>>>>> 33e0134473573abfeaf2e1b6c4b25d3467f11fee
 ]
 
 REST_FRAMEWORK = {

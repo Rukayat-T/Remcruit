@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from authentication.models import *
 
 # Create your models here.
@@ -113,11 +114,11 @@ STATE_CHOICES = (
    )
 
 
-first_name = models.CharField(_('first name'), max_length=150, blank=False)
-last_name = models.CharField(_('last name'), max_length=150, blank=False)
-phone_number = models.CharField(max_length=12)
-nin = models.CharField(max_length=11)
-cv = models.FileField(upload_to='cv', null=True, blank=True)
-email = models.CharField( max_length=150, blank=False, unique=True)
-state = models.CharField(max_length=200, choices=STATE_CHOICES)
+# first_name = models.CharField(_('first name'), max_length=150, blank=False)
+# last_name = models.CharField(_('last name'), max_length=150, blank=False)
+# phone_number = models.CharField(max_length=12)
+# nin = models.CharField(max_length=11)
+# cv = models.FileField(upload_to='cv', null=True, blank=True)
+# email = models.CharField( max_length=150, blank=False, unique=True)
+# state = models.CharField(max_length=200, choices=STATE_CHOICES)
 
