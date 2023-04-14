@@ -106,7 +106,7 @@ class JobSeeker(models.Model):
 class ApplicantCredential(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
     credential_name = models.CharField(max_length=30) 
-    credential = models.FileField(upload_to='credentials/')
+    credential = models.FileField(upload_to='credentials/',  blank=True, null=True)
 
     def __str__(self):
         return self.credential_name
@@ -131,7 +131,7 @@ class JobApplication(models.Model):
 
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
     job = models.ForeignKey('Employers.Job', on_delete=models.CASCADE)
-    credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE, default=None)
+    credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE, default=None,  blank=True, null=True)
     applicationStatus = models.CharField(max_length=30, choices=statusChoices, default = 'new')
 
     def __str__(self):
