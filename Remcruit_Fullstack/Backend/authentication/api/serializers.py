@@ -67,8 +67,6 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
         return jobseeker
         
 
-
-
 class EmployerRegisterSerializer(serializers.ModelSerializer):
     password2=serializers.CharField(style={"input_type":"password"}, write_only=True)
     job_title = serializers.CharField(required=True)
