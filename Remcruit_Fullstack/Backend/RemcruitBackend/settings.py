@@ -49,8 +49,10 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework.authtoken',
     'django_rest_passwordreset',
-    
     'jobs',
+    'Employers',
+    'JobSeekers',  # required for serving swagger ui's css/js files
+    'drf_yasg',
 
     # 'rest_framework_simplejwt.token_blacklist',
 ]
@@ -59,6 +61,10 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
+}
+
+SWAGGER_SETTINGS = {
+'VALIDATOR_URL' : None,
 }
 
 

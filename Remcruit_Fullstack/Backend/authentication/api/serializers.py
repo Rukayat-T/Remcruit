@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from authentication.models import User, Employer, JobSeeker
+from authentication.models import *
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from rest_framework.exceptions import AuthenticationFailed
@@ -7,6 +7,8 @@ from django.utils.encoding import smart_str, force_str, smart_bytes, DjangoUnico
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 
+from Employers.models import *
+from JobSeekers.models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -21,7 +23,7 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
     subject_of_study = serializers.ChoiceField(choices=JobSeeker.SUBJECT_OF_STUDY_CHOICES, required=True)
     degree_classification = serializers.ChoiceField(choices=JobSeeker.DEGREE_CLASSIFICATION_CHOICES,required=True)
     highest_qualification = serializers.ChoiceField(choices=JobSeeker.HIGHEST_QUALIFICATION_CHOICES, required=True)
-    gender = serializers.ChoiceField(choices=JobSeeker.GENDER_CHOICES, required=True)
+    gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
 
     class Meta:
@@ -73,8 +75,6 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
         return jobseeker
         
 
-
-
 class EmployerRegisterSerializer(serializers.ModelSerializer):
     password2=serializers.CharField(style={"input_type":"password"}, write_only=True)
     job_title = serializers.CharField(required=True)
@@ -86,7 +86,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
     phone_number = serializers.CharField(required=True)
     organisation_description = serializers.CharField(required=True)
     recruitment_agency = serializers.BooleanField(required=True)
-    gender = serializers.ChoiceField(choices=Employer.GENDER_CHOICES, required=True)
+    gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
 
     class Meta:

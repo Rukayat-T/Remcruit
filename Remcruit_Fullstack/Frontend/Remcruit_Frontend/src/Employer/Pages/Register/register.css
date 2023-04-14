@@ -1,0 +1,190 @@
+.wave{
+    height: 300px;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.Rcontainer{
+    overflow: hidden;
+}
+
+.formContainer{
+    min-height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formBox{
+    width: 80%;
+    min-height: 80vh;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    z-index: 1;
+    padding-top: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.hideBtn {
+    display: none;
+}
+
+.backIcon{
+    margin-right: 10%;
+}
+
+.nextIcon{
+    margin-left: 10%;
+}
+
+.pagesNav{
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+#pageOne {
+    background: rgba(202, 97, 195, 0.2);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 35px;
+    width: 35px;
+    font-size: 25px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#pageTwo {
+    background: rgba(202, 97, 195, 0.2);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 35px;
+    width: 35px;
+    font-size: 25px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#pageThree {
+    background: rgba(202, 97, 195, 0.2);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 35px;
+    width: 35px;
+    font-size: 25px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.line{
+    width: 405px;
+    height: 2px;
+    background-color: #CA61C3;
+    border: 0;
+}
+
+.tabsNav{
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.pages{
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageNames{
+    margin-left: 4.8%;
+    margin-right: 4.8%;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom: 30px;
+}
+
+.pageNames p{
+    margin-top: 0;
+    cursor: pointer;
+}
+
+ul.tabsNav li.active{
+    font-weight: 500;
+}
+
+#pageOne.active{
+    background: rgba(202, 97, 195, 0.3);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 38px;
+    width: 38px;
+    font-size: 28px;
+    border: 2px solid #CA61C3;
+}
+
+#pageTwo.active{
+    background: rgba(202, 97, 195, 0.3);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 38px;
+    width: 38px;
+    font-size: 28px;
+    border: 2px solid #CA61C3;
+}
+
+#pageThree.active{
+    background: rgba(202, 97, 195, 0.3);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 38px;
+    width: 38px;
+    font-size: 28px;
+    border: 2px solid #CA61C3;
+}
+
+.backBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nextBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submit{
+    background-color: #FFCC33;
+    border-radius: 10px;
+    width: 130px;
+    height: 42px;
+    font-size: 20px;
+    border: 0;
+    font-weight: 500;
+}
+
+#T.active{
+    font-size: 1.1em;
+    font-weight: 500;
+}

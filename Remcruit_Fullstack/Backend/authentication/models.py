@@ -15,6 +15,7 @@ from django.core.mail import send_mail
 
 
 # Create your models here.
+
 class User(AbstractUser):
     email = models.CharField( max_length=150, blank=False)
     first_name = models.CharField(_('first name'), max_length=150, blank=False)
@@ -22,9 +23,8 @@ class User(AbstractUser):
     is_employer = models.BooleanField(default=False)
     is_jobSeeker = models.BooleanField(default=False)
  
-     
     def __str__(self):
-        return self.username
+        return self.first_name + self.last_name
     
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
@@ -184,3 +184,5 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # to:
         [reset_password_token.user.email]
     )
+    
+    Token.objects.create(user=instance)

@@ -64,23 +64,25 @@ def JobSeekerRegisterView(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class EmployerRegister(generics.GenericAPIView):
+    serializer_class = EmployerRegisterSerializer
+    def post(self, request):
+   
+        if request.method == 'POST':
+            serializer = self.serializer_class(data=request.data, context={'request': request})
+        # serializer = EmployerRegisterSerializer(data=request.data)
+            data = {}
 
-@api_view(['POST',])
-def EmployerRegisterView(request):
-    if request.method == 'POST':
-        serializer = EmployerRegisterSerializer(data=request.data)
-        data = {}
-
-        if serializer.is_valid():
-            employer = serializer.save()
-            data['response'] = "Please confirm your email address to complete the registration"
-            data['email'] = employer.user.email
-            data['username'] = employer.user.username
-            send_confirmation_email(employer.user, request)
-            return Response(data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+            if serializer.is_valid():
+                employer = serializer.save()
+                data['response'] = "Please confirm your email address to complete the registration"
+                data['email'] = employer.user.email
+                data['username'] = employer.user.username
+                send_confirmation_email(employer.user, request)
+                return Response(data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+ 
 
 class LoginAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -117,9 +119,6 @@ class JobSeekerOnlyView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
-    
-    # 
-
 
 
 def activate_user(request, uid64, token):
@@ -133,8 +132,7 @@ def activate_user(request, uid64, token):
     if user is not None:
         user.is_active = True
         user.save()
-        return  render(request, "authentication/activatePage.html", {"user" : user,} )
-    #HttpResponse('Thank you for your email confirmation. Your account is ready now')  
+        return  render(request, "authentication/activatePage.html", {"user" : user,} ) 
     else:  
         return HttpResponse('Activation link is invalid!')  
     
