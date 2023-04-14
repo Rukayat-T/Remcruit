@@ -5,8 +5,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import HttpResponse
 from django.contrib import messages
-
-
 from .serializers import *
 
 class AllJobSeekers(generics.GenericAPIView):
@@ -56,3 +54,21 @@ class JobSeekerView(generics.GenericAPIView):
         else:
             data['response'] = "Please confirm your email address to complete the registration"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
+
+class JobApplicationView(generics.GenericAPIView):
+    serializer_class = JobApplicationSerializer
+
+    def post(self, request):
+        if request.method == 'POST':
+            serializer = self.serializer_class(data=request.data, context={'request': request})
+            data = {}
+            if serializer.is_valid():
+                job_application = serializer.save()
+                data['response'] = "Okay, you have tried"
+                data['job title'] = job_application.job.title
+                data['job company'] = job_application.job.company.organisation_name
+                data['job location'] = job_application.job.location
+                data['applicationStatus'] = job_application.applicationStatus
+                return Response(data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
