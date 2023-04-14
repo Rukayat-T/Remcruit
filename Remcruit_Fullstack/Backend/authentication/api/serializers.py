@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from authentication.models import *
 from django.contrib.auth.password_validation import validate_password
+from Employers.models import *
+from JobSeekers.models import *
 
 
 class UserSerializer(serializers.ModelSerializer):
