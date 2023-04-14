@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
+import './LogoAndtermsStyles.css'
 import ImageUpload from '../../components/imageUpload/imageUpload'
-import '/Users/ruka/Desktop/RemcruitFolder/Remcruit/Remcruit_Fullstack/Frontend/Remcruit_Frontend/src/Employer/Pages/Register/LogoAndtermsStyles.css'
-
 function LogoAndTermsTab({ formData, setFormData }) {
     const [checked, setChecked] = useState(false)
 

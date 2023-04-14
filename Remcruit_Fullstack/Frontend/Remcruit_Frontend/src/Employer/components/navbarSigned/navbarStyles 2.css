@@ -1,0 +1,36 @@
+.employerNav{
+    display: flex;
+    align-items: center;
+    width: 95%;
+    padding: 0;
+    justify-self: center;
+    margin: 0 auto;
+}
+
+.employerNav p{
+    color: #CA61C3;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.empLogo{
+    width: 150px;
+}
+
+.navMenu {
+    
+    margin-left: auto;
+
+}
+
+.POJ{
+    background-color: #FFCC33;
+    color: black;
+    padding: 10px;
+    border-radius: 8px;
+}
+.postBtn{
+    height: 59px;
+    width: 100px;
+}

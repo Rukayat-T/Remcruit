@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './AccountInformationStyles.css'
-import '/Users/ruka/Desktop/RemcruitFolder/Remcruit/Remcruit_Fullstack/Frontend/Remcruit_Frontend/src/Employer/Pages/Register/AccountInformationstyles.css'
+// import './AccountInformationstyles.css'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 

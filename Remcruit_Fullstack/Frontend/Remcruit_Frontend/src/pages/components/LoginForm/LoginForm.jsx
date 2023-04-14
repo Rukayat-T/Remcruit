@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import { useState, useContext } from "react";
 import './LoginForm.css'
 import AuthContext from "../../../context/AuthContext";
@@ -7,19 +8,8 @@ function LoginForm() {
   let {loginUser} = useContext(AuthContext)
   const [inputs, setInputs] = useState({});
 
-  // const handleChange = (event) => {
-  //   const name = event.target.name;
-  //   const value = event.target.value;
-  //   setInputs((values) => ({ ...values, [name]: value }));
-  // }
-
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log(inputs);
-  // }
-
   return (
-    <form onSubmit={loginUser}>
+    <form onSubmit={loginUser} className="form">
       <input 
         type = 'text'
         name="username" 
@@ -36,7 +26,7 @@ function LoginForm() {
         />
         <p className="forgot">Forgot password?</p>
         <input type="submit"/>
-        <p>Dont have an account? <a href="#">Sign Up</a></p>
+        <p>Dont have an account? <Link to='/jobseeker/register'>Sign Up</Link></p>
     </form>
   )
 }

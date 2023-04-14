@@ -3,7 +3,7 @@ import React from 'react'
 function RegisterForm() {
   return (
     <div>
-      <form action="POST">
+      <form action="POST" className='form'>
         <label htmlFor="first_name">First name</label>
         <input type="text" placeholder='First name' id='first_name'/>
         <label htmlFor="last_name">Last name</label>
