@@ -18,7 +18,7 @@ class User(AbstractUser):
     is_jobSeeker = models.BooleanField(default=False)
  
     def __str__(self):
-        return self.first_name + self.last_name
+        return self.first_name + ' ' + self.last_name
     
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):

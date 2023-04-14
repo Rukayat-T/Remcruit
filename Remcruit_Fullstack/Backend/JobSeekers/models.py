@@ -12,6 +12,10 @@ class DegreeClassification(models.TextChoices):
     THIRD = "Third Class Honours"
 class JobSeeker(models.Model):
 
+    def delete(self, *args, **kwargs):
+        self.user.delete()
+        return super(self.__class__, self).delete(*args, **kwargs)
+
     BABCOCK_UNIVERSITY = "babcock_university"
     UNILAG = "unilag"
     UNIBEN = "uniben"
@@ -89,7 +93,7 @@ class JobSeeker(models.Model):
     highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, null=True)
     gender = models.TextField(choices=Gender.choices)
     terms_and_conditions = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to='images/')
+    profile_picture = models.ImageField(upload_to='images/', null=True, blank=True)
     
 
     USERNAME_FIELD = 'email'
