@@ -16,7 +16,10 @@ class DegreeClassification(models.TextChoices):
 
 class Employer(models.Model):
 
-
+    def delete(self, *args, **kwargs):
+        self.user.delete()
+        return super(self.__class__, self).delete(*args, **kwargs)
+    
     user = models.OneToOneField(User, related_name="employer", on_delete=models.CASCADE)
     title = models.CharField(max_length=225)
     gender = models.TextField(choices=Gender.choices)
