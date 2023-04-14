@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useContext } from "react";
 import './LoginForm.css'
 import AuthContext from "../../../context/AuthContext";
-import { Link } from "react-router-dom";
+
 
 function LoginForm() {
   let {loginUser} = useContext(AuthContext)
@@ -37,7 +37,7 @@ function LoginForm() {
         />
         <p className="forgot"><Link to="/forgotpassword">Forgot password?</Link></p>
         <input type="submit"/>
-        <p>Dont have an account? <a href="#">Sign Up</a></p>
+        <p className="signup"><Link to="/register">Don't have an account Signup </Link></p>
     </form>
   )
 }

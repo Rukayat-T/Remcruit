@@ -1,27 +1,27 @@
-import React from "react";
-import { useState, useContext } from "react";
-import './forgotpassword.css'
-import AuthContext from "../../../context/AuthContext";
+// import React from "react";
+// import { useState, useContext } from "react";
+// import './forgotpassword.css'
+// import AuthContext from "../../../context/AuthContext";
 
-function forgotpassword() {
-  let {loginUser} = useContext(AuthContext)
-  const [inputs, setInputs] = useState({});
+// function forgotpassword() {
+//   let {loginUser} = useContext(AuthContext)
+//   const [inputs, setInputs] = useState({});
 
-  <div className="contianer"> 
+//   <div className="contianer"> 
 
-  return (
+//   return (
     
-    <form onSubmit={loginUser}>
-    <input 
-      type = 'text'
-      name="username" 
-      placeholder="Email address"
-    />
+//     <form onSubmit={loginUser}>
+//     <input 
+//       type = 'text'
+//       name="username" 
+//       placeholder="Email address"
+//     />
   
-      <input type="submit"/>
-  </form>
-)</div>
+//       <input type="submit"/>
+//   </form>
+// )</div>
    
-}
+// }
 
-export default forgotpassword;
+// export default forgotpassword;

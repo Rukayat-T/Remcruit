@@ -9,7 +9,7 @@ import JobseekerRegister from './pages/Register'
 import { AuthProvider } from './context/AuthContext';
 import LoginForm from './pages/components/LoginForm/LoginForm';
 import PrivateRoute from './utils/PrivateRoute';
-// import Forgotpassword from './components/Forgotpassword/Forgotpassword';
+// import Forgotpassword from './Pages/Forgotpassword/Forgotpassword';
 // import PasswordReset from './pages/PasswordReset/PasswordReset';
 
 
@@ -21,8 +21,9 @@ function App() {
         <Routes>
           <Route path='/' exact element={<LandingPage />} />
           <Route path='/login' element={<Login />} />
-          <Route path = '/forgotpassword' element={<Forgotpassword />} />
-          <Route path = '/passwordreset' element={<PasswordReset />} />
+          
+          {/* <Route path = '/forgotpassword' element={<Forgotpassword />} />
+          <Route path = '/passwordreset' element={<PasswordReset />} />  */}
           <Route path='/employer/register' element={<EmployerRegister />} />
           <Route element = {<PrivateRoute/>} >
             <Route element = {<AboutUs/>} path='/aboutus'/>
