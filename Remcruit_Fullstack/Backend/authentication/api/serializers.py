@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from authentication.models import User, Employer, JobSeeker
+from authentication.models import *
 from django.contrib.auth.password_validation import validate_password
 
 
@@ -15,7 +15,7 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
     subject_of_study = serializers.ChoiceField(choices=JobSeeker.SUBJECT_OF_STUDY_CHOICES, required=True)
     degree_classification = serializers.ChoiceField(choices=JobSeeker.DEGREE_CLASSIFICATION_CHOICES,required=True)
     highest_qualification = serializers.ChoiceField(choices=JobSeeker.HIGHEST_QUALIFICATION_CHOICES, required=True)
-    gender = serializers.ChoiceField(choices=JobSeeker.GENDER_CHOICES, required=True)
+    gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
 
     class Meta:
@@ -78,7 +78,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
     phone_number = serializers.CharField(required=True)
     organisation_description = serializers.CharField(required=True)
     recruitment_agency = serializers.BooleanField(required=True)
-    gender = serializers.ChoiceField(choices=Employer.GENDER_CHOICES, required=True)
+    gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
 
     class Meta:

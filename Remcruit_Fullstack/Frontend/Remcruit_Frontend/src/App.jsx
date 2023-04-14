@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Route } from 'react-router';
-import 'font-awesome/css/font-awesome.min.css';
+// import 'font-awesome/css/font-awesome.min.css';
 
 import Home from './Pages/Home/Home'
-import Login from './Pages/Login/Login'
+// import Login from './Pages/Login/Login'
 import LandingPage from './pages/LandingPage/LandingPage'
+import Login from '../src/pages/Login/Login'
 import Navbar from './components/Navbar/Navbar'
 import EmployerRegister from './Employer/Pages/Register/register'
 import AboutUs from './Pages/AboutUs/AboutUs'

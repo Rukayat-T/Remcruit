@@ -9,6 +9,17 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
+
+class Gender(models.TextChoices):
+     FEMALE = "Female"
+     MALE = "Male"
+
+class DegreeClassification(models.TextChoices):
+    FIRST = "First Class Honours"
+    SECOND_UPPER = "Second Class Honours(upper)"
+    SECOND_LOWER = "Second Class Honours(lower)"
+    THIRD = "Third Class Honours"
+
 class User(AbstractUser):
     email = models.CharField( max_length=150, blank=False)
     first_name = models.CharField(_('first name'), max_length=150, blank=False)
@@ -27,20 +38,10 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Employer(models.Model):
 
-    FEMALE = "Female"
-    MALE = "Male"
-
-    GENDER_CHOICES = (
-        ("FEMALE", "Female"),
-        ("MALE", "Male")
-    )
-   
-
-
 
     user = models.OneToOneField(User, related_name="employer", on_delete=models.CASCADE)
     title = models.CharField(max_length=225)
-    gender = models.CharField(max_length=200, choices=GENDER_CHOICES, default=FEMALE)
+    gender = models.TextField(choices=Gender.choices)
     job_title = models.CharField(max_length=225)
     phone_number = models.CharField(max_length=12)
     organisation_name = models.CharField(max_length=225)
@@ -130,24 +131,17 @@ class JobSeeker(models.Model):
         ("HND", "Higher National Diploma"),
     )
 
-    FEMALE = "Female"
-    MALE = "Male"
-
-    GENDER_CHOICES = (
-        ("FEMALE", "Female"),
-        ("MALE", "Male")
-    )
-
     user = models.OneToOneField(User, related_name="jobSeeker", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
     university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, null=True, blank=True)
     subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES,null=True, blank=True)
     year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES,null=True, blank=True)
-    degree_classification = models.CharField(max_length=200, choices=DEGREE_CLASSIFICATION_CHOICES, null=True, blank=True)
-    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, null=True, blank=True)
-    gender = models.CharField(max_length=200, choices=GENDER_CHOICES, default=FEMALE)
+    degree_classification = models.TextField(choices=DegreeClassification.choices, null=False)
+    highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, null=True)
+    gender = models.TextField(choices=Gender.choices)
     terms_and_conditions = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='images/')
+    
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'title', 'phone_number',

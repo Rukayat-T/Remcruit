@@ -1,5 +1,5 @@
 import React from 'react'
-import '/Users/ruka/Desktop/RemcruitFolder/Remcruit/Remcruit_Fullstack/Frontend/Remcruit_Frontend/src/Employer/Pages/Register/YourOrganisationStyles.css'
+import './YourOrganisationStyles.css'
 
 function YourOrganisationTab({ formData, setFormData }) {
     return (
