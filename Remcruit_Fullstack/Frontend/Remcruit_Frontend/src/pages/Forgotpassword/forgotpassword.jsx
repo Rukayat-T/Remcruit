@@ -1,27 +1,24 @@
-// import React from "react";
-// import { useState, useContext } from "react";
-// import './forgotpassword.css'
-// import AuthContext from "../../../context/AuthContext";
+// import React, { Component } from "react";
+// export class Forgot extends Component{
 
-// function forgotpassword() {
-//   let {loginUser} = useContext(AuthContext)
-//   const [inputs, setInputs] = useState({});
+//  handleSubmit = e => {
+//   e.preventDefault();
+//  };
 
-//   <div className="contianer"> 
 
-//   return (
-    
-//     <form onSubmit={loginUser}>
-//     <input 
-//       type = 'text'
-//       name="username" 
-//       placeholder="Email address"
-//     />
-  
-//       <input type="submit"/>
-//   </form>
-// )</div>
-   
+
+
+//   render(){
+//     return (
+//       <form onSubmit={this.handleSubmit}>
+//         <h3>Forgot Password</h3>
+
+//         <div className="form-group">
+//           <label> Email </label>
+//           <input type="email" className="form-control" placeholder="Email"
+//         </div>
+//       </form>
+//     )
+//   }
 // }
 
-// export default forgotpassword;

@@ -1,7 +1,9 @@
 
 import React, {useState} from 'react';
 import './RegisterForm.css'
-function RegistrationForm() {
+
+
+function RegisterForm() {
     return(
       <div className="form">
           <div className="form-body">
@@ -44,7 +46,7 @@ function RegistrationForm() {
       </div>      
     )       
 }
-export default RegistrationForm;
+export default RegisterForm;
 
 
 

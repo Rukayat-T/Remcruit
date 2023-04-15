@@ -23,7 +23,7 @@ const Login = () => {
         </div>
         <div className="right-container">
           <div className="right-container-content">
-            <h1>Welcome back!</h1>
+            <h1>Create your account </h1>
             <div className="external">
             <ExternalLogin/>
             </div>

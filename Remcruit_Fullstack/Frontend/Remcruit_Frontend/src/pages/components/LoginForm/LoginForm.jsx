@@ -25,7 +25,7 @@ function LoginForm() {
           // onChange={handleChange}
           placeholder="Password"
         />
-        <p className="forgot"><Link to="/forgotpassword">Forgot password?</Link></p>
+        <p className="forgot"><Link to="/Forgotpassword">Forgot password?</Link></p>
         <input type="submit"/>
         <p>Dont have an account? <Link to='/jobseeker/register'>Sign Up</Link></p>
     </form>

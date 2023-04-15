@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
     
     faFacebookSquare,
-    faInstagram,
+    faInstagramSquare,
     faLinkedin, faYoutube,
     } from "@fortawesome/free-brands-svg-icons";
 // import {
@@ -69,7 +69,7 @@ return(
                      <FontAwesomeIcon icon={faYoutube} style={{color: "#ffffff",}} />
                     <FontAwesomeIcon icon={faLinkedin} style={{color: "#ffffff",}} /> 
                      <FontAwesomeIcon icon={faFacebookSquare} style={{color: "#ffffff",}} /> 
-                    <FontAwesomeIcon icon={faInstagram} style={{color: "#ffffff",}} /> 
+                    <FontAwesomeIcon icon={faInstagramSquare} style={{color: "#ffffff",}} /> 
                    
                 
                     
