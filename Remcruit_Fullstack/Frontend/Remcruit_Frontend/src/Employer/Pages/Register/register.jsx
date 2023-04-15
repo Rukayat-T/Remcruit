@@ -96,8 +96,8 @@ function EmployerRegister() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //let res = await fetch("http://127.0.0.1:8000/authentication/register/employer/",
-      let res = await fetch("http://0.0.0.0:8000/authentication/register/employer/",
+      let res = await fetch("http://127.0.0.1:8000/authentication/register/employer/",
+      // let res = await fetch("http://0.0.0.0:8000/authentication/register/employer/",
         {
           method: "POST",
           headers: {
