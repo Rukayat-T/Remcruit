@@ -1,0 +1,18 @@
+.form-input{
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-input input{
+    border: 2px solid black;
+    border-radius: 13px;
+    height: 67px;
+    font-weight: 500;
+    margin: 10px 0;
+    padding: 0 10px;
+    font-size: 20px;   }

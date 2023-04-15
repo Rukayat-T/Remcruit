@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from 'react-router-dom'
+import './Register.css'
 import "../../../pages/Login/Login.css";
 import Carousel from "../../../pages/components/Carousel/Carousel";
-import RegisterForm from "../../../pages/components/RegisterForm/RegisterForm";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import ExternalLogin from '../../../components/ExternalLogin/ExternalLogin'
 
 function Register() {
@@ -22,9 +24,9 @@ function Register() {
             </div>
 
 
-            <p className="continuewithemail"><Link to="/RegisterPage2">Continue with email</Link></p>
+            <p className="continuewithemail"><Link to="/jobseeker/registerpage2">Continue with email</Link></p>
         <input type="submit"/>
-        <p className="login"><Link to="/login">Already have an account? Login</Link></p>
+        <p className="login"><Link to="/login">Already have an account?<span >Login</span> </Link></p>
 
           </div>
         </div>
