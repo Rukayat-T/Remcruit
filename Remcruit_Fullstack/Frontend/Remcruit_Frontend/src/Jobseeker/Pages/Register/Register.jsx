@@ -1,7 +1,7 @@
 import React from "react";
-import "../pages/Login/Login.css";
-import Carousel from "./components/Carousel/Carousel";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
+import "../../../pages/Login/Login.css";
+import Carousel from "../../../pages/components/Carousel/Carousel";
+import RegisterForm from "../../../pages/components/RegisterForm/RegisterForm";
 
 function Register() {
   return (
