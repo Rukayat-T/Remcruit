@@ -49,9 +49,8 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework.authtoken',
     'django_rest_passwordreset',
-    'jobs',
     'Employers',
-    'JobSeekers',  # required for serving swagger ui's css/js files
+    'JobSeekers',  
     'drf_yasg',
 
     # 'rest_framework_simplejwt.token_blacklist',
@@ -226,7 +225,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
 # EMAIL_PORT = 25
 EMAIL_PORT = 587
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_USER = 'contact@remcruit.com'
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

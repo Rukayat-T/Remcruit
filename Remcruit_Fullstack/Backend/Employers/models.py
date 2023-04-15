@@ -20,7 +20,7 @@ class Employer(models.Model):
         self.user.delete()
         return super(self.__class__, self).delete(*args, **kwargs)
     
-    user = models.OneToOneField(User, related_name="employer", on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='Employer_user', on_delete=models.CASCADE)
     title = models.CharField(max_length=225)
     gender = models.TextField(choices=Gender.choices)
     job_title = models.CharField(max_length=225)
@@ -52,10 +52,10 @@ class JobType(models.TextChoices):
         INTERNSHIP = 'Internship'
 
 class Job(models.Model):
-    recruiter = models.ForeignKey('authentication.User', on_delete=models.CASCADE)
+    recruiter = models.ForeignKey('authentication.User', related_name='user', on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     description = models.TextField()
-    company = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='jobs')
+    company = models.ForeignKey(Employer, related_name='employer', on_delete=models.CASCADE)
     location = models.CharField(max_length=30)
     job_post_duration = models.DateField( default=None)
     salary = models.FloatField()
@@ -74,4 +74,3 @@ class Job(models.Model):
     
     def __str__(self):
         return self.title
-

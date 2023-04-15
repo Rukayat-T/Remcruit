@@ -22,22 +22,30 @@
     color: white;
     padding: 5%;
     border-radius: 60px;
+    height: 30vh;
 }
 
 .all-boxes{
     display: flex;
+    justify-content: space-between;
+    height: 100%;
+    
 }
-
 .boxes{
+    max-width: 20%;
     background-color: #ffa1f941;
-    margin: 2%;
     padding: 2%;
+    line-height: 1.6rem;
     border-radius: 1.5rem;
-    line-height: 1.7rem;
-    height: auto;
-    min-width: 12rem;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
-
+.boxes h2{
+    margin: 6% 0;
+}
+.boxes p{
+    margin: 0;
+}
 .colored{
     color:#CA61C3;
 }

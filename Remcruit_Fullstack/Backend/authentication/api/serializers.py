@@ -1,5 +1,9 @@
 from rest_framework import serializers
 from authentication.models import *
+
+from Employers.models import *
+from JobSeekers.models import *
+
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from rest_framework.exceptions import AuthenticationFailed
