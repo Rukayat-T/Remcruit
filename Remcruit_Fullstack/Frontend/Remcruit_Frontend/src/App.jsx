@@ -9,6 +9,7 @@ import Login from '../src/pages/Login/Login'
 import Navbar from './components/Navbar/Navbar'
 import EmployerRegister from './Employer/Pages/Register/register'
 import AboutUs from './Pages/AboutUs/AboutUs'
+import HomePage from './Jobseeker/Pages/Home/homePage';
 import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
@@ -30,6 +31,7 @@ function App() {
             <Route path='/employer/register' element={<EmployerRegister />} />
             <Route element={<PrivateRoute />} >
               <Route element={<AboutUs />} path='/aboutus' />
+              <Route element={<HomePage />} path='/home' />
             </Route>
             <Route path='/jobseeker/register' element={<JobseekerRegister />} />
           </Routes>

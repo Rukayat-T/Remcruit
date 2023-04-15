@@ -48,18 +48,18 @@ function AccountInformationTab({ formData, setFormData }) {
                             <input
                                 type="radio"
                                 name="female"
-                                value="FEMALE"
+                                value="Female"
                                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                                checked={formData.gender === "FEMALE"}
+                                checked={formData.gender === "Female"}
                             /> Female
                         </div>
                         <div className='mal'>
                             <input
                                 type="radio"
                                 name="male"
-                                value="MALE"
+                                value="Male"
                                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                                checked={formData.gender === "MALE"}
+                                checked={formData.gender === "Male"}
                             /> Male
                         </div>
                     </div>
