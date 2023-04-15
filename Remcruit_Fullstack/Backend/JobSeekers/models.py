@@ -84,7 +84,7 @@ class JobSeeker(models.Model):
         ("HND", "Higher National Diploma"),
     )
 
-    user = models.OneToOneField(User, related_name="jobSeeker", on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name="user_jobSeeker", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
     university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, null=True, blank=True)
     subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES,null=True, blank=True)
@@ -104,7 +104,7 @@ class JobSeeker(models.Model):
         return self.user.first_name + ' ' + self.user.last_name
 
 class ApplicantCredential(models.Model):
-    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
+    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='job_seeker')
     credential_name = models.CharField(max_length=30) 
     credential = models.FileField(upload_to='credentials/',  blank=True, null=True)
 
@@ -129,9 +129,9 @@ class JobApplication(models.Model):
         ("IN_REVIEW", "in review"),
     )
 
-    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
-    job = models.ForeignKey('Employers.Job', on_delete=models.CASCADE)
-    credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE, default=None,  blank=True, null=True)
+    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='Job_Seeker')
+    job = models.ForeignKey('Employers.Job', on_delete=models.CASCADE, related_name='Job')
+    credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE, default=None,  blank=True, null=True, related_name='jobseeker_credential')
     applicationStatus = models.CharField(max_length=30, choices=statusChoices, default = 'new')
 
     def __str__(self):

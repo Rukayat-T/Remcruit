@@ -96,8 +96,8 @@ function EmployerRegister() {
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      //let res = await fetch("http://127.0.0.1:8000/api/register/employer/",
-      let res = await fetch("http://0.0.0.0:8000/api/register/employer/",
+      let res = await fetch("http://127.0.0.1:8000/authentication/register/employer/",
+      // let res = await fetch("http://0.0.0.0:8000/authentication/register/employer/",
         {
           method: "POST",
           headers: {
@@ -107,7 +107,7 @@ function EmployerRegister() {
           body: JSON.stringify(formData),
         });
       let resJson = await res.json();
-      if (res.status === 200) {
+      if (res.status === 201) {
         console.log(resJson)
         navigate('/employer')
       } else {

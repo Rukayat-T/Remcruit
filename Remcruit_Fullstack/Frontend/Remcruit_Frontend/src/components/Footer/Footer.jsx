@@ -2,7 +2,6 @@ import React from "react";
 import './Footer.css';
 import Logo from '../../assets/footerlogo.svg'
 
-
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 

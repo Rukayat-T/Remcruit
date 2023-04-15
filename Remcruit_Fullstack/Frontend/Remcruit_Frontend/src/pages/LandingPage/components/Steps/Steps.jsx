@@ -24,6 +24,7 @@ function Steps() {
         <div className="content-container">
             <div className="all-boxes">
           <div className="boxes">
+            <div className="box-content">
             <FontAwesomeIcon
               icon={faCircleUser} size="2x"
               style={{
@@ -35,6 +36,7 @@ function Steps() {
               Sign up for the jobseekers profile, mention your qualifications,
               past work experience to get noticed by employers
             </p>
+          </div>
           </div>
 
           <div className="boxes">
