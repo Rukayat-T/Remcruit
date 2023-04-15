@@ -1,7 +1,7 @@
 import React from "react";
 import './Footer.css';
 import Logo from '../../assets/footerlogo.svg'
-import { useMediaQuery } from 'react-responsive'
+
 
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
