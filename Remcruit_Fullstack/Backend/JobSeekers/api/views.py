@@ -55,6 +55,15 @@ class JobSeekerView(generics.GenericAPIView):
             data['response'] = "Please confirm your email address to complete the registration"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
 
+
+class AllJobApplications(generics.GenericAPIView):
+    serializer_class = JobApplicationSerializer
+    def get(self, request):
+        if request.method == 'GET':
+            job_application = JobApplication.objects.all()
+            serializer = JobApplicationSerializer(job_application, many=True)
+            return Response(serializer.data)
+        
 class JobApplicationView(generics.GenericAPIView):
     serializer_class = JobApplicationSerializer
 
@@ -72,3 +81,26 @@ class JobApplicationView(generics.GenericAPIView):
                 return Response(data, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get(self, request, id):
+        if request.method == "GET":
+            message = {}
+            if id:
+                job_application = JobApplication.objects.get(id=id)
+                serializer = JobApplicationSerializer(job_application)
+                if job_application:
+                    message['response'] = "Okay, you have tried"
+                    return Response(serializer.data)
+                else:
+                    return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    def delete(self, request, id):
+        job_application = get_object_or_404(JobApplication, id=id)
+        data = {}
+        if job_application:
+            job_application.delete()
+            data['response'] = "Job Application Deleted"             
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            data['response'] = "Unable to delete Job Application"
+            return Response(data, status=status.HTTP_204_NO_CONTENT)

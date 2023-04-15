@@ -135,4 +135,4 @@ class JobApplication(models.Model):
     applicationStatus = models.CharField(max_length=30, choices=statusChoices, default = 'new')
 
     def __str__(self):
-        return str(self.job_seeker) + 'applied for' + str(self.job)
+        return str(self.job_seeker) + ' applied for ' + str(self.job)
