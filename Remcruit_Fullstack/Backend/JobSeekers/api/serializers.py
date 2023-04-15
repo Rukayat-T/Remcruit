@@ -5,3 +5,8 @@ class JobSeekerSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobSeeker
         fields = '__all__'
+
+class JobApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobApplication
+        fields = '__all__'
