@@ -4,6 +4,7 @@ import { useState, useContext } from "react";
 import './LoginForm.css'
 import AuthContext from "../../../context/AuthContext";
 
+
 function LoginForm() {
   let {loginUser} = useContext(AuthContext)
   const [inputs, setInputs] = useState({});
@@ -24,7 +25,7 @@ function LoginForm() {
           // onChange={handleChange}
           placeholder="Password"
         />
-        <p className="forgot">Forgot password?</p>
+        <p className="forgot"><Link to="/Forgotpassword">Forgot password?</Link></p>
         <input type="submit"/>
         <p>Dont have an account? <Link to='/jobseeker/register'>Sign Up</Link></p>
     </form>

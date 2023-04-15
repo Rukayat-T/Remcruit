@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar/Navbar'
 import AuthContext from '../../context/AuthContext'
 import Steps from './components/Steps/Steps'
 import Community from './components/Community/Community'
+import Footer from '../../components/Footer/Footer'
 
 function LandingPage() {
   let {user} = useContext(AuthContext)
@@ -12,6 +13,7 @@ function LandingPage() {
       {user &&  <p>Hello {user.username}</p>}
       <Steps/>
       <Community/>
+       <Footer /> 
     </div>
   )
 }

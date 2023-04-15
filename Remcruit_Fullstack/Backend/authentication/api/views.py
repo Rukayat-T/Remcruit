@@ -1,4 +1,4 @@
-
+from django.shortcuts import render
 from rest_framework import generics, permissions
 from rest_framework import status
 from rest_framework.authtoken.models import Token
@@ -15,7 +15,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
-from django.shortcuts import render
 
 from .serializers import *
 from .permissions import IsEmployerUser, IsJobSeekerUser
@@ -136,3 +135,87 @@ def activate_user(request, uid64, token):
         return  render(request, "authentication/activatePage.html", {"user" : user,} ) 
     else:  
         return HttpResponse('Activation link is invalid!')  
+    
+
+
+class ChangePasswordView(generics.UpdateAPIView):
+    
+    serializer_class = ChangePasswordSerializer
+    model = User
+    permission_classes = (IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        obj = self.request.user
+        return obj
+
+    def update(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = self.get_serializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            if not self.object.check_password(serializer.data.get("old_password")):
+                return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            response = {
+                'status': 'success',
+                'code': status.HTTP_200_OK,
+                'message': 'Password updated successfully',
+                'data': []
+            }
+
+            return Response(response)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    
+  
+
+# def send_passwordreset_email(user, request):
+#     current_site = get_current_site(request)
+#     email_subject = "Change your Password"
+#     email_body = render_to_string('templates/changepassword.html', {'user': user, 'domain':current_site, 'uid': urlsafe_base64_encode(force_bytes(user.pk)), 'token': Token.objects.get(user_id=user.pk).key, })
+#     print(user)
+#     print(user.email)
+#     print(email_subject)
+#     email = EmailMessage(subject=email_subject, body=email_body, from_email='contact@remcruit.com', to=[user.username])
+#     email.content_subtype = "html"
+#     email.send(fail_silently=False)
+    
+   
+            
+            
+        
+        
+   
+
+
+        
+
+
+
+
+"""
+----- My logic for account activation -----
+send a link to user.email on register. 
+The link would be the domain(the current site, 
+which is our site)/their uid encrypted (to protect it)
+/their token also encrypted. In the email template :
+http://{{domain}}{% url 'activateEmail' uid64 token%} is the link
+in the urls.py:
+path('activate/<uid64>/<token>', views.activateEmail(), name = "activateEmail")
+in the activate function:
+decode the uid and token, then check to make sure they are the same ones we sent. 
+and then set user.is_active = True. the link will bring them to a page that will 
+display the message account activated or something if the link is valid, 
+and then they'll be taken to to the home page.
+i think i should add a button that will redirect them to home.
+
+question:
+if their account is not active, they cant log in so call the activate email function.
+then they can log in?.
+
+----- End -----
+"""
