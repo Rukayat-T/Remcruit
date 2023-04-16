@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 import './homePageStyles.css'
-import JobBox from '../../Components/jobBoxComponent/jobBox'
+import JobBox from '../../components 2/jobBoxComponent/jobBox'
 import Footer from '../../../components/Footer/Footer'
 import AuthContext from '../../../context/AuthContext'
 import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn'
@@ -76,7 +76,7 @@ function HomePage() {
                 </div>
             </div>
             <Footer />
-        </div>
+         </div>
     )
 }
 
