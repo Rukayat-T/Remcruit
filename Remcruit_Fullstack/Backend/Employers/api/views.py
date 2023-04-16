@@ -10,7 +10,7 @@ from django.contrib import messages
 
 from .serializers import *
 
-class AllEmployers(generics.GenericAPIView):
+class AllEmployers(APIView):
     serializer_class = EmployerSerializer
     def get(self, request):
         if request.method == 'GET':
@@ -56,7 +56,7 @@ class EmployerView(generics.GenericAPIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-class AllJobs(generics.GenericAPIView):
+class AllJobs(APIView):
     serializer_class = JobSerializer
     def post(self, request):
         if request.method == 'POST':
