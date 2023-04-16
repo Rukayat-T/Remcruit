@@ -16,6 +16,7 @@ function JobBox({ job }) {
         }
         setBookmark("false")
     }
+    const [jobId, setJobId] = useState(job.id)
 
     return (
         <div className='boxContainer'>
@@ -58,11 +59,12 @@ function JobBox({ job }) {
                 </div>
             </div>
             <div className="boxFooterSection">
-                <p>Apply Now</p>
+                <Link to={'/'} state={{ jobid: jobId }}>
+                    <p>Apply Now</p></Link>
                 <p>.</p>
                 <p>Posted 5 days ago</p>
                 <p>.</p>
-                <p>{job?.location}</p>
+                <p>{job?.location} {job?.id}</p>
             </div>
         </div>
     )

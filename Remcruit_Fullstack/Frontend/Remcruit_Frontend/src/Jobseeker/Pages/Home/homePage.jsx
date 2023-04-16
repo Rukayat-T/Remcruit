@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 
 import './homePageStyles.css'
-import JobBox from '../../components 2/jobBoxComponent/jobBox'
+import JobBox from '../../Components/jobBoxComponent/jobBox'
 import Footer from '../../../components/Footer/Footer'
 import AuthContext from '../../../context/AuthContext'
 import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn'
@@ -39,7 +39,11 @@ function HomePage() {
             <NavbarSignedIn />
             <div className="pageContent">
                 <div className="searchBarContainer">
-                    <button className='locationBtn'><div className='i'><FontAwesomeIcon icon={faLocationDot} className='locationIcon' /> Lagos</div> <p className='vline'>|</p></button>
+                    <button className='locationBtn'>
+                        <div className='i'>
+                            <FontAwesomeIcon icon={faLocationDot} className='locationIcon' />
+                            Lagos</div>
+                        <p className='vline'>|</p></button>
                     <input type="text" placeholder='search' />
                 </div>
                 <div className="spotlightSectionContainer">
@@ -76,7 +80,7 @@ function HomePage() {
                 </div>
             </div>
             <Footer />
-         </div>
+        </div>
     )
 }
 

@@ -6,8 +6,9 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 from django.contrib import messages
 from .serializers import *
+from Employers.models import *
 
-class AllJobSeekers(generics.GenericAPIView):
+class AllJobSeekers(APIView):
     serializer_class = JobSeekerSerializer
     def get(self, request):
         if request.method == 'GET':
@@ -15,7 +16,7 @@ class AllJobSeekers(generics.GenericAPIView):
             serializer = JobSeekerSerializer(jobSeekers, many=True)
             return Response(serializer.data)
         
-class JobSeekerView(generics.GenericAPIView):
+class JobSeekerView(APIView):
     serializer_class = JobSeekerSerializer
     
     def get(self, request, id):
@@ -64,9 +65,21 @@ class AllJobApplications(generics.GenericAPIView):
             serializer = JobApplicationSerializer(job_application, many=True)
             return Response(serializer.data)
         
-class JobApplicationView(generics.GenericAPIView):
+class jobApp(generics.GenericAPIView):
+      serializer_class = JobApplicationSerializer
+      def post (self, request, id):
+        if request.method == 'POST':
+            job = Job.objects.get(id=id)
+            serializer = self.serializer_class(data=request.data, context={'request': request})
+            data = {}
+            if serializer.is_valid():
+                job_application = serializer.save()
+                data['response'] = "Okay, you have tried"
+                return Response(data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class JobApplicationView(APIView):
     serializer_class = JobApplicationSerializer
-
     def post(self, request):
         if request.method == 'POST':
             serializer = self.serializer_class(data=request.data, context={'request': request})
