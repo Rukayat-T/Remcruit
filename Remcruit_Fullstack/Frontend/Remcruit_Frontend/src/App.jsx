@@ -14,6 +14,7 @@ import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
+import JobApplication from './Jobseeker/Pages/JobApplication/JobApplication/JobApplication';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 
 
@@ -32,6 +33,7 @@ function App() {
             <Route element={<PrivateRoute />} >
               <Route element={<AboutUs />} path='/aboutus' />
               <Route element={<HomePage />} path='/home' />
+              <Route element={<JobApplication/>} path='/jobapplication'/>
             </Route>
             <Route path='/jobseeker/register' element={<JobseekerRegister />} />
           </Routes>
