@@ -63,10 +63,7 @@ class AllJobApplications(generics.GenericAPIView):
             job_application = JobApplication.objects.all()
             serializer = JobApplicationSerializer(job_application, many=True)
             return Response(serializer.data)
-        
-class JobApplicationView(generics.GenericAPIView):
-    serializer_class = JobApplicationSerializer
-
+     
     def post(self, request):
         if request.method == 'POST':
             serializer = self.serializer_class(data=request.data, context={'request': request})
@@ -81,6 +78,10 @@ class JobApplicationView(generics.GenericAPIView):
                 return Response(data, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class JobApplicationView(generics.GenericAPIView):
+    serializer_class = JobApplicationSerializer
+
+   
     
     def get(self, request, id):
         if request.method == "GET":
