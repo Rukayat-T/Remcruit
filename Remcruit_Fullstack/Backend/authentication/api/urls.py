@@ -3,13 +3,16 @@ from django.urls import path, include
 from .views import  *
 from django.contrib.auth import views as auth_views
 from rest_framework_simplejwt.views import (
-    TokenRefreshView,
+    TokenRefreshView
 )
+# from rest_framework_simplejwt.views import TokenBlacklistView
 
 
 urlpatterns = [
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    # path('token/blacklist/', TokenBlacklistView.as_view(), name='token_blacklist'),
 
     # path('register/employer/',EmployerRegisterView),
      path('register/employer/',EmployerRegister.as_view(), name='registerEmployer'),

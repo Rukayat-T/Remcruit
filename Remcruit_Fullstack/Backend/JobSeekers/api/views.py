@@ -94,6 +94,10 @@ class JobApplicationView(APIView):
                 return Response(data, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class JobApplicationView(generics.GenericAPIView):
+    serializer_class = JobApplicationSerializer
+
+   
     
     def get(self, request, id):
         if request.method == "GET":

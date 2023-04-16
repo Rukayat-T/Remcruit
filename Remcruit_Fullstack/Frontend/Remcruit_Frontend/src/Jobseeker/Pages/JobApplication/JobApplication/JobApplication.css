@@ -23,7 +23,7 @@ body{
 .jobapplication-container{
     width: 80%;
     margin: 0 auto;
-    height: 700px;
+    height: 70vh;
     background-color: white;
     border-radius: 13px;
     box-shadow: -173px 314px 143px rgba(0, 0, 0, 0.01), -97px 177px 121px rgba(0, 0, 0, 0.05), -43px 79px 90px rgba(0, 0, 0, 0.09), -11px 20px 49px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
@@ -33,6 +33,7 @@ body{
 .jobapplication-content{
     width: 80%;
     margin: 0 auto;
+    height:25%;
 }
 
 .bar{
@@ -43,6 +44,9 @@ body{
     color: #636363;
     font-weight: 500;
     
+}
+.active{
+    background-color: #CA61C3;
 }
 
 .progress-bars{
