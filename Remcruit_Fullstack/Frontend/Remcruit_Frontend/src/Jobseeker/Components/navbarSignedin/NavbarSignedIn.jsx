@@ -12,6 +12,7 @@ function NavbarSignedIn() {
                 <img src={Logo} alt="" srcset="" className='empLogo' />
                 <ul className='navMenu'>
                     <li><Link to='/home' >Home</Link></li>
+                    <li><Link to='/' >landing</Link></li>
                     <li><Link to='#' >Find Jobs</Link></li>
                     <li><Link to='#' >Notifications</Link></li>
                     {/* <li><Link to='/employer/register' >Register</Link></li> */}

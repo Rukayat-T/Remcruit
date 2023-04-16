@@ -1,3 +1,127 @@
-.bo {
-    border: 3px dotted green;
+.boxContainer {
+    background: rgb(205, 205, 205, 0.3);
+    width: 84%;
+    height: auto;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 23px;
+    padding-left: 23px;
+}
+
+.boxHeaderSection{
+    display: flex;
+    justify-content: space-between;
+}
+
+.detailsBtn{
+    background-color: #FFCC33;
+    border: 0;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+}
+
+.bookmark{
+    font-size: 20px;
+}
+
+.companyinformation{
+    display: flex;
+    column-gap: 10px;
+}
+
+.left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.jobPropertiesSection{
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 35px;
+}
+
+.jobTypeContainer{
+    background-color: rgb(255, 204, 51, 0.3);
+    padding: 10px;
+    width: 130px;
+   
+}
+.JobType{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.theTitle{
+   color: black;
+   font-size: 12px;
+   margin-bottom: 5px;
+   margin-top: 0;
+   font-weight: 400;
+}
+
+.theType{
+    color: black;
+    font-size: 14px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.experience{
+    background: rgba(202, 97, 195, 0.2);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+}
+
+.bookmarkBtn{
+    border: 0;
+    background-color: rgb(205, 205, 205, 0);
+}
+
+.salary{
+    background: rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+}
+
+.jobDescriptionSection{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.description{
+    font-weight: 300;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.8);;
+}
+
+.boxFooterSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.boxFooterSection p{
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
 }
