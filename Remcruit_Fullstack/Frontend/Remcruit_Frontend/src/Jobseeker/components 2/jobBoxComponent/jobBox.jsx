@@ -23,8 +23,9 @@ function JobBox({ job }) {
                 <div className="companyinformation">
                     <div className="companyLogo">Logo</div>
                     <div className="company">
-                        <div className="companyName">{job?.company?.organisation_name}</div>
                         <div className="jobTitle">{job?.title}</div>
+                        <div className="companyName">{job?.company?.organisation_name}</div>
+
                     </div>
                 </div>
                 <div className="left">
@@ -61,7 +62,7 @@ function JobBox({ job }) {
                 <p>.</p>
                 <p>Posted 5 days ago</p>
                 <p>.</p>
-                <p>from {job?.location}</p>
+                <p>{job?.location}</p>
             </div>
         </div>
     )

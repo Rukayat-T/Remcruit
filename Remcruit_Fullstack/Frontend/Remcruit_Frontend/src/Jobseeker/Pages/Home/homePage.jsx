@@ -1,4 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react'
+
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+
 import './homePageStyles.css'
 import JobBox from '../../components 2/jobBoxComponent/jobBox'
 import Footer from '../../../components/Footer/Footer'
@@ -13,7 +18,6 @@ function HomePage() {
     let { user } = useContext(AuthContext)
 
     const [jobs, setJobs] = useState([])
-
 
     const getJobs = async () => {
         const response = await fetch(
@@ -34,8 +38,8 @@ function HomePage() {
         <div>
             <NavbarSignedIn />
             <div className="pageContent">
-                {user && <p>Hello {user.username}</p>}
                 <div className="searchBarContainer">
+                    <button className='locationBtn'><div className='i'><FontAwesomeIcon icon={faLocationDot} className='locationIcon' /> Lagos</div> <p className='vline'>|</p></button>
                     <input type="text" placeholder='search' />
                 </div>
                 <div className="spotlightSectionContainer">

@@ -1,6 +1,6 @@
 .boxContainer {
     background: rgb(205, 205, 205, 0.3);
-    width: 84%;
+    width: 88%;
     height: auto;
     border-radius: 10px;
     padding-top: 20px;
@@ -12,6 +12,17 @@
 .boxHeaderSection{
     display: flex;
     justify-content: space-between;
+}
+
+.jobTitle{
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.companyName{
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .detailsBtn{
@@ -110,7 +121,7 @@
 .description{
     font-weight: 300;
     font-size: 14px;
-    color: rgba(0, 0, 0, 0.8);;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .boxFooterSection{
