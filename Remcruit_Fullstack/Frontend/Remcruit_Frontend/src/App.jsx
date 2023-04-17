@@ -16,6 +16,8 @@ import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
+import JobApplication from './Jobseeker/Pages/JobApplication/JobApplication/JobApplication';
+import { JobSeekerProvider } from './context/JobSeekerContext';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 
 
@@ -24,6 +26,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+      <JobSeekerProvider>
         <AuthProvider>
           <Routes>
             <Route path='/' exact element={<LandingPage />} />
@@ -34,12 +37,18 @@ function App() {
             <Route element={<PrivateRoute />} >
               <Route element={<AboutUs />} path='/aboutus' />
               <Route element={<HomePage />} path='/home' />
+              
+              <Route element={<JobApplication/>} path='/jobapplication'/>
+              
+              
             </Route>
             <Route path='/jobseeker/register' element={<JobseekerRegister />} />
             <Route path='/jobseeker/registerpage2' element={<JobseekerRegisterpage2 />} />
             <Route path='/jobseeker/registerpage3' element={<JobseekerRegisterpage3 />} />
           </Routes>
+          
         </AuthProvider >
+        </JobSeekerProvider>
       </Router >
 
     </div >
