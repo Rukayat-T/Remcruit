@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../../../../components/Navbar/Navbar";
 import Vector from "../static/Vector.png";
 import "./JobApplication.css";
 import JobApplicationForm from "../JobApplicationForm";
+import { useLocation } from "react-router";
+import AuthContext from "../../../../context/AuthContext";
+import JobSeekerContext from "../../../../context/JobSeekerContext";
 
 function JobApplication() {
   const { page, setPage, data, title, canSubmit } = JobApplicationForm();
@@ -10,19 +13,36 @@ function JobApplication() {
   const handlePrevious = () => setPage((prev) => prev - 1);
   const handleNext = () => setPage((prev) => prev + 1);
 
+  let { user } = useContext(AuthContext)
+  let {jobSeeker, jobseeker} = useContext(JobSeekerContext)
+
+  const location = useLocation()
+  const id = location.state.jobid
+
+  useEffect(() => {
+    jobSeeker()
+  }, [])
+
+  console.log(jobseeker.id)
   const handleSubmit = async (e) => {
-    let response = await fetch("http://127.0.0.1:8000/authentication/token/", {
+    e.preventDefault()
+    let response = await fetch("http://127.0.0.1:8000/jobseekers/job/1/application", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: e.target.username.value,
-        password: e.target.password.value,
-      }),
+        "job_seeker":jobseeker.id, 
+        "job": id, 
+        "credential": 1,
+    }),
     });
-    console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(response.body.jobseeker))
+
+
   };
+
   return (
     <div>
       <Navbar />
@@ -59,14 +79,12 @@ function JobApplication() {
               </button>
               <button
                 type="button"
-                onClick={handleNext}
               >
                 Continue
               </button>
 
               <button
                 type="submit"
-                disabled={!canSubmit}
               >
                 Submit
               </button>

@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
 import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons'
 import './jobBox.css'
+import JobSeekerContext from '../../../context/JobSeekerContext'
 
 function JobBox({ job }) {
 
+    
+    let {jobSeeker} = useContext(JobSeekerContext)
     const [bookmark, setBookmark] = useState("false")
 
     const toggleBookmark = () => {
@@ -59,7 +62,7 @@ function JobBox({ job }) {
                 </div>
             </div>
             <div className="boxFooterSection">
-                <Link to={'/'} state={{ jobid: jobId }}>
+                <Link to={'/jobapplication'} state={{ jobid: jobId }}>
                     <p>Apply Now</p></Link>
                 <p>.</p>
                 <p>Posted 5 days ago</p>
