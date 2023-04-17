@@ -14,7 +14,7 @@ function JobApplication() {
   const handleNext = () => setPage((prev) => prev + 1);
 
   let { user } = useContext(AuthContext)
-  let {jobSeeker, jobseeker} = useContext(JobSeekerContext)
+  let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
 
   const location = useLocation()
   const id = location.state.jobid
@@ -23,24 +23,21 @@ function JobApplication() {
     jobSeeker()
   }, [])
 
-  console.log(jobseeker.id)
+  // console.log(jobseeker?.id)
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let response = await fetch("http://127.0.0.1:8000/jobseekers/job/1/application", {
+    let response = await fetch("http://0.0.0.0:8000/jobseekers/job/1/application", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "job_seeker":jobseeker.id, 
-        "job": id, 
+        "job_seeker": jobseeker.id,
+        "job": id,
         "credential": 1,
-    }),
+      }),
     });
-    // console.log(JSON.stringify(data));
-    // console.log(JSON.stringify(response.body.jobseeker))
-
-
+    console.log(response)
   };
 
   return (

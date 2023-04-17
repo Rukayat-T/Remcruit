@@ -18,7 +18,6 @@ class AllEmployers(APIView):
                 serializer = EmployerSerializer(employers, many=True)
                 return Response(serializer.data)
         
-
 class EmployerView(generics.GenericAPIView):
     serializer_class = EmployerSerializer
     def get(self, request, id):
@@ -54,35 +53,53 @@ class EmployerView(generics.GenericAPIView):
         else:
             messages.error(request, "Employer could not be deleted")
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+class getEmployerByUserId(APIView):
+    serializer_class = EmployerSerializer
 
+    def get(self, request, userid):
+        if request.method == "GET":
+            message = {}
+            if userid:
+                employer = Employer.objects.get(user=userid)
+                serializer = EmployerSerializer(employer)
+                if employer:
+                    message['response'] = "employer found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "employer with user id not found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
 
-class AllJobs(APIView):
+class CreateJobView(generics.GenericAPIView):
     serializer_class = JobSerializer
+
     def post(self, request):
         if request.method == 'POST':
             serializer = self.serializer_class (data=request.data, context ={'request':request})
             data = {}
             if serializer.is_valid():
                 job = serializer.save()
-                data['response'] = "E don create"
+                data['response'] = "Job created"
                 return Response(data, status = status.HTTP_201_CREATED)
             else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
-                
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class GetAllJobs(APIView):
+    serializer_class = ViewJobSerializer           
     def get(self, request):
         if request.method == 'GET':
                 jobs = Job.objects.all()
-                serializer = JobSerializer(jobs, many=True)
+                serializer = ViewJobSerializer(jobs, many=True)
                 return Response(serializer.data)
         
 class JobView(generics.GenericAPIView):
-    serializer_class = JobSerializer
+    serializer_class = ViewJobSerializer
     def get(self, request, id):
         if request.method == 'GET':
             data = {}
             if id:
                 job = Job.objects.get(id=id)
-                serializer = JobSerializer(job)
+                serializer = ViewJobSerializer(job)
                 if job:
                     return Response(serializer.data, status = status.HTTP_200_OK)
                 else:
@@ -99,6 +116,24 @@ class JobView(generics.GenericAPIView):
         else:
             data['response'] = "Job not found"
             return Response(data, status=status.HTTP_404_NOT_FOUND)
+        
+class GetJobByCompanyIdView(APIView):
+    serializer_class = ViewJobSerializer
+
+    def get(self, request, companyId):
+        if request.method == "GET":
+            message = {}
+            if companyId:
+                job = Job.objects.filter(company=companyId)
+                serializer = ViewJobSerializer(job, many=True)
+                if job:
+                    message['response'] = "job found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "job with company id not found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+
+
 
 
 

@@ -3,7 +3,10 @@ from .views import  *
 
 urlpatterns = [
       path('allEmployers/', AllEmployers.as_view(), name = 'employers'),
-      path('something/<str:id>', EmployerView.as_view(), name = 'employer'),
-      path('Jobs/', AllJobs.as_view(), name='jobs'),
-      path('job/<str:id>', JobView.as_view(), name='job'),
+      path('Employer/<str:id>/', EmployerView.as_view(), name = 'employer'),
+      path('getEmployerByUserid/<str:userid>/', getEmployerByUserId.as_view(), name='employerByUserId'),
+      path('createJob/', CreateJobView.as_view(), name = 'createJob'),
+      path('AllJobs/', GetAllJobs.as_view(), name='jobs'),
+      path('job/<str:id>/', JobView.as_view(), name='job'),
+      path('getJobByCompanyId/<str:companyId>/', GetJobByCompanyIdView.as_view(), name='jobByCompanyId'),
 ]
