@@ -8,12 +8,6 @@ import Footer from '../../components/Footer/Footer'
 
 function LandingPage() {
 
-  const location = useLocation()
-  const id = location.state.jobid
-  console.log(id)
-
-  "http://0.0.0.0:8000/jobseekers/job/1/application"
-
   let { user } = useContext(AuthContext)
   return (
     <div>

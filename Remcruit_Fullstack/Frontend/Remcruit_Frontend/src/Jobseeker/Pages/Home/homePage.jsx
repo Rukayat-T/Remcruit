@@ -21,7 +21,8 @@ function HomePage() {
 
     const getJobs = async () => {
         const response = await fetch(
-            "http://0.0.0.0:8000/employer/Jobs/"
+            // "http://0.0.0.0:8000/employer/Jobs/"
+            "http://127.0.0.1:8000/employer/Jobs"
         ).then((response) => response.json());
         // console.log(response)
 

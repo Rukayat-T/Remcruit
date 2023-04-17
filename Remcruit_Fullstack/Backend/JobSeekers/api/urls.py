@@ -7,4 +7,5 @@ urlpatterns = [
       path('job/<str:id>/application', jobApp.as_view(), name='jobApp'),
       path('alljobapplications/', AllJobApplications.as_view(), name='JobApplications'),
       path('jobapplication/<str:id>/', JobApplicationView.as_view(), name='JobApplication'),
+      path('jobseekerbyuserid/<str:userid>/', getJobSeekerByUserId.as_view(), name='')
 ]
