@@ -1,17 +1,10 @@
-.register2-main-container{
+ .register2-main-container{
     height: 100vh;
-    width: 90%;
+  
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     text-align: center;
-}
-
-.left-container{
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 .right-container{
     margin: 0 auto;
@@ -23,6 +16,28 @@
     justify-content: center;
     background: rgba(198, 198, 198, 0.13);
 }
+
+.left-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(198, 198, 198, 0.13);
+}
+
+.register{
+    background: rgba(198, 198, 198, 0.13);
+    
+}
+
+
+/*.left-container{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 .register-text h1{
     font-size: 3rem;
@@ -40,38 +55,11 @@
 
 .horizontal-section{
     /* display: flex; */
-    width: 80%;
+    /* width: 80%;
     margin: 0 auto;
     position: relative;
 }
 
-.hr-lines:before{
-    content:" ";
-    display: block;
-    height: 2px;
-    width: 45%;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    background: #C6C6C6;
-    opacity: 0.5;
-  }
-  .hr-lines{
-    position: r;
-    max-width: 100%;
-    text-align: center;
-  }
-  .hr-lines:after{
-    content:" ";
-    height: 2px;
-    width: 45%;
-    background: #C6C6C6;
-    display: block;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    opacity: 0.5;
-  }
 
   .left-text{
     position: absolute;
@@ -83,4 +71,4 @@
     width: 30%;
     text-align: center;
   }
-
+ */ 

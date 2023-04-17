@@ -1,35 +1,165 @@
 import React from 'react'
 
-function RegisterForm() {
-  return (
-    <div className='form-input'>
-      <form action="POST">
-        <label htmlFor="first_name">First name</label>
-        <input type="text" placeholder='First name' id='first_name'/>
-        <label htmlFor="last_name">Last name</label>
-        <input type="text" placeholder='Last name' id='last_name'/>
-        <label htmlFor="email">Email address</label>
-        <input type="email" placeholder='Email Address' id='email'/>
-        <label htmlFor="password">Password</label>
-        <input type="password" placeholder='Password' id='password'/>
-        <label htmlFor="password2">Confirm password</label>
-        <input type="password2" placeholder='Confirm password' id='password'/>
-        <label htmlFor="phone">Phone number</label>
-        <input type='tel' placeholder='Phone number' id='phone'/>  
-        <label htmlFor="female"><input type='radio' id='female' value='female'/>Female</label>
-        <label htmlFor="male"><input type='radio' id='male' value='male'/>Male</label>
-        ``
-        <div class="tacbox">
-        <input id="checkbox" type="checkbox" />
-     <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
-      </div>
-       
-      </form>
-    </div>
-  )
-}
 
-export default RegisterForm
+import './RegisterForm.css'
+  
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
+
+
+
+  function RegisterForm({ formData, setFormData, onSubmit }) {
+    const checkboxHandler = (e) => {
+        setFormData({ ...formData, terms_and_conditions: e.target.value })
+    }
+    
+  
+      return (
+          <>
+             <form onSubmit={onSubmit}>
+                
+            
+              <div className="name">
+                  <div className="firstName">
+                      <label>First Name*</label>
+                      <input
+                          type="text"
+                          name="firstname"
+                          value={formData.first_name}
+                          onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
+                          placeholder='Firstname' />
+                  </div>
+                  <div className="lastName">
+                      <label>Last Name*</label>
+                      <input
+                          type="text"
+                          name="lastname"
+                          value={formData.last_name}
+                          onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
+                          placeholder='Lastname' />
+                  </div>
+              </div>
+              <div className="gend">
+                  <div className='gen'>
+                      <label>Gender*</label>
+                      <div className='gender'>
+                          <div className='fem'>
+                              <input
+                                  type="radio"
+                                  name="female"
+                                  value="Female"
+                                  onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                                  checked={formData.gender === "Female"}
+                              /> Female
+                          </div>
+                          <div className='mal'>
+                              <input
+                                  type="radio"
+                                  name="male"
+                                  value="Male"
+                                  onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                                  checked={formData.gender === "Male"}
+                              /> Male
+                          </div>
+                      </div>
+                  </div>
+                
+  
+              </div>
+              <div className="phone">
+  
+                  <div className="email">
+                      <label>Email*</label>
+                      <input
+                          type="text"
+                          name="email"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder='email' />
+                  </div>
+                  <div className="phoneNo">
+                      <label>Phone Number*</label>
+                      <input
+                          type="tel"
+                          name="phoneNumber"
+                          value={formData.phone_number}
+                          onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
+                          placeholder='' />
+                  </div>
+              </div>
+              <div className="pass">
+                  <div className="password">
+                      <label>Password*</label>
+                      <input
+                          type="password"
+                          name="password"
+                          value={formData.password}
+                          onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+                  </div>
+                  <div className="confPassword">
+                      <label>Confirm Password*</label>
+                      <input
+                          type="password"
+                          name="password2"
+                          value={formData.password2}
+                          onChange={(e) => setFormData({ ...formData, password2: e.target.value })} />
+                  </div>
+              </div>
+
+              <div className="termsAndConditions">
+                <label>Terms and Conditions</label>
+                <input
+                    type="checkbox"
+                    name="terms"
+                    value="False"
+                    onChange={checkboxHandler}
+                // 
+                />
+                I accept the Terms and Conditions and Privacy Policy
+            </div>
+            </form>
+          </>
+      )
+  }
+  export default RegisterForm
+
+
+
+
+
+
+
+
+
+
+//     <div className='form-input'>
+//       <form action="POST">
+//         <label htmlFor="first_name">First name</label>
+//         <input type="text" placeholder='First name' id='first_name'/>
+//         <label htmlFor="last_name">Last name</label>
+//         <input type="text" placeholder='Last name' id='last_name'/>
+//         <label htmlFor="email">Email address</label>
+//         <input type="email" placeholder='Email Address' id='email'/>
+//         <label htmlFor="password">Password</label>
+//         <input type="password" placeholder='Password' id='password'/>
+//         <label htmlFor="password2">Confirm password</label>
+//         <input type="password2" placeholder='Confirm password' id='password'/>
+//         <label htmlFor="phone">Phone number</label>
+//         <input type='tel' placeholder='Phone number' id='phone'/>  
+//         <label htmlFor="female"><input type='radio' id='female' value='female'/>Female</label>
+//         <label htmlFor="male"><input type='radio' id='male' value='male'/>Male</label>
+//         ``
+//         <div class="tacbox">
+//         <input id="checkbox" type="checkbox" />
+//      <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
+//       </div>
+       
+//       </form>
+//     </div>
+//   )
+// }
+
+// export default RegisterForm
 
 
 

@@ -11,6 +11,7 @@ import EmployerRegister from './Employer/Pages/Register/register'
 import AboutUs from './Pages/AboutUs/AboutUs'
 import HomePage from './Jobseeker/Pages/Home/homePage';
 import JobseekerRegisterpage2 from './Jobseeker/Pages/Registerpage2/Registerpage2'
+import JobseekerRegisterpage3 from './Jobseeker/Pages/Registerpage3/Registerpage3'
 import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
@@ -36,6 +37,7 @@ function App() {
             </Route>
             <Route path='/jobseeker/register' element={<JobseekerRegister />} />
             <Route path='/jobseeker/registerpage2' element={<JobseekerRegisterpage2 />} />
+            <Route path='/jobseeker/registerpage3' element={<JobseekerRegisterpage3 />} />
           </Routes>
         </AuthProvider >
       </Router >

@@ -55,21 +55,21 @@ return(
                 <div className="footer_link_section">
                     <h4> SOCIAL MEDIA </h4>
                     <a href="/"><p>Youtube</p></a>
-                    
+                    <div className="icons"><FontAwesomeIcon icon={faYoutube} style={{color: "#ffffff",}} /></div>
               
                     <a href="/"><p>LinkedIn</p></a>
-                   
+                    <div className="icons"><FontAwesomeIcon icon={faLinkedin} style={{color: "#ffffff",}} /></div>
                     <a href="/"><p>Facebook</p></a>
-                   
+                    <div className="icons"><FontAwesomeIcon icon={faFacebookSquare} style={{color: "#ffffff",}} /></div>
                     <a href="/"><p>Instagram</p></a>
-                   
+                    <div className="icons"><FontAwesomeIcon icon={faInstagramSquare} style={{color: "#ffffff",}} /></div>
 
 
-                     <FontAwesomeIcon icon={faYoutube} style={{color: "#ffffff",}} />
+                     {/* <FontAwesomeIcon icon={faYoutube} style={{color: "#ffffff",}} />
                     <FontAwesomeIcon icon={faLinkedin} style={{color: "#ffffff",}} /> 
                      <FontAwesomeIcon icon={faFacebookSquare} style={{color: "#ffffff",}} /> 
                     <FontAwesomeIcon icon={faInstagramSquare} style={{color: "#ffffff",}} /> 
-                   
+                    */}
                 
                     
                 </div>
