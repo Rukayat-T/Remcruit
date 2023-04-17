@@ -15,14 +15,13 @@ import UserComponent from '../../Components/user/userComponent'
 import NotificationComponent from '../../Components/notification/notificationComponent'
 
 function HomePage() {
-    let { user } = useContext(AuthContext)
 
     const [jobs, setJobs] = useState([])
 
     const getJobs = async () => {
         const response = await fetch(
             // "http://0.0.0.0:8000/employer/Jobs/"
-            "http://127.0.0.1:8000/employer/Jobs"
+            "http://127.0.0.1:8000/employer/AllJobs/"
         ).then((response) => response.json());
         // console.log(response)
 
