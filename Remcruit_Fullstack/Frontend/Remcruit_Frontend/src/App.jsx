@@ -14,8 +14,9 @@ import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
-import JobApplication from './Jobseeker/Pages/JobApplication/JobApplication/JobApplication';
+import JobApplication from './Jobseeker/Pages/JobApplication/components/JobApplication';
 import { JobSeekerProvider } from './context/JobSeekerContext';
+import { FormProvider } from './Jobseeker/Pages/JobApplication/context/FormContext';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 
 
@@ -24,6 +25,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <FormProvider>
       <JobSeekerProvider>
         <AuthProvider>
           <Routes>
@@ -45,6 +47,7 @@ function App() {
           
         </AuthProvider >
         </JobSeekerProvider>
+        </FormProvider>
       </Router >
 
     </div >

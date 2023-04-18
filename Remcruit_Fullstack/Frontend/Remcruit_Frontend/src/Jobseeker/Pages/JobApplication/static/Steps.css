@@ -1,0 +1,56 @@
+form.personal-info{
+    margin: 2rem;
+    margin-bottom: 4rem;
+    border-radius: 14px;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 3rem;
+}
+.personal-info input[type], select{
+    font-size: 1.3rem;
+    background: #F2F2F2;
+    padding: 1rem 1rem;
+    border: 0;
+    border-radius: 10px;
+}
+.personal-info-form-container{
+    width:75%;
+    margin: 0 auto;
+}
+
+.personal-info ::placeholder{
+    color: black;
+}
+
+.file-card{
+    margin-top: 10%;
+    width: 60%;
+    border: 3px dashed #FFCC33;
+    margin: 0 auto;
+    background: rgba(255, 204, 51, 0.07);
+    border-radius: 13px;
+    padding: 5rem 3rem;
+    position: relative;
+}
+
+.file-inputs button{
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.6rem 2rem;
+    border-radius: 0.5rem;
+    background: #FFCC33;
+    border: 1px solid #9d9d9d99;
+    position: absolute;
+    bottom: 10%;
+    margin: 0 auto;
+    right: 40%;
+    
+}
+
+.file-inputs input{
+    position: absolute;
+    z-index: 1;
+    right: 28%;
+    bottom: 13%;
+    opacity: 0;
+}

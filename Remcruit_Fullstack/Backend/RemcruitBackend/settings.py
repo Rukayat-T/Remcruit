@@ -231,6 +231,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_TIMEOUT = 1200 #20 minutes
 
+DISABLE_SERVER_SIDE_CURSORS = True
 # sending email from shell
 # from django.core.mail import send_mail
 #  email = EmailMessage(subject='testing testing', body="testing smtp again", from_email='contact@remcruit.com', to=["jainedoeeee@gmail.com"])

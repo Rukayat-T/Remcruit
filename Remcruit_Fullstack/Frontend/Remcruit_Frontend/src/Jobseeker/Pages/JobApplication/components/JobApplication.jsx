@@ -1,68 +1,66 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../../../../components/Navbar/Navbar";
 import Vector from "../static/Vector.png";
-import "./JobApplication.css";
-import JobApplicationForm from "../JobApplicationForm";
-import { useLocation } from "react-router";
+import "../static/JobApplication.css";
+import { useLocation, useNavigate } from "react-router";
 import AuthContext from "../../../../context/AuthContext";
 import JobSeekerContext from "../../../../context/JobSeekerContext";
+import FormContext from "../context/FormContext";
+import NavbarSignedIn from "../../../Components/navbarSignedin/NavbarSignedIn";
 
 function JobApplication() {
-  const { page, setPage, data, title, canSubmit } = JobApplicationForm();
-
-  const handlePrevious = () => setPage((prev) => prev - 1);
-  const handleNext = () => setPage((prev) => prev + 1);
-
   let { user } = useContext(AuthContext)
-  let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
+  let {jobSeeker, jobseeker} = useContext(JobSeekerContext)
+  let {next, back, page, FormTitles, PageDisplay, submitbtn, nextbtn} = useContext(FormContext)
+  const navigate = useNavigate()
 
   const location = useLocation()
-  const id = location.state.jobid
+  const job_id = location.state.jobid
 
   useEffect(() => {
     jobSeeker()
   }, [])
 
-  // console.log(jobseeker?.id)
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let response = await fetch("http://0.0.0.0:8000/jobseekers/job/1/application", {
+    let response = await fetch(`http://127.0.0.1:8000/jobseekers/job/${job_id}/application`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "job_seeker": jobseeker.id,
-        "job": id,
+        "job_seeker":jobseeker.id, 
+        "job": job_id, 
         "credential": 1,
-      }),
+    }),
     });
-    console.log(response)
   };
 
   return (
     <div>
-      <Navbar />
+      <NavbarSignedIn />
       <div className="jobapplication-main-container">
         <div className="jobapplication-container">
           <div className="jobapplication-content">
             <h1>Application Form</h1>
             <div className="progress-bars">
-              <div className="bar one active">
+              <div className="bar one" id="one">
                 <p className="title">STEP ONE</p>
                 <p>Your Personal Information</p>
               </div>
-              <div className="bar two">
+              <div className="bar two" id="two">
                 <p className="title">STEP TWO</p>
                 <p>Upload your CV</p>
               </div>
-              <div className="bar three">
+              <div className="bar three" id="three">
                 <p className="title">STEP THREE</p>
                 <p>Employer Questions</p>
               </div>
             </div>
           </div>
-
+          <div className="page-display-container">
+          {PageDisplay()} 
+          </div>
+          
           <form
             className="application-form"
             onSubmit={handleSubmit}
@@ -70,21 +68,24 @@ function JobApplication() {
             <div className="appl-button-container">
               <button
                 type="button"
-                onClick={handlePrevious}
+                // onClick={back}
+                onClick={() => {
+                  if (page === 0){
+                    navigate("/home")
+                  }
+                  else {
+                    {back()}
+                  }
+                }}
+                // disabled={page == 0}
+                id="backbtn"
               >
                 Back
               </button>
-              <button
-                type="button"
-              >
-                Continue
-              </button>
-
-              <button
-                type="submit"
-              >
-                Submit
-              </button>
+              <div className="contsub">
+              {page === FormTitles.length - 1 ? submitbtn() :  nextbtn()}
+              </div>
+             
             </div>
           </form>
         </div>

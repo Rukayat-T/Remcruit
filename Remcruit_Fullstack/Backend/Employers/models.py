@@ -50,7 +50,11 @@ class JobType(models.TextChoices):
         FULL_TIME = 'Full Time'
         PART_TIME = 'Part Time'
         INTERNSHIP = 'Internship'
-
+class Status(models.TextChoices):
+    ACCEPTED = 'Accepted' #job has been accepted by job seeker
+    INTERVIEW = "Interview" # application has been progressed to interview stage by employer
+    DECLINED = 'Declined' # application has been declined by employer
+    IN_REVIEW = 'In Review' # new job application. employer is reviewing application
 class Job(models.Model):
     recruiter = models.ForeignKey('authentication.User', related_name='user', on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
@@ -74,3 +78,10 @@ class Job(models.Model):
     
     def __str__(self):
         return self.title
+
+class Applicant(models.Model):
+     job_application = models.ForeignKey("JobSeekers.JobApplication", on_delete=models.CASCADE)
+     status = models.TextField(choices=Status.choices, default=Status.IN_REVIEW)
+
+     def __str__(self):
+          return self.status

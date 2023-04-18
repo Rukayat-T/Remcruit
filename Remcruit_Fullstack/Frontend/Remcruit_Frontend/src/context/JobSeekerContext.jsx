@@ -17,17 +17,6 @@ export const JobSeekerProvider = ({ children }) => {
         ).then((response) => response.json());
         setJobSeeker(response)
         console.log(response)
-
-    // let data = await response.json()
-        // if (response.status === 200) {
-        //     setJobSeeker(response.access)
-        //     // setJobSeeker(data.access)
-        // }
-        // else {
-        //     alert('something went wrong')
-        //     console.log(jobseeker)
-        // }
-        // 
     }
         
     let contextData = {

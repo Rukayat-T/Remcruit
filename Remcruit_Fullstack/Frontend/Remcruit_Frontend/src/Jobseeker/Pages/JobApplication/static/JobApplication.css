@@ -67,3 +67,30 @@ body{
     font-weight: 400;
     font-size: 14px;
 }
+
+.page-display-container{
+    width: inherit;
+    margin: 0 auto;
+    min-height: 35vh;
+    margin-top: 3%;
+}
+.appl-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.appl-button-container button{
+    font-size: 1.2rem;
+    padding: 1.1rem 5rem;
+    margin: 1rem;
+    border-radius: 7rem;
+    border: 1px solid #CA61C3;
+    background-color: transparent;
+    color: #CA61C3;
+    font-weight: 700;
+}
+
+.contsub button{
+    background-color: #CA61C3;
+    color: white;
+}
