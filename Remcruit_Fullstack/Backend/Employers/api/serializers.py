@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ..models import *
+from JobSeekers.api.serializers import *
 
 class EmployerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,5 +39,4 @@ class ViewJobSerializer(serializers.ModelSerializer):
         read_only_fields = ["id"]
 
 recruiter = models.ForeignKey('authentication.User', related_name='user', on_delete=models.CASCADE)
-   
    
