@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from django.http import HttpResponse
 from django.contrib import messages
 
+from rest_framework.decorators import api_view
 
 from .serializers import *
 
@@ -132,6 +133,16 @@ class GetJobByCompanyIdView(APIView):
                 else:
                     message['response'] = "job with company id not found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
+
+class GetAllApplicantsByJobId(APIView):
+    pass
+
+class GetAllApplicantsByCompanyId(APIView):
+    pass
+
+#get job by employer /companyid
+#get all applicants of an employer/ job/ company
+#update job or application by status
 
 
 
