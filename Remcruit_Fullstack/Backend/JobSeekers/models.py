@@ -10,6 +10,12 @@ class DegreeClassification(models.TextChoices):
     SECOND_UPPER = "Second Class Honours(upper)"
     SECOND_LOWER = "Second Class Honours(lower)"
     THIRD = "Third Class Honours"
+
+class Status(models.TextChoices):
+    ACCEPTED = 'Accepted' #job has been accepted by job seeker
+    INTERVIEW = "Interview" # application has been progressed to interview stage by employer
+    DECLINED = 'Declined' # application has been declined by employer
+    IN_REVIEW = 'In Review' # new job application. employer is reviewing application
 class JobSeeker(models.Model):
 
     def delete(self, *args, **kwargs):
@@ -94,6 +100,8 @@ class JobSeeker(models.Model):
     gender = models.TextField(choices=Gender.choices)
     terms_and_conditions = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to='images/', null=True, blank=True)
+    state = models.CharField(max_length=200, null=True)
+    nin = models.CharField(max_length=11, null = True)
     
 
     USERNAME_FIELD = 'email'
@@ -101,7 +109,7 @@ class JobSeeker(models.Model):
                         'terms_and_conditions']
     
     def __str__(self):
-        return self.user.first_name + ' ' + self.user.last_name
+        return self.user.get_full_name()
 
 class ApplicantCredential(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='job_seeker')
@@ -112,10 +120,9 @@ class ApplicantCredential(models.Model):
         return self.credential_name
     
 class JobApplication(models.Model):
-    # status = models.ForeignKey('Employers.Applicant', on_delete=models.CASCADE)
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='Job_Seeker')
     job = models.ForeignKey('Employers.Job', on_delete=models.CASCADE, related_name='Job')
     credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE, default=None,  blank=True, null=True, related_name='jobseeker_credential')
-
+    status = models.TextField(choices=Status.choices, default=Status.IN_REVIEW)
     def __str__(self):
         return str(self.job_seeker) + ' applied for ' + str(self.job)
