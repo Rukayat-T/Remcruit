@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Route } from 'react-router';
 // import 'font-awesome/css/font-awesome.min.css';
 
-import Home from './Pages/Home/Home'
+// import Home from './Pages/Home/Home'
 // import Login from './Pages/Login/Login'
 import LandingPage from './pages/LandingPage/LandingPage'
 import Login from '../src/pages/Login/Login'
@@ -26,27 +26,27 @@ function App() {
     <div className="App">
       <Router>
         <FormProvider>
-      <JobSeekerProvider>
-        <AuthProvider>
-          <Routes>
-            <Route path='/' exact element={<LandingPage />} />
-            <Route path='/employer' exact element={<EmployerLandingPage />} />
-            <Route path='/login' element={<Login />} />
-            {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
-            <Route path='/employer/register' element={<EmployerRegister />} />
-            <Route element={<PrivateRoute />} >
-              <Route element={<AboutUs />} path='/aboutus' />
-              <Route element={<HomePage />} path='/home' />
-              
-              <Route element={<JobApplication/>} path='/jobapplication'/>
-              
-              
-            </Route>
-            <Route path='/jobseeker/register' element={<JobseekerRegister />} />
-          </Routes>
-          
-        </AuthProvider >
-        </JobSeekerProvider>
+          <JobSeekerProvider>
+            <AuthProvider>
+              <Routes>
+                <Route path='/' exact element={<LandingPage />} />
+                <Route path='/employer' exact element={<EmployerLandingPage />} />
+                <Route path='/login' element={<Login />} />
+                {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
+                <Route path='/employer/register' element={<EmployerRegister />} />
+                <Route element={<PrivateRoute />} >
+                  <Route element={<AboutUs />} path='/aboutus' />
+                  <Route element={<HomePage />} path='/home' />
+
+                  <Route element={<JobApplication />} path='/jobapplication' />
+
+
+                </Route>
+                <Route path='/jobseeker/register' element={<JobseekerRegister />} />
+              </Routes>
+
+            </AuthProvider >
+          </JobSeekerProvider>
         </FormProvider>
       </Router >
 

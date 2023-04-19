@@ -1,10 +1,11 @@
 #cBox{
     width: 150px;
     height: 130px;
-    border-radius: 5px;
+    border-radius: 8px;
     border: 1px solid #C8C8C8;
     background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }

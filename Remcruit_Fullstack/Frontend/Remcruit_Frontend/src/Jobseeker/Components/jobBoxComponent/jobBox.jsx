@@ -8,8 +8,8 @@ import JobSeekerContext from '../../../context/JobSeekerContext'
 
 function JobBox({ job }) {
 
-    
-    let {jobSeeker} = useContext(JobSeekerContext)
+
+    let { jobSeeker } = useContext(JobSeekerContext)
     const [bookmark, setBookmark] = useState("false")
 
     const toggleBookmark = () => {
@@ -67,7 +67,7 @@ function JobBox({ job }) {
                 <p>.</p>
                 <p>Posted 5 days ago</p>
                 <p>.</p>
-                <p>{job?.location} {job?.id}</p>
+                <p>{job?.location}</p>
             </div>
         </div>
     )
