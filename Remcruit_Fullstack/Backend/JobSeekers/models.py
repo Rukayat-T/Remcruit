@@ -112,27 +112,10 @@ class ApplicantCredential(models.Model):
         return self.credential_name
     
 class JobApplication(models.Model):
-
-    ACCEPTED = 'accepted' #job has been accepted by job seeker
-    INTERVIEW = "interview" # application has been progressed to interview stage by employer
-    OFFER_SENT = 'offer sent' # job offer has been sent by employer
-    DECLINED = 'declined' # application has been declined by employer 
-    OFFER_DECLINED = 'offer unaccepted' #offer had been declined by job seeker
-    IN_REVIEW = 'in review' # new job application. employer is reviewing application
-
-    statusChoices = (
-        ("ACCEPTED", "accepted"),
-        ("INTERVIEW", "interview"),
-        ("OFFER_SENT", "offer sent"),
-        ("DECLINED", "declined"),
-        ("OFFER_DECLINED", "offer unaccepted"),
-        ("IN_REVIEW", "in review"),
-    )
-
+    # status = models.ForeignKey('Employers.Applicant', on_delete=models.CASCADE)
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='Job_Seeker')
     job = models.ForeignKey('Employers.Job', on_delete=models.CASCADE, related_name='Job')
     credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE, default=None,  blank=True, null=True, related_name='jobseeker_credential')
-    # applicationStatus = models.CharField(max_length=30, choices=statusChoices, default = 'new')
 
     def __str__(self):
         return str(self.job_seeker) + ' applied for ' + str(self.job)
