@@ -134,6 +134,27 @@ class GetJobByCompanyIdView(APIView):
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
 
 
+# class GetJobByEmployerIdView(APIView):
+#     serializer_class = ViewJobSerializer
+
+#     def get(self, request, userId):
+#         if request.method == "GET":
+#             message = {}
+#             if userId:
+#                 job = Job.objects.filter(recruiter=userId)
+#                 serializer = ViewJobSerializer(job, many=True)
+#                 if job:
+#                     message['response'] = "job found"
+#                     return Response(serializer.data, status=status.HTTP_200_OK)
+#                 else:
+#                     message['response'] = "job with user id not found"
+#                     return Response(message, status=status.HTTP_404_NOT_FOUND)
+  
+#get job by employer /companyid
+#get all applicants of an employer/ job/ company
+#update job or application by status
+
+
 
 
 
