@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from 'react'
+import React, {createContext, useContext, useEffect, useState} from 'react'
 import PersonalInformation from '../components/PersonalInformation'
 import CVUpload from '../components/CVUpload'
 import EmployerQuestions from '../components/EmployerQuestions'
@@ -59,19 +59,7 @@ export const FormProvider = ({ children }) => {
         return <EmployerQuestions/>
       }
     }
-    const one = document.getElementById('one')
-    const two = document.getElementById('two')
-    const three = document.getElementById('three')
-
-      // if (page === 0){
-      //   one.classList.add('active')
-      // }
-      // else if (page === 1){
-      //   two.classList.add('active')
-      // }
-      // else {
-      //   three.classList.add('active')
-      // }
+    
     
     const [data, setData] = useState({
         first_name: "",

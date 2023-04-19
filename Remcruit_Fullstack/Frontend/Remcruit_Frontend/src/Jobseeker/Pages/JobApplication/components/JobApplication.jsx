@@ -16,9 +16,41 @@ function JobApplication() {
   const location = useLocation()
   const job_id = location.state.jobid
 
+  // useEffect(() => {
+    
+  // }, [])
+
   useEffect(() => {
     jobSeeker()
+
+    const one = document.getElementById('one')
+    const two = document.getElementById('two')
+    const three = document.getElementById('three')
+    if (page === 1) {
+      one.classList.add('active')
+    }
+    else if (page == 2) {
+      two.classList.add('active')
+    }
   }, [])
+
+  // useEffect( () => {
+  //   const one = document.getElementById('one')
+  //   const two = document.getElementById('two')
+  //   const three = document.getElementById('three')
+
+  //   console.log(two)
+
+  //   if (page === 0){
+  //     one.classList.add('active')
+  //   }
+  //   else if (page === 1){
+  //     two.classList.add('active')
+  //   }
+  //   else {
+  //     three.classList.add('active')
+  //   }
+  // }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -33,7 +65,11 @@ function JobApplication() {
         "credential": 1,
     }),
     });
+    console.log(FormData)
   };
+
+  
+  
 
   return (
     <div>
@@ -43,15 +79,15 @@ function JobApplication() {
           <div className="jobapplication-content">
             <h1>Application Form</h1>
             <div className="progress-bars">
-              <div className="bar one" id="one">
+              <div className={ page === 0 ? "active" : "bar" } id="one">
                 <p className="title">STEP ONE</p>
                 <p>Your Personal Information</p>
               </div>
-              <div className="bar two" id="two">
+              <div className={page === 1 ? "active" : "bar" } id="two">
                 <p className="title">STEP TWO</p>
                 <p>Upload your CV</p>
               </div>
-              <div className="bar three" id="three">
+              <div className={page === 2  ? "active" : "bar" } id="three">
                 <p className="title">STEP THREE</p>
                 <p>Employer Questions</p>
               </div>

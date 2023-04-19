@@ -13,7 +13,7 @@ function PersonalInformation({data, setData}) {
     <div className="personal-info-form-container">
       <form action="" className="personal-info">
         <input type="text" 
-        placeholder="First Name" 
+        placeholder="First Name"
         value={user.first_name}
         onChange={(e) => setData({...data, first_name: e.target.value})}
          />
@@ -29,7 +29,7 @@ function PersonalInformation({data, setData}) {
         <select name="" id="" className="select">
           <option value={data.state} 
         onChange={(e) => setData({...data, state: e.target.value})}
-        hidden>City</option>
+        hidden>State</option>
           {
             states.map((item) => {
               return (

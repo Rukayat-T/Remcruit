@@ -26,27 +26,24 @@ function App() {
     <div className="App">
       <Router>
         <FormProvider>
-          <JobSeekerProvider>
-            <AuthProvider>
-              <Routes>
-                <Route path='/' exact element={<LandingPage />} />
-                <Route path='/employer' exact element={<EmployerLandingPage />} />
-                <Route path='/login' element={<Login />} />
-                {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
-                <Route path='/employer/register' element={<EmployerRegister />} />
-                <Route element={<PrivateRoute />} >
-                  <Route element={<AboutUs />} path='/aboutus' />
-                  <Route element={<HomePage />} path='/home' />
-
-                  <Route element={<JobApplication />} path='/jobapplication' />
-
-
-                </Route>
-                <Route path='/jobseeker/register' element={<JobseekerRegister />} />
-              </Routes>
-
-            </AuthProvider >
-          </JobSeekerProvider>
+      <JobSeekerProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path='/' exact element={<LandingPage />} />
+            <Route path='/employer' exact element={<EmployerLandingPage />} />
+            <Route path='/login' element={<Login />} />
+            {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
+            <Route path='/employer/register' element={<EmployerRegister />} />
+            <Route element={<PrivateRoute />} >
+              <Route element={<AboutUs />} path='/aboutus' />
+              <Route element={<HomePage />} path='/home' />
+              <Route element={<JobApplication/>} path='/jobapplication'/>           
+            </Route>
+            <Route path='/jobseeker/register' element={<JobseekerRegister />} />
+          </Routes>
+          
+        </AuthProvider >
+        </JobSeekerProvider>
         </FormProvider>
       </Router >
 
