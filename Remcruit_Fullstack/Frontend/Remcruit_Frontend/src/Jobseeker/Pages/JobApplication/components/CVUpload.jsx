@@ -7,7 +7,7 @@ function CVUpload() {
     <div>
       <div className="file-card">
         <div className="file-inputs">
-        <FontAwesomeIcon icon={faFileCircleCheck} style={{color: "#000000",}} />
+        <FontAwesomeIcon icon={faFileCircleCheck} className="icc"style={{color: "#000000",}} />
         <p>CV or Cover Letter</p>
         <p>Upload or drag and drop</p>
         <p>PDF, DOCX, DOC, RTF, TXT up to 1MB</p>
