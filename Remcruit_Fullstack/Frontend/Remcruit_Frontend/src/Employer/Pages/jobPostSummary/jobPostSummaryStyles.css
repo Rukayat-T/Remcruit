@@ -1,0 +1,301 @@
+.summaryContainer{
+    min-height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.wBox{
+    width: 68%;
+    min-height: 80vh;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    z-index: 1;
+    padding-top: 4%;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.sum{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0;
+}
+
+.row1{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.positionTitle label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;  
+}
+
+.positionTitle input{
+    padding-left: 10px;
+    width: 300px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.vacancies label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;  
+}
+
+.vacancies input{
+    padding-left: 10px;
+    width: 150px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.location label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;  
+}
+
+.location input{
+    padding-left: 10px;
+    width: 200px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.row2{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.jobType label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;  
+}
+
+.jobType input{
+    padding-left: 10px;
+    width: 120px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.qualificationRequirement label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;  
+}
+
+.qualificationRequirement input{
+    padding-left: 10px;
+    width: 330px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.salaryy label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;  
+}
+
+.salaryy input{
+    padding-left: 10px;
+    width: 100px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.row3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.jobDescription label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in;  
+}
+
+.jobDescription textarea{
+    padding-left: 10px;
+    width: 975px;
+    height: 150px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.row4{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.remoteO{
+    padding-left: 10px;
+    width: 890px;
+    height: 50px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    column-gap: 35%;
+}
+
+.remote{
+    display: flex;
+    align-items: center;
+    column-gap: 50%;
+}
+
+.opt{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.opt input{
+    width: 25px;
+    height: 25px;
+}
+
+.row5{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 890px;
+    padding-left: 40px;
+    padding-right: 40px;
+    
+}
+
+.row6{
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    width: 890px;
+    margin-left: 40px;
+}
+
+.jobStartDate input{
+    padding-left: 10px;
+    width: 330px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.jobStartDate label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in; 
+}
+
+.ApplicationDeadline input{
+    padding-left: 10px;
+    width: 330px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.ApplicationDeadline label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in; 
+}
+
+.postDuration input{
+    padding-left: 10px;
+    width: 330px;
+    height: 25px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    border: 0;
+}
+
+.postDuration label{
+    margin-top: 10px;
+    position: relative;
+    color: #242F40;
+    display: block;
+    transition: all 0.3s ease-in; 
+}
+
+.navFooter{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back button{
+    background-color: #FFCC33;
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+    border: 0;
+}
+
+.postBtn button{
+    background-color: #FFCC33;
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 10px;
+    border: 0;
+}
+   

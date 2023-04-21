@@ -19,12 +19,12 @@ export const JobSeekerProvider = ({ children }) => {
         setJobSeeker(response)
         // console.log(response)
     }
-        
+
     let contextData = {
         jobseeker: jobseeker,
         jobSeeker: jobSeeker,
     }
-    
+
     return (
         <JobSeekerContext.Provider value={contextData}>
             {children}
