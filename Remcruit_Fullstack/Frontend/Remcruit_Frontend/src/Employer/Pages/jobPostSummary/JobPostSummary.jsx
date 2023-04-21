@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useLocation } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 
 import wave from '../../../assets/wave.png'
 import "./jobPostSummaryStyles.css"
@@ -19,7 +19,11 @@ import "./jobPostSummaryStyles.css"
             /> Male */
 }
 
-function JobPostSummary({ postdata }) {
+function JobPostSummary() {
+    const navigate = useNavigate()
+    const goBack = () => {
+        navigate(-1);
+    }
     const location = useLocation()
     console.log(location.state.postdata)
 
@@ -187,7 +191,7 @@ function JobPostSummary({ postdata }) {
 
                             <div className="navFooter">
                                 <div className="back" >
-                                    <button>Back</button>
+                                    <button onClick={goBack}>Back</button>
                                 </div>
                                 <div className="postBtn" >
                                     <button>Post</button>
