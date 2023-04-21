@@ -8,32 +8,12 @@ import JobDetails from './JobDetails'
 import JobPostQuestions from './JobPostQuestions'
 import CommunicationSettings from './CommunicationSettings'
 import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 
 function JobPost() {
   const [tab, setTab] = useState(0)
 
   let navigate = useNavigate()
-
-  const next = () => {
-
-    if (tab !== 3) {
-      setTab((currentPage) => currentPage + 1)
-    }
-    else if (tab === 3) {
-      navigate("/job/post/summary")
-    }
-  }
-
-  const back = () => {
-    setTab((currentPage) => currentPage - 1)
-  }
-
-  const JobPostTitles = [
-    "Basic Information",
-    "Job Details",
-    "Communication Settings",
-    "Employer Questions",
-  ]
 
   const [postdata, setPostData] = useState({
     position_title: "",
@@ -54,6 +34,33 @@ function JobPost() {
     urgency: false,
     is_available: false,
   })
+
+  const next = () => {
+
+    if (tab !== 3) {
+      setTab((currentPage) => currentPage + 1)
+    }
+    else if (tab === 3) {
+      navigate("/employer/job/post/summary", {
+        state: {
+          postdata: postdata
+        }
+      })
+    }
+  }
+
+  const back = () => {
+    setTab((currentPage) => currentPage - 1)
+  }
+
+  const JobPostTitles = [
+    "Basic Information",
+    "Job Details",
+    "Communication Settings",
+    "Employer Questions",
+  ]
+
+
 
   const JobPostPageDisplay = () => {
     if (tab === 0) {

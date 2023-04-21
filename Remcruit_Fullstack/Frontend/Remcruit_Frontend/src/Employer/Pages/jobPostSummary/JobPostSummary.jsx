@@ -1,9 +1,28 @@
 import React from 'react'
 
+import { useLocation } from 'react-router'
+
 import wave from '../../../assets/wave.png'
 import "./jobPostSummaryStyles.css"
 
-function JobPostSummary() {
+
+{
+    /* <input
+                type="radio"
+                checked={formData.gender === "Female" ? true : false}
+                disabled={formData.gender === "Male" ? true : false}
+            /> Female
+            <input
+                type="radio"
+                checked={formData.gender === "Male" ? true : false}
+                disabled={formData.gender === "Female" ? true : false}
+            /> Male */
+}
+
+function JobPostSummary({ postdata }) {
+    const location = useLocation()
+    console.log(location.state.postdata)
+
     return (
         <>
             <div className="Rcontainer">
@@ -20,17 +39,22 @@ function JobPostSummary() {
                                 <div className="row1">
                                     <div className="positionTitle">
                                         <label> Position Title*</label>
-                                        <input type="text" />
+                                        <input
+                                            type="text"
+                                            value={location.state.postdata.position_title}
+                                            disabled />
 
                                     </div>
                                     <div className="vacancies">
                                         <label> Vacancies</label>
-                                        <input type="text" />
+                                        <input type="text"
+                                            disabled />
 
                                     </div>
                                     <div className="location">
                                         <label>Location</label>
-                                        <input type="text" />
+                                        <input type="text"
+                                            disabled />
 
                                     </div>
                                 </div>
@@ -38,17 +62,20 @@ function JobPostSummary() {
                                 <div className="row2">
                                     <div className="jobType">
                                         <label> Job Type*</label>
-                                        <input type="text" />
+                                        <input type="text"
+                                            disabled />
 
                                     </div>
                                     <div className="qualificationRequirement">
                                         <label> Qualification Requirement</label>
-                                        <input type="text" />
+                                        <input type="text"
+                                            disabled />
 
                                     </div>
                                     <div className="salaryy">
                                         <label>Salary/Month</label>
-                                        <input type="text" />
+                                        <input type="text"
+                                            disabled />
                                     </div>
                                 </div>
                             </div>
@@ -56,14 +83,14 @@ function JobPostSummary() {
                             <div className="row3">
                                 <div className="jobDescription">
                                     <label> Job Description*</label>
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                    <textarea name="" id="" cols="30" rows="10" disabled></textarea>
                                 </div>
                             </div>
 
                             <div className="row3">
                                 <div className="jobDescription">
                                     <label> Key Responsibilitiess*</label>
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                    <textarea name="" id="" cols="30" rows="10" disabled></textarea>
                                 </div>
                             </div>
 
