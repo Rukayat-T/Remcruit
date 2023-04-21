@@ -4,7 +4,7 @@ import "../static/JobApplication.css";
 import { useLocation, useNavigate } from "react-router";
 import AuthContext from "../../../../context/AuthContext";
 import JobSeekerContext from "../../../../context/JobSeekerContext";
-import FormContext from "../context/FormContext";
+import FormContext from "../../../../context/FormContext";
 import NavbarSignedIn from "../../../Components/navbarSignedin/NavbarSignedIn";
 
 function JobApplication() {
@@ -43,17 +43,17 @@ function JobApplication() {
           <div className="jobapplication-content">
             <h1>Application Form</h1>
             <div className="progress-bars">
-              <div className="bar one" id="one">
+              <div className={ page === 0 ? "active" : "bar" } id="one">
                 <p className="title">STEP ONE</p>
-                <p>Your Personal Information</p>
+                <p>{FormTitles[0]}</p>
               </div>
-              <div className="bar two" id="two">
+              <div className={ page === 1 ? "active" : "bar" } id="one">
                 <p className="title">STEP TWO</p>
-                <p>Upload your CV</p>
+                <p>{FormTitles[1]}</p>
               </div>
-              <div className="bar three" id="three">
+              <div className={ page === 2 ? "active" : "bar" } id="one">
                 <p className="title">STEP THREE</p>
-                <p>Employer Questions</p>
+                <p>{FormTitles[2]}</p>
               </div>
             </div>
           </div>
