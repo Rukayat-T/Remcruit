@@ -15,6 +15,7 @@ import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 import JobApplication from './Jobseeker/Pages/JobApplication/components/JobApplication';
+import JobPostSummary from './Employer/Pages/jobPostSummary/JobPostSummary';
 import { JobSeekerProvider } from './context/JobSeekerContext';
 import { FormProvider } from './Jobseeker/Pages/JobApplication/context/FormContext';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
@@ -39,6 +40,7 @@ function App() {
                   <Route element={<HomePage />} path='/home' />
 
                   <Route element={<JobApplication />} path='/jobapplication' />
+                  <Route element={<JobPostSummary />} path='/jobPost/summary' />
 
 
                 </Route>

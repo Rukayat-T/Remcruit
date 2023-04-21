@@ -13,17 +13,17 @@ export const JobSeekerProvider = ({ children }) => {
     let jobSeeker = async (e) => {
         // e.preventDefault()
         let response = await fetch(
-            'http://127.0.0.1:8000/jobseekers/jobseekerbyuserid/67/'
+            `http://127.0.0.1:8000/jobseekers/jobseekerbyuserid/${user.id}/`
         ).then((response) => response.json());
         setJobSeeker(response)
         console.log(response)
     }
-        
+
     let contextData = {
         jobseeker: jobseeker,
         jobSeeker: jobSeeker,
     }
-    
+
     return (
         <JobSeekerContext.Provider value={contextData}>
             {children}
