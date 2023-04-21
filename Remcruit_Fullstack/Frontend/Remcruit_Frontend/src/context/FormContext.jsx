@@ -1,9 +1,9 @@
 import React, {createContext, useContext, useEffect, useState} from 'react'
-import PersonalInformation from '../components/PersonalInformation'
-import CVUpload from '../components/CVUpload'
-import EmployerQuestions from '../components/EmployerQuestions'
+import PersonalInformation from '../Jobseeker/Pages/JobApplication/components/PersonalInformation'
+import CVUpload from '../Jobseeker/Pages/JobApplication/components/CVUpload'
+import EmployerQuestions from '../Jobseeker/Pages/JobApplication/components/EmployerQuestions'
 import { useNavigate } from 'react-router'
-import AuthContext from '../../../../context/AuthContext'
+import AuthContext from './AuthContext'
 
 const FormContext = createContext()
 export default FormContext
@@ -25,7 +25,6 @@ export const FormProvider = ({ children }) => {
         <button type="submit" onClick={
           () => {
             if (page == FormTitles.length - 1)
-            console.log(data)
             navigate("/home")
           }
         }>Submit</button>
@@ -43,7 +42,7 @@ export const FormProvider = ({ children }) => {
     }
 
     const FormTitles = [
-      "Personal Infoo",
+      "Personal Info",
       "Upload CV",
       "Employer Questions"
     ];
@@ -69,10 +68,12 @@ export const FormProvider = ({ children }) => {
         phone_number: "",
         nin:"",
         cv:"",
-        validLicence: false,
-        job_title: "",
-        company:"",
+        // validLicence: false,
+        // job_title: "",
+        // company:"",
     })
+
+    
 
     let contextData = {
       page: page,
@@ -84,7 +85,8 @@ export const FormProvider = ({ children }) => {
       data: data,
       setData: setData,
       submitbtn:submitbtn,
-      nextbtn:nextbtn
+      nextbtn:nextbtn,
+
   }
 
   return (

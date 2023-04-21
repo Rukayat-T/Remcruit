@@ -123,6 +123,6 @@ class JobApplication(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='Job_Seeker')
     job = models.ForeignKey('Employers.Job', on_delete=models.CASCADE, related_name='Job')
     credential = models.ForeignKey(ApplicantCredential, on_delete=models.CASCADE, default=None,  blank=True, null=True, related_name='jobseeker_credential')
-    status = models.TextField(choices=Status.choices, default=Status.IN_REVIEW)
+    status = models.TextField(choices=Status.choices, default=Status.IN_REVIEW, blank=True)
     def __str__(self):
         return str(self.job_seeker) + ' applied for ' + str(self.job)

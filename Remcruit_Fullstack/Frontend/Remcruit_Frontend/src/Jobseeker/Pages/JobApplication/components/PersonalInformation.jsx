@@ -8,7 +8,7 @@ function PersonalInformation({data, setData}) {
   const [states, setStates] = useState(StateData)
 
   let { user } = useContext(AuthContext)
-  console.log(user)
+  // console.log(user)
   return (
     <div className="personal-info-form-container">
       <form action="" className="personal-info">
@@ -26,9 +26,9 @@ function PersonalInformation({data, setData}) {
         placeholder="Email Address"
         value={user.username}
         onChange={(e) => setData({...data, email: e.target.value})}/>
-        <select name="" id="" className="select">
+        <select name="" id="" className="select" 
+        onChange={(e) => setData({...data, state: e.target.value})}>
           <option value={data.state} 
-        onChange={(e) => setData({...data, state: e.target.value})}
         hidden>State</option>
           {
             states.map((item) => {
