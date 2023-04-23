@@ -58,7 +58,7 @@ class EmployerView(generics.GenericAPIView):
         
 class getEmployerByUserId(APIView):
     serializer_class = EmployerSerializer
-
+    #  get employer by id
     def get(self, request, userid):
         if request.method == "GET":
             message = {}

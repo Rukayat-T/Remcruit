@@ -27,12 +27,20 @@ export const AuthProvider = ({ children }) => {
             setAuthTokens(data)
             setUser(jwtDecode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
-            navigate('/home')
+
+            if (user.is_jobSeeker === true){
+                navigate('/home')
+            }
+            else if (user.is_employer === true){
+                navigate('/employer')
+            }
+           
         }
         else {
             alert('something went wrong')
         }
     }
+    console.log(user)
 
     let logoutUser = () => {
         setAuthTokens(null)
