@@ -65,7 +65,7 @@ function JobPost() {
       job_post_duration: "",
       urgency: false,
       is_available:false,
-      company:company.id
+      company:company?.id
   })
 
   const JobPostPageDisplay = () => {
