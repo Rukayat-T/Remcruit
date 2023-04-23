@@ -51,10 +51,12 @@ def send_confirmation_email(user, request):
     email.send(fail_silently=False)
 
 
-@api_view(['POST',])
-def JobSeekerRegisterView(request):
+# @api_view(['POST',])
+class JobSeekerRegister(generics.GenericAPIView):
+  serializer_class = JobSeekerRegisterSerializer
+  def post(self, request):
     if request.method == 'POST':
-        serializer = JobSeekerRegisterSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data, context={'request': request})
         data = {}
 
         if serializer.is_valid():

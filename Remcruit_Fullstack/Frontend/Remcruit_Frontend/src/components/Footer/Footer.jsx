@@ -20,22 +20,11 @@ const Footer=()=>{
     
 return(
 <div className="footer">
-  <form action=''>
-
-    <div className="subcribe">
-        <p>Subscribe To Our Newsletter</p>
-       <div className="emailbox">
-          <input type='email' placeholder="Email"/>
-       </div>
-       <button className='subs' type="submit"> Subscribe </button>
-    </div>
-    </form>
+  
 
 
     <div className="footer_section">
-        <div className="footer_logo"> 
-         <img src={Logo} alt="" srcset="" />
-        </div>
+      
             <div className="footer_link">
                 <div className="footer_link_section">
                     <h4> LEGAL </h4>
@@ -74,8 +63,18 @@ return(
                     
                 </div>
 
-                
-            </div>
+                <form action=''>
+
+                  <div className="subcribe">
+                   <h4> NEWSLETTER </h4>
+                      <p>Subscribe To Our Newsletter</p>
+                        <div className="emailbox">
+                        <input type='email' placeholder="Email"/>
+                           </div>
+                          <button className='subs' type="submit"> Subscribe </button>
+                           </div>
+                                </form>
+              </div>
            
         </div>
         <hr />

@@ -11,14 +11,14 @@ import EmployerRegister from './Employer/Pages/Register/register'
 import AboutUs from './Pages/AboutUs/AboutUs'
 import HomePage from './Jobseeker/Pages/Home/homePage';
 import JobseekerRegisterpage2 from './Jobseeker/Pages/Registerpage2/Registerpage2'
-import JobseekerRegisterpage3 from './Jobseeker/Pages/Registerpage3/Registerpage3'
+// import JobseekerRegisterpage3 from './Jobseeker/Pages/Registerpage3/Registerpage3'
 import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 import JobApplication from './Jobseeker/Pages/JobApplication/JobApplication/JobApplication';
 import { JobSeekerProvider } from './context/JobSeekerContext';
-// import Forgotpassword from './components/Forgotpassword/Forgotpassword'
+import Forgotpassword from './pages/Forgotpassword/Forgotpassword'
 
 
 
@@ -32,7 +32,7 @@ function App() {
             <Route path='/' exact element={<LandingPage />} />
             <Route path='/employer' exact element={<EmployerLandingPage />} />
             <Route path='/login' element={<Login />} />
-            {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
+             <Route path='/Forgotpassword' component={Forgotpassword } /> 
             <Route path='/employer/register' element={<EmployerRegister />} />
             <Route element={<PrivateRoute />} >
               <Route element={<AboutUs />} path='/aboutus' />
@@ -44,7 +44,7 @@ function App() {
             </Route>
             <Route path='/jobseeker/register' element={<JobseekerRegister />} />
             <Route path='/jobseeker/registerpage2' element={<JobseekerRegisterpage2 />} />
-            <Route path='/jobseeker/registerpage3' element={<JobseekerRegisterpage3 />} />
+            {/* <Route path='/jobseeker/registerpage3' element={<JobseekerRegisterpage3 />} /> */}
           </Routes>
           
         </AuthProvider >

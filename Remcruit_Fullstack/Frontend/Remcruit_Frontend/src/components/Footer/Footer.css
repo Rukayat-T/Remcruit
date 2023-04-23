@@ -1,19 +1,13 @@
 .footer {
    margin-bottom: 0;
     width: 100%;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     text-align: center;
     margin-top: 10px;
     height: 280px;
 }
 
-.footer_logo img {
-    width: 150px;
-    margin-right: 5px;
-    margin-top: 80px;
-    
-  }
 
 
 .footer_link {
@@ -21,7 +15,7 @@ display: flex;
 }
 
 .footer_link_section a{
-  color: white;
+  color: black;
   font-weight: 300;
 font-size: 10px;
 
@@ -49,18 +43,9 @@ justify-content: left;
  
 }
 
-.subcribe{
-  background-color:  #FFCC33;
-  border-radius: 15px;
-  position:absolute;
-  width: 80%;
-  height: 10%;
- text-align:justify;
- margin-top: 10px;
- display: flex;
- margin-left: 150px;
-
-}
+/* .subcribe{
+ 
+} */
 
 .subcribe p{
 

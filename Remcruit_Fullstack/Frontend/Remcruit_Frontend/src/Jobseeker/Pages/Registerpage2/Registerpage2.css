@@ -1,4 +1,55 @@
- .register2-main-container{
+.main-register-container-jobseeker{
+    margin: 2%;
+    display: flex;
+    column-gap:  20px;
+
+
+}
+
+.left-register-side{
+    background: rgba(198, 198, 198, 0.13);
+    height: 100vh;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+
+.registerion-text{
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+.registerion-text h1{ 
+    font-size: 2rem;
+    color: #CA61C3;}
+
+.register-text p{
+        font-weight: 300;
+        
+    }
+
+.frame{
+    position: absolute;
+    width: 224.41px;
+    height: 292.81px;
+    left: 43px;
+    top: 69px;
+    
+}    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* .register2-main-container{
     height: 100vh;
   
     margin: 0 auto;
@@ -28,7 +79,7 @@
 .register{
     background: rgba(198, 198, 198, 0.13);
     
-}
+} */
 
 
 /*.left-container{

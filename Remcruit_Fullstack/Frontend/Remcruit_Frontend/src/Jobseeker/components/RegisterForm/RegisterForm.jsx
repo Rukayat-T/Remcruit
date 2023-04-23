@@ -8,19 +8,18 @@ import PhoneInput from 'react-phone-number-input'
 
 
 
-  function RegisterForm({ formData, setFormData, onSubmit }) {
+  function RegisterForm({ formData, setFormData }) {
+    
     const checkboxHandler = (e) => {
-        setFormData({ ...formData, terms_and_conditions: e.target.value })
+        setFormData({ ...formData, terms_and_conditions: "True" })
     }
     
   
       return (
           <>
-             <form onSubmit={onSubmit}>
-                
-            
-              <div className="name">
-                  <div className="firstName">
+           
+              <div className="names">
+                  <div className="first-Name">
                       <label>First Name*</label>
                       <input
                           type="text"
@@ -29,7 +28,7 @@ import PhoneInput from 'react-phone-number-input'
                           onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
                           placeholder='Firstname' />
                   </div>
-                  <div className="lastName">
+                  <div className="last-Name">
                       <label>Last Name*</label>
                       <input
                           type="text"
@@ -66,7 +65,7 @@ import PhoneInput from 'react-phone-number-input'
                 
   
               </div>
-              <div className="phone">
+              <div className="phone-no">
   
                   <div className="email">
                       <label>Email*</label>
@@ -87,8 +86,8 @@ import PhoneInput from 'react-phone-number-input'
                           placeholder='' />
                   </div>
               </div>
-              <div className="pass">
-                  <div className="password">
+              <div className="pass-word">
+                  <div className="passwords">
                       <label>Password*</label>
                       <input
                           type="password"
@@ -96,7 +95,7 @@ import PhoneInput from 'react-phone-number-input'
                           value={formData.password}
                           onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
                   </div>
-                  <div className="confPassword">
+                  <div className="conf-Password">
                       <label>Confirm Password*</label>
                       <input
                           type="password"
@@ -106,7 +105,7 @@ import PhoneInput from 'react-phone-number-input'
                   </div>
               </div>
 
-              <div className="termsAndConditions">
+              <div className="terms-And-Conditions">
                 <label>Terms and Conditions</label>
                 <input
                     type="checkbox"
@@ -117,7 +116,10 @@ import PhoneInput from 'react-phone-number-input'
                 />
                 I accept the Terms and Conditions and Privacy Policy
             </div>
-            </form>
+
+           
+          
+            
           </>
       )
   }
