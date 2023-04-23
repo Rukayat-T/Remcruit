@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.contrib import messages
 from .serializers import *
 from Employers.models import *
+from Employers.api.serializers import *
 
 class AllJobSeekers(APIView):
     serializer_class = JobSeekerSerializer
@@ -78,18 +79,30 @@ class getJobSeekerByUserId(APIView):
                     return Response(serializer.data, status=status.HTTP_200_OK)
                 else:
                     return Response(status=status.HTTP_404_NOT_FOUND)
-                
+
+
 class jobApp(generics.GenericAPIView):
       serializer_class = JobApplicationSerializer
       def post (self, request, id):
         if request.method == 'POST':
             job = Job.objects.get(id=id)
-            serializer = self.serializer_class(data=request.data, context={'request': request})
-            data = {}
+            data = request.data
+            serializer = self.serializer_class(data=data, context={'request': request})
+            # print(request.data)
+            message = {}
             if serializer.is_valid():
-                job_application = serializer.save()
-                data['response'] = "Okay, you have tried"
-                return Response(data, status=status.HTTP_201_CREATED)
+                jobApplication = serializer.save()
+                # print(serializer.save())
+                # applicantData = {
+                #     "job_application": jobApplication,
+                #     "status": "In Review"
+                # }
+                # applicant = ApplicantSerializer(data=applicantData, context={'request': request})
+                # print(applicant)
+                # # if applicant.is_valid():
+                # #     Applicant = applicant.save()
+                message['response'] = "Job application created"
+                return Response(message, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

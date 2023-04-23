@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes } from 'react-router-dom'
 import { Route } from 'react-router';
 // import 'font-awesome/css/font-awesome.min.css';
 
-import Home from './Pages/Home/Home'
+// import Home from './Pages/Home/Home'
 // import Login from './Pages/Login/Login'
 import LandingPage from './pages/LandingPage/LandingPage'
 import Login from '../src/pages/Login/Login'
@@ -16,39 +16,44 @@ import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
-import JobApplication from './Jobseeker/Pages/JobApplication/JobApplication/JobApplication';
+import JobApplication from './Jobseeker/Pages/JobApplication/components/JobApplication';
+import JobPostSummary from './Employer/Pages/jobPostSummary/JobPostSummary';
 import { JobSeekerProvider } from './context/JobSeekerContext';
 import Forgotpassword from './pages/Forgotpassword/Forgotpassword'
 
 
 
+import { FormProvider } from './context/FormContext';
+import JobPost from './Employer/Pages/JobPost/components/JobPost';
+// import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 function App() {
   return (
     <div className="App">
       <Router>
-      <JobSeekerProvider>
         <AuthProvider>
-          <Routes>
-            <Route path='/' exact element={<LandingPage />} />
-            <Route path='/employer' exact element={<EmployerLandingPage />} />
-            <Route path='/login' element={<Login />} />
-             <Route path='/Forgotpassword' component={Forgotpassword } /> 
-            <Route path='/employer/register' element={<EmployerRegister />} />
-            <Route element={<PrivateRoute />} >
-              <Route element={<AboutUs />} path='/aboutus' />
-              <Route element={<HomePage />} path='/home' />
-              
-              <Route element={<JobApplication/>} path='/jobapplication'/>
-              
-              
-            </Route>
-            <Route path='/jobseeker/register' element={<JobseekerRegister />} />
-            <Route path='/jobseeker/registerpage2' element={<JobseekerRegisterpage2 />} />
-            {/* <Route path='/jobseeker/registerpage3' element={<JobseekerRegisterpage3 />} /> */}
-          </Routes>
-          
+          <FormProvider>
+            <JobSeekerProvider>
+              <Routes>
+                <Route path='/' exact element={<LandingPage />} />
+                <Route path='/employer' exact element={<EmployerLandingPage />} />
+                <Route path='/login' element={<Login />} />
+                {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
+                <Route path='/employer/register' element={<EmployerRegister />} />
+                <Route element={<PrivateRoute />} >
+                  <Route element={<AboutUs />} path='/aboutus' />
+                  <Route element={<HomePage />} path='/home' />
+                  <Route element={<JobApplication />} path='/jobapplication' />
+                  <Route element={<JobPostSummary />} path='employer/job/post/summary' />
+                </Route>
+                <Route path='/jobseeker/register' element={<JobseekerRegister />} />
+                <Route path='/jobseeker/registerpage2' element={<JobseekerRegisterpage2 />} />
+                <Route path='/employer/job/post' element={<JobPost />} />
+              </Routes>
+
+
+            </JobSeekerProvider>
+          </FormProvider>
         </AuthProvider >
-        </JobSeekerProvider>
       </Router >
 
     </div >

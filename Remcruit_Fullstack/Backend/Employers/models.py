@@ -74,3 +74,10 @@ class Job(models.Model):
     
     def __str__(self):
         return self.title
+
+# class Applicant(models.Model):
+#      job_application = models.ForeignKey("JobSeekers.JobApplication", on_delete=models.CASCADE)
+#      status = models.TextField(choices=Status.choices, default=Status.IN_REVIEW)
+
+#      def __str__(self):
+#           return self.status

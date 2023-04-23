@@ -1,0 +1,163 @@
+
+.job-post-main-container {
+  height: 90vh;
+  overflow: hidden;
+}
+.job-post-content-container > .progress-bars{
+    height: 10vh;
+    gap: 6rem;
+    margin-top: 2rem;
+}
+
+.job-post-content-container {
+  height: 85vh;
+  width: 80%;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+  box-shadow: -173px 314px 143px rgba(0, 0, 0, 0.01),
+    -97px 177px 121px rgba(0, 0, 0, 0.05), -43px 79px 90px rgba(0, 0, 0, 0.09),
+    -11px 20px 49px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 13px;
+}
+
+.job-post-components{
+    width: 76%;
+    margin: 2rem auto;
+}
+.job-post-form-container{
+    font-size: 1.1rem;
+}
+
+.job-post-form-container label{
+    display: flex;
+    width: max-content;
+}
+
+.textarea label{
+    display: block;
+}
+
+.job-post-form-container form{
+    height: 50vh;
+    gap: 20px;
+}
+
+.each-input{
+    width: max-content;
+    margin-right: 5rem;
+    margin-bottom:1rem;
+}
+
+.each-input input, .each-input select{
+    padding: 0.7rem;
+    width: 15rem;
+    border-radius: 1rem;
+    border: none;
+    background: #F2F2F2;
+}
+.each-input select{
+    font-size: 1rem;
+}
+
+.each-input textarea{
+    background: #F2F2F2;
+    border-radius: 1rem;
+    border: none;
+    padding: 0.7rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.all-inputs{
+    display: flex;
+    flex-wrap: wrap;
+}
+.red{
+    color: rgb(161, 5, 5);
+}
+
+.post-button-container{
+    position: relative;
+    top: 4rem;
+    
+}
+
+.radio-input{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background: #F2F2F2;
+    border-radius: 1.5rem;
+    padding: .2rem 1rem;
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+
+.input-section{
+    display: flex;
+    align-items: center;
+    width: 20%;
+    justify-content: space-between;
+    
+}
+.input-no, .input-yes{
+    display: flex;
+    padding: 1rem;
+}
+
+.date-section.radio-input{
+    width: 40%;
+}
+
+.date-main-section{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+input[type=date]{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+}
+
+.date-section select{
+    font-size: 1rem;
+    padding: 0%;
+}
+.third{
+    margin-left: auto;
+}
+
+.comm input[type=email], .comm input[type=tel]{
+    width: 100%;
+    background: #F2F2F2;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    border: none;
+    padding: 0.7rem;
+    margin-top: .5rem;
+}
+
+.comm-main-container{
+    margin: 2rem auto;
+}
+
+.progress-bars.job-post{
+    width: 78%;
+    margin: 0 auto;
+    margin-top: 2%;
+}
+
+.post-button-container button{
+    background: #FFCC33;
+    color: black;
+    border: none;
+}
+
+.post-button-container{
+    display: flex;
+    justify-content: space-between;
+    width: 78%;
+    margin: 0 auto;
+}
