@@ -19,12 +19,12 @@ export const CompanyProvider = ({ children }) => {
         setCompany(response)
         // console.log(response)
     }
-        
+
     let contextData = {
         company: company,
         thecompany: thecompany,
     }
-    
+
     return (
         <CompanyContext.Provider value={contextData}>
             {children}

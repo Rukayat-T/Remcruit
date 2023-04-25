@@ -1,0 +1,21 @@
+table{
+    border: 2px solid #D1D1D1;
+    width: 72vw;
+    border-radius: 10px;
+    /* overflow: hidden; */
+    border-collapse: collapse;
+    text-align: center;
+   
+}
+
+#jobs th{
+    background-color: #F1F1F1;
+    font-weight:400;
+    font-size: 14px;
+}
+
+#jobs td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #C9C9C9;
+}
