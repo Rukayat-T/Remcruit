@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .serializers import *
 from Employers.models import *
 from Employers.api.serializers import *
@@ -65,6 +66,7 @@ class AllJobApplications(generics.GenericAPIView):
             job_application = JobApplication.objects.all()
             serializer = JobApplicationSerializer(job_application, many=True)
             return Response(serializer.data)
+        
 class getJobSeekerByUserId(APIView):
     serializer_class = JobSeekerSerializer
 
@@ -80,7 +82,7 @@ class getJobSeekerByUserId(APIView):
                 else:
                     return Response(status=status.HTTP_404_NOT_FOUND)
 
-
+       
 class jobApp(generics.GenericAPIView):
       serializer_class = JobApplicationSerializer
       def post (self, request, id):
@@ -130,4 +132,129 @@ class JobApplicationView(generics.GenericAPIView):
             return Response(data, status=status.HTTP_200_OK)
         else:
             data['response'] = "Unable to delete Job Application"
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
+        
+
+class GetApplicationByJobSeekerId(APIView):
+    serializer_class = JobApplicationSerializer
+
+    def get(self, request, job_seeker_id):
+        if request.method == "GET":
+            message = {}
+            if job_seeker_id:
+                application = JobApplication.objects.filter(job_seeker=job_seeker_id)
+                serializer = JobApplicationSerializer(application, many=True)
+                if application:
+                    message['response'] = "Application found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Application with Jobseeker Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+                
+class GetApplicationByJobId(APIView):
+    serializer_class = JobApplicationSerializer
+
+    def get(self, request, job_id):
+        if request.method == "GET":
+            message = {}
+            if job_id:
+                application = JobApplication.objects.filter(job=job_id)
+                serializer = JobApplicationSerializer(application, many=True)
+                if application:
+                    message['response'] = "Application found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Application with ID Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+ 
+class SavedJobsView(APIView):
+    serializer_class = SavedJobSerializer
+    
+    def get(self, request, id):
+        if request.method == "GET":
+            if id:
+                saved = SavedJob.objects.get(id=id)
+                serializer = SavedJobSerializer(saved)
+                if saved:
+                    return Response(serializer.data)
+                else:
+                    messages.error(request, "This job does not exist")
+                    return Response(status=status.HTTP_404_NOT_FOUND)
+    
+   
+
+class GetSavedJobsByJobSeeker(APIView):
+    serializer_class = SavedJobSerializer
+
+    def get(self, request, job_seeker_id):
+        if request.method == "GET":
+            message = {}
+            if job_seeker_id:
+                saved = SavedJob.objects.filter(job_seeker=job_seeker_id)
+                serializer = SavedJobSerializer(saved, many=True)
+                if saved:
+                    message['response'] = "Saved Job(s) found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Saved Jobs with Jobseeker Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+    
+    
+class DeleteSavedJobByJobSeeker(APIView):
+    serializers = SavedJobSerializer
+
+    def delete(self, request, job_seeker_id, id):
+        saved = get_object_or_404(SavedJob, job_seeker = job_seeker_id, id=id)
+        data = {}
+        if saved:
+            saved.delete()
+            data['response'] = "Saved Job Deleted"           
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            data['response'] = "Saved Job Could Not be Deleted"
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
+
+class ArchivedJobsView(APIView):
+    serializer_class = ArchivedJobSerializer
+    
+    def get(self, request, id):
+        if request.method == "GET":
+            if id:
+                archived = ArchivedJob.objects.get(id=id)
+                serializer = ArchivedJobSerializer(archived)
+                if archived:
+                    return Response(serializer.data)
+                else:
+                    messages.error(request, "This job does not exist")
+                    return Response(status=status.HTTP_404_NOT_FOUND)
+    
+
+class GetArchivedJobsByJobSeeker(APIView):
+    serializer_class = ArchivedJobSerializer
+
+    def get(self, request, job_seeker_id):
+        if request.method == "GET":
+            message = {}
+            if job_seeker_id:
+                archived = SavedJob.objects.filter(job_seeker=job_seeker_id)
+                serializer = ArchivedJobSerializer(archived, many=True)
+                if archived:
+                    message['response'] = "Archived Job(s) found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Archived Jobs with Jobseeker Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+        
+class DeleteArchivedJobByJobSeeker(APIView):
+    serializers = ArchivedJobSerializer
+
+    def delete(self, request, job_seeker_id, id):
+        archived = get_object_or_404(ArchivedJob, job_seeker = job_seeker_id, id=id)
+        data = {}
+        if archived:
+            archived.delete()
+            data['response'] = "Archived Job Deleted"           
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            data['response'] = "Archived Job Could Not be Deleted"
             return Response(data, status=status.HTTP_204_NO_CONTENT)

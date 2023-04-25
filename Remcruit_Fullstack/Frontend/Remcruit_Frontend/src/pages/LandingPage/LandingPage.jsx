@@ -5,6 +5,7 @@ import AuthContext from '../../context/AuthContext'
 import Steps from './components/Steps/Steps'
 import Community from './components/Community/Community'
 import Footer from '../../components/Footer/Footer'
+import { Link } from 'react-router-dom'
 
 function LandingPage() {
 
@@ -16,6 +17,8 @@ function LandingPage() {
       <Steps />
       <Community />
       <Footer />
+      
+
     </div>
   )
 }
