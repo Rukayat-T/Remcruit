@@ -10,3 +10,13 @@ class JobApplicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobApplication
         fields = '__all__'
+
+class SavedJobSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = SavedJob
+        fields = '__all__'
+
+class ArchivedJobSerializer(serializers.ModelSerializer):
+    class Meta: 
+        model = ArchivedJob
+        fields = '__all__'

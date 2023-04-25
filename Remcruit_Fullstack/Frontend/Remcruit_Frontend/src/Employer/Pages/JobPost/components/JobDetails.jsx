@@ -2,10 +2,10 @@ import React, { useState } from "react";
 
 function JobDetails({postdata, setPostData}) {
 
-  const dataCheck = (e) => {
-    e.preventDefault()
-    console.log(postdata)
-  }
+  // const dataCheck = (e) => {
+  //   e.preventDefault()
+  //   console.log(postdata)
+  // }
   
   return (
     <div>
@@ -181,7 +181,7 @@ function JobDetails({postdata, setPostData}) {
               </select>
             </div>
           </div>
-          <button onClick={dataCheck}>Click me</button>
+          {/* <button onClick={dataCheck}>Click me</button> */}
 
         </form>
       </div>
