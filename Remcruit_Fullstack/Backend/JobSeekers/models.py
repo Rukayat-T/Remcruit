@@ -1,5 +1,6 @@
 from django.db import models
 from authentication.models import *
+from django.utils import timezone
 # Create your models here.
 
 class Gender(models.TextChoices):
@@ -126,3 +127,17 @@ class JobApplication(models.Model):
     status = models.TextField(choices=Status.choices, default=Status.IN_REVIEW, blank=True)
     def __str__(self):
         return str(self.job_seeker) + ' applied for ' + str(self.job)
+
+class SavedJob(models.Model):
+    job = models.ForeignKey('Employers.Job', related_name='saved_job', on_delete=models.CASCADE)
+    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='saved_jobseeker')
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.job.title + ' - ' + str(self.job.company)
+
+class ArchivedJob(models.Model):
+    job = models.ForeignKey('Employers.Job', related_name='archived_job', on_delete=models.CASCADE)
+    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='archived_jobseeker')
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.job.title + ' - ' + str(self.job.company)

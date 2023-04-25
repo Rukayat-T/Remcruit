@@ -4,10 +4,10 @@ function BasicInformation({postdata, setPostData}) {
   const [jobtype, setJobType] = useState()
   // console.log(jobtype)
 
-  const dataCheck = (e) => {
-    e.preventDefault()
-    console.log(postdata)
-  }
+  // const dataCheck = (e) => {
+  //   e.preventDefault()
+  //   console.log(postdata)
+  // }
   return (
     <div>
       <div className="job-post-form-container">
@@ -84,7 +84,7 @@ function BasicInformation({postdata, setPostData}) {
             onChange={(e) => setPostData({...postdata, skills_required: e.target.value})}
             ></textarea>
           </div>
-          <button onClick={dataCheck}>Click me</button>
+          {/* <button onClick={dataCheck}>Click me</button> */}
             </div>
         </form>
       </div>
