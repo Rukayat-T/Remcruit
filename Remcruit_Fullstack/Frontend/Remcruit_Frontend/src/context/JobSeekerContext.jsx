@@ -8,6 +8,7 @@ export default JobSeekerContext
 
 export const JobSeekerProvider = ({ children }) => {
     let [jobseeker, setJobSeeker] = useState()
+   
     let { user } = useContext(AuthContext)
     const navigate = useNavigate()
 

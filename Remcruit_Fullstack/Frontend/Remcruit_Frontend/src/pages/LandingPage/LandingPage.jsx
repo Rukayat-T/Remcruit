@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 function LandingPage() {
 
   let { user } = useContext(AuthContext)
+  
   return (
     <div>
       <Navbar />
