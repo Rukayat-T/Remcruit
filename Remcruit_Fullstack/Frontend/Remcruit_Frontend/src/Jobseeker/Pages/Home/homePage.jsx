@@ -13,10 +13,15 @@ import CompanyBox from '../../Components/companyBox/companyBox'
 import Filter from '../../Components/filter/filter'
 import UserComponent from '../../Components/user/userComponent'
 import NotificationComponent from '../../Components/notification/notificationComponent'
+import JobSeekerContext from '../../../context/JobSeekerContext'
+import CompanyContext from '../../../context/CompanyContext'
 
 function HomePage() {
 
     const [jobs, setJobs] = useState([])
+    let {jobSeeker, jobseeker} = useContext(JobSeekerContext)
+    let {user} = useContext(AuthContext)
+    let {thecompany} = useContext(CompanyContext)
 
     const getJobs = async () => {
         const response = await fetch(
@@ -32,6 +37,12 @@ function HomePage() {
 
     useEffect(() => {
         getJobs();
+        jobseeker,
+        jobSeeker()
+        user,
+        thecompany()
+
+
     }, []);
 
     return (

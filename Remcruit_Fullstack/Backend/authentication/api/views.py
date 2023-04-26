@@ -51,21 +51,22 @@ def send_confirmation_email(user, request):
     email.send(fail_silently=False)
 
 
-@api_view(['POST',])
-def JobSeekerRegisterView(request):
-    if request.method == 'POST':
-        serializer = JobSeekerRegisterSerializer(data=request.data)
-        data = {}
 
-        if serializer.is_valid():
-            jobseeker = serializer.save()
-            data['response'] = "Please confirm your email address to complete the registration"
-            data['email'] = jobseeker.user.email
-            data['username'] = jobseeker.user.username
-            send_confirmation_email(jobseeker.user, request)
-            return Response(data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class JobSeekerRegisterView(generics.GenericAPIView):
+    serializer_class = JobSeekerRegisterSerializer
+    def post(self, request):
+        if request.method == 'POST':
+            serializer = JobSeekerRegisterSerializer(data=request.data, context={'request':request})
+            data = {}
+            if serializer.is_valid():
+                jobseeker = serializer.save()
+                data['response'] = "Please confirm your email address to complete the registration"
+                data['email'] = jobseeker.user.email
+                data['username'] = jobseeker.user.username
+                send_confirmation_email(jobseeker.user, request)
+                return Response(data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class EmployerRegister(generics.GenericAPIView):
     serializer_class = EmployerRegisterSerializer
