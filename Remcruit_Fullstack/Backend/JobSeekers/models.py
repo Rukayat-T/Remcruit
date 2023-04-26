@@ -17,6 +17,22 @@ class Status(models.TextChoices):
     INTERVIEW = "Interview" # application has been progressed to interview stage by employer
     DECLINED = 'Declined' # application has been declined by employer
     IN_REVIEW = 'In Review' # new job application. employer is reviewing application
+
+class JobType(models.TextChoices):
+        FULL_TIME = 'Full Time'
+        PART_TIME = 'Part Time'
+        INTERNSHIP = 'Internship'
+
+class Industry(models.TextChoices):
+        ACOUNTANCY_BANKING_FINANCE = 'Accountancy, banking and finance'
+        BCM = 'Business, consulting and management'
+        CVW = 'Charity and voluntary work'
+        CGR = 'Consumer goods and retail'
+        EC = 'Engineering and Construction'
+        ENTERTAINMENT = 'Entertainment'
+        EA = 'Environment and Agriculture'
+        EU = 'Energy and Utilities'
+        
 class JobSeeker(models.Model):
 
     def delete(self, *args, **kwargs):
@@ -103,6 +119,9 @@ class JobSeeker(models.Model):
     profile_picture = models.ImageField(upload_to='images/', null=True, blank=True)
     state = models.CharField(max_length=200, null=True)
     nin = models.CharField(max_length=11, null = True)
+    professional_summary = models.TextField(max_length=400, default='Old')
+    role_type = models.TextField(choices=JobType.choices, default='Old')
+    industry = models.TextField(choices=Industry.choices, default='Old')
     
 
     USERNAME_FIELD = 'email'
@@ -141,3 +160,6 @@ class ArchivedJob(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.job.title + ' - ' + str(self.job.company)
+    
+
+

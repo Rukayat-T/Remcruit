@@ -3,12 +3,14 @@ from rest_framework import generics
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.http import JsonResponse
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .serializers import *
 from Employers.models import *
 from Employers.api.serializers import *
+import json 
 
 class AllJobSeekers(APIView):
     serializer_class = JobSeekerSerializer
@@ -258,3 +260,27 @@ class DeleteArchivedJobByJobSeeker(APIView):
         else:
             data['response'] = "Archived Job Could Not be Deleted"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
+
+def get_choices(request):
+    university_choices = JobSeeker.UNIVERSITY_CHOICES
+    degree_choices = JobSeeker.DEGREE_CLASSIFICATION_CHOICES
+    year_choices = JobSeeker.YEAR_OF_GRADUATION_CHOICES
+    gender_choices = Gender.choices
+    role_choices = JobType.choices
+    industry_choices = Industry.choices
+    subject_choices= JobSeeker.SUBJECT_OF_STUDY_CHOICES
+    qualification_choices= JobSeeker.HIGHEST_QUALIFICATION_CHOICES
+    context = {
+        "university_choices": university_choices,
+        "year_choices":year_choices,
+        'degree_choices':degree_choices,
+        'gender_choices':  gender_choices,
+        'role_choices': role_choices,
+        'industry_choices':industry_choices,
+        'subject_choices': subject_choices,
+        'qualification_choices':qualification_choices
+
+    }
+    # json_object = json.dumps(context, indent=4)
+    # data = serializers.serialize('json')
+    return JsonResponse(context, safe=False)
