@@ -32,8 +32,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['first_name'] = user.first_name
         token['last_name'] = user.last_name
-        # ...
-
+        token['is_employer']= user.is_employer
+        token['is_jobSeeker'] = user.is_jobSeeker
         return token
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer

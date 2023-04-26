@@ -52,7 +52,6 @@ class JobType(models.TextChoices):
         INTERNSHIP = 'Internship'
 
 class Job(models.Model):
-    recruiter = models.ForeignKey('authentication.User', related_name='user', on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     description = models.TextField()
     company = models.ForeignKey(Employer, related_name='employer', on_delete=models.CASCADE)

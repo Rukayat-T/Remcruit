@@ -19,6 +19,7 @@ function JobApplication() {
   useEffect(() => {
     jobSeeker()
   }, [])
+console.log(user)
 
   const handleSubmit = async (e) => {
     e.preventDefault()

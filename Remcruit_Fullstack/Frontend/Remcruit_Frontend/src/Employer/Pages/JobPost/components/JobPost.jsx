@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../../../Jobseeker/Pages/JobApplication/static/JobApplication.css'
 import NavbarSignedIn from '../../../../Jobseeker/Components/navbarSignedin/NavbarSignedIn'
 import FormContext from '../../../../context/FormContext'
@@ -8,46 +8,33 @@ import JobDetails from './JobDetails'
 import JobPostQuestions from './JobPostQuestions'
 import CommunicationSettings from './CommunicationSettings'
 import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
+import CompanyContext from '../../../../context/CompanyContext'
 
 function JobPost() {
-  const [tab, setTab] = useState(0)
+    const [tab, setTab] = useState(0)
+    let {company, thecompany} = useContext(CompanyContext)
+    
+    let navigate = useNavigate()
 
-  let navigate = useNavigate()
-
-  const [postdata, setPostData] = useState({
-    position_title: "",
-    open_spots: "",
-    location: "",
-    job_type: "",
-    qualification_requirement: "",
-    salary: "",
-    pay_rate: "Monthly",
-    job_description: "",
-    key_responsibilities: "",
-    is_remote_oppurtunity: false,
-    is_cv_required: false,
-    is_experience_required: false,
-    job_start_date: "",
-    application_deadline: "",
-    post_duration: "",
-    urgency: false,
-    is_available: false,
-  })
+    useEffect(() => {
+      thecompany()
+    }, [])
+    // console.log(company.id)
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      // console.log()
+      let response = await fetch(`http://127.0.0.1:8000/employer/createJob/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(postdata),
+      });
+    };
 
   const next = () => {
-
-    if (tab !== 3) {
       setTab((currentPage) => currentPage + 1)
     }
-    else if (tab === 3) {
-      navigate("/employer/job/post/summary", {
-        state: {
-          postdata: postdata
-        }
-      })
-    }
-  }
 
   const back = () => {
     setTab((currentPage) => currentPage - 1)
@@ -60,7 +47,26 @@ function JobPost() {
     "Employer Questions",
   ]
 
-
+    const [postdata, setPostData] = useState({
+      title: "",
+      vacancy: "",
+      location: "",
+      job_type: "",
+      salary:"",
+      pay_rate: "Monthly",
+      description:"",
+      skills_required:"",
+      degree_classification: "",
+      is_remote_oppurtunity:"",
+      is_cv_required:"",
+      is_experience_required:"",
+      resumption: "",
+      application_deadline: "",
+      job_post_duration: "",
+      urgency: false,
+      is_available:false,
+      company:company?.id
+  })
 
   const JobPostPageDisplay = () => {
     if (tab === 0) {
@@ -78,16 +84,11 @@ function JobPost() {
   }
 
 
-  const Submitbtn = () => {
-    return (
-      <button type="submit" onClick={
-        () => {
-          if (tab == FormTitles.length - 1)
-            navigate("/home")
-        }
-      }>Submit</button>
-    )
-  }
+    const Submitbtn = () => {
+      return (
+        <button type="submit" >Submit</button>
+      )
+    }
 
   const nextbtn = () => {
     return (
@@ -99,8 +100,6 @@ function JobPost() {
       >Next</button>
     )
   }
-
-
   return (
     <div>
       <NavbarSignedIn />
@@ -130,7 +129,7 @@ function JobPost() {
 
           <form
             className="application-form"
-            onSubmit={""}
+            onSubmit={handleSubmit}
           >
             <div className="appl-button-container post-button-container">
               <button
@@ -149,8 +148,8 @@ function JobPost() {
                 Back
               </button>
               <div className="contsub">
-                {nextbtn()}
-
+              {tab === JobPostTitles.length - 1 ? <Submitbtn/> :  nextbtn()}
+              
               </div>
 
             </div>
