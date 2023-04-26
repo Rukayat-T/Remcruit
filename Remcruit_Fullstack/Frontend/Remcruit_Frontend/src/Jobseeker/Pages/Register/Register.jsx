@@ -24,9 +24,14 @@ function Register() {
             </div>
 
 
-            <p className="continuewithemail"><Link to="/jobseeker/registerpage2">Continue with email</Link></p>
-        <input type="submit"/>
-        <p className="login"><Link to="/login">Already have an account?<span >Login</span> </Link></p>
+            {/* <a href="/jobseeker/registerpage2" class="button">Continue with emai</a> */}
+             {/* <button className="button"><Link to="/jobseeker/registerpage2">Continue with email</Link></button>  */}
+             {/* <button  className="button" as = {Link} to ="/jobseeker/registerpage2">Continue with email</button> */}
+             <Link to="/jobseeker/registerpage2"><button className="button">Continue with email</button></Link>
+            <p>Already have an account? <Link to='/login'>Login</Link></p>
+            
+        
+       
 
           </div>
         </div>

@@ -25,7 +25,7 @@ import Forgotpassword from './pages/Forgotpassword/Forgotpassword'
 
 import { FormProvider } from './context/FormContext';
 import JobPost from './Employer/Pages/JobPost/components/JobPost';
-// import Forgotpassword from './components/Forgotpassword/Forgotpassword'
+
 function App() {
   return (
     <div className="App">
@@ -37,7 +37,7 @@ function App() {
                 <Route path='/' exact element={<LandingPage />} />
                 <Route path='/employer' exact element={<EmployerLandingPage />} />
                 <Route path='/login' element={<Login />} />
-                {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
+                 <Route path='/Forgotpassword' element={<Forgotpassword /> } /> 
                 <Route path='/employer/register' element={<EmployerRegister />} />
                 <Route element={<PrivateRoute />} >
                   <Route element={<AboutUs />} path='/aboutus' />

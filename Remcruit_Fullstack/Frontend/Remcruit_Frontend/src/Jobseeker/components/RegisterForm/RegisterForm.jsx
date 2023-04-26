@@ -17,10 +17,11 @@ import PhoneInput from 'react-phone-number-input'
   
       return (
           <>
+          
            
               <div className="names">
                   <div className="first-Name">
-                      <label>First Name*</label>
+                  <label>First Name*</label>
                       <input
                           type="text"
                           name="firstname"
@@ -29,7 +30,7 @@ import PhoneInput from 'react-phone-number-input'
                           placeholder='Firstname' />
                   </div>
                   <div className="last-Name">
-                      <label>Last Name*</label>
+                  <label>Last Name*</label>
                       <input
                           type="text"
                           name="lastname"
@@ -38,17 +39,19 @@ import PhoneInput from 'react-phone-number-input'
                           placeholder='Lastname' />
                   </div>
               </div>
-              <div className="gend">
-                  <div className='gen'>
-                      <label>Gender*</label>
-                      <div className='gender'>
+              
+                  <div className='gends'>
+                  <label>Gender*</label>
+                      <div className='genders'>
                           <div className='fem'>
                               <input
+                             
                                   type="radio"
                                   name="female"
                                   value="Female"
                                   onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
                                   checked={formData.gender === "Female"}
+                                  
                               /> Female
                           </div>
                           <div className='mal'>
@@ -64,49 +67,51 @@ import PhoneInput from 'react-phone-number-input'
                   </div>
                 
   
-              </div>
-              <div className="phone-no">
+             
+              <div className="contacts">
   
                   <div className="email">
-                      <label>Email*</label>
+                  <label>Email Address*</label>
                       <input
                           type="text"
                           name="email"
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder='email' />
+                          placeholder='Email' />
                   </div>
                   <div className="phoneNo">
-                      <label>Phone Number*</label>
+                  <label>Phone number*</label>
                       <input
                           type="tel"
                           name="phoneNumber"
                           value={formData.phone_number}
                           onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
-                          placeholder='' />
+                          placeholder='Phone Number' />
                   </div>
               </div>
               <div className="pass-word">
                   <div className="passwords">
-                      <label>Password*</label>
+                  <label>Password*</label>
                       <input
                           type="password"
                           name="password"
                           value={formData.password}
-                          onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+                          onChange={(e) => setFormData({ ...formData, password: e.target.value })} 
+                          placeholder='Password'/>
                   </div>
                   <div className="conf-Password">
-                      <label>Confirm Password*</label>
+                  <label>Confirm Password*</label>
                       <input
                           type="password"
                           name="password2"
                           value={formData.password2}
-                          onChange={(e) => setFormData({ ...formData, password2: e.target.value })} />
+                          onChange={(e) => setFormData({ ...formData, password2: e.target.value })}
+                          placeholder=' Confirm Password' />
                   </div>
               </div>
 
               <div className="terms-And-Conditions">
-                <label>Terms and Conditions</label>
+               
                 <input
                     type="checkbox"
                     name="terms"
@@ -114,7 +119,9 @@ import PhoneInput from 'react-phone-number-input'
                     onChange={checkboxHandler}
                 // 
                 />
-                I accept the Terms and Conditions and Privacy Policy
+                 I have read and agree to the terms and conditions and consent to
+                  receive emails about jobs and career related topics. I understand 
+                  that I can unsubscribe from emails at any time.
             </div>
 
            

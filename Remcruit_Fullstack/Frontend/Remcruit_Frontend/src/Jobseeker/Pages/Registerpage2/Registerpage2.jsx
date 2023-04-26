@@ -13,9 +13,10 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 
 import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import RegisterForm1 from "../../components/RegisterForm1/RegisterForm1";
+import RegisterForm2 from '../../Components/RegisterForm2/RegisterForm2';
 
 function Registerpage2() {
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(1)
     const navigate = useNavigate()
 
     const nextPage = () => {
@@ -27,13 +28,15 @@ function Registerpage2() {
     
     
     const prevPage = () => {
-      if ( page === 1) {
+      if (page === 1 || page === 2) {
         setPage(page - 1)
       }
       else {
         goBack()
       }
     }
+  
+    
    
 
     
@@ -51,10 +54,12 @@ function Registerpage2() {
         terms_and_conditions: "",
         phone_number: "",
         university_name: "",
-        SUBJECT_OF_STUDY_CHOICES: "",
-        YEAR_OF_GRADUATION_CHOICES: "",
-        DEGREE_CLASSIFICATION_CHOICE: "",
-        HIGHEST_QUALIFICATION_CHOICES: "",
+        subject_of_study: "",
+        year_of_graduation: "",
+        degree_classification: "",
+        highest_qualification: "",
+        // sector_industry: "",
+        // job_types: "",
        
         
         
@@ -65,15 +70,18 @@ function Registerpage2() {
         if (page === 0) {
           return <RegisterForm formData={formData} setFormData={setFormData} />
         }
-        else  {
+        else if (page === 1) {
           return <RegisterForm1 formData={formData} setFormData={setFormData} />
+        }
+        else  {
+          return <RegisterForm2  />
         }
         
     }
 
     
 
-    let handleSubmit = async (e) => {
+    let handleSubmitted = async (e) => {
         e.preventDefault();
        
 
@@ -125,19 +133,34 @@ function Registerpage2() {
     </div>
     <div className="right-register-side">
     <div className="backBtn" onClick={prevPage}>
-               <FontAwesomeIcon icon={faChevronLeft} className="backIcon" />
-               back
+               <FontAwesomeIcon icon={faChevronLeft} className="backIcon" style={{ color: "#CA61C3" }} />
+               Back
               </div>
-              <div className="nextBtn" onClick={nextPage} id="next">
-                  next
-                  <FontAwesomeIcon icon={faChevronRight} className="nextIcon" />
-                </div>
+              
               
        
         
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmitted}>
                       {pageDisplay()}
-                      <input type="submit" value="Register" id="submit" /> 
+                      {/* <input type="submit" value="Register" id="submit" />  */}
+
+
+                     {/* {page===0 ? (<div className="nextBtn" onClick={nextPage} id="next">
+                 <button className="buttons">Continue </button>
+                 
+                </div>):( <input type="submit" value="Register" id="submit" /> )}  */}
+
+                {page===2 ? ( <input type="submit" value="Register" id="submit" /> ):
+                (<div className="nextBtn" id="next">
+                 <button className="buttons" onClick={nextPage} type='button'>Continue </button>
+                 
+                </div>)}
+
+{/* {page !=(2)? Continue:submit} */}
+                      {/* <div className="nextBtn" onClick={nextPage} id="next">
+                  next
+                  <FontAwesomeIcon icon={faChevronRight} className="nextIcon" />
+                </div> */}
 
       </form>
     </div>
@@ -173,11 +196,11 @@ function Registerpage2() {
       //             back
       //           </div>
 
-      //     <div className="accounts">
-      //           {/* <div className='pages'>
-      //             <div className={page === 0 ? "actives" : ""} onClick={handlePage1} id='pageOne'> </div>
-      //             <div className={page === 1 ? "active" : ""} onClick={handlePage2} id='pageTwo'> </div>
-      //       </div> */}
+          <div className="accounts">
+                {/* <div className='pages'>
+                  <div className={page === 0 ? "actives" : ""} onClick={handlePage1} id='pageOne'> </div>
+                  <div className={page === 1 ? "active" : ""} onClick={handlePage2} id='pageTwo'> </div>
+            </div> */}
       //       </div>
       //       <div className='info'>
       //             <p className={page === 0 ? "actives" : ""}  id='T'>Account details</p>

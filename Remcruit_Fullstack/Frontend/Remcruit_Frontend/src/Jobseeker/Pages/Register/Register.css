@@ -82,17 +82,24 @@
     text-align: center;
   }
 
-/* .continuewithemail {
-box-sizing: border-box;
-width: 45%;
-height: 40px;
-background:  #CA61C3;
-font-size: 15px;
-border-radius: 15px;
-color: white;
+ .button{
+  width: 80%;
+  height: 35px;
+  margin: 0 auto;
+  background-color: #CA61C3;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  margin-top: 30px;
 
   }
+  .button > Link{
+    color: white;
+  }
+  
 
-  .login{
-    color:black
-  } */
+  .continuewithemail link{
+    color: white;
+  }

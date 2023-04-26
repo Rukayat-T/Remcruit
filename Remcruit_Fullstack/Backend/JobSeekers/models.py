@@ -102,6 +102,10 @@ class JobSeeker(models.Model):
     profile_picture = models.ImageField(upload_to='images/', null=True, blank=True)
     state = models.CharField(max_length=200, null=True)
     nin = models.CharField(max_length=11, null = True)
+    # job_types = models.CharField(max_length=200)
+    # sector_industry = models.CharField(max_length=200)
+
+    
     
 
     USERNAME_FIELD = 'email'
