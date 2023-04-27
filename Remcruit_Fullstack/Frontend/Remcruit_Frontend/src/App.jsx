@@ -22,6 +22,7 @@ import JobPost from './Employer/Pages/JobPost/components/JobPost';
 import { CompanyProvider } from './context/CompanyContext';
 import Profile from './Jobseeker/Pages/Profile/Profile';
 import Dashboard from './Employer/Pages/dashboard/Dashboard';
+import SpecificJobs from './Jobseeker/Pages/Specific Jobs Page/SpecificJobs';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
                     <Route element={<JobApplication />} path='/jobapplication' />
                     <Route element={<Profile />} path='/profile' />
                     <Route path='/dashboard' element={<Dashboard />} />
+                    <Route element={<SpecificJobs/>} path='/specificjobs'/>  
 
                   </Route>
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />

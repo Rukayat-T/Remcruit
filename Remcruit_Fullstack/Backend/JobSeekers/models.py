@@ -25,15 +25,15 @@ class JobType(models.TextChoices):
         PART_TIME = 'Part Time'
         INTERNSHIP = 'Internship'
 
-class Industry(models.TextChoices):
-        ACOUNTANCY_BANKING_FINANCE = 'Accountancy, banking and finance'
-        BCM = 'Business, consulting and management'
-        CVW = 'Charity and voluntary work'
-        CGR = 'Consumer goods and retail'
-        EC = 'Engineering and Construction'
-        ENTERTAINMENT = 'Entertainment'
-        EA = 'Environment and Agriculture'
-        EU = 'Energy and Utilities'
+# class Industry(models.TextChoices):
+       
+#         BCM = 'Business, consulting and management'
+#         CVW = 'Charity and voluntary work'
+#         CGR = 'Consumer goods and retail'
+#         ENGINEERING_AND_CONSTRUCTION = 'Engineering and Construction'
+#         ENTERTAINMENT = 'Entertainment'
+#         EA = 'Environment and Agriculture'
+#         EU = 'Energy and Utilities'
         
 class JobSeeker(models.Model):
 
@@ -82,17 +82,17 @@ class JobSeeker(models.Model):
     )
 
 
-    FIRST = "first"
-    SECOND_UPPER = "second_upper"
-    SECOND_LOWER = "second_lower"
-    THIRD = "third"
+    # FIRST = "first"
+    # SECOND_UPPER = "second_upper"
+    # SECOND_LOWER = "second_lower"
+    # THIRD = "third"
 
-    DEGREE_CLASSIFICATION_CHOICES = (
-        ("FIRST", "First Class Honours"),
-        ("SECOND_UPPER", "Second Class Honours(upper)"),
-        ("SECOND_LOWER", "Second Class Honours(lower)"),
-        ("THIRD", "Third Class Honours"),
-    )
+    # DEGREE_CLASSIFICATION_CHOICES = (
+    #     ("FIRST", "First Class Honours"),
+    #     ("SECOND_UPPER", "Second Class Honours(upper)"),
+    #     ("SECOND_LOWER", "Second Class Honours(lower)"),
+    #     ("THIRD", "Third Class Honours"),
+    # )
 
     
     UNDERGRADUATE = "UNDERGRADUATE"
@@ -108,6 +108,28 @@ class JobSeeker(models.Model):
         ("OLEVEL", "Senior Secondary Certificate"),
         ("HND", "Higher National Diploma"),
     )
+    ABF = 'Accounting, Banking and finance'
+    BCM = 'Business, consulting and management'
+    CVW = 'Charity and voluntary work'
+    CGR = 'Consumer goods and retail'
+    EC = 'Engineering and Construction'
+    ENTERTAINMENT = 'Entertainment'
+    EA = 'Environment and Agriculture'
+    EU = 'Energy and Utilities'
+
+    INDUSTRY_SECTORS = (
+        ('ABF', 'Accounting, Banking and finance'),
+        ('BCM', 'Business, consulting and management'),
+        ('CVW', 'Charity and voluntary work'),
+        ('CGR','Consumer goods and retail'),
+        ('EC', 'Engineering and Construction'),
+        ('ENTERTAINMENT',  'Entertainment'),
+        ('EA', 'Environment and Agriculture'),
+        ('EU', 'Energy and Utilities'),
+    )
+
+    #Classes take in the right side and display left side in title and underscore as space. while choices in the
+    #model take in left and display right
 
     user = models.OneToOneField(User, related_name="user_jobSeeker", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
@@ -123,7 +145,7 @@ class JobSeeker(models.Model):
     nin = models.CharField(max_length=11, null = True)
     professional_summary = models.TextField(max_length=400, default='Old')
     role_type = models.TextField(choices=JobType.choices, default='Old')
-    industry = models.TextField(choices=Industry.choices, default='Old')
+    industry = models.TextField(choices=INDUSTRY_SECTORS, default='Old')
     
 
     USERNAME_FIELD = 'email'
@@ -163,5 +185,4 @@ class ArchivedJob(models.Model):
     def __str__(self):
         return self.job.title + ' - ' + str(self.job.company)
     
-
 
