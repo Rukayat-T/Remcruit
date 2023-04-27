@@ -19,7 +19,7 @@ function ToInterviewPage({ candidatesInterview }) {
     const getCandidateById = async (id) => {
         try {
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidateById/${id}`
+                `http://127.0.0.1:8000/employer/getCandidateById/${id}`
             )
                 .then((response) => response.json());
             // console.log(response)

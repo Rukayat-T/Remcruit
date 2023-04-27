@@ -20,7 +20,6 @@ function JobApplication() {
     jobSeeker()
 
   }, [])
-  console.log(jobseeker)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -36,6 +35,7 @@ function JobApplication() {
       }),
     });
   };
+  console.log(job_id)
 
   return (
     <div>
