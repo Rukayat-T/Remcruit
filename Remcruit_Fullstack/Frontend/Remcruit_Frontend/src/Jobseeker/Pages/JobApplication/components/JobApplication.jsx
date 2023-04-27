@@ -9,8 +9,8 @@ import NavbarSignedIn from "../../../Components/navbarSignedin/NavbarSignedIn";
 
 function JobApplication() {
   let { user } = useContext(AuthContext)
-  let {jobSeeker, jobseeker} = useContext(JobSeekerContext)
-  let {next, back, page, FormTitles, PageDisplay, submitbtn, nextbtn} = useContext(FormContext)
+  let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
+  let { next, back, page, FormTitles, PageDisplay, submitbtn, nextbtn } = useContext(FormContext)
   const navigate = useNavigate()
 
   const location = useLocation()
@@ -18,8 +18,9 @@ function JobApplication() {
 
   useEffect(() => {
     jobSeeker()
+
   }, [])
-console.log(user)
+  console.log(user)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -29,10 +30,10 @@ console.log(user)
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "job_seeker":jobseeker.id, 
-        "job": job_id, 
+        "job_seeker": jobseeker.id,
+        "job": job_id,
         "credential": 1,
-    }),
+      }),
     });
   };
 
@@ -44,24 +45,24 @@ console.log(user)
           <div className="jobapplication-content">
             <h1>Application Form</h1>
             <div className="progress-bars">
-              <div className={ page === 0 ? "active" : "bar" } id="one">
+              <div className={page === 0 ? "active" : "bar"} id="one">
                 <p className="title">STEP ONE</p>
                 <p>{FormTitles[0]}</p>
               </div>
-              <div className={ page === 1 ? "active" : "bar" } id="one">
+              <div className={page === 1 ? "active" : "bar"} id="one">
                 <p className="title">STEP TWO</p>
                 <p>{FormTitles[1]}</p>
               </div>
-              <div className={ page === 2 ? "active" : "bar" } id="one">
+              <div className={page === 2 ? "active" : "bar"} id="one">
                 <p className="title">STEP THREE</p>
                 <p>{FormTitles[2]}</p>
               </div>
             </div>
           </div>
           <div className="page-display-container">
-          {PageDisplay()} 
+            {PageDisplay()}
           </div>
-          
+
           <form
             className="application-form"
             onSubmit={handleSubmit}
@@ -71,11 +72,11 @@ console.log(user)
                 type="button"
                 // onClick={back}
                 onClick={() => {
-                  if (page === 0){
+                  if (page === 0) {
                     navigate("/home")
                   }
                   else {
-                    {back()}
+                    { back() }
                   }
                 }}
                 // disabled={page == 0}
@@ -84,9 +85,9 @@ console.log(user)
                 Back
               </button>
               <div className="contsub">
-              {page === FormTitles.length - 1 ? submitbtn() :  nextbtn()}
+                {page === FormTitles.length - 1 ? submitbtn() : nextbtn()}
               </div>
-             
+
             </div>
           </form>
         </div>

@@ -8,7 +8,7 @@ import MyJobs from './MyJobs'
 import Spotlight from './Spotlight'
 import MyCompany from './MyCompany'
 import Analytics from './Analytics'
-import Candidates from './Candidates'
+import Candidates from '././candidates/Candidates'
 import Notifications from './Notifications'
 
 function Dashboard() {
@@ -175,7 +175,6 @@ function Dashboard() {
             <NavbarSignedIn />
             <div className="dashboardContainer">
                 <div className={isNavExpanded ? "navigation-menu-expanded" : "navigation-menu"}>
-                    {/* <CollapseButton /> */}
                     <SideNav />
                 </div>
                 <div className="rightDisplay">

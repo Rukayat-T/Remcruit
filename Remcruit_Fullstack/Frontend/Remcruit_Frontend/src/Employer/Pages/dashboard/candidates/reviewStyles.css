@@ -1,0 +1,12 @@
+.reviewPageContainer{
+    display: flex;
+    column-gap: 70px;
+}
+
+.candidatesSection{
+    width: 40%;
+}
+
+.applicationSection{
+    width: 60%; 
+}

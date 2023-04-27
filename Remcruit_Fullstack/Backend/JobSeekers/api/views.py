@@ -134,6 +134,23 @@ class JobApplicationView(generics.GenericAPIView):
             data['response'] = "Unable to delete Job Application"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
         
+class GetJobApplicationByStatus(APIView):
+    serializer_class = JobApplicationSerializer
+
+    def get(self, request, applicationStatus):
+        if request.method == "GET":
+            message = {}
+            if status:
+                application = JobApplication.objects.filter(status=applicationStatus)
+                serializer = JobApplicationSerializer(application, many=True)
+                if application:
+                    message['response'] = "Application found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Application with status Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+ 
+        
 
 class GetApplicationByJobSeekerId(APIView):
     serializer_class = JobApplicationSerializer

@@ -1,6 +1,6 @@
 .dashboardContainer{
     min-height: 90vh;
-    margin-right: 50px;
+    /* margin-right: 50px; */
     display: flex;
 }
 
@@ -136,10 +136,8 @@
 }
 
 .rightDisplay{
-    width: 80vw;
+    width: 100%;
     margin-top: 30px;
-    margin-left: 50px;
-    margin-right: 50px;
-    display: flex;
-    justify-content: center;
+    margin-left: 5%;
+    margin-right: 5%;
 }
