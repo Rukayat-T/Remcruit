@@ -20,7 +20,7 @@ function JobApplication() {
     jobSeeker()
 
   }, [])
-  console.log(user)
+  console.log(jobseeker)
 
   const handleSubmit = async (e) => {
     e.preventDefault()

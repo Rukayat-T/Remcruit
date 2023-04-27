@@ -20,6 +20,7 @@ import { JobSeekerProvider } from './context/JobSeekerContext';
 import { FormProvider } from './context/FormContext';
 import JobPost from './Employer/Pages/JobPost/components/JobPost';
 import { CompanyProvider } from './context/CompanyContext';
+import Profile from './Jobseeker/Pages/Profile/Profile';
 import Dashboard from './Employer/Pages/dashboard/Dashboard';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 function App() {
@@ -40,12 +41,10 @@ function App() {
                     <Route element={<AboutUs />} path='/aboutus' />
                     <Route element={<HomePage />} path='/home' />
                     <Route element={<JobApplication />} path='/jobapplication' />
-                    <Route path='/dashboard' element={<Dashboard />} />
+                    <Route element={<Profile />} path='/profile' />
                   </Route>
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />
                   <Route path='/employer/job/post' element={<JobPost />} />
-                  <Route path='/employer/job/post/summary' element={<JobPostSummary />} />
-
                 </Routes>
               </CompanyProvider>
 

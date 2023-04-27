@@ -6,7 +6,7 @@ form.personal-info{
     grid-template-columns: auto auto;
     gap: 3rem;
 }
-.personal-info input[type], select{
+.personal-info input[type], .personal-info select{
     font-size: 1.3rem;
     background: #F2F2F2;
     padding: 1rem 1rem;

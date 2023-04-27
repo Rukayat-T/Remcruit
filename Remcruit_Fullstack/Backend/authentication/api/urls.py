@@ -16,7 +16,7 @@ urlpatterns = [
 
     # path('register/employer/',EmployerRegisterView),
      path('register/employer/',EmployerRegister.as_view(), name='registerEmployer'),
-    path('register/jobseeker/',JobSeekerRegisterView),
+    path('register/jobseeker/',JobSeekerRegisterView.as_view(), name='jobseeker_register'),
 
 
     # path('activateUser/<int:uid64>/<int:token>', activate_user, name="activate" ),
