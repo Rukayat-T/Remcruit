@@ -280,11 +280,11 @@ class DeleteArchivedJobByJobSeeker(APIView):
 
 def get_choices(request):
     university_choices = JobSeeker.UNIVERSITY_CHOICES
-    degree_choices = JobSeeker.DEGREE_CLASSIFICATION_CHOICES
+    degree_choices = DegreeClassification.choices
     year_choices = JobSeeker.YEAR_OF_GRADUATION_CHOICES
     gender_choices = Gender.choices
     role_choices = JobType.choices
-    industry_choices = Industry.choices
+    industry_choices = JobSeeker.INDUSTRY_SECTORS
     subject_choices= JobSeeker.SUBJECT_OF_STUDY_CHOICES
     qualification_choices= JobSeeker.HIGHEST_QUALIFICATION_CHOICES
     context = {
@@ -296,8 +296,5 @@ def get_choices(request):
         'industry_choices':industry_choices,
         'subject_choices': subject_choices,
         'qualification_choices':qualification_choices
-
     }
-    # json_object = json.dumps(context, indent=4)
-    # data = serializers.serialize('json')
     return JsonResponse(context, safe=False)

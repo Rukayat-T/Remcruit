@@ -1,0 +1,10 @@
+body{
+    border: 2px solid hotpink;
+}
+
+.specific-jobs-main{
+    width: 95%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
