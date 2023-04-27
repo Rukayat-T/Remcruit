@@ -10,6 +10,12 @@ urlpatterns = [
       path('job/<str:id>/', JobView.as_view(), name='job'),
       path('getJobByCompanyId/<str:companyId>/', GetJobByCompanyIdView.as_view(), name='jobByCompanyId'),
       path('updateApplicationStatus/<str:id>/', UpdateApplicationByStatus.as_view(), name='updateApplicationStatus'),
+      path('getCandidatesByJobIdAndStatus/<str:jobId>/<applicationStatus>',  GetCandidatesByJobIdAndStatus.as_view(), name='GetCandidatesByJobIdAndStatus'),
+      path('getCandidatesByJobId/<str:jobId>',GetAllCandidatesByJobId.as_view(), name = "getCandidatesByJobId" ),
+      path('getCandidatesCount/<str:jobId>', GetCandidatesCount.as_view(), name = "getCandidatesCount" ),
+      path('getCandidateById/<str:id>', GetCandidateById.as_view(), name = "getCandidatebyId" ),
+
+     
 
       # path('getJobByUserId/<str:userId>/', GetJobByEmployerIdView.as_view(), name='jobByUserId'),
 ]

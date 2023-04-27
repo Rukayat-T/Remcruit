@@ -1,0 +1,33 @@
+.vertLine{
+    border-left: 1px solid black;
+    height: 30px;
+}
+
+.comp p{
+    margin-bottom: 0;
+    margin-top: 1px;
+    margin-left: 0;
+    color: black;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.comp{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.Menu li{
+    padding-left: 14px;
+    padding-right: 14px;
+    padding-top: 5px;
+    padding-bottom: 0;
+}

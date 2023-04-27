@@ -23,7 +23,8 @@
     "react-phone-number-input": "^3.2.19",
     "react-responsive": "^9.0.2",
     "react-router": "^6.10.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "proxy": "http://0.0.0.0:8000/"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",

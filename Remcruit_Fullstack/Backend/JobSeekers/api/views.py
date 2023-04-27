@@ -136,6 +136,23 @@ class JobApplicationView(generics.GenericAPIView):
             data['response'] = "Unable to delete Job Application"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
         
+class GetJobApplicationByStatus(APIView):
+    serializer_class = JobApplicationSerializer
+
+    def get(self, request, applicationStatus):
+        if request.method == "GET":
+            message = {}
+            if status:
+                application = JobApplication.objects.filter(status=applicationStatus)
+                serializer = JobApplicationSerializer(application, many=True)
+                if application:
+                    message['response'] = "Application found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Application with status Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+ 
+        
 
 class GetApplicationByJobSeekerId(APIView):
     serializer_class = JobApplicationSerializer
@@ -263,11 +280,11 @@ class DeleteArchivedJobByJobSeeker(APIView):
 
 def get_choices(request):
     university_choices = JobSeeker.UNIVERSITY_CHOICES
-    degree_choices = JobSeeker.DEGREE_CLASSIFICATION_CHOICES
+    degree_choices = DegreeClassification.choices
     year_choices = JobSeeker.YEAR_OF_GRADUATION_CHOICES
     gender_choices = Gender.choices
     role_choices = JobType.choices
-    industry_choices = Industry.choices
+    industry_choices = JobSeeker.INDUSTRY_SECTORS
     subject_choices= JobSeeker.SUBJECT_OF_STUDY_CHOICES
     qualification_choices= JobSeeker.HIGHEST_QUALIFICATION_CHOICES
     context = {
@@ -279,8 +296,5 @@ def get_choices(request):
         'industry_choices':industry_choices,
         'subject_choices': subject_choices,
         'qualification_choices':qualification_choices
-
     }
-    # json_object = json.dumps(context, indent=4)
-    # data = serializers.serialize('json')
     return JsonResponse(context, safe=False)

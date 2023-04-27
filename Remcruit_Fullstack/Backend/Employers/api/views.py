@@ -150,12 +150,80 @@ class GetJobByCompanyIdView(APIView):
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
 
 
-class GetAllApplicantsByJobId(APIView):
-    pass
+class GetAllCandidatesByJobId(APIView):
+    serializer_class = JobApplicationSerializer
 
+    def get(self, request, jobId):
+        if request.method == "GET":
+            message = {}
+            
+            if jobId:
+                application = JobApplication.objects.filter(job=jobId)
+                serializer = JobApplicationSerializer(application, many=True)
+                
+                if application:
+                    message['response'] = "Application found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                    
+                else:
+                    message['response'] = "No Application with ID Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+                
+class GetCandidateById(APIView):
+    serializer_class = ViewJobApplicationSerializer
 
-class GetAllApplicantsByCompanyId(APIView):
-    pass
+    def get(self, request, id):
+        if request.method == "GET":
+            message = {}
+            
+            if id:
+                application = JobApplication.objects.get(id=id)
+                serializer = ViewJobApplicationSerializer(application)
+                
+                if application:
+                    message['response'] = "Application found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                    
+                else:
+                    message['response'] = "No Application with ID Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+
+class GetCandidatesByJobIdAndStatus(APIView):
+    serializer_class = ViewJobApplicationSerializer 
+
+    def get(self, request, jobId, applicationStatus):
+        if request.method == "GET":
+            message = {}
+            if jobId:
+                application = JobApplication.objects.filter(job=jobId, status = applicationStatus)
+                serializer = ViewJobApplicationSerializer(application, many=True)
+                if application:
+                    message['response'] = "Applications found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Applications Found"
+                    return Response(message, status=status.HTTP_404_NOT)
+
+class GetCandidatesCount(APIView):
+    serializer_class = JobApplicationSerializer
+
+    def get(self, request, jobId):
+        if request.method == "GET":
+            message = {}
+            
+            if jobId:
+                application = JobApplication.objects.filter(job=jobId)
+                candidatesCount = JobApplication.objects.filter(job=jobId).count()
+                serializer = JobApplicationSerializer(application, many=True)
+               
+                if application:
+                    message['response'] = "Application found"
+                    print(candidatesCount)
+                    return Response(candidatesCount, status=status.HTTP_200_OK)
+                    
+                else:
+                    message['response'] = "No Application with ID Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
 
 
 class UpdateApplicationByStatus(generics.GenericAPIView):

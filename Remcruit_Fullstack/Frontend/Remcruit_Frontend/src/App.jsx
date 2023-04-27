@@ -26,6 +26,9 @@ import { JobSeekerProvider } from './context/JobSeekerContext';
 import { FormProvider } from './context/FormContext';
 import JobPost from './Employer/Pages/JobPost/components/JobPost';
 import { CompanyProvider } from './context/CompanyContext';
+import Profile from './Jobseeker/Pages/Profile/Profile';
+import Dashboard from './Employer/Pages/dashboard/Dashboard';
+import SpecificJobs from './Jobseeker/Pages/Specific Jobs Page/SpecificJobs';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 
 
@@ -55,6 +58,26 @@ function App() {
                 <Route path='/aboutus' element={<AboutUs />} />
               </Routes>
 
+              <CompanyProvider>
+                <Routes>
+                  <Route path='/' exact element={<LandingPage />} />
+                  <Route path='/employer' exact element={<EmployerLandingPage />} />
+                  <Route path='/login' element={<Login />} />
+                  {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
+                  <Route path='/employer/register' element={<EmployerRegister />} />
+                  <Route element={<PrivateRoute />} >
+                    <Route element={<AboutUs />} path='/aboutus' />
+                    <Route element={<HomePage />} path='/home' />
+                    <Route element={<JobApplication />} path='/jobapplication' />
+                    <Route element={<Profile />} path='/profile' />
+                    <Route path='/dashboard' element={<Dashboard />} />
+                    <Route element={<SpecificJobs/>} path='/specificjobs'/>  
+
+                  </Route>
+                  <Route path='/jobseeker/register' element={<JobseekerRegister />} />
+                  <Route path='/employer/job/post' element={<JobPost />} />
+                </Routes>
+              </CompanyProvider>
 
             </JobSeekerProvider>
           </FormProvider>

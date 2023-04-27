@@ -25,7 +25,7 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
     year_of_graduation = serializers.ChoiceField(choices=JobSeeker.YEAR_OF_GRADUATION_CHOICES, required=True)
     university_name = serializers.ChoiceField(choices=JobSeeker.UNIVERSITY_CHOICES, required=True)
     subject_of_study = serializers.ChoiceField(choices=JobSeeker.SUBJECT_OF_STUDY_CHOICES, required=True)
-    degree_classification = serializers.ChoiceField(choices=JobSeeker.DEGREE_CLASSIFICATION_CHOICES,required=True)
+    degree_classification = serializers.ChoiceField(choices=DegreeClassification.choices,required=True)
     highest_qualification = serializers.ChoiceField(choices=JobSeeker.HIGHEST_QUALIFICATION_CHOICES, required=True)
     gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)

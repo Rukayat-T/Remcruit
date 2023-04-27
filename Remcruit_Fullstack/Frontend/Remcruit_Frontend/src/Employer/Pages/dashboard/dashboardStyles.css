@@ -1,0 +1,143 @@
+.dashboardContainer{
+    min-height: 90vh;
+    /* margin-right: 50px; */
+    display: flex;
+}
+
+.navigation-menu{
+    min-height: 90vh;
+    min-width: 5vw;
+    padding-top: 15px;
+    color: black;
+    background-color: black;
+    border-radius: 0px 15px 0px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-menu-expanded{
+    min-height: 90vh;
+    min-width: 20vw;
+    padding-top: 20px;
+    padding-right: 15px;
+    color: white;
+    background-color: black;
+    border-radius: 0px 15px 0px 0px;
+}
+
+.collapse {
+    font-size: 20px;
+    color: white;
+    margin: 0;
+}
+
+.top1{
+    float: right;
+    cursor: pointer;
+}
+
+.top2{
+    /* float: right; */
+    cursor: pointer;
+}
+
+.top1 button{
+    background-color: black;
+    color: white;
+    border: 0;
+    font-size: 22px;
+}
+
+.top2 button{
+    background-color: black;
+    color: white;
+    border: 0;
+    font-size: 25px;
+}
+
+.xMark{
+    margin-right: 5px;
+}
+
+.c{
+    color: white;
+}
+
+.c-sideNav-container{
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.c-head{
+    /* border: 2px solid yellow; */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.c-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 40px;
+    min-height: 70vh;
+}
+
+.ic{
+    font-size: 28px;
+    display: flex;
+    column-gap: 10px;
+    color: rgba(255, 255, 255, 0.779);
+    cursor: pointer;
+}
+
+.f-body{
+    padding-top: 45px;
+    justify-content: center;
+    align-items: center; 
+    row-gap: 40px;
+    min-height: 70vh; 
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.f-sideNav-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.f-body p{
+    padding-left: 10px;
+    color: rgba(255, 255, 255, 0.779);
+}
+
+.focus{
+    color: white;
+    cursor: pointer;
+}
+
+.focusedIcon{
+    color: white;
+    cursor: pointer;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #FFCC33;
+}
+
+.pageTitle{
+    cursor: pointer;
+}
+
+.pageTitle.focus{
+    color: white;
+    cursor: pointer;
+    padding-right: 10px;
+    border-right: 2px solid #FFCC33;
+}
+
+.rightDisplay{
+    width: 100%;
+    margin-top: 30px;
+    margin-left: 5%;
+    margin-right: 5%;
+}

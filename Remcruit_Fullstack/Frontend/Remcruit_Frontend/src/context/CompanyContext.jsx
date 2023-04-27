@@ -7,7 +7,7 @@ export default CompanyContext
 
 
 export const CompanyProvider = ({ children }) => {
-    let [company, setCompany] = useState()
+    let [company, setCompany] = useState([])
     let { user } = useContext(AuthContext)
     const navigate = useNavigate()
 
@@ -19,12 +19,12 @@ export const CompanyProvider = ({ children }) => {
         setCompany(response)
         // console.log(response)
     }
-        
+
     let contextData = {
         company: company,
         thecompany: thecompany,
     }
-    
+
     return (
         <CompanyContext.Provider value={contextData}>
             {children}
