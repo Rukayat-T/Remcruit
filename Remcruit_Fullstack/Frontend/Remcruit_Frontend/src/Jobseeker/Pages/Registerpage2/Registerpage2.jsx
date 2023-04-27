@@ -15,8 +15,10 @@ import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import RegisterForm1 from "../../Components/RegisterForm1/RegisterForm1";
 import RegisterForm2 from '../../Components/RegisterForm2/RegisterForm2';
 
+
+
 function Registerpage2() {
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(0)
     const navigate = useNavigate()
 
     const nextPage = () => {
@@ -58,8 +60,8 @@ function Registerpage2() {
         year_of_graduation: "",
         degree_classification: "",
         highest_qualification: "",
-        // sector_industry: "",
-        // job_types: "",
+        industry: "",
+        role_type: "",
        
         
         
@@ -74,10 +76,15 @@ function Registerpage2() {
           return <RegisterForm1 formData={formData} setFormData={setFormData} />
         }
         else  {
-          return <RegisterForm2  />
+          return <RegisterForm2 formData={formData} setFormData={setFormData} />
         }
         
     }
+    const testData = [
+      { bgcolor: "#6a1b9a", completed: 60 },
+      { bgcolor: "#00695c", completed: 30 },
+      { bgcolor: "#ef6c00", completed: 53 },
+    ];
 
     
 
@@ -114,6 +121,7 @@ function Registerpage2() {
 
   return (
   <div className='main-register-container-jobseeker'>
+    
     <div className='left-register-side'>
     <div className="registerion-text">
            <h1>

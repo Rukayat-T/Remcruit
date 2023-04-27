@@ -24,7 +24,7 @@
     margin-bottom: 10px;
 }
 .registerion-text h1{ 
-    font-size: 2rem;
+    font-size: 25px;
     color: #CA61C3;}
 
 .register-text p{
@@ -32,14 +32,14 @@
         
     }
 
-.frame{
-    position: absolute;
+/* .frame{
+   
     width: 224.41px;
     height: 292.81px;
     left: 43px;
-    top: 69px;
+    margin-top: 200%;
     
-}    
+}     */
  
 .right-register-side{
    
@@ -82,8 +82,7 @@
     }
 
 
- 
- 
+
 
  
  

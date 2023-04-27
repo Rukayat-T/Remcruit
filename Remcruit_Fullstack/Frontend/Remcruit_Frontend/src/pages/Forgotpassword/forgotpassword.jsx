@@ -1,155 +1,135 @@
-import React from 'react';
-import Vector from "../Forgotpassword/static/Vector.png";
-import  "./static/forgotpassword.css";
-import { faArrowLeft, faArrowRightArrowLeft, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Forgotpassword(){
-  // const navigate = useNavigate()
 
-  // const nextPage = () => {
-  //   setPage((current)=>current + 1)
-  // }
-  // const goBack = () => {
-  //   navigate(-1);
-  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import React from 'react';
+// import Vector from "../Forgotpassword/static/Vector.png";
+// import  "./static/forgotpassword.css";
+// import { faArrowLeft, faArrowRightArrowLeft, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+// function Forgotpassword(){
+//   // let handleSubmitted = async (e) => {
+//   //   e.preventDefault();
+   
+
+//   //   try {
+//   //     let res = await fetch("http://127.0.0.1:8000/authentication/password_reset/",
+      
+//   //       {
+//   //         method: "POST",
+//   //         headers: {
+//   //           'Accept': 'application/json',
+//   //           'Content-Type': 'application/json'
+//   //         },
+        
+//   //       });
+//   //     let resJson = await res.json();
+//   //     if (res.status === 201) {
+//   //       console.log(resJson)
+//   //       navigate('/jobseeker')
+//   //     } else {
+//   //       console.log(resJson)
+//   //       alert("something went wrong")
+//   //     }
+//   //   } catch (err) {
+//   //     console.log(err);
+//   //   }
+    
+//   // };
   
-  
-  // const prevPage = () => {
-  //   if ( page === 1) {
-  //     setPage(page - 1)
-  //   }
-  //   else {
-  //     goBack()
-  //   }
-  // }
-  return(
+
+//   return(
  
 
- <div className="forgotpassword-main">
+//  <div className="forgotpassword-main">
 
-        <img
-          src={Vector}
-          alt=""
-        />
+//         <img
+//           src={Vector}
+//           alt=""
+//         />
 
         
-        <div class="form-container">
+//         <div class="form-container">
        
-        <form action="#" method="POST" >
-            <h2> Forgot Password? </h2>
-            <p>Don’t worry it happens. Please enter the email address associated with your account</p>
+       
+//             <h2> Forgot Password? </h2>
+//             <p>Don’t worry it happens. Please enter the email address associated with your account</p>
            
-            <div class="form-box">
+//             <div class="form-box">
             
-                      <label></label>
-                      <input
-                          type="text"
-                          name="email"
+//                       <label></label>
+//                       <input
+//                           type="text"
+//                           name="email"
                           
-                          placeholder='Email address' />
+//                           placeholder='Email address' />
                  
                 
-            </div>
+//             </div>
+//             <div className="form-submit">
+
+//             {/* <form onSubmit={handleSubmitted}>
+            
+//                 <input type="submit" value="Reset Password"/>
+            
            
-            <div class="form-submit">
-                <input type="submit" value="Reset Password"/>
-            </div>
 
-            <div className="back">
-              <FontAwesomeIcon icon={faArrowLeft} /> Back to log in
-            </div>
+//             <div className="back">
+//               <FontAwesomeIcon icon={faArrowLeft} /> Back to log in
+//             </div>
 
-            {/* <div className="backBtn" onClick={prevPage}>
-               <FontAwesomeIcon icon={faChevronLeft} className="backIcon" />
-               back
-              </div> */}
+          
 
-        </form>
-    </div>
-        </div>
- 
-  )
-};
+//         </form> */}
+//         <input type="submit" value="Reset Password"/>
+            
+           
 
-export default Forgotpassword;
+//             <div className="back">
+//               <FontAwesomeIcon icon={faArrowLeft} /> Back to log in
+//             </div>
 
 
+//             </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { Component } from "react";
-// import { forgotpassword } from '.';
-
-
-//  handleSubmit = e => {
-//   e.preventDefault();
-//  };
-
-
-
-
-//   render(){
-//     return (
-//       <form onSubmit={this.handleSubmit}>
-//         <h3>Forgot Password</h3>
-
-//         <div className="form-group">
-//           <label> Email </label>
-//           <input type="email" className="form-control" placeholder="Email"
+//     </div>
 //         </div>
-//       </form>
-//     )
-//   }
-// }
+ 
+//   )
+// };
+
+// export default Forgotpassword;
 
 
- // const [email, setEmail] = useState('');
-  // const [isResetSent, setIsResetSent] = useState(false);
 
-  // // const handleResetPassword = () => {
-  // //   // Implement your reset password logic here, e.g. sending a reset password link to the email
 
-  // //   // Set isResetSent to true after successful reset password request
-  // //   setIsResetSent(true);
-  // // };
 
-  // return (
-  //   <div>
-  //     <h1>Forgot Password</h1>
-  //     {isResetSent ? (
-  //       <p>Reset password link sent to your email!</p>
-  //     ) : (
-  //       <form>
-  //         <label>
-  //           Email:
-  //           <input
-  //             type="email"
-  //             value={email}
-  //             onChange={(e) => setEmail(e.target.value)}
-  //           />
-  //         </label>
-  //         <button type="button" onClick={handleResetPassword}>
-  //           Reset Password
-  //         </button>
-  //       </form>
-  //     )}
-  //   </div>
-  // );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

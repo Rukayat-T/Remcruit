@@ -1,59 +1,114 @@
 import React from 'react'
 
 
-function RegisterForm2({}) {
+function RegisterForm2({formData, setFormData }) {
     
     
-    
+  const [role_type, setrole_type] = React.useState("");
+  const [industry, setindustry] = React.useState("");
+ 
+ 
+  const handlerole_type= (event) => {
+ 
+     setrole_type(event.target.value);
+     console.log(event.tareget.value)
+     console.log(role_type)
+  };
+ 
+  const handleindustry = (event) => {
+ 
+     setindustry(event.target.value);
+     console.log(event.tareget.value)
+     console.log(industry)
+  };
+ 
   
-      return (
-          <>
-          
-           
-              <div className="carrer">
-                <div className="jobtype">
-              <label>
-                     Tell us your Job sectors you are intrested in so we can personalise your feed with
-                       advice and opportunities that are most important to you.  </label>
-                        <input 
-                        type="text" 
-                        // value={formData.job_types}
-                        // onChange={(e) => setFormData({ ...formData, job_types: e.target.value })}
-                        placeholder='eg. Environment and Agriculture,   Accountancy'/>
-                        
-                         </div>
+  const Dropdown = ({ label, value, options, onChange }) => {
 
-                       
+    return (
+       
+      <>
+      <label> {label} </label>
 
-                         <div className="industry">
+        <select value={value} onChange={onChange}>
+   
+          {options.map((option) => (
+   
+            <option value={option.value}>{option.label}</option>
+   
+          ))}
+        </select>
+        </>
+    );
+}
 
 
-                         <label>
-                         Let us know what types of roles you're considering so we can keep
-                          you updated with the latest relevant opportunities.  </label>
-                        <input
-                         type="text"
-                        //  value={formData.sector_industry}
-                        //  onChange={(e) => setFormData({ ...formData, sector_industry: e.target.value })}
-                        placeholder='eg. Full-time,  Graduate' />
-                        
-                         </div>
-              </div>
+return (
+  <>
+  <div className="careerprefrece">
+  <h3>Career Prefrence</h3>
+    <div className="universityinfo">
+   <Dropdown
 
-              </>
-      )
-  }
-  export default RegisterForm2
+label="Job Type"
 
-              
+options={[
+{ label: '', value: '' },
+
+{ label:'Full Time' , value: 'FULL_TIME' },
+
+{ label:'Part Time' , value: 'PART_TIME' },
+
+{ label: 'Internship', value: 'INTERNSHIP' },
 
 
 
+]}
+
+value={formData.role_type}
+
+onChange={(e) => setFormData({...formData, role_type: e.target.value})}
+
+/>
+</div>
+
+<div className="universityinfo">
+
+<Dropdown
+
+label="Industry"
+
+options={[
+{ label: '', value: '' },
+
+
+{ label: 'Accountancy, banking and finance', value: 'ACOUNTANCY_BANKING_FINANCE' },
+
+{ label: 'Business, consulting and management', value: 'BCM' },
+
+{ label: 'Charity and voluntary work', value: 'CVW' },
+
+{ label: 'Consumer goods and retail', value: 'CGR' },
+
+{ label: 'Energy and Utilities', value: 'EU' },
+
+]}
+
+value={formData.industry}
+
+onChange={(e) => setFormData({...formData, industry: e.target.value})}
+
+/>
+</div>
 
 
 
 
-
+</div>  
+  </>
+)
+}
+export default RegisterForm2
 
 
 

@@ -18,8 +18,9 @@ import PhoneInput from 'react-phone-number-input'
       return (
           <>
           
-           
+        
               <div className="names">
+              <h3>Account details</h3>
                   <div className="first-Name">
                   <label>First Name*</label>
                       <input

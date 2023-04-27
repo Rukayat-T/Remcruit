@@ -36,10 +36,9 @@ function RegisterForm1({ formData, setFormData  }) {
 
         return (
        
-          <label>
-       
-            {label}
-       
+          <>
+          <label> {label} </label>
+
             <select value={value} onChange={onChange}>
        
               {options.map((option) => (
@@ -47,19 +46,18 @@ function RegisterForm1({ formData, setFormData  }) {
                 <option value={option.value}>{option.label}</option>
        
               ))}
-       
             </select>
-       
-          </label>
-       
+            </>
         );
   }
 
 
 return (
+
     <>
     <div className="studydetails">
-      <div className="universitynames">
+      <h3>Study detils</h3>
+      <div className="universityinfo">
      <Dropdown
 
 label="University name"
@@ -85,7 +83,7 @@ onChange={(e) => setFormData({...formData, university_name: e.target.value})}
 />
 </div>
 
-<div className="universitynames">
+<div className="universityinfo">
 
 <Dropdown
 
@@ -114,7 +112,7 @@ onChange={(e) => setFormData({...formData, subject_of_study: e.target.value})}
 />
 </div>
 
-<div className="universitynames">
+<div className="universityinfo">
 
 <Dropdown
 
@@ -142,7 +140,7 @@ onChange={(e)=> setFormData({...formData, year_of_graduation:e.target.value})}
 />
 </div>
 
-<div className="universitynames">
+<div className="universityinfo">
 <Dropdown
 
 label="Degree classification"
