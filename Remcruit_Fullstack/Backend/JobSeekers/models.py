@@ -13,9 +13,11 @@ class DegreeClassification(models.TextChoices):
     THIRD = "Third Class Honours"
 
 class Status(models.TextChoices):
-    ACCEPTED = 'Accepted' #job has been accepted by job seeker
+    ACCEPTED = 'Accepted' #offer has been accepted by job seeker (accepted by jobseeker)
+    OFFER_SENT = 'Offer Sent' # job offer has been sent by employer (accepted by employer)
     INTERVIEW = "Interview" # application has been progressed to interview stage by employer
-    DECLINED = 'Declined' # application has been declined by employer
+    DECLINED = 'Declined' # application has been declined by employer (declined by employer)
+    OFFER_DECLINED = 'Offer Declined' # job offer has been declined by jobseeker(declined by jobseeker)
     IN_REVIEW = 'In Review' # new job application. employer is reviewing application
 
 class JobType(models.TextChoices):

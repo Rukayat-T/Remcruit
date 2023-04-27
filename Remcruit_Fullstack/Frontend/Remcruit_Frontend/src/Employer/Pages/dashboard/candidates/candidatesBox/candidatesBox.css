@@ -1,0 +1,122 @@
+.candidatesBox{
+    width: 100%;
+    height: 35vh;
+    border: 1px solid rgba(0, 0, 0, 0.21);
+    border-radius: 10px;
+}
+.candidatesBoxHead{
+    padding-top: 10px;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid rgba(0, 0, 0, 0.21);
+}
+.head1{
+    display: flex;
+    column-gap: 15px;
+}
+
+.head2{
+    padding-right: 15px;
+    display: flex;
+    column-gap: 15px;
+}
+
+.candidatesBoxHead p{
+    margin: 0;
+}
+
+.candidatesBoxHead svg{
+    margin: 0;
+}
+
+.candidatesBoxBody{
+    height: 30.2vh;
+    border-radius: 0 0 10px 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.candidatesBoxBodyContainer{
+    height: 29.5vh;
+    border-radius: 0 0 10px 10px;
+}
+
+.candidates{
+    height: 27vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    row-gap: 10px;
+    overflow-y: scroll;
+}
+
+.none{
+    display: none;
+}
+
+.eachCandidate{
+    border-radius: 8px;
+    width: 72%;
+    height: 44px;
+    background-color: white;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.candidateName p{
+    margin: 0;
+}
+
+.Candidate.focused{
+    border-radius: 8px;
+    width: 72%;
+    height: 44px;
+    background-color: #FAE5F8;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    cursor: pointer;
+    padding-left: 10%;
+    padding-right: 10%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profilePic{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgb(176, 189, 252);
+}
+
+.cand{
+    display: flex;
+    column-gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.candidateName{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.candidateRole{
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.showIcon{
+    cursor: pointer;
+}

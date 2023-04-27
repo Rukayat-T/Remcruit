@@ -1,0 +1,43 @@
+.head-section select{
+    padding: 5px;
+    width: 20%;
+    font-size: 1rem;
+    background: #EEEDED;
+    border: 0;
+    border-radius: 5px;
+    padding-right: 30px;
+}
+
+.pages-nav{
+    background-color: #c573bf38;
+    border-radius: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    margin-top: 25px;
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.pages-nav p{
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+
+}
+
+.candidates-body{
+    margin-top: 30px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.activePage{
+    border-bottom: 2px solid black;
+}

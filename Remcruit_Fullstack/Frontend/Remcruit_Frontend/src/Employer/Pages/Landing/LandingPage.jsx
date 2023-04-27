@@ -1,6 +1,6 @@
 import React from 'react'
 //rfce
-import EmployerNavbar from '../../components/navbarSigned/navbar'
+import EmployerNavbar from '../../components/navbarlanding/navbar'
 import Posting from '../../components/samplePosting/posting'
 import './landingStyles.css'
 

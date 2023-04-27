@@ -27,7 +27,7 @@ function JobBox({ job }) {
                 <div className="companyinformation">
                     <div className="companyLogo">Logo</div>
                     <div className="company">
-                        <div className="jobTitle">{job?.title}</div>
+                        <div className="jobTitle">{job?.title} {job?.company.title}</div>
                         <div className="companyName">{job?.company?.organisation_name}</div>
 
                     </div>

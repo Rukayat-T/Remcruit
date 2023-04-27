@@ -7,34 +7,94 @@ import BasicInformation from './BasicInformation'
 import JobDetails from './JobDetails'
 import JobPostQuestions from './JobPostQuestions'
 import CommunicationSettings from './CommunicationSettings'
-import { useNavigate } from 'react-router'
+import { useLocation, useNavigate } from 'react-router'
 import CompanyContext from '../../../../context/CompanyContext'
+import JobPostSummary from '../../jobPostSummary/JobPostSummary'
 
 function JobPost() {
-    const [tab, setTab] = useState(0)
-    let {company, thecompany} = useContext(CompanyContext)
-    
-    let navigate = useNavigate()
+  const [tab, setTab] = useState(0)
+  let { company, thecompany } = useContext(CompanyContext)
 
-    useEffect(() => {
-      thecompany()
-    }, [])
-    // console.log(company.id)
-    const handleSubmit = async (e) => {
-      e.preventDefault()
-      // console.log()
-      let response = await fetch(`http://127.0.0.1:8000/employer/createJob/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postdata),
-      });
-    };
+  let navigate = useNavigate()
+
+  // const location = useLocation()
+  // location.state = postdata
+  // console.log(location)
+
+
+
+
+  const [postdata, setPostData] = useState({
+    title: localStorage.getItem('title') || "",
+    open_spots: localStorage.getItem('vacancy') || "",
+    location: localStorage.getItem('location') || "",
+    job_type: localStorage.getItem('job_type') || "",
+    salary: localStorage.getItem('salary') || "",
+    pay_rate: localStorage.getItem('pay_rate') || "Monthly",
+    description: localStorage.getItem('description') || "",
+    skills_required: localStorage.getItem('skills_required') || "",
+    degree_classification: localStorage.getItem('degree_classification') || "",
+    is_remote_oppurtunity: localStorage.getItem('is_remote_opportunity') || "",
+    is_cv_required: localStorage.getItem('is_cv_required') || "",
+    is_experience_required: localStorage.getItem('is_experience_required') || "",
+    resumption: localStorage.getItem('resumption') || "",
+    application_deadline: localStorage.getItem('application_deadline') || "",
+    job_post_duration: localStorage.getItem('job_post_duration') || "",
+    urgency: false,
+    is_available: false,
+    company: company?.id
+  })
+
+  useEffect(() => {
+    thecompany()
+  }, [])
+  // console.log(company.id)
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   // console.log()
+  //   let response = await fetch(`http://127.0.0.1:8000/employer/createJob/`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(postdata),
+  //   });
+  // };
+
+
 
   const next = () => {
+    //setTab((currentPage) => currentPage + 1)
+    // localStorage.setItem("postData", JSON.stringify(postdata))
+    localStorage.setItem('title', postdata.title)
+    localStorage.setItem('vacancy', postdata.open_spots)
+    localStorage.setItem('location', postdata.location)
+    localStorage.setItem('job_type', postdata.job_type)
+    localStorage.setItem('salary', postdata.salary)
+    localStorage.setItem('pay_rate', postdata.pay_rate)
+    localStorage.setItem('description', postdata.description)
+    localStorage.setItem('skills_required', postdata.skills_required)
+    localStorage.setItem('degree_classification', postdata.degree_classification)
+    localStorage.setItem('is_remote_opportunity', postdata.is_remote_oppurtunity)
+    localStorage.setItem('is_cv_required', postdata.is_cv_required)
+    localStorage.setItem('is_experience_required', postdata.is_experience_required)
+    localStorage.setItem('resumption', postdata.resumption)
+    localStorage.setItem('application_deadline', postdata.application_deadline)
+    localStorage.setItem('urgency', postdata.urgency)
+    localStorage.setItem('is_available', postdata.is_available)
+    localStorage.setItem('company', postdata.company)
+
+    if (tab !== 3) {
       setTab((currentPage) => currentPage + 1)
     }
+    else if (tab === 3) {
+      navigate("/employer/job/post/summary", {
+        state: {
+          postdata: postdata
+        }
+      })
+    }
+  }
 
   const back = () => {
     setTab((currentPage) => currentPage - 1)
@@ -45,28 +105,10 @@ function JobPost() {
     "Job Details",
     "Communication Settings",
     "Employer Questions",
+    "Summary",
   ]
 
-    const [postdata, setPostData] = useState({
-      title: "",
-      vacancy: "",
-      location: "",
-      job_type: "",
-      salary:"",
-      pay_rate: "Monthly",
-      description:"",
-      skills_required:"",
-      degree_classification: "",
-      is_remote_oppurtunity:"",
-      is_cv_required:"",
-      is_experience_required:"",
-      resumption: "",
-      application_deadline: "",
-      job_post_duration: "",
-      urgency: false,
-      is_available:false,
-      company:company?.id
-  })
+
 
   const JobPostPageDisplay = () => {
     if (tab === 0) {
@@ -78,17 +120,20 @@ function JobPost() {
     else if (tab === 2) {
       return <CommunicationSettings />
     }
-    else {
+    else if (tab === 3) {
       return <JobPostQuestions />
+    }
+    else {
+      return <JobPostSummary postdata={postdata} setPostData={setPostData} />
     }
   }
 
 
-    const Submitbtn = () => {
-      return (
-        <button type="submit" >Submit</button>
-      )
-    }
+  const Submitbtn = () => {
+    return (
+      <button type="submit" >Submit</button>
+    )
+  }
 
   const nextbtn = () => {
     return (
@@ -129,7 +174,7 @@ function JobPost() {
 
           <form
             className="application-form"
-            onSubmit={handleSubmit}
+          // onSubmit={handleSubmit}
           >
             <div className="appl-button-container post-button-container">
               <button
@@ -148,8 +193,8 @@ function JobPost() {
                 Back
               </button>
               <div className="contsub">
-              {tab === JobPostTitles.length - 1 ? <Submitbtn/> :  nextbtn()}
-              
+                {nextbtn()}
+
               </div>
 
             </div>

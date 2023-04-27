@@ -9,7 +9,7 @@ import AuthContext from '../../../context/AuthContext'
 // import Logo from '../../assets/fullLogo.svg'
 
 const EmployerNavbar = () => {
-    let {logoutUser} = useContext(AuthContext)
+    let { logoutUser } = useContext(AuthContext)
     return (
         <div>
             <nav className='employerNav'>
@@ -19,6 +19,7 @@ const EmployerNavbar = () => {
                     <li><Link to='/' >Home</Link></li>
                     <li><Link to='/login' >Login</Link></li>
                     <li><Link to='/employer/register' >Register</Link></li>
+                    <li><Link to='/dashboard' >Dashboard</Link></li>
                     <li><Link to='#' >Pricing</Link></li>
                     <li onClick={logoutUser}>Logout</li>
                     {/* <button className='postBtn'>Post A Job</button> */}

@@ -10,7 +10,26 @@ export default AuthContext
 export const AuthProvider = ({ children }) => {
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
+    let [company, setCompany] = useState(() => localStorage.getItem('company') ? JSON.parse(localStorage.getItem('company')) : null)
     const navigate = useNavigate()
+
+    let getEmployerCompany = async (id) => {
+        try {
+            const response = await fetch(
+                `http://127.0.0.1:8000/employer/getEmployerByUserid/${id}/`);
+            let resJson = await response.json();
+            if (response.status === 200) {
+                localStorage.setItem('company', JSON.stringify(resJson));
+                console.log(company, "company printed!")
+                navigate('/employer')
+            } else {
+                console.log(resJson)
+                alert("something went wrong with getting the company details")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     let loginUser = async (e) => {
         e.preventDefault()
@@ -28,13 +47,12 @@ export const AuthProvider = ({ children }) => {
             setUser(jwtDecode(data.access))
             localStorage.setItem('authTokens', JSON.stringify(data))
 
-            if (user.is_jobSeeker === true){
+            if (user.is_jobSeeker === true) {
                 navigate('/home')
             }
-            else if (user.is_employer === true){
-                navigate('/employer')
+            else if (user.is_employer === true) {
+                getEmployerCompany(user.id);
             }
-           
         }
         else {
             alert('something went wrong')
@@ -45,15 +63,17 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(null)
         setUser(null)
         localStorage.removeItem('authTokens')
+        localStorage.removeItem('company')
         navigate('/login')
     }
 
     let contextData = {
         user: user,
+        company: company,
         loginUser: loginUser,
         logoutUser: logoutUser,
     }
-    
+
     return (
         <AuthContext.Provider value={contextData}>
             {children}
