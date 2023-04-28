@@ -16,8 +16,6 @@ function ToReviewPage({ candidatesInReview }) {
     }
     console.log(chosenCandidateId, "chosen candidate Id")
 
-    //get candidate by id
-
     const getCandidateById = async (id) => {
         try {
             const response = await fetch(
@@ -34,9 +32,7 @@ function ToReviewPage({ candidatesInReview }) {
 
     useEffect(() => {
         getCandidateById(chosenCandidateId)
-
     }, [chosenCandidateId])
-
 
     return (
         <>

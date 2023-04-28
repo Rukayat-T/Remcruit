@@ -4,17 +4,13 @@ import ToReviewPage from './ToReviewPage'
 import ToInterviewPage from './ToInterviewPage'
 import SentOffersPage from './SentOffersPage'
 import DeclinedPage from './DeclinedPage'
-import CompanyContext from '../../../../context/CompanyContext'
 import AuthContext from '../../../../context/AuthContext'
 
 function Candidates() {
+    let { company } = useContext(AuthContext)
 
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
-    // const [company, setCompany] = useState(0)
-
-    // let { company, thecompany } = useContext(CompanyContext)
-    let { company } = useContext(AuthContext)
 
     const [jobsByCompanyId, setJobsByCompanyId] = useState([])
     const [candidatesByJobId, setCandidatesByJobId] = useState([])
@@ -121,8 +117,8 @@ function Candidates() {
     }
 
     useEffect(() => {
-        getJobsByCompanyId(company.id)
-    }, [company.id])
+        getJobsByCompanyId(company?.id)
+    }, [company?.id])
 
     useEffect(() => {
         if (selectedJob) {
@@ -166,7 +162,7 @@ function Candidates() {
                 <div className="candidates-page-container">
                     <div className="head-section">
 
-                        {jobsByCompanyId.length > 0 && (
+                        {jobsByCompanyId && (
                             <select name="jobs" id="jobs-dropdown" onChange={(e) => setSelectedJob({ subject: e.target.value })}>
                                 <option value=""> choose a job</option>
                                 {jobsByCompanyId.map(job => (

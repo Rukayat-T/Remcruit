@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from authentication.models import *
 from JobSeekers.models import *
@@ -62,13 +63,13 @@ class Job(models.Model):
     skills_required = models.CharField(max_length=200)
     job_type = models.TextField(choices=JobType.choices, default=None)
     open_spots = models.IntegerField(default=0)
-    application_deadline = models.DateTimeField( default=None)
+    application_deadline = models.DateField(default=None) 
     degree_classification = models.TextField(choices=DegreeClassification.choices, default=None)
     is_available = models.BooleanField(default=False)
     cv_requirement = models.BooleanField(default=False)
     resumption = models.DateField(default=None)
     is_remote_opportunity = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(default=datetime.date.today) 
     urgency = models.BooleanField(default=False)
     
     def __str__(self):
