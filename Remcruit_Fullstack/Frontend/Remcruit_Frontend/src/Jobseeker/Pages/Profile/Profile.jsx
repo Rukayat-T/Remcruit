@@ -54,9 +54,9 @@ function Profile() {
 
     const defaultValue = "String"
 
-    console.log(jobseeker)
-    console.log(qualificationDefaultValue)
-    console.log(degreeDefualtValue)
+    // console.log(jobseeker)
+    // console.log(qualificationDefaultValue)
+    // console.log(degreeDefualtValue)
 
 //     const [select, setSelect] = useState();
 //     const numbers = ['1', '2', '3'];

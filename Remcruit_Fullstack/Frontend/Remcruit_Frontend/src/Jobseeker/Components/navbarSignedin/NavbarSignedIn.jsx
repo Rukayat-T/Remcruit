@@ -11,7 +11,7 @@ function NavbarSignedIn() {
     return (
         <div className='n'>
             <nav className='employerNav'>
-                <img src={Logo} alt="" srcset="" className='empLogo' />
+                <img src={Logo} alt="" srcSet="" className='empLogo' />
                 <ul className='navMenu'>
                     <li><Link to='/home' >Home</Link></li>
                     <li><Link to='/' >Landing Page</Link></li>

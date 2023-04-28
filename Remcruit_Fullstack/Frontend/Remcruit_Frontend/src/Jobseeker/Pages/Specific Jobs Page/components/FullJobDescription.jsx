@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 
 
 function FullJobDescription({specificjob}) {
-    console.log(specificjob)
   return (
     <div>
         <div className="job-description-main-container">

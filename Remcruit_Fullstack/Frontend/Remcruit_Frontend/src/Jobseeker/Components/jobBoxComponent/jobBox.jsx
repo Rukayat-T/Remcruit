@@ -7,8 +7,6 @@ import './jobBox.css'
 import JobSeekerContext from '../../../context/JobSeekerContext'
 
 function JobBox({ job }) {
-
-
     let { jobSeeker } = useContext(JobSeekerContext)
     const [bookmark, setBookmark] = useState("false")
     const navigate = useNavigate()
@@ -24,6 +22,7 @@ function JobBox({ job }) {
     const [showMore, setShowMore] = useState(false);
 
     const description = job?.description
+    console.log(description)
 
     return (
         <div className='boxContainer'>
@@ -64,7 +63,7 @@ function JobBox({ job }) {
                 <div className="description">
                  <p> {showMore ? description : `${description?.substring(0,250)}`}
                  <Link to={'/specificjobs'} state={{ job: job }}> <a href="" onClick={() => navigate('/specificjobs')}>
-                    {showMore ? "Show less" : "...Learn more"}
+                    {showMore ? "Show less" : "...Show more"}
                  </a></Link>
                     
                     </p>

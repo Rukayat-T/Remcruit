@@ -3,13 +3,13 @@ import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn'
 import './static/SpecificJobs.css'
 import FullJobDescription from './components/FullJobDescription'
 import { useLocation } from 'react-router'
+import JobCards from './components/JobCards'
 
 function SpecificJobs() {
   const [job, setJob] = useState([])
   const location = useLocation()
   const specificjob = location.state.job
 
-  console.log(specificjob)
   const fetchjobs = async () => {
       try {
       const response = await fetch(
@@ -27,7 +27,17 @@ function SpecificJobs() {
       <NavbarSignedIn/>
       <div className="specific-jobs-main">
         <div className="specific-left">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, architecto et placeat quas eos voluptates porro cupiditate ducimus quos? Corrupti voluptates excepturi similique amet perferendis nesciunt iure pariatur sequi? Consequatur.</p>
+          <JobCards specificjob={specificjob}/>
+          {job.length > 0 && (
+            <div className="content">
+               {job.map(singlejob => {
+              <JobCards singlejob={singlejob}/>
+            })}
+            </div> 
+          )
+          
+          }
+          
         </div>
         <div className="specific-right">
           <FullJobDescription specificjob={specificjob}/>
