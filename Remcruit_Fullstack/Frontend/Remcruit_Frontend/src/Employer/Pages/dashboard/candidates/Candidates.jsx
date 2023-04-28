@@ -24,7 +24,9 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getJobByCompanyId/${id}/`
+                `http://127.0.0.1:8000/employer/getJobByCompanyId/${id}/`
+
+
             )
                 .then((response) => response.json());
             console.log(response)
@@ -39,7 +41,7 @@ function Candidates() {
     const getCandidatesByJobId = async (id) => {
         try {
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobId/${id}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobId/${id}`
             )
                 .then((response) => response.json());
             console.log(response)
@@ -53,7 +55,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
@@ -69,7 +71,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
@@ -85,7 +87,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
@@ -101,7 +103,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
