@@ -1,25 +1,39 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './myJobsStyles.css'
+import AuthContext from '../../../context/AuthContext'
 
 function MyJobs() {
+
+
+    let { company } = useContext(AuthContext)
+    const [jobsByCompanyId, setJobsByCompanyId] = useState([])
+
+    const getJobsByCompanyId = async (id) => {
+        try {
+            // setIsLoading(true)
+            const response = await fetch(
+                `http://0.0.0.0:8000/employer/getJobByCompanyId/${id}/`
+            )
+                .then((response) => response.json());
+            console.log(response)
+            // setIsLoading(false)
+            setJobsByCompanyId(response)
+        }
+        catch (error) {
+            // setIsLoading(true)
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getJobsByCompanyId(company?.id)
+        console.log(company?.id)
+    }, [company?.id])
+
+
     return (
         <>
             <div className="jobPostings-container">
-
-
-                {/* <table>
-                    <thead>
-                        <tr className='tableHead'>
-                            <td>
-                                <p>My Job Postings</p>
-                            </td>
-                            <td> search bar</td>
-                            <td>delete</td>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-
-                </table> */}
 
                 <table id='jobs'>
                     <thead>
@@ -35,27 +49,23 @@ function MyJobs() {
                         <th>Vacancies</th>
                         <th>Published Date</th>
                         <th>Deadline</th>
-                        <th>Spotlight</th>
-                        <th>Status</th>
+                        <th>Job Type</th>
+                        <th>Location</th>
                     </tr>
-                    <tr>
-                        <td>UI/UX Developer</td>
-                        <td>3</td>
-                        <td>24</td>
-                        <td>10-06-2023</td>
-                        <td>10-06-2023</td>
-                        <td>24 Days</td>
-                        <td>Interview</td>
-                    </tr>
-                    <tr>
-                        <td>UI/UX Developer</td>
-                        <td>3</td>
-                        <td>24</td>
-                        <td>10-06-2023</td>
-                        <td>10-06-2023</td>
-                        <td>24 Days</td>
-                        <td>Interview</td>
-                    </tr>
+                    {jobsByCompanyId.length > 0 && (
+                        jobsByCompanyId?.map((job) => (
+
+                            <tr key={job.id}>
+                                <td>{job?.title}</td>
+                                <td>3</td>
+                                <td>{job?.open_spots}</td>
+                                <td>{job?.created_at}</td>
+                                <td>{job?.application_deadline}</td>
+                                <td>{job?.job_type}</td>
+                                <td>{job?.location}</td>
+                            </tr>
+                        ))
+                    )}
 
                 </table>
             </div>
