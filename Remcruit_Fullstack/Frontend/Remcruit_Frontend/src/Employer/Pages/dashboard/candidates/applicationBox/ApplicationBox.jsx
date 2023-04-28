@@ -1,24 +1,62 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './applicationBox.css'
+import { useNavigate } from 'react-router'
 
 function ApplicationBox({ chosenCandidate, applicationStatus }) {
-    console.log(chosenCandidate)
+
+    const navigate = useNavigate()
+
+    const updateStatusToInterview = async (candidateId, newStatus) => {
+        const statusdata = { "status": newStatus }
+
+        try {
+            let response = await fetch(`http://127.0.0.1:8000/employer/updateApplicationStatus/${candidateId}/`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(statusdata),
+                }).then((response) => response.json());
+            console.log(response)
+            navigate("/dashboard")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+
+    }, [])
 
 
     const StatusUpdateButtons = () => {
         if (applicationStatus === "In Review") {
             return (
                 <div className="buttonsSection">
-                    <button>Decline</button>
-                    <button>Interview</button>
+                    <button onClick={() => {
+                        updateStatusToInterview(chosenCandidate?.id, "Declined");
+                    }}>Decline</button>
+
+                    <button onClick={() => {
+                        updateStatusToInterview(chosenCandidate?.id, "Interview");
+                    }}>Interview</button>
                 </div>
             )
         }
         else if (applicationStatus === "Interview") {
             return (
                 <div className="buttonsSection">
-                    <button>Decline</button>
-                    <button>Send Offer</button>
+                    <button onClick={() => {
+                        // updateStatusToInterview(chosenCandidate?.id, "Declined");
+                        updateStatusToInterview(chosenCandidate?.id, "In Review");
+                        console.log("you clicked declined!")
+                    }}>Decline</button>
+
+                    <button onClick={() => {
+                        updateStatusToInterview(chosenCandidate?.id, "Send Offer");
+                    }}>Send Offer</button>
                 </div>
             )
         }
@@ -28,7 +66,6 @@ function ApplicationBox({ chosenCandidate, applicationStatus }) {
             )
         }
     }
-    console.log(applicationStatus, "application status")
 
     const DisplayApplicantionDetails = () => {
         if (chosenCandidate) {
@@ -74,12 +111,11 @@ function ApplicationBox({ chosenCandidate, applicationStatus }) {
                                 <p className='bo'>{chosenCandidate?.job_seeker?.year_of_graduation} </p>
                             </div>
                         </div>
-
                     </div>
                     <div className="professionalSummarySection">
-                        <div className="personalInformationSectionTitle"><p>Professional Summary</p></div>
-                        <div className="personalInformationSectionBody1">
-                            <p>Summary</p>
+                        <div className="professionalSummarySectionTitle"><p>Professional Summary</p></div>
+                        <div className="professionalSummarySectionBody">
+                            <p>{chosenCandidate?.job_seeker?.professional_summary}</p>
                         </div>
                     </div>
                     <div className="cvSection">
@@ -93,12 +129,9 @@ function ApplicationBox({ chosenCandidate, applicationStatus }) {
                     <div className="questionAnswersSection"> question answers </div>
                     <div className="buttonsSection">
                         {StatusUpdateButtons()}
-
                     </div>
                 </div>
-
             )
-
         }
         else {
             return (
@@ -107,7 +140,6 @@ function ApplicationBox({ chosenCandidate, applicationStatus }) {
                 </div>
             )
         }
-
     }
 
     return (

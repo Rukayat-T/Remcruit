@@ -4,17 +4,13 @@ import ToReviewPage from './ToReviewPage'
 import ToInterviewPage from './ToInterviewPage'
 import SentOffersPage from './SentOffersPage'
 import DeclinedPage from './DeclinedPage'
-import CompanyContext from '../../../../context/CompanyContext'
 import AuthContext from '../../../../context/AuthContext'
 
 function Candidates() {
+    let { company } = useContext(AuthContext)
 
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
-    // const [company, setCompany] = useState(0)
-
-    // let { company, thecompany } = useContext(CompanyContext)
-    let { company } = useContext(AuthContext)
 
     const [jobsByCompanyId, setJobsByCompanyId] = useState([])
     const [candidatesByJobId, setCandidatesByJobId] = useState([])
@@ -28,7 +24,9 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getJobByCompanyId/${id}/`
+                `http://127.0.0.1:8000/employer/getJobByCompanyId/${id}/`
+
+
             )
                 .then((response) => response.json());
             console.log(response)
@@ -43,7 +41,7 @@ function Candidates() {
     const getCandidatesByJobId = async (id) => {
         try {
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobId/${id}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobId/${id}`
             )
                 .then((response) => response.json());
             console.log(response)
@@ -57,7 +55,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
@@ -73,7 +71,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
@@ -89,7 +87,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
@@ -105,7 +103,7 @@ function Candidates() {
         try {
             // setIsLoading(true)
             const response = await fetch(
-                `http://0.0.0.0:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
             )
                 .then((response) => response.json());
             // console.log(response)
@@ -119,8 +117,8 @@ function Candidates() {
     }
 
     useEffect(() => {
-        getJobsByCompanyId(company.id)
-    }, [company.id])
+        getJobsByCompanyId(company?.id)
+    }, [company?.id])
 
     useEffect(() => {
         if (selectedJob) {
@@ -164,7 +162,7 @@ function Candidates() {
                 <div className="candidates-page-container">
                     <div className="head-section">
 
-                        {jobsByCompanyId.length > 0 && (
+                        {jobsByCompanyId && (
                             <select name="jobs" id="jobs-dropdown" onChange={(e) => setSelectedJob({ subject: e.target.value })}>
                                 <option value=""> choose a job</option>
                                 {jobsByCompanyId.map(job => (

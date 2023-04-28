@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
 import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons'
@@ -11,6 +11,7 @@ function JobBox({ job }) {
 
     let { jobSeeker } = useContext(JobSeekerContext)
     const [bookmark, setBookmark] = useState("false")
+    const navigate = useNavigate()
 
     const toggleBookmark = () => {
         if (bookmark === "false") {
@@ -20,6 +21,9 @@ function JobBox({ job }) {
         setBookmark("false")
     }
     const [jobId, setJobId] = useState(job.id)
+    const [showMore, setShowMore] = useState(false);
+
+    const description = job?.description
 
     return (
         <div className='boxContainer'>
@@ -36,7 +40,7 @@ function JobBox({ job }) {
                     <button onClick={toggleBookmark} className='bookmarkBtn'>
                         {bookmark === "false" ? <FontAwesomeIcon icon={regularBookmark} className='bookmark' /> : <FontAwesomeIcon icon={filledBookmark} className='bookmark' />}
                     </button>
-                    <Link to='#' > <button className="detailsBtn">View Details</button></Link>
+                    <Link to={'/specificjobs'} state={{ job: job }}> <button className="detailsBtn">View Details</button></Link>
 
                 </div>
             </div>
@@ -58,7 +62,12 @@ function JobBox({ job }) {
             </div>
             <div className="jobDescriptionSection">
                 <div className="description">
-                    {job?.description}
+                 <p> {showMore ? description : `${description?.substring(0,250)}`}
+                 <Link to={'/specificjobs'} state={{ job: job }}> <a href="" onClick={() => navigate('/specificjobs')}>
+                    {showMore ? "Show less" : "...Learn more"}
+                 </a></Link>
+                    
+                    </p>
                 </div>
             </div>
             <div className="boxFooterSection">

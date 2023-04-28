@@ -82,16 +82,28 @@
     margin-top: 15px;
     border-radius: 8px;
     width: 82%;
-    min-height: 15vh;
+    min-height: fit-content;
     background-color: white;
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 15px;
+    padding-bottom: 10px;
+    /* overflow-y: scroll; */
 
     display: flex;
     flex-direction: column;
     row-gap: 10px;
 }
+
+.professionalSummarySection p{
+    margin: 0;
+}
+
+.professionalSummarySectionTitle p{
+    font-size: 17px;
+    font-weight: 500;
+}
+
 
 .cvSection{
     margin-top: 15px;
