@@ -148,13 +148,13 @@ label="Degree classification"
 options={[
 { label: '', value: '' },
 
-{ label: 'First Class Honours', value: 'FIRST' },
+{ label: 'First Class Honours', value: 'First Class Honours' },
 
-{ label: 'Second Class Honours(upper)', value: 'SECOND_UPPER' },
+{ label: 'Second Class Honours(upper)', value: 'Second Class Honours(upper)' },
 
-{ label: 'Second Class Honours(lower)', value: 'SECOND_LOWER' },
+{ label: 'Second Class Honours(lower)', value: 'Second Class Honours(lower)' },
 
-{ label: 'Third Class Honours', value: 'THIRD' },
+{ label: 'Third Class Honours', value: 'Third Class Honours' },
 
 ]}
 
