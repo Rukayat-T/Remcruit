@@ -6,6 +6,7 @@ import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-ico
 import './jobBox.css'
 import JobSeekerContext from '../../../context/JobSeekerContext'
 
+
 function JobBox({ job }) {
 
 
@@ -38,6 +39,7 @@ function JobBox({ job }) {
                 </div>
                 <div className="left">
                     <button onClick={toggleBookmark} className='bookmarkBtn'>
+                      
                         {bookmark === "false" ? <FontAwesomeIcon icon={regularBookmark} className='bookmark' /> : <FontAwesomeIcon icon={filledBookmark} className='bookmark' />}
                     </button>
                     <Link to={'/specificjobs'} state={{ job: job }}> <button className="detailsBtn">View Details</button></Link>

@@ -3,12 +3,29 @@ import '../static/SpecificComponents.css'
 import GloLogo from '../static/Frame.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
-import { faBookmark} from '@fortawesome/free-regular-svg-icons'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
+import { faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons'
 
 
-function FullJobDescription({specificjob}) {
+function FullJobDescription({specificjob, job,jobId, bookmarked}) {
     console.log(specificjob)
+    const [bookmark, setBookmark] = useState("false")
+    const toggleBookmark = () => {
+        if (bookmark === "false") {
+            setBookmark("true")
+            return;
+        }
+        if (bookmarked) {
+            saveJobToBackend(jobId);
+          }
+          if (job.bookmark === true) {
+            saveJob(job);
+          }
+        setBookmark("false")
+    }
+  
+
   return (
     <div>
         <div className="job-description-main-container">
@@ -23,7 +40,13 @@ function FullJobDescription({specificjob}) {
                         </div>
                     <div className="share-save">
                     <FontAwesomeIcon icon={faShareNodes}/>
-                    <FontAwesomeIcon icon={faBookmark}  />
+                    <button onClick={() => toggleBookmark(job.id, job.bookmark)} className='bookmarkBtn'>
+                    {job.bookmark ? 'Unbookmark' : 'Bookmark'}
+                        {/* {bookmark === "false" ? <FontAwesomeIcon icon={regularBookmark} className='bookmark' /> : <FontAwesomeIcon icon={filledBookmark} className='bookmark' />} */}
+                    </button>
+                    {/* <button onClick={() => toggleBookmark(job.id, job.bookmark)}>
+  {job.bookmark ? 'Unbookmark' : 'Bookmark'}
+</button> */}
                     </div>
                 </div>
                 <div className="horizontal-line">
@@ -51,7 +74,7 @@ function FullJobDescription({specificjob}) {
                     <p>
                     You will work collaboratively in small teams and iteratively through design and development to deliver fully functioning bank services and integrations, channel systems (USSD, web-based and mobile applications ). <br />
                     <br />
-                    As a software Lead, you will be a core member of the team with responsibilities that range from driving the architecture design and technology decisions for shaping the next generation 
+                    As a software Lead, you will be a core member of the team with responsibilities that range from driving the architecture design and technology decisions for shaping the next generation
                     products for various internal teams to ensuring that we stay on the leading edge of technology.
                     </p>
                 </div>
@@ -63,7 +86,7 @@ function FullJobDescription({specificjob}) {
             </div>
             </div>
         </div>
-      
+
     </div>
   )
 }

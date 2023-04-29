@@ -1,0 +1,78 @@
+.contactus-main-container{
+    margin: 2%;
+    display: flex;
+    column-gap:  20px;
+    border: 1px solid blue;
+    overflow: hidden;
+}
+
+.leftinfo{
+    border: 1px solid green;
+    height: 80vh;
+    width: 40%;  
+    align-items: center;
+    justify-content: center;
+    margin: 2%;
+}
+.commentbubble{
+    border: 1px solid #FFCC33;
+    width: 200px;
+}
+
+
+.blacbox{
+    background-color: black;
+    color: white;
+    width: 40%;
+    min-height: 50vh;
+    border-radius: 15px;
+    z-index: 1;
+    padding-top: 4%;
+    padding-left: 4%;
+    padding-right: 4%;
+    margin: 2%;
+   
+}
+.username input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    width: 40%;
+}
+.usermail input[type=email] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    width: 40%;
+
+}
+.message textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #fff;
+    width: 400px;
+}
+
+.mediaas{
+    border: 1px solid greenyellow;
+    margin-top: 30vh;
+    align-items: center;
+    justify-content: center;
+}
+.fabook{
+    border: 3px solid #FFCC33;
+    border-radius: 10px;
+}
+.likin{
+    border: 3px solid #FFCC33;
+    border-radius: 10px;
+}
+.insta{
+    border: 3px solid #FFCC33;
+    border-radius: 10px;
+}
+
+.yttube{
+    border: 3px solid #FFCC33;
+    border-radius: 10px;
+}
