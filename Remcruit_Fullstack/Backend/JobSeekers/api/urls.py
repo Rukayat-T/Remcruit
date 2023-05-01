@@ -18,6 +18,8 @@ urlpatterns = [
       path('<str:job_seeker_id>/archivedjobs', GetArchivedJobsByJobSeeker.as_view()),
       path('<str:job_seeker_id>/<str:id>/deletesaved/', DeleteSavedJobByJobSeeker.as_view(), name=''),
       path('<str:job_seeker_id>/<str:id>/deletearchived/', DeleteArchivedJobByJobSeeker.as_view(), name=''),
+      path('searchJob/',  SearchJobs.as_view(), name='searchJobs'),
+     
 
       path('choices/', views.get_choices)
 

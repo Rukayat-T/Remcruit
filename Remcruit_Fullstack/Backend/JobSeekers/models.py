@@ -176,7 +176,7 @@ class SavedJob(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='saved_jobseeker')
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return self.job.title + ' - ' + str(self.job.company)
+        return self.job.title + ' - ' + str(self.job.company) + " saved by " + str(self.job_seeker)
 
 class ArchivedJob(models.Model):
     job = models.ForeignKey('Employers.Job', related_name='archived_job', on_delete=models.CASCADE)

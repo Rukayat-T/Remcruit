@@ -1,12 +1,49 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './myJobsStyles.css'
 import AuthContext from '../../../context/AuthContext'
+import LoadingSpinner from '../../../components/loading/LoadingSpinner'
 
-function MyJobs() {
+function MyJobs({ getJobFromMyJobs, goToCandidatesPage }) {
+
+
 
 
     let { company } = useContext(AuthContext)
     const [jobsByCompanyId, setJobsByCompanyId] = useState([])
+    const [candidatesCount, setCandidatesCount] = useState([])
+    const [isLoadingCandidates, setIsLoadingCanididates] = useState(true)
+    const [choosenJob, setChoosenJob] = useState([])
+
+    getJobFromMyJobs(choosenJob)
+
+    const getcandidatesCountByCompanyId = async (id) => {
+        try {
+            setIsLoadingCanididates(true)
+            const response = await fetch(
+                `http://0.0.0.0:8000/employer/JobsCount/${id}`
+
+            )
+                .then((response) => response.json());
+            //console.log(response)
+            setIsLoadingCanididates(false)
+            setCandidatesCount(response)
+        }
+        catch (error) {
+            setIsLoadingCanididates(true)
+            console.log(error)
+        }
+    }
+
+    const ReturnCount = (index) => {
+        const count = candidatesCount[index]
+        if (isLoadingCandidates) {
+            return (<LoadingSpinner />)
+        }
+        else {
+            return (<p>{count}</p>)
+        }
+
+    }
 
     const getJobsByCompanyId = async (id) => {
         try {
@@ -15,7 +52,7 @@ function MyJobs() {
                 `http://0.0.0.0:8000/employer/getJobByCompanyId/${id}/`
             )
                 .then((response) => response.json());
-            console.log(response)
+            // console.log(response)
             // setIsLoading(false)
             setJobsByCompanyId(response)
         }
@@ -27,9 +64,8 @@ function MyJobs() {
 
     useEffect(() => {
         getJobsByCompanyId(company?.id)
-        console.log(company?.id)
+        getcandidatesCountByCompanyId(company?.id)
     }, [company?.id])
-
 
     return (
         <>
@@ -38,35 +74,37 @@ function MyJobs() {
                 <table id='jobs'>
                     <thead>
                         <tr>
-                            <td colSpan='3' align='left'>My Job Postings</td>
-                            <td colSpan='3'>search</td>
-                            <td colSpan='1'>del</td>
+                            <td colSpan='4.5' align='left'>My Job Postings</td>
+                            <td colSpan='2'>search</td>
+                            <td colSpan='0.5'>del</td>
                         </tr>
                     </thead>
-                    <tr className='tableHead'>
-                        <th>Positions</th>
-                        <th>Candidates</th>
-                        <th>Vacancies</th>
-                        <th>Published Date</th>
-                        <th>Deadline</th>
-                        <th>Job Type</th>
-                        <th>Location</th>
-                    </tr>
-                    {jobsByCompanyId.length > 0 && (
-                        jobsByCompanyId?.map((job) => (
+                    <tbody>
+                        <tr className='tableHead'>
+                            <th>Positions</th>
+                            <th>Candidates</th>
+                            <th>Vacancies</th>
+                            <th>Published Date</th>
+                            <th>Deadline</th>
+                            <th>Job Type</th>
+                            <th>Location</th>
+                        </tr>
+                        {jobsByCompanyId.length > 0 && (
 
-                            <tr key={job.id}>
-                                <td>{job?.title}</td>
-                                <td>3</td>
-                                <td>{job?.open_spots}</td>
-                                <td>{job?.created_at}</td>
-                                <td>{job?.application_deadline}</td>
-                                <td>{job?.job_type}</td>
-                                <td>{job?.location}</td>
-                            </tr>
-                        ))
-                    )}
+                            jobsByCompanyId?.map((job, index) => (
 
+                                <tr key={job.id} >
+                                    <td onClick={() => { setChoosenJob(job); setTimeout(() => { goToCandidatesPage(5) }, 1000); }}>{job?.title}</td>
+                                    <td>{ReturnCount(index)}</td>
+                                    <td>{job?.open_spots}</td>
+                                    <td>{job?.created_at}</td>
+                                    <td>{job?.application_deadline}</td>
+                                    <td>{job?.job_type}</td>
+                                    <td>{job?.location}</td>
+                                </tr>
+                            ))
+                        )}
+                    </tbody>
                 </table>
             </div>
         </>

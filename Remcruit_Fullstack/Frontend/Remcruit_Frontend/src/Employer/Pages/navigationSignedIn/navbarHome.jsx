@@ -8,7 +8,7 @@ function NavbarSignedIn() {
         <>
             <div>
                 <nav className='employerNav'>
-                    <img src={Logo} alt="" srcset="" className='empLogo' />
+                    <img src={Logo} alt="" srcSet="" className='empLogo' />
                     <p>for employers</p>
                     <ul className='Menu'>
                         <li><Link to='/' >Home</Link></li>
