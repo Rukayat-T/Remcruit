@@ -25,7 +25,9 @@ return(
 
 
     <div className="footer_section">
-      
+        <div className="footer_logo"> 
+         <img src={Logo} alt="" srcSet="" />
+        </div>
             <div className="footer_link">
                  <div className="footer_link_section">
                     <h4> USEFUL LINKS </h4>
