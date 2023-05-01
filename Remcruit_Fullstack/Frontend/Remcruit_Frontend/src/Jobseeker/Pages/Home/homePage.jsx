@@ -41,7 +41,7 @@ function HomePage() {
 
     const searchFunction = async (searchvalue) => {
         const response = await fetch(
-            `http://0.0.0.0:8000/jobseekers/searchJobByTitle/?search=${searchvalue}`
+            `http://0.0.0.0:8000/jobseekers/searchJob/?search=${searchvalue}`
         ).then((response) => response.json());
         console.log(response)
         setSearchResults(response);

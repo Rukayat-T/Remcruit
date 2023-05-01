@@ -298,8 +298,8 @@ def get_choices(request):
     }
     return JsonResponse(context, safe=False)
 
-class SearchJobsTitle(generics.ListCreateAPIView):
+class SearchJobs(generics.ListCreateAPIView):
     serializer_class = ViewJobSerializer
-    search_fields = ['title']
+    search_fields = ['title', 'company__organisation_name']
     filter_backends = (filters.SearchFilter,)
     queryset = Job.objects.all()
