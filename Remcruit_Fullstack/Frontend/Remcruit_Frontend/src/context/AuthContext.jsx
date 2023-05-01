@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
     let [company, setCompany] = useState(() => localStorage.getItem('company') ? JSON.parse(localStorage.getItem('company')) : null)
+    let [jobseeker, setJobSeeker] = useState(() => localStorage.getItem('jobseeker') ? JSON.parse(localStorage.getItem('jobseeker')) : null)
     const navigate = useNavigate()
 
     let getEmployerCompany = async (id) => {
@@ -27,6 +28,26 @@ export const AuthProvider = ({ children }) => {
                 alert("something went wrong with getting the company details")
             }
         } catch (error) {
+            console.log(error)
+        }
+    }
+
+    let getJobSeeker = async (id) => {
+        try{
+            const response = await fetch (
+                `http://127.0.0.1:8000/jobseekers/jobseekerbyuserid/${id}/`);
+            let resJson = await response.json();
+            if (response.status === 200){
+                localStorage.setItem('jobseeker', JSON.stringify(resJson));
+                console.log(jobseeker, 'jobseeker printed')
+                navigate('/home')
+            }
+            else {
+                console.log(resJson)
+                alert("Something with wrong with getting")
+            }     
+        }
+        catch (error) {
             console.log(error)
         }
     }
@@ -48,7 +69,7 @@ export const AuthProvider = ({ children }) => {
             localStorage.setItem('authTokens', JSON.stringify(data))
 
             if (user.is_jobSeeker === true) {
-                navigate('/home')
+                getJobSeeker(user.id)
             }
             else if (user.is_employer === true) {
                 getEmployerCompany(user.id);
@@ -64,6 +85,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null)
         localStorage.removeItem('authTokens')
         localStorage.removeItem('company')
+        localStorage.removeItem('jobseeker')
         navigate('/login')
     }
 
@@ -72,6 +94,7 @@ export const AuthProvider = ({ children }) => {
         company: company,
         loginUser: loginUser,
         logoutUser: logoutUser,
+        jobseeker: jobseeker
     }
 
     return (

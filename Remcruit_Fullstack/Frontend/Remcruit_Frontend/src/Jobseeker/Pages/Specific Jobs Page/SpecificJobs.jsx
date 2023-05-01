@@ -1,40 +1,96 @@
-import React, { useEffect, useState } from 'react'
-import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn'
-import './static/SpecificJobs.css'
-import FullJobDescription from './components/FullJobDescription'
-import { useLocation } from 'react-router'
+import React, { useEffect, useState } from "react";
+import NavbarSignedIn from "../../Components/navbarSignedin/NavbarSignedIn";
+import "./static/SpecificJobs.css";
+import FullJobDescription from "./components/FullJobDescription";
+import { useLocation } from "react-router";
+import TestCards from "./components/TestCards";
 
 function SpecificJobs() {
-  const [job, setJob] = useState([])
-  const location = useLocation()
-  const specificjob = location.state.job
+  const [job, setJob] = useState([]);
+  const location = useLocation();
+  const specificjob = location.state.job;
+  const [selectedJob, setSelectedJob] = useState(null);
 
-  console.log(specificjob)
   const fetchjobs = async () => {
-      try {
+    try {
       const response = await fetch(
-          "http://127.0.0.1:8000/employer/AllJobs/"
+        "http://127.0.0.1:8000/employer/AllJobs/"
       ).then((response) => response.json());
       setJob(response);
-  }catch (err) {
+    } catch (err) {
       console.log(err);
-    }};
-  useEffect( () => {
-      fetchjobs()
-  }, [])
+    }
+  };
+  useEffect(() => {
+    fetchjobs();
+  }, []);
+  console.log(job);
+
+  const [displayJob, setDisplayJob] = useState();
+  const getDisplayedJob = (certainJob) => {
+    setDisplayJob(certainJob);
+  };
+  const newArrayJobs = [
+    specificjob,
+    ...job?.filter((job) => job?.id !== specificjob?.id),
+  ];
+
+  const [flat, setFlat] = useState([]);
+
+  const handleJobClicked = (clickedjob) => {
+    const index = newArrayJobs.findIndex((i) => i.id === clickedjob?.id);
+    const newJobs = [
+      clickedjob,
+      ...newArrayJobs.slice(0, index),
+      ...newArrayJobs.slice(index + 1),
+    ]; 
+    setFlat(newJobs);
+    console.log(newJobs, "NEW");
+  };
+
+  console.log(flat, 'newarray');
+  console.log(selectedJob);
+
+  const GetClickedJob = (select) => {
+    setSelectedJob(select);
+    handleJobClicked(select);
+  };
+
   return (
-    <div>
-      <NavbarSignedIn/>
-      <div className="specific-jobs-main">
-        <div className="specific-left">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem, architecto et placeat quas eos voluptates porro cupiditate ducimus quos? Corrupti voluptates excepturi similique amet perferendis nesciunt iure pariatur sequi? Consequatur.</p>
-        </div>
-        <div className="specific-right">
-          <FullJobDescription specificjob={specificjob}/>
+    <div className="specific">
+      <div className="specific-nav">
+        <NavbarSignedIn />
+      </div>
+      <div className="specific-job-body">
+        <div className="specific-jobs-main">
+          <div className="specific-left">
+            <div className="content">
+              {newArrayJobs?.length > 0 ? (
+                newArrayJobs.map((job, index) => (
+                  <TestCards
+                    key={job?.id + job?.title}
+                    job={job}
+                    getDisplayedJob={getDisplayedJob}
+                    flat={flat}
+                    handleJobClicked={handleJobClicked}
+                    GetClickedJob={GetClickedJob}
+                  />
+                ))
+              ) : (
+                <p>No jobs to display</p>
+              )}
+            </div>
+          </div>
+          <div className="specific-right">
+            <FullJobDescription
+              specificjob={specificjob}
+              showDescription={displayJob}
+            />
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SpecificJobs
+export default SpecificJobs;
