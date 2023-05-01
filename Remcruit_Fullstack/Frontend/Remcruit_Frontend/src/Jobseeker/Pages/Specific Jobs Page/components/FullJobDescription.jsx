@@ -11,6 +11,52 @@ import AuthContext from '../../../../context/AuthContext';
 
 
 function FullJobDescription({specificjob, showDescription}) {
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [bookmark, setBookmark] = useState(false);
+    const [jobs, setJobs] = useState(null);
+   
+    let{jobseeker} = useContext(AuthContext)
+   console.log(jobseeker)
+
+
+
+    const savingJob = async (jobId, jobSeekerId) => {
+        try {
+            let res = await fetch("http://127.0.0.1:8000/jobseekers/saveajob/",
+            
+              {
+                method: "POST",
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "job": jobId,
+                    "job_seeker": jobSeekerId
+                }),
+              });
+            let resJson = await res.json();
+            if (res.status === 200) {
+              console.log(resJson)
+             
+            } else {
+              console.log(resJson)
+              alert("something went wrong")
+            }
+          } catch (err) {
+            console.log(err);
+          }
+         
+        };
+
+    
+    
+
+    function toggleBookmark(jobId,jobSeekerId) {
+        
+        setBookmark(!bookmark);
+        savingJob(jobId,jobSeekerId)
+      }
     const DisplayFullDescription = () => {
         if (showDescription){
             return(
@@ -82,12 +128,12 @@ function FullJobDescription({specificjob, showDescription}) {
                         </div>
                     <div className="share-save">
                     <FontAwesomeIcon icon={faShareNodes}/>
-                    <button onClick={toggleBookmark} className='bookmarkBtn'>
+                    <button onClick={() => {toggleBookmark(specificjob.id, jobseeker.id)}} className='bookmarkBtn'>
                       
-                        {bookmark === "false" ? <FontAwesomeIcon icon={regularBookmark} className='bookmark' /> : <FontAwesomeIcon icon={filledBookmark} className='bookmark' />}
+                        {bookmark  ? <FontAwesomeIcon icon={filledBookmark} className='bookmark' />:<FontAwesomeIcon icon={regularBookmark} className='bookmark' /> }
                     </button>
                     {/* <button onClick={() => setJob({ ...job, bookmark: true })}>Save Job</button> */}
-                    <button onClick={() => {handleBookmark(specificjob.id, jobSeeker.id)}}>{isBookmarked ? "Bookmarked" : " Bookmark"}</button>
+                    {/* <button onClick={() => {handleBookmark(specificjob.id, jobseeker.id)}}>{isBookmarked ? "Bookmarked" : " Bookmark"}</button> */}
                     </div>
                 </div>
                 <div className="horizontal-line">

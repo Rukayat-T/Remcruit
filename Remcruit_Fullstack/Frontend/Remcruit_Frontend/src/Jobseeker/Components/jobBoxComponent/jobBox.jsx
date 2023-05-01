@@ -5,9 +5,11 @@ import { faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
 import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons'
 import './jobBox.css'
 import JobSeekerContext from '../../../context/JobSeekerContext'
-
+// import savedjobs from '../savedjobsComponents/savedjobs'
 
 function JobBox({ job }) {
+
+
     let { jobSeeker } = useContext(JobSeekerContext)
     const [bookmark, setBookmark] = useState("false")
     const navigate = useNavigate()
@@ -64,7 +66,7 @@ function JobBox({ job }) {
                 <div className="description">
                  <p> {showMore ? description : `${description?.substring(0,250)}`}
                  <Link to={'/specificjobs'} state={{ job: job }}> <a href="" onClick={() => navigate('/specificjobs')}>
-                    {showMore ? "Show less" : "...Show more"}
+                    {showMore ? "Show less" : "...Learn more"}
                  </a></Link>
                     
                     </p>
