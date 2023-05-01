@@ -162,3 +162,51 @@ p.dynamic{
 .jobs-card-container{
     margin-bottom: 5%;
 }
+.specific-filter-content{
+    background: black;
+    height: 10vh;
+}
+
+.specific-job-search input.title-place{
+    width: 25%;
+}
+
+.specific-filter-content{
+    display: flex;
+    align-items: center;
+   
+}
+.specific-job-search{
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.specific-job-search input{
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 3rem;
+    color: black;
+    border: none;
+}
+
+.specific-job-search ::placeholder{
+    width: 100%;
+    color: black;
+    opacity: 0.8;
+}
+.specific-job-search button{
+    background-color: #FFCC33;
+    border: none;
+    padding: 1rem 4rem;
+    border-radius: 3rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+button.filter-button{
+    padding: 1rem;
+    background: white;
+    
+}
