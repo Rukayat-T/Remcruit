@@ -11,12 +11,11 @@ function NavbarSignedIn() {
     return (
         <div className='n'>
             <nav className='employerNav'>
-                <img src={Logo} alt="" srcset="" className='empLogo' />
+                <img src={Logo} alt="" srcSet="" className='empLogo' />
                 <ul className='navMenu'>
                     <li><Link to='/home' >Home</Link></li>
                     <li><Link to='/' >Landing Page</Link></li>
                     <li><Link to='#' >Find Jobs</Link></li>
-                    <li><Link to='/specificjobs' >Specific Jobs</Link></li>
                     <li><Link to='/profile'>Profile</Link></li>
                     <li onClick={logoutUser}>Logout</li>
                     {/* <li><Link to='/employer/register' >Register</Link></li> */}

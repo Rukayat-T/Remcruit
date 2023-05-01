@@ -187,6 +187,19 @@ class GetApplicationByJobId(APIView):
  
 class SavedJobsView(APIView):
     serializer_class = SavedJobSerializer
+
+    def post (self, request, id):
+        if request.method == 'POST':
+            saved = SavedJob.objects.get(id=id)
+            data = request.data
+            serializer = self.serializer_class(data=data, context={'request': request})
+            message = {}
+            if serializer.is_valid():
+                saved = serializer.save()
+                message['response'] = "Job Saved"
+                return Response(message, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     def get(self, request, id):
         if request.method == "GET":

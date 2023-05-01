@@ -6,6 +6,8 @@ import Steps from './components/Steps/Steps'
 import Community from './components/Community/Community'
 import Footer from '../../components/Footer/Footer'
 import { Link } from 'react-router-dom'
+import MostPopular from './components/MostPopular/MostPopular'
+import WhatWeOffer from './components/WhatWeOffer'
 
 function LandingPage() {
 
@@ -17,6 +19,8 @@ function LandingPage() {
       {/* {user && <p>Hello {user.username}</p>} */}
       <Steps />
       <Community />
+      <MostPopular/>
+      <WhatWeOffer/>
       <Footer />
       
 

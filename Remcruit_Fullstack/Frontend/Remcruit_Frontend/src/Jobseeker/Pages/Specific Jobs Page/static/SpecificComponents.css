@@ -3,13 +3,19 @@
     border-radius: 20px;
     border: 1px solid #C9C9C9;
     background: #FFFFFF;
-    height: max-content;
+    /* height: max-content; */
+}
+.job-description-main-container{
+        max-height: 90vh;
+        width: 50%;
+        position: fixed;
+        
 }
 .scrollable-description{
     overflow-y: scroll;
     max-height: 70vh;
 }
-.description-header{
+.description-header, .jobs-card-header{
     display: flex;
     align-items: center;
 }
@@ -101,4 +107,58 @@ p.dynamic{
     color: white;
     background-color: #CA61C3;
     font-weight: 500;
+}
+
+.jobs-card-content{
+    /* border: 2px solid #CA61C3; */
+    width: 70%;
+    margin: 0 auto;
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.card-logo img{
+    width: 100px;
+}
+.header-job-title{
+    margin-left: .2rem;
+}
+.header-job-title h1{
+    font-size: 1.5rem;
+}
+.header-job-title p{
+    font-size:1rem;
+}
+.share-save{
+    font-size: 1.9rem;
+}
+.jobs-card-description, .jobs-card-footer, .jobs-card-cards{
+    width: 96%;
+    margin: 0 auto;
+}
+.jobs-card-cards{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    color: #CA61C3;
+    margin-top: 5%;
+    margin-bottom: 6%;
+
+}
+.jobs-card-cards .job-card{
+    font-size: 1rem;
+    background: rgba(202, 97, 195, 0.186);
+    border-radius: 10px; 
+    padding: 0 1rem;   
+}
+.jobs-card-footer{
+    text-align: center;
+}
+.jobs-card-footer span{
+    font-weight: bold;
+}
+
+.jobs-card-container{
+    margin-bottom: 5%;
 }
