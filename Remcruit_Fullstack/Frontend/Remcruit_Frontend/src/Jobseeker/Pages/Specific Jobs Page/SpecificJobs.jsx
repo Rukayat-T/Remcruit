@@ -4,6 +4,7 @@ import "./static/SpecificJobs.css";
 import FullJobDescription from "./components/FullJobDescription";
 import { useLocation } from "react-router";
 import TestCards from "./components/TestCards";
+import FilterBar from "./components/FilterBar";
 
 function SpecificJobs() {
   const [job, setJob] = useState([]);
@@ -55,6 +56,7 @@ function SpecificJobs() {
     <div className="specific">
       <div className="specific-nav">
         <NavbarSignedIn />
+        <FilterBar/>
       </div>
       <div className="specific-job-body">
         <div className="specific-jobs-main">

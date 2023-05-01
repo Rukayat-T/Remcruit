@@ -47,25 +47,23 @@ function App() {
               <CompanyProvider>
                 <Routes>
                   <Route path='/' exact element={<LandingPage />} />
-                 
+                  <Route path='/employer' exact element={<EmployerLandingPage />} />
                   <Route path='/login' element={<Login />} />
                   {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
                   <Route path='/employer/register' element={<EmployerRegister />} />
                   <Route element={<PrivateRoute />} >
                     <Route element={<AboutUs />} path='/aboutus' />
                   </Route>
-                  <Route element={<JobSeekerRoute />} > 
+                  {/* <Route element={<JobSeekerRoute />} >  */}
                   <Route element={<Profile />} path='/profile' />
                   <Route element={<JobApplication />} path='/jobapplication' />
                   <Route element={<HomePage />} path='/home' />
                   <Route element={<SpecificJobs/>} path='/specificjobs'/>  
-                  <Route element={<Myjobspage/>} path='/Myjobspage'/>  
-                  </Route>
-                  <Route element={<EmployerRoute />} > 
-                  <Route path='/employer' exact element={<EmployerLandingPage />} />
+                  {/* </Route> */}
+                  {/* <Route element={<EmployerRoute />} >  */}
                   <Route path='/employer/job/post' element={<JobPost />} />
                   <Route path='/dashboard' element={<Dashboard />} />
-                  </Route>
+                  {/* </Route> */}
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />
                 </Routes>
               </CompanyProvider>

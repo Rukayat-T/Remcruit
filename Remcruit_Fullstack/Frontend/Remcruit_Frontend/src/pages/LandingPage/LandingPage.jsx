@@ -8,6 +8,7 @@ import Footer from '../../components/Footer/Footer'
 import { Link } from 'react-router-dom'
 import MostPopular from './components/MostPopular/MostPopular'
 import WhatWeOffer from './components/WhatWeOffer'
+import Banner from './components/Banner'
 
 function LandingPage() {
 
@@ -17,6 +18,7 @@ function LandingPage() {
     <div>
       <Navbar />
       {/* {user && <p>Hello {user.username}</p>} */}
+      <Banner/>
       <Steps />
       <Community />
       <MostPopular/>

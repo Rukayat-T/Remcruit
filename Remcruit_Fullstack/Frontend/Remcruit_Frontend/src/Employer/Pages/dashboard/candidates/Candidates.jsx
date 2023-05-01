@@ -6,8 +6,9 @@ import SentOffersPage from './SentOffersPage'
 import DeclinedPage from './DeclinedPage'
 import AuthContext from '../../../../context/AuthContext'
 
-function Candidates() {
+function Candidates({ JobFromMyJobs }) {
     let { company } = useContext(AuthContext)
+    console.log(JobFromMyJobs)
 
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
@@ -18,7 +19,8 @@ function Candidates() {
     const [candidatesInterview, setCandidatesInterview] = useState([])
     const [candidatesDeclined, setCandidatesDeclined] = useState([])
     const [candidatesOfferSent, setCandidatesOfferSent] = useState([])
-    const [selectedJob, setSelectedJob] = useState(undefined)
+    const [selectedJob, setSelectedJob] = useState(JobFromMyJobs.id)
+    console.log(selectedJob)
 
     const getJobsByCompanyId = async (id) => {
         try {
@@ -122,10 +124,10 @@ function Candidates() {
 
     useEffect(() => {
         if (selectedJob) {
-            getCandidatesByJobIdInReview(selectedJob.subject, "In Review")
-            getCandidatesByJobIdInterview(selectedJob.subject, "Interview")
-            getCandidatesByJobIdDeclined(selectedJob.subject, "Declined")
-            getCandidatesByJobIdOfferSent(selectedJob.subject, "Declined")
+            getCandidatesByJobIdInReview(selectedJob, "In Review")
+            getCandidatesByJobIdInterview(selectedJob, "Interview")
+            getCandidatesByJobIdDeclined(selectedJob, "Declined")
+            getCandidatesByJobIdOfferSent(selectedJob, "Declined")
         }
         console.log(candidatesInterview, "candidates in interview")
 
@@ -163,10 +165,10 @@ function Candidates() {
                     <div className="head-section">
 
                         {jobsByCompanyId && (
-                            <select name="jobs" id="jobs-dropdown" onChange={(e) => setSelectedJob({ subject: e.target.value })}>
-                                <option value=""> choose a job</option>
+                            <select name="jobs" id="jobs-dropdown" value={JobFromMyJobs ? JobFromMyJobs.id : ""} onChange={(e) => { setSelectedJob(e.target.value) }}>
+                                <option value={JobFromMyJobs ? JobFromMyJobs.id : ""}> {JobFromMyJobs ? JobFromMyJobs.title : "choose a job"}</option>
                                 {jobsByCompanyId.map(job => (
-                                    <option className='kkkk' key={job?.title} value={job?.id}>{job?.title}</option>
+                                    <option className='kkkk' key={job?.title} value={job?.id}>{JobFromMyJobs?.title === job.title ? "" : job?.title}</option>
                                 ))}
                             </select>
                         )}

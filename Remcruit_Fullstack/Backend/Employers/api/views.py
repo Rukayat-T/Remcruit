@@ -63,7 +63,7 @@ class EmployerView(generics.GenericAPIView):
 
 
 class getEmployerByUserId(APIView):
-    serializer_class = EmployerSerializer
+    serializer_class = ViewEmployerSerializer
     #  get employer by id
 
     def get(self, request, userid):
@@ -71,7 +71,7 @@ class getEmployerByUserId(APIView):
             message = {}
             if userid:
                 employer = Employer.objects.get(user=userid)
-                serializer = EmployerSerializer(employer)
+                serializer = ViewEmployerSerializer(employer)
                 if employer:
                     message['response'] = "employer found"
                     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -94,6 +94,23 @@ class CreateJobView(generics.GenericAPIView):
                 return Response(data, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+# class saveAJob(generics.GenericAPIView):
+#     serializer_class = SavedJobSerializer
+
+#     def post(self, request):
+#         if request.method == 'POST':
+#             serializer = self.serializer_class(
+#                 data=request.data, context={'request': request}
+#             )
+#             data = {}
+#             if serializer.is_valid():
+#                 savedJob = serializer.save()
+#                 data['response'] = "job saved"
+#                 return Response(serializer.data, status.HTTP_200_OK)
+#             else:
+#                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class GetAllJobs(APIView):
@@ -203,6 +220,31 @@ class GetCandidatesByJobIdAndStatus(APIView):
                 else:
                     message['response'] = "No Applications Found"
                     return Response(message, status=status.HTTP_404_NOT)
+                
+
+class GetCandidatesForAllJobsByCompany(APIView):
+    # get candidates count for all the jobs
+    #get all jobs for an employer and its count 
+    #for every job, get the candidate count and push it into a list
+    serializer_class = JobSerializer
+    def get(self, request, companyId):
+        if request.method == 'GET':
+            jobsIdList =[]
+            candidatesCountList = []
+            jobs = Job.objects.filter(company=companyId).values("id")
+            for job in jobs:
+                print(job)
+                jobsIdList.append(job["id"])
+            for jobId in jobsIdList:
+                candidatesCount = JobApplication.objects.filter(job=jobId).count()
+                candidatesCountList.append(candidatesCount)
+            print(candidatesCountList)
+            
+            return Response(candidatesCountList, status=status.HTTP_200_OK)
+
+
+    pass
+
 
 class GetCandidatesCount(APIView):
     serializer_class = JobApplicationSerializer
@@ -218,12 +260,12 @@ class GetCandidatesCount(APIView):
                
                 if application:
                     message['response'] = "Application found"
-                    print(candidatesCount)
                     return Response(candidatesCount, status=status.HTTP_200_OK)
                     
                 else:
                     message['response'] = "No Application with ID Found"
-                    return Response(message, status=status.HTTP_404_NOT_FOUND)
+                    candidatesCount = 0
+                    return Response(candidatesCount, status=status.HTTP_200_OK)
 
 
 class UpdateApplicationByStatus(generics.GenericAPIView):
@@ -249,3 +291,5 @@ class UpdateApplicationByStatus(generics.GenericAPIView):
 # get job by employer /companyid
 # get all applicants of an employer/ job/ company
 # update job or application by status
+
+
