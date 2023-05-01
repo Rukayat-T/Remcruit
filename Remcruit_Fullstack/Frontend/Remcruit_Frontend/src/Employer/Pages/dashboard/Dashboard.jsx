@@ -17,12 +17,24 @@ function Dashboard() {
 
     const [page, setPage] = useState(0)
 
+    const [JobFromMyJobs, setJobFromMyJobs] = useState([])
+
+    const getJobFromMyJobs = (aJob) => {
+        setJobFromMyJobs(aJob)
+    }
+
+    const goToCandidatesPage = (candidatesPage) => {
+        setPage(candidatesPage)
+    }
+
+    console.log(JobFromMyJobs, "from dsahboard")
+
     const pageDisplay = () => {
         if (page === 0) {
             return <Overview />
         }
         if (page === 1) {
-            return <MyJobs />
+            return <MyJobs getJobFromMyJobs={getJobFromMyJobs} goToCandidatesPage={goToCandidatesPage} />
         }
         if (page === 2) {
             return <Spotlight />
@@ -34,7 +46,7 @@ function Dashboard() {
             return <Analytics />
         }
         if (page === 5) {
-            return <Candidates />
+            return <Candidates JobFromMyJobs={JobFromMyJobs} />
         }
         if (page === 6) {
             return <Notifications />

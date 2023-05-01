@@ -1,0 +1,10 @@
+.loadSpinner{
+    color: #CA61C3;
+    font-size: 22px;
+    animation: animateSpinner infinite 2s;
+    animation-delay: 0s;
+}
+
+@keyframes animateSpinner{
+    0%{transform: rotate(360deg);}
+}

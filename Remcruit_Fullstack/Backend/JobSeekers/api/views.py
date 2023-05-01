@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import generics
-from rest_framework import status
+from rest_framework import status, filters, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import JsonResponse
@@ -298,3 +297,9 @@ def get_choices(request):
         'qualification_choices':qualification_choices
     }
     return JsonResponse(context, safe=False)
+
+class SearchJobsTitle(generics.ListCreateAPIView):
+    serializer_class = ViewJobSerializer
+    search_fields = ['title']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Job.objects.all()

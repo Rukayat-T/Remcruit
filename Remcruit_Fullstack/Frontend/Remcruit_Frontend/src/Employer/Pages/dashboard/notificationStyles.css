@@ -1,0 +1,7 @@
+.eachJob{
+    width: 200px;
+    border: 3px solid palevioletred;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}

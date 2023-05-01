@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
             if (response.status === 200) {
                 localStorage.setItem('company', JSON.stringify(resJson));
                 console.log(company, "company printed!")
-                navigate('/employer')
+                navigate('/dashboard')
             } else {
                 console.log(resJson)
                 alert("something went wrong with getting the company details")
@@ -70,6 +70,7 @@ export const AuthProvider = ({ children }) => {
     let contextData = {
         user: user,
         company: company,
+        getEmployerCompany: getEmployerCompany,
         loginUser: loginUser,
         logoutUser: logoutUser,
     }

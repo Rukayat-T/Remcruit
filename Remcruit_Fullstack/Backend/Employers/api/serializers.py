@@ -7,6 +7,12 @@ class EmployerSerializer(serializers.ModelSerializer):
         model = Employer
         fields = '__all__'
 
+class ViewEmployerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employer
+        fields = '__all__'
+        depth = 1
+
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
         model = Job
