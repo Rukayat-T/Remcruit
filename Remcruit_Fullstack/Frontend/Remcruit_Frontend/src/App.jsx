@@ -23,6 +23,8 @@ import { CompanyProvider } from './context/CompanyContext';
 import Profile from './Jobseeker/Pages/Profile/Profile';
 import Dashboard from './Employer/Pages/dashboard/Dashboard';
 import SpecificJobs from './Jobseeker/Pages/Specific Jobs Page/SpecificJobs';
+import JobSeekerRoute from './utils/JobSeekerRoute';
+import EmployerRoute from './utils/EmployerRoute';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 function App() {
   return (
@@ -34,21 +36,25 @@ function App() {
               <CompanyProvider>
                 <Routes>
                   <Route path='/' exact element={<LandingPage />} />
-                  <Route path='/employer' exact element={<EmployerLandingPage />} />
+                 
                   <Route path='/login' element={<Login />} />
                   {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
                   <Route path='/employer/register' element={<EmployerRegister />} />
                   <Route element={<PrivateRoute />} >
                     <Route element={<AboutUs />} path='/aboutus' />
-                    <Route element={<HomePage />} path='/home' />
-                    <Route element={<JobApplication />} path='/jobapplication' />
-                    <Route element={<Profile />} path='/profile' />
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route element={<SpecificJobs/>} path='/specificjobs'/>  
-
+                  </Route>
+                  <Route element={<JobSeekerRoute />} > 
+                  <Route element={<Profile />} path='/profile' />
+                  <Route element={<JobApplication />} path='/jobapplication' />
+                  <Route element={<HomePage />} path='/home' />
+                  <Route element={<SpecificJobs/>} path='/specificjobs'/>  
+                  </Route>
+                  <Route element={<EmployerRoute />} > 
+                  <Route path='/employer' exact element={<EmployerLandingPage />} />
+                  <Route path='/employer/job/post' element={<JobPost />} />
+                  <Route path='/dashboard' element={<Dashboard />} />
                   </Route>
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />
-                  <Route path='/employer/job/post' element={<JobPost />} />
                 </Routes>
               </CompanyProvider>
 

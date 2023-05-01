@@ -24,7 +24,6 @@ function SpecificJobs() {
   useEffect(() => {
     fetchjobs();
   }, []);
-  console.log(job);
 
   const [displayJob, setDisplayJob] = useState();
   const getDisplayedJob = (certainJob) => {
@@ -45,11 +44,7 @@ function SpecificJobs() {
       ...newArrayJobs.slice(index + 1),
     ]; 
     setFlat(newJobs);
-    console.log(newJobs, "NEW");
   };
-
-  console.log(flat, 'newarray');
-  console.log(selectedJob);
 
   const GetClickedJob = (select) => {
     setSelectedJob(select);
