@@ -5,6 +5,7 @@ import Posting from '../../components/samplePosting/posting'
 import './landingStyles.css'
 
 function LandingPage() {
+
     return (
         <>
             <EmployerNavbar />

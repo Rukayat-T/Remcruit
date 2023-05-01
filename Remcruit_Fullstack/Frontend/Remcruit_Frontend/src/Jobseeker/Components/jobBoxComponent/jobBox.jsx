@@ -22,7 +22,6 @@ function JobBox({ job }) {
     const [showMore, setShowMore] = useState(false);
 
     const description = job?.description
-    console.log(description)
 
     return (
         <div className='boxContainer'>

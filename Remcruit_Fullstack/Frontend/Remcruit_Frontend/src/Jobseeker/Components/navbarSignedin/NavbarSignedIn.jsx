@@ -16,7 +16,6 @@ function NavbarSignedIn() {
                     <li><Link to='/home' >Home</Link></li>
                     <li><Link to='/' >Landing Page</Link></li>
                     <li><Link to='#' >Find Jobs</Link></li>
-                    <li><Link to='/specificjobs' >Specific Jobs</Link></li>
                     <li><Link to='/profile'>Profile</Link></li>
                     <li onClick={logoutUser}>Logout</li>
                     {/* <li><Link to='/employer/register' >Register</Link></li> */}

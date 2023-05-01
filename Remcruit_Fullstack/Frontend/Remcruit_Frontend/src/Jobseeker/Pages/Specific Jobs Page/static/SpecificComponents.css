@@ -5,6 +5,12 @@
     background: #FFFFFF;
     /* height: max-content; */
 }
+.job-description-main-container{
+        max-height: 90vh;
+        width: 50%;
+        position: fixed;
+        
+}
 .scrollable-description{
     overflow-y: scroll;
     max-height: 70vh;
@@ -104,7 +110,7 @@ p.dynamic{
 }
 
 .jobs-card-content{
-    border: 2px solid #CA61C3;
+    /* border: 2px solid #CA61C3; */
     width: 70%;
     margin: 0 auto;
     background: white;
@@ -151,4 +157,8 @@ p.dynamic{
 }
 .jobs-card-footer span{
     font-weight: bold;
+}
+
+.jobs-card-container{
+    margin-bottom: 5%;
 }
