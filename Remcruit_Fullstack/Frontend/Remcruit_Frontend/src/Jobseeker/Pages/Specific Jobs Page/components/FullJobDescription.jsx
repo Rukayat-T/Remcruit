@@ -3,29 +3,181 @@ import '../static/SpecificComponents.css'
 import GloLogo from '../static/Frame.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareNodes } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom'
+import { faBookmark} from '@fortawesome/free-regular-svg-icons'
 import { faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
 import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons'
+import { Link } from 'react-router-dom';
+import AuthContext from '../../../../context/AuthContext';
 
 
-function FullJobDescription({specificjob, job,jobId, bookmarked}) {
-    console.log(specificjob)
-    const [bookmark, setBookmark] = useState("false")
-    const toggleBookmark = () => {
-        if (bookmark === "false") {
-            setBookmark("true")
-            return;
-        }
-        if (bookmarked) {
-            saveJobToBackend(jobId);
-          }
-          if (job.bookmark === true) {
-            saveJob(job);
-          }
-        setBookmark("false")
+function FullJobDescription({specificjob}) {
+    const [isBookmarked, setIsBookmarked] = useState(false);
+    const [bookmark, setBookmark] = useState(false);
+    const [jobs, setJobs] = useState(null);
+   
+    let{jobSeeker} = useContext(AuthContext)
+   console.log(jobSeeker)
+
+
+
+    function savingJob(jobId){
+        console.log(isBookmarked);
+        console.log(jobs);
+        if (isBookmarked && jobs) {
+  saveJob(jobs[0].id, jobSeekerId);
+}
     }
+
+    function handleBookmark(jobId,jobSeekerId) {
+        console.log(jobId)
+        console.log(jobSeekerId)
+        setIsBookmarked(!isBookmarked);
+      }
+    
+//       useEffect(() => {
+//         console.log(isBookmarked);
+//         console.log(jobs);
+//         if (isBookmarked && jobs) {
+//   saveJob(jobs[0].id, jobSeekerId);
+// }
+//       }, [isBookmarked, jobs, jobSeekerId]);
+    
+    //   function saveJob(jobId, jobSeekerId) {
+    //     console.log("Saving bookmarked job to database:", jobId, "for job seeker", jobSeekerId);
+    //     fetch(`http://127.0.0.1:8000/jobseekers/saveajob/`, {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify({
+    //         jobId,
+    //         jobSeekerId
+    //       })
+    //     })
+    //       .then(response => {
+    //         if (response.ok) {
+    //           console.log('Job bookmarked!');
+    //         } else {
+    //           console.error('Failed to bookmark job.');
+    //         }
+    //       })
+    //       .catch(error => {
+    //         console.error(error);
+    //       });
+    //   }
+
+
   
 
+    //   function saveJob(jobId, jobSeekerId) {
+    //     console.log("Saving bookmarked job to database:", jobId, "for job seeker", jobSeekerId);
+    //     fetch(`http://127.0.0.1:8000/jobseekers/saveajob/`, {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify({
+    //         jobId,
+    //         jobSeekerId
+    //       })
+    //     })
+    //       .then(response => {
+    //         if (response.ok) {
+    //           console.log('Job bookmarked!');
+    //         } else {
+    //           console.error('Failed to bookmark job.');
+    //         }
+    //       })
+    //       .catch(error => {
+    //         console.error(error);
+    //       });
+    //   }
+    
+    //   function handleBookmark() {
+    //     setIsBookmarked(!isBookmarked);
+    //   }
+
+    const toggleBookmark = () => {
+        if (bookmark === "false") {
+            setBookmark(true)
+            return;
+        }
+        setBookmark(false)
+    }
+    // function saveJobToBackend(jobId,jobSeekerId) {
+    //     console.log(jobId,jobSeekerId)
+        
+    //     return fetch("http://127.0.0.1:8000/jobseekers/saveajob/", {
+    //       method: 'POST',
+    //       body: JSON.stringify({
+    //             jobId,
+    //          jobSeekerId
+    //        }),
+    //       headers: {
+    //         'Content-Type': 'application/json'
+    //       }
+    //     })
+    //       .then(response => response.json())
+    //       .catch(error => console.error('Job not saved:', error))
+    //   }
+    // useEffect(() => {
+       
+    //     fetch("http://127.0.0.1:8000/employer/AllJobs/")
+    //       .then(response => response.json())
+    //       .then(data => setJob(data))
+    //       .catch(error => console.error(error));
+    //   }, [jobId]);
+    
+    //   useEffect(() => {
+    //     console.log(job)
+    //     if (job && job.bookmark) {
+    //       saveJobToBackend(job.id)
+    //         .then(() => console.log('Job saved successfully.'))
+    //         .catch(error => console.error('Error saving job:', error));
+    //     }
+    //   }, [job,jobSeekerId]);
+
+    // useEffect(() => {
+    //     fetch(`http://127.0.0.1:8000/employer/AllJobs/${jobId}`)
+    //       .then(response => response.json())
+    //       .then(jobData => setJobs(jobData))
+    //       .catch(error => console.error(error));
+    //   }, [jobId]);
+    
+    //   useEffect(() => {
+    //     console.log(isBookmarked);
+    //     console.log(jobs);
+    //     if (isBookmarked && jobs) {
+    //       saveJob(jobs.id, jobSeekerId);
+    //     }
+    //   }, [isBookmarked, jobs, jobSeekerId]);
+    
+    //   function saveJob(jobId, jobSeekerId) {
+    //     console.log("Saving bookmarked job to database:", jobId, "for job seeker", jobSeekerId);
+    //     fetch("http://127.0.0.1:8000/jobseekers/saveajob/", {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify({
+    //         jobId,
+    //         jobSeekerId
+    //       })
+    //     })
+    //       .then(response => {
+    //         if (response.ok) {
+    //           console.log('Job bookmarked!');
+    //         } else {
+    //           console.error('Failed to bookmark job.');
+    //         }
+    //       })
+    //       .catch(error => {
+    //         console.error(error);
+    //       });
+    //   }
+    
+    //   function handleBookmark() {
+    //     setIsBookmarked(!isBookmarked);
+    //   }
+       
+    
+    
+     
+    
   return (
     <div>
         <div className="job-description-main-container">
@@ -40,13 +192,12 @@ function FullJobDescription({specificjob, job,jobId, bookmarked}) {
                         </div>
                     <div className="share-save">
                     <FontAwesomeIcon icon={faShareNodes}/>
-                    <button onClick={() => toggleBookmark(job.id, job.bookmark)} className='bookmarkBtn'>
-                    {job.bookmark ? 'Unbookmark' : 'Bookmark'}
-                        {/* {bookmark === "false" ? <FontAwesomeIcon icon={regularBookmark} className='bookmark' /> : <FontAwesomeIcon icon={filledBookmark} className='bookmark' />} */}
+                    <button onClick={toggleBookmark} className='bookmarkBtn'>
+                      
+                        {bookmark === "false" ? <FontAwesomeIcon icon={regularBookmark} className='bookmark' /> : <FontAwesomeIcon icon={filledBookmark} className='bookmark' />}
                     </button>
-                    {/* <button onClick={() => toggleBookmark(job.id, job.bookmark)}>
-  {job.bookmark ? 'Unbookmark' : 'Bookmark'}
-</button> */}
+                    {/* <button onClick={() => setJob({ ...job, bookmark: true })}>Save Job</button> */}
+                    <button onClick={() => {handleBookmark(specificjob.id, jobSeeker.id)}}>{isBookmarked ? "Bookmarked" : " Bookmark"}</button>
                     </div>
                 </div>
                 <div className="horizontal-line">
@@ -74,7 +225,7 @@ function FullJobDescription({specificjob, job,jobId, bookmarked}) {
                     <p>
                     You will work collaboratively in small teams and iteratively through design and development to deliver fully functioning bank services and integrations, channel systems (USSD, web-based and mobile applications ). <br />
                     <br />
-                    As a software Lead, you will be a core member of the team with responsibilities that range from driving the architecture design and technology decisions for shaping the next generation
+                    As a software Lead, you will be a core member of the team with responsibilities that range from driving the architecture design and technology decisions for shaping the next generation 
                     products for various internal teams to ensuring that we stay on the leading edge of technology.
                     </p>
                 </div>
@@ -86,9 +237,65 @@ function FullJobDescription({specificjob, job,jobId, bookmarked}) {
             </div>
             </div>
         </div>
-
+      
     </div>
   )
 }
 
 export default FullJobDescription
+
+
+
+
+
+
+
+
+
+//     useEffect(() => {
+//         fetch(`http://127.0.0.1:8000/employer/job/${jobId}`)
+//           .then(response => response.json())
+//           .then(jobData => setJobs(jobData))
+//           .catch(error => console.error(error));
+//       }, [jobId]);
+
+//       useEffect(() => {
+//         console.log(bookmark);
+//         console.log(jobs);
+//         if (bookmark && jobs) {
+//           saveJob(jobs[0].id, jobSeekerId);
+//         }
+//       }, [bookmark, jobs, jobSeekerId]);
+      
+
+
+//   function saveJob(jobId, jobSeekerId) {
+//   const jobToSave = jobs.find(job => job.id === jobId);
+//   if (jobToSave) {
+//     console.log("Saving bookmarked job to database:", jobId, "for job seeker", jobSeekerId);
+//     fetch(`http://127.0.0.1:8000/jobseekers/saveajob/`, {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify({
+//         jobId: jobToSave.id,
+//         jobSeekerId
+//       })
+//     })
+//       .then(response => {
+//         if (response.ok) {
+//           console.log('Job bookmarked!');
+//         } else {
+//           console.error('Failed to bookmark job.');
+//         }
+//       })
+//       .catch(error => {
+//         console.error(error);
+//       });
+//   } else {
+//     console.error(`Could not find job with ID ${jobId}`);
+//   }
+// }
+// function handleBookmark() {
+//     setIsBookmarked(!isBookmarked);
+//     setBookmark(!bookmark);
+//   }

@@ -186,9 +186,41 @@ class GetApplicationByJobId(APIView):
                     message['response'] = "No Application with ID Found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
  
-class SavedJobsView(APIView):
+
+
+
+class saveAJob(generics.GenericAPIView):
     serializer_class = SavedJobSerializer
+
+    def post(self, request):
+        if request.method == 'POST':
+            serializer = self.serializer_class(
+                data=request.data, context={'request': request}
+            )
+            data = {}
+            if serializer.is_valid():
+                savedJob = serializer.save()
+                data['response'] = "job saved"
+                return Response(serializer.data, status.HTTP_200_OK)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class SavedJobsView(APIView):
+#     serializer_class = SavedJobSerializer
     
+#     def post (self, request, id):
+#         if request.method == 'POST':
+#             saved = SavedJob.objects.get(id=id)
+#             data = request.data
+#             serializer = self.serializer_class(data=data, context={'request': request})
+#             message = {}
+#             if serializer.is_valid():
+#                 saved = serializer.save()
+#                 message['response'] = "Job Saved"
+#                 return Response(message, status=status.HTTP_201_CREATED)
+#             else:
+#                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
     def get(self, request, id):
         if request.method == "GET":
             if id:
