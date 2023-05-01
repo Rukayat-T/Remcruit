@@ -73,3 +73,81 @@
     width: 60%;
     margin: 0 auto;
 }
+
+.most-popular-job-cards{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 4rem;
+    grid-template-rows: auto auto;
+    margin: 3% 0;
+}
+
+.most-popular-header{
+    display: flex;
+    gap: 10px;
+}
+.most-popular-header img{
+    width: 80px;
+    height: 80px;
+}
+
+.most-poplar-card{
+    padding: 1rem;
+    background: #F9F9F9;
+    border: 1px solid #C8C8C8;
+    border-radius: 10px;
+}
+
+.most-card-content h3{
+    margin: 0;
+    margin-top: 6%;
+    font-weight: 500;
+}
+.most-card-content p{
+    font-size: .8rem;
+    color: #767676;
+    margin-top: 2%;
+}
+
+.most-card-button button{
+    font-size: 1rem;
+    padding: .5rem 1rem;
+    background: transparent;
+    border: 1px solid #FFCC33;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+h3.company-title {
+    margin-bottom: 0;
+}
+.infod p{
+    margin-top: 1%;
+}
+
+p.headdd{
+    width: 45%;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.offered-content{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 3%;
+    cursor: pointer;
+}
+
+.offered-card img{
+    width: 350px;
+    height: 250px;
+    border-radius: 10px;
+}
+.offered-card{
+    max-width: max-content;
+}
+.offered-card p{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
