@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./navbarSignedIn.css"
 import Logo from "../../../assets/fullLogo-cropped.svg"
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../context/AuthContext';
 
 function NavbarSignedIn() {
+    let {logoutUser} = useContext(AuthContext)
     return (
         <>
             <div>
@@ -15,6 +17,7 @@ function NavbarSignedIn() {
                         <li><Link to='#' >Notifications</Link></li>
                         <li><Link to='/employer/job/post' >Post a Job</Link></li>
                         <li><Link to='/dashboard' >Dashboard</Link></li>
+                        <li onClick={logoutUser}>Logout</li>
                         <li><div className='vertLine' /></li>
                         <li>
                             <div className='comp'>

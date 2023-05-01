@@ -71,7 +71,7 @@ function MyCompany() {
                     <div className="col-body">
 
                         <div className="half1">
-                            <div className="logo"></div>
+                            <div className="company-logo"></div>
                             <p> <FontAwesomeIcon icon={faImage} /> Change Your Logo</p>
                         </div>
                         <div className="half2">

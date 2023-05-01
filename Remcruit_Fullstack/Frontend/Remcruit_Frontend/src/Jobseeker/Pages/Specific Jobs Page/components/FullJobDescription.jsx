@@ -14,7 +14,7 @@ function FullJobDescription({specificjob, showDescription}) {
                 <div className="job-description-main-container">
             <div className="description-main-content">
                 <div className="description-header">
-                    <div className="logo">
+                    <div className="random">
                         <img src={GloLogo} alt="" />
                     </div>
                     <div className="header-job-title">
