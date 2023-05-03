@@ -23,7 +23,7 @@ function FilterBar({ getisSearch, getSearchValue }) {
 
   return (
     <div>
-      <div className="specific-filter-bar">
+      {/* <div className="specific-filter-bar">
         <div className="specific-filter-content">
           <div className="specific-job-search">
             <input
@@ -43,7 +43,7 @@ function FilterBar({ getisSearch, getSearchValue }) {
 
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
