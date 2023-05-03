@@ -14,7 +14,22 @@ import { Link } from 'react-router-dom'
 function Myjobspage() {
     let {user} = useContext(AuthContext)
     let {jobseeker, jobSeeker} = useContext(JobSeekerContext)
+
+
     const [choices, setChoices] = useState([])
+    const [page, setPage] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
+
+    const [jobsByCompanyId, setJobsByCompanyId] = useState([])
+    const [candidatesByJobId, setCandidatesByJobId] = useState([])
+    const [candidatesInReview, setCandidatesInReview] = useState([])
+    const [candidatesInterview, setCandidatesInterview] = useState([])
+    const [candidatesDeclined, setCandidatesDeclined] = useState([])
+    const [candidatesOfferSent, setCandidatesOfferSent] = useState([])
+    const [selectedJob, setSelectedJob] = useState(JobFromMyJobs.id)
+    console.log(selectedJob)
+
+    
     useEffect(() => { 
         jobSeeker()
         jobseeker
