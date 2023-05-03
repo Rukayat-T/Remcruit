@@ -17,15 +17,13 @@ function SpecificJobs() {
   const [searchValue, setsearchValue] = useState()
   const [searchResults, setSearchResults] = useState([])
 
-  const getisSearch = (searchStatus) => {
-    setIsSearch(searchStatus)
-  }
-
-  const getSearchValue = (value) => {
-    setsearchValue(value)
-  }
+  // const getSearchValue = (value) => {
+  //   setsearchValue(value)
+  // }
 
   const searchFunction = async (searchvalue) => {
+
+    console.log(searchvalue)
     const response = await fetch(
       `http://0.0.0.0:8000/jobseekers/searchJob/?search=${searchvalue}`
     ).then((response) => response.json());
@@ -56,7 +54,24 @@ function SpecificJobs() {
       )
     }
     else {
-      return (<div>hello</div>)
+      return (
+        <>
+          {searchResults.length > 0 && (
+            <div className="content">
+              {searchResults.map(job => (
+                <TestCards
+                  key={job?.id + job?.title}
+                  job={job}
+                  getDisplayedJob={getDisplayedJob}
+                  flat={flat}
+                  handleJobClicked={handleJobClicked}
+                  GetClickedJob={GetClickedJob} />
+              ))}
+            </div>
+          )}
+        </>
+
+      )
 
     }
   }
@@ -108,11 +123,20 @@ function SpecificJobs() {
         <div className="specific-filter-bar">
           <div className="specific-filter-content">
             <div className="specific-job-search">
-              <input type="search" name="" id="" className='title-place' placeholder='Job title, Company or Keywords' />
+              <input
+                type="search"
+                name=""
+                id=""
+                className='title-place'
+                placeholder='Job title or Company '
+                value={isSearch === true ? searchValue : ""}
+                onChange={(e) => { setsearchValue(e.target.value) }}
+                onClick={() => { setIsSearch(true) }} />
               <input type="search" name="" id="" placeholder='City, State or Country' />
               <input type="search" name="" id="" placeholder='Salary Range' />
               <button className='filter-button'><FontAwesomeIcon icon={faArrowUpWideShort} style={{ color: "#000000", }} /></button>
-              <button type='button'>Search</button>
+              <button type='button' onClick={() => { searchFunction(searchValue) }}>Search</button>
+              {isSearch === true ? <button className="cancel" onClick={() => { setIsSearch(false); setsearchValue(""); setSearchResults([]); }}>Cancel</button> : <></>}
             </div>
           </div>
         </div>
