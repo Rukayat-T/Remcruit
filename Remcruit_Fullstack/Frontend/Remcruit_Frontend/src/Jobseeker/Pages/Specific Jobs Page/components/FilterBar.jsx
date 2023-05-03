@@ -6,7 +6,7 @@ import {faArrowUpWideShort} from "@fortawesome/free-solid-svg-icons";
 function FilterBar() {
   return (
     <div>
-      <div className="specific-filter-bar">
+      {/* <div className="specific-filter-bar">
         <div className="specific-filter-content">
            <div className="specific-job-search">
             <input type="search" name="" id="" className='title-place' placeholder='Job title, Company or Keywords'/>
@@ -16,7 +16,7 @@ function FilterBar() {
             <button type='button'>Search</button>
            </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
