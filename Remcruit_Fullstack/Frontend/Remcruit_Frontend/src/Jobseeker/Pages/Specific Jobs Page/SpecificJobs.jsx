@@ -12,6 +12,54 @@ function SpecificJobs() {
   const specificjob = location.state.job;
   const [selectedJob, setSelectedJob] = useState(null);
 
+  const [isSearch, setIsSearch] = useState(false)
+  const [searchValue, setsearchValue] = useState()
+  const [searchResults, setSearchResults] = useState([])
+
+  const getisSearch = (searchStatus) => {
+    setIsSearch(searchStatus)
+  }
+
+  const getSearchValue = (value) => {
+    setsearchValue(value)
+  }
+
+  const searchFunction = async (searchvalue) => {
+    const response = await fetch(
+      `http://0.0.0.0:8000/jobseekers/searchJob/?search=${searchvalue}`
+    ).then((response) => response.json());
+    console.log(response)
+    setSearchResults(response);
+  };
+
+
+  const DisplayLeft = () => {
+    if (isSearch === false) {
+      return (
+        <div className="content">
+          {newArrayJobs?.length > 0 ? (
+            newArrayJobs.map((job, index) => (
+              <TestCards
+                key={job?.id + job?.title}
+                job={job}
+                getDisplayedJob={getDisplayedJob}
+                flat={flat}
+                handleJobClicked={handleJobClicked}
+                GetClickedJob={GetClickedJob}
+              />
+            ))
+          ) : (
+            <p>No jobs to display</p>
+          )}
+        </div>
+      )
+    }
+    else {
+      return (<div>hello</div>)
+
+    }
+  }
+
   const fetchjobs = async () => {
     try {
       const response = await fetch(
@@ -43,7 +91,7 @@ function SpecificJobs() {
       clickedjob,
       ...newArrayJobs.slice(0, index),
       ...newArrayJobs.slice(index + 1),
-    ]; 
+    ];
     setFlat(newJobs);
   };
 
@@ -56,27 +104,12 @@ function SpecificJobs() {
     <div className="specific">
       <div className="specific-nav">
         <NavbarSignedIn />
-        <FilterBar/>
+        <FilterBar getisSearch={getisSearch} getSearchValue={getSearchValue} />
       </div>
       <div className="specific-job-body">
         <div className="specific-jobs-main">
           <div className="specific-left">
-            <div className="content">
-              {newArrayJobs?.length > 0 ? (
-                newArrayJobs.map((job, index) => (
-                  <TestCards
-                    key={job?.id + job?.title}
-                    job={job}
-                    getDisplayedJob={getDisplayedJob}
-                    flat={flat}
-                    handleJobClicked={handleJobClicked}
-                    GetClickedJob={GetClickedJob}
-                  />
-                ))
-              ) : (
-                <p>No jobs to display</p>
-              )}
-            </div>
+            {DisplayLeft()}
           </div>
           <div className="specific-right">
             <FullJobDescription

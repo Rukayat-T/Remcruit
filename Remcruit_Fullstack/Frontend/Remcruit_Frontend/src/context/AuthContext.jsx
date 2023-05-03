@@ -33,11 +33,11 @@ export const AuthProvider = ({ children }) => {
     }
 
     let getJobSeeker = async (id) => {
-        try{
-            const response = await fetch (
+        try {
+            const response = await fetch(
                 `http://127.0.0.1:8000/jobseekers/jobseekerbyuserid/${id}/`);
             let resJson = await response.json();
-            if (response.status === 200){
+            if (response.status === 200) {
                 localStorage.setItem('jobseeker', JSON.stringify(resJson));
                 console.log(jobseeker, 'jobseeker printed')
                 navigate('/home')
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
             else {
                 console.log(resJson)
                 alert("Something with wrong with getting")
-            }     
+            }
         }
         catch (error) {
             console.log(error)
@@ -78,11 +78,20 @@ export const AuthProvider = ({ children }) => {
         else {
             alert('something went wrong')
         }
+
+        // if (user.is_jobSeeker === true) {
+        //     getJobSeeker(user.id)
+        // }
+        // else if (user.is_employer === true) {
+        //     getEmployerCompany(user.id);
+        // }
     }
 
     let logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
+        setCompany(null)
+        setJobSeeker(null)
         localStorage.removeItem('authTokens')
         localStorage.removeItem('company')
         localStorage.removeItem('jobseeker')

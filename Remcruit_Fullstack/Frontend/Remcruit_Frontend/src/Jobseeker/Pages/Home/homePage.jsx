@@ -49,6 +49,8 @@ function HomePage() {
 
     const handleSearch = (value) => {
         searchFunction(value)
+        setsearchValue("")
+        setSearchResults([])
     }
 
     const Display = () => {
