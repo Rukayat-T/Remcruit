@@ -54,17 +54,16 @@ function App() {
                   <Route element={<PrivateRoute />} >
                     <Route element={<AboutUs />} path='/aboutus' />
                   </Route>
-                  {/* <Route element={<JobSeekerRoute />} >  */}
+                  <Route element={<JobSeekerRoute />} > 
                   <Route element={<Profile />} path='/profile' />
                   <Route element={<JobApplication />} path='/jobapplication' />
                   <Route element={<HomePage />} path='/home' />
                   <Route element={<SpecificJobs/>} path='/specificjobs'/>  
-                  <Route element={<Myjobspage/>} path='/Myjobspage'/> 
-                  {/* </Route> */}
-                  {/* <Route element={<EmployerRoute />} >  */}
+                  </Route>
+                  <Route element={<EmployerRoute />} > 
                   <Route path='/employer/job/post' element={<JobPost />} />
                   <Route path='/dashboard' element={<Dashboard />} />
-                  {/* </Route> */}
+                  </Route>
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />
                 </Routes>
               </CompanyProvider>

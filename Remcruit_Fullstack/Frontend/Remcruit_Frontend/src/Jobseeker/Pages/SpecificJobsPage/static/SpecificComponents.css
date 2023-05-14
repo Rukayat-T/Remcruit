@@ -212,3 +212,14 @@ button.filter-button{
     background: white;
     
 }
+
+button.cancel{
+    padding-left: 8px;
+    padding-right: 10px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 48%;
+    font-weight: 600;
+    font-size: 1rem;
+    width: 100px;
+}
