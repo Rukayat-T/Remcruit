@@ -16,33 +16,17 @@ function Myjobspage() {
     let {jobseeker, jobSeeker} = useContext(JobSeekerContext)
 
 
-    const [choices, setChoices] = useState([])
-    const [page, setPage] = useState(0)
-    const [isLoading, setIsLoading] = useState(false)
-
-    const [jobsByCompanyId, setJobsByCompanyId] = useState([])
-    const [candidatesByJobId, setCandidatesByJobId] = useState([])
-    const [candidatesInReview, setCandidatesInReview] = useState([])
-    const [candidatesInterview, setCandidatesInterview] = useState([])
-    const [candidatesDeclined, setCandidatesDeclined] = useState([])
-    const [candidatesOfferSent, setCandidatesOfferSent] = useState([])
-    const [selectedJob, setSelectedJob] = useState(JobFromMyJobs.id)
-    console.log(selectedJob)
+   
+    
 
     
     useEffect(() => { 
         jobSeeker()
         jobseeker
-        choices
-        setChoices
+        
       }, [])
 
-    useEffect(() => {
-        fetch(`http://127.0.0.1:8000/jobseekers/choices/`)
-        .then(response => response.json())
-        .then(data => setChoices(data))
-        .catch(error => console.log(error));
-    }, [])
+   
     
 
     const navigate = useNavigate()
