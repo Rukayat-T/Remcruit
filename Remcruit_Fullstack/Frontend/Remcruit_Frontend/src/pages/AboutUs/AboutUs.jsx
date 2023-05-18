@@ -6,12 +6,19 @@ import people2 from '../AboutUs/static/people2.png'
 import yellowblob from '../AboutUs/static/yellowblob.png'
 import Footer from '../../components/Footer/Footer'
 import './static/AboutUs.css'
-import Locator_map_of_Nigeria_in_Africa1 from '../AboutUs/static/Locator_map_of_Nigeria_in_Africa1.png'
+import Locator_map_of_Nigeria_in_Africa1 from '../AboutUs/static/Locator_map_of_Nigeria_in_Africa1.png'import Navbar from '../../components/Navbar/Navbar'
+import { useContext } from 'react'
+import AuthContext from '../../context/AuthContext'
+import NavbarSignedIn from '../../Jobseeker/Components/navbarSignedin/NavbarSignedIn'
+
 
 function AboutUs() {
+  let {user} = useContext(AuthContext)
   return (
    
     <div>
+      {user ?  <NavbarSignedIn /> :  <Navbar/> }
+      
       <div className="aboutus-main">
        <NavbarSignedIn />
        <div className="firstcontain">

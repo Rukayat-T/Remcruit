@@ -11,17 +11,14 @@ function NavbarSignedIn() {
     return (
         <div className='n'>
             <nav className='employerNav'>
-                <img src={Logo} alt="" srcSet="" className='empLogo' />
+                <Link to="/home"><img src={Logo} alt="" srcSet="" className='empLogo' /></Link>
                 <ul className='navMenu'>
                     <li><Link to='/home' >Home</Link></li>
-                    <li><Link to='/' >Landing Page</Link></li>
-                    <li><Link to='#' >Find Jobs</Link></li>
                     <li><Link to='/profile'>Profile</Link></li>
                     <li><Link to='/Myjobspage'> My Jobs</Link></li>
+                    <li><Link to='/aboutus '>About Us</Link></li>
+                    <li><Link to='/notif '>Notification</Link></li>
                     <li onClick={logoutUser}>Logout</li>
-                    {/* <li><Link to='/employer/register' >Register</Link></li> */}
-                    {/* <li><Link to='#' >Pricing</Link></li> */}
-                    {/* <button className='postBtn'>Post A Job</button> */}
                 </ul>
             </nav>
         </div>

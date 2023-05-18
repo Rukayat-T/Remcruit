@@ -147,7 +147,6 @@ function JobPost() {
   }
   return (
     <div>
-      <NavbarSignedIn />
       <div className="job-post-main-container">
         <div className="job-post-content-container">
           <div className="progress-bars job-post">
@@ -182,7 +181,7 @@ function JobPost() {
                 // onClick={back}
                 onClick={() => {
                   if (tab === 0) {
-                    navigate("/home")
+                    navigate("/dashboard")
                   }
                   else {
                     { back() }

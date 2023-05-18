@@ -1,7 +1,10 @@
 
 .job-post-main-container {
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .job-post-content-container > .progress-bars{
     height: 10vh;
