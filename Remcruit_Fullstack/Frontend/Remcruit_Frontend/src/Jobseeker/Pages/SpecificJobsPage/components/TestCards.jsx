@@ -55,6 +55,7 @@ function TestCards({ job, getDisplayedJob, GetClickedJob}) {
         
         setBookmark(!bookmark);
         savingJob(jobId,jobSeekerId)
+        console.log(jobSeekerId, jobId)
     }
 
   const [jobClicked, setBoxClicked] = useState();

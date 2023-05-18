@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import status, filters, generics
+from rest_framework import status, filters, generics, viewsets, parsers
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import JsonResponse
@@ -10,6 +10,7 @@ from .serializers import *
 from Employers.models import *
 from Employers.api.serializers import *
 import json 
+
 
 class AllJobSeekers(APIView):
     serializer_class = JobSeekerSerializer
@@ -335,3 +336,5 @@ class SearchJobs(generics.ListCreateAPIView):
     search_fields = ['title', 'company__organisation_name']
     filter_backends = (filters.SearchFilter,)
     queryset = Job.objects.all()
+
+

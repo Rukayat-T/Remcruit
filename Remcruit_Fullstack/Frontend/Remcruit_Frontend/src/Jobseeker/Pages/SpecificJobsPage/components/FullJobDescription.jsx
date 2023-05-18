@@ -59,15 +59,16 @@ function FullJobDescription({specificjob, showDescription}) {
         
         setBookmark(!bookmark);
         savingJob(jobId,jobSeekerId)
-        console.log("saved?")
+        console.log(jobId)
+        
+     
         
     }
 
       
     
     const DisplayFullDescription = () => {
-        console.log("description",showDescription)
-        console.log("specific",specificjob)
+        
 
         if (showDescription){
             return(
@@ -84,7 +85,7 @@ function FullJobDescription({specificjob, showDescription}) {
                     <div className="share-save">
                     <FontAwesomeIcon icon={faShareNodes}/>
                     {/* <FontAwesomeIcon icon={faBookmark}  /> */}
-                    <button onClick={() => {toggleBookmark(specificjob.id, jobseeker.id)}} className='bookmarkBtn'>
+                    <button onClick={() => {toggleBookmark(showDescription?.id, jobseeker?.id)}} className='bookmarkBtn'>
                       
                         {bookmark  ? <FontAwesomeIcon icon={filledBookmark} className='bookmark' />:<FontAwesomeIcon icon={regularBookmark} className='bookmark' /> }
                     </button>
