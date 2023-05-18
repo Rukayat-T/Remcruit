@@ -21,8 +21,6 @@ function HomePage() {
     const [jobs, setJobs] = useState([])
     let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
     let { user } = useContext(AuthContext)
-    console.log(user)
-
     const getJobs = async () => {
         const response = await fetch(
             "http://127.0.0.1:8000/employer/AllJobs/"

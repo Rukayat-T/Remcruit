@@ -138,3 +138,13 @@
     margin: 0;
     font-weight: 500;
 }
+
+.subcan{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+input:disabled, select:disabled{
+    color: black;
+}

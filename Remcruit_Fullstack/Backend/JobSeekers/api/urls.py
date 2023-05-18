@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
       path('allJobseekers/', AllJobSeekers.as_view(), name = 'AllJobSeekers'),
-      path('something/<str:id>/', JobSeekerView.as_view(), name = 'JobSeeker'),
+      path('profile/<str:id>/', JobSeekerView.as_view(), name = 'JobSeeker'),
       path('job/<str:id>/application', jobApp.as_view(), name='jobApp'),
       path('alljobapplications/', AllJobApplications.as_view(), name='JobApplications'),
       path('jobapplication/<str:id>/', JobApplicationView.as_view(), name='JobApplication'),
@@ -19,6 +19,7 @@ urlpatterns = [
       path('<str:job_seeker_id>/<str:id>/deletesaved/', DeleteSavedJobByJobSeeker.as_view(), name=''),
       path('<str:job_seeker_id>/<str:id>/deletearchived/', DeleteArchivedJobByJobSeeker.as_view(), name=''),
       path('searchJob/',  SearchJobs.as_view(), name='searchJobs'),
+      path('universities/', Universities.as_view(), name=""),
      
 
       path('choices/', views.get_choices)
