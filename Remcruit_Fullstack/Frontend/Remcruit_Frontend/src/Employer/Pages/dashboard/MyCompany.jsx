@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router'
 function MyCompany() {
     let navigate = useNavigate()
     let { company, getEmployerCompany } = useContext(AuthContext)
-    console.log(company.user.first_name)
+
 
     const [profileData, setProfileData] = useState({
         email: company?.user.username,
@@ -28,7 +28,6 @@ function MyCompany() {
     })
 
     const updateEmployerInformation = async (companyId) => {
-        // console.log(profileData)
 
         try {
             let response = await fetch(`http://0.0.0.0:8000/employer/Employer/${companyId}/`,
@@ -43,9 +42,9 @@ function MyCompany() {
             console.log(response)
             setIsEdit(false)
             getEmployerCompany(company?.user.id)
-            setTimeout(() => {
-                navigate(0)
-            }, 3000);
+            // setTimeout(() => {
+            //     navigate(0)
+            // }, 3000);
         } catch (error) {
             console.log(error)
         }
@@ -201,36 +200,37 @@ function MyCompany() {
                     <div className="col-body">
                         <div className="formTag">
                             <div className="info">
-                                <label htmlFor="">First Name</label>
+                                <label htmlFor="">Card Number</label>
                                 <input type="text"
                                     disabled={isedit ? false : true}
-                                    value={isedit === false ? company?.first_name : profileData.first_name}
-                                    onChange={(e) => setProfileData({ ...profileData, first_name: e.target.value })} />
+                                //value={isedit === false ? company?.first_name : profileData.first_name}
+                                //onChange={(e) => setProfileData({ ...profileData, first_name: e.target.value })}
+                                />
                             </div>
                             <div className="info">
-                                <label htmlFor="">Last Name</label>
+                                <label htmlFor="">Name on card</label>
                                 <input type="text" />
                             </div>
                             <div className="info">
-                                <label htmlFor="">Gender</label>
+                                <label htmlFor="">Security Code</label>
                                 <input type="text" />
                             </div>
                             <div className="info">
-                                <label htmlFor="">Email Address</label>
+                                <label htmlFor="">expiry</label>
                                 <input type="text" />
                             </div>
                             <div className="info">
-                                <label htmlFor="">Phone Number</label>
+                                <label htmlFor="">Billing Address</label>
                                 <input type="text" />
                             </div>
 
                             <div className="info">
                                 {isedit === false ?
-                                    <button onClick={() => { setIsEdit(true) }}>edit</button>
+                                    <button className='edit-button' onClick={() => { setIsEdit(true) }}>Edit</button>
                                     :
                                     <div>
-                                        <button onClick={() => { updateEmployerInformation(company?.id) }}>submit</button>
-                                        <button onClick={() => { setIsEdit(false) }}>cancel</button>
+                                        <button onClick={() => { updateEmployerInformation(company?.id) }}>Submit</button>
+                                        <button onClick={() => { setIsEdit(false) }}>Cancel</button>
                                     </div>
                                 }
                             </div>

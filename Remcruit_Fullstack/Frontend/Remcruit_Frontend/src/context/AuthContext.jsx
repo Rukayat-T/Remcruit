@@ -10,9 +10,14 @@ export default AuthContext
 export const AuthProvider = ({ children }) => {
     let [authTokens, setAuthTokens] = useState(() => localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(() => localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
-    let [company, setCompany] = useState(() => localStorage.getItem('company') ? JSON.parse(localStorage.getItem('company')) : null)
-    let [jobseeker, setJobSeeker] = useState(() => localStorage.getItem('jobseeker') ? JSON.parse(localStorage.getItem('jobseeker')) : null)
+    //const [company, setCompany] = useState(() => JSON.parse(localStorage.getItem('company')))
+    const company = JSON.parse(localStorage.getItem('company'));
+    const jobsByCompany = JSON.parse(localStorage.getItem('jobs'))
+    const jobseeker = JSON.parse(localStorage.getItem('jobseeker'))
+    //let [jobseeker, setJobSeeker] = useState(() => localStorage.getItem('jobseeker') ? JSON.parse(localStorage.getItem('jobseeker')) : null)
     const navigate = useNavigate()
+
+    console.log(jobsByCompany)
 
     let getEmployerCompany = async (id) => {
         try {
@@ -21,7 +26,6 @@ export const AuthProvider = ({ children }) => {
             let resJson = await response.json();
             if (response.status === 200) {
                 localStorage.setItem('company', JSON.stringify(resJson));
-                console.log(company, "company printed!")
                 navigate('/dashboard')
             } else {
                 console.log(resJson)
@@ -30,6 +34,30 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             console.log(error)
         }
+        console.log(JSON.parse(localStorage.getItem('company')), "company printed!")
+        // getCompanyJobs(JSON.parse(localStorage.getItem('company')).id)
+    }
+
+    useEffect(() => {
+
+    }, [])
+
+    let getCompanyJobs = async (id) => {
+        try {
+            const response = await fetch(
+                `http://0.0.0.0:8000/employer/getJobByCompanyId/${id}/`
+            );
+            let resJson = await response.json();
+            if (response.status === 200) {
+                localStorage.setItem('jobs', JSON.stringify(resJson));
+            } else {
+                console.log(resJson)
+                alert("something went wrong with getting the company's jobs")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        // console.log(company, "company printed!")
     }
 
     let getJobSeeker = async (id) => {
@@ -39,7 +67,7 @@ export const AuthProvider = ({ children }) => {
             let resJson = await response.json();
             if (response.status === 200) {
                 localStorage.setItem('jobseeker', JSON.stringify(resJson));
-                console.log(jobseeker, 'jobseeker printed')
+
                 navigate('/home')
             }
             else {
@@ -51,6 +79,7 @@ export const AuthProvider = ({ children }) => {
             console.log(error)
         }
     }
+    console.log(jobseeker, 'jobseeker printed')
 
     let loginUser = async (e) => {
         e.preventDefault()
@@ -73,6 +102,7 @@ export const AuthProvider = ({ children }) => {
             }
             else if (user.is_employer === true) {
                 getEmployerCompany(user.id);
+                // getCompanyJobs(JSON.parse(localStorage.getItem('company'))?.id)
             }
         }
         else {
@@ -90,11 +120,11 @@ export const AuthProvider = ({ children }) => {
     let logoutUser = () => {
         setAuthTokens(null)
         setUser(null)
-        setCompany(null)
-        setJobSeeker(null)
+        // setJobSeeker(null)
         localStorage.removeItem('authTokens')
         localStorage.removeItem('company')
         localStorage.removeItem('jobseeker')
+        localStorage.removeItem('jobs')
         navigate('/login')
     }
 
@@ -102,6 +132,7 @@ export const AuthProvider = ({ children }) => {
         user: user,
         company: company,
         getEmployerCompany: getEmployerCompany,
+        jobsByCompany: jobsByCompany,
         loginUser: loginUser,
         logoutUser: logoutUser,
         jobseeker: jobseeker

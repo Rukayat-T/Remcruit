@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './candidatesBox.css'
 
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight, faEllipsisVertical, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,7 +11,7 @@ function CandidatesBox({ candidates, getSpecificCandidate }) {
     const [candidateClicked, setCandidateClicked] = useState()
 
     const handleCandidateClick = (index, candidateId) => {
-        console.log("candidate " + candidateId + " clicked");
+        // console.log("candidate " + candidateId + " clicked");
         setCandidateClicked(index)
         getSpecificCandidate(candidateId)
     }
@@ -22,7 +21,6 @@ function CandidatesBox({ candidates, getSpecificCandidate }) {
             return (
                 <div className='candidatesBoxBodyContainer'>
                     <div className="candidates">
-
 
                         {candidatesToBeReviewed.length > 0 && (
 
@@ -42,18 +40,15 @@ function CandidatesBox({ candidates, getSpecificCandidate }) {
                                         <FontAwesomeIcon icon={faChevronRight} className={index === candidateClicked ? "showIcon" : "none"} />
                                     </div>
                                 </div>
-
                             )
                             )
                         )}
                     </div>
                 </div>
-
             )
-
         }
         else {
-            return (<div> Choose a job!</div>)
+            return (<div className='noCandidates'>No Candidates</div>)
         }
     }
 
@@ -72,8 +67,6 @@ function CandidatesBox({ candidates, getSpecificCandidate }) {
             <div className='candidatesBoxBody'>
                 {DisplayCandidates()}
             </div>
-
-
         </div >
     )
 }

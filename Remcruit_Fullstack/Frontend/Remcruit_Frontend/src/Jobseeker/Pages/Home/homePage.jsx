@@ -19,6 +19,7 @@ import CompanyContext from '../../../context/CompanyContext'
 function HomePage() {
 
     const [jobs, setJobs] = useState([])
+    const [companies, setCompanies] = useState([])
     let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
     let { user } = useContext(AuthContext)
 
@@ -29,10 +30,18 @@ function HomePage() {
         setJobs(response);
     };
 
+    const getCompanies = async () => {
+        const response = await fetch(
+            " http://127.0.0.1:8000/employer/allEmployers/"
+        ).then((response) => response.json());
+        setCompanies(response);
+    }
+
     useEffect(() => {
         getJobs();
+        getCompanies();
         jobseeker,
-            jobSeeker()
+            jobSeeker();
     }, []);
 
     const [isSearch, setIsSearch] = useState(false)
@@ -49,91 +58,48 @@ function HomePage() {
 
     const handleSearch = (value) => {
         searchFunction(value)
-        setsearchValue("")
-        setSearchResults([])
+    }
+
+    const Buttons = () => {
+        if (isSearch == true) {
+            return (
+                <>
+                    <button className='search' onClick={() => { handleSearch(searchValue) }}>Search</button>
+                    <button className='cancelBtn' onClick={() => { setIsSearch(false); setsearchValue(""); setSearchResults([]); }}>Cancel</button>
+                </>
+            )
+        }
     }
 
     const Display = () => {
         if (isSearch === false) {
             return (
                 <>
-                    <div className="pageContent">
-                        <div className="searchBarContainer" onClick={() => { setIsSearch(true) }}>
-                            <button className='locationBtn'>
-                                <div className='i'>
-                                    <FontAwesomeIcon icon={faLocationDot} className='locationIcon' />
-                                    Lagos</div>
-                                <p className='vline'>|</p></button>
-                            <input type="text" placeholder='search' />
-                        </div>
-                        <div className="spotlightSectionContainer">
-                            <p>Spotlight</p>
-                            <div className="companies">
-                                <CompanyBox />
-                                <CompanyBox />
-                                <CompanyBox />
+                    <div className="feedContent">
+                        {jobs.length > 0 && (
+                            <div className="feedContent">
+                                {jobs.map(job => (
+                                    <JobBox job={job} />
+                                ))}
                             </div>
-                        </div>
-                        <div className="actualContent">
-                            <div className="filterContainer">
-                                <Filter />
-                            </div>
-                            <div className="jobFeedContainer">
-                                <div className="titleContainer">
-                                    <p className='jobFeedContainerp'>Now Hiring</p>
-                                </div>
-                                <div className="feedContent">
-                                    {jobs.length > 0 && (
-                                        <div className="feedContent">
-                                            {jobs.map(job => (
-                                                <JobBox job={job} />
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
-                            </div>
-                            <div className="userInfoContainer">
-                                <div className="user"><UserComponent /></div>
-                                <div className="notifications"><NotificationComponent /></div>
-                            </div>
-                        </div>
+                        )}
                     </div>
+
                 </>
             )
         }
         else {
             return (
                 <>
-                    <div className="search-page-content">
-                        <div className="searchBarContainer-searchPage">
-                            <button className='locationBtn'>
-                                <div className='i'>
-                                    <FontAwesomeIcon icon={faLocationDot} className='locationIcon' />
-                                    Lagos</div>
-                                <p className='vline'>|</p></button>
-                            <input
-                                type="text"
-                                placeholder='search'
-                                value={searchValue}
-                                onChange={(e) => { setsearchValue(e.target.value) }} />
-                            <button className='search' onClick={() => { handleSearch(searchValue) }}>search</button>
-                            <button className='cancelBtn' onClick={() => { setIsSearch(false); setsearchValue(""); setSearchResults([]); }}>cancel</button>
-                        </div>
-                        <div className='searchResults'>
-                            <div className="popup">
-                                {searchResults.length > 0 && (
-                                    <div className="feedContent">
-                                        {searchResults.map(job => (
-                                            <JobBox job={job} />
-                                        ))}
-                                    </div>
-                                )}
-
+                    <div className="feedContent">
+                        {searchResults.length > 0 && (
+                            <div className="search-feed-content">
+                                {searchResults.map(job => (
+                                    <JobBox job={job} />
+                                ))}
                             </div>
-                        </div>
+                        )}
                     </div>
-
                 </>
             )
         }
@@ -142,9 +108,50 @@ function HomePage() {
     return (
         <div>
             <NavbarSignedIn />
-            {Display()}
+            <div className="pageContent">
+                <div className="searchBarContainer" >
+                    <button className='locationBtn'>
+                        <div className='i'>
+                            <FontAwesomeIcon icon={faLocationDot} className='locationIcon' />
+                            Lagos</div>
+                        <p className='vline'>|</p></button>
+                    <input
+                        onClick={() => { setIsSearch(true) }}
+                        type="text"
+                        placeholder='search'
+                        value={searchValue}
+                        onChange={(e) => { setsearchValue(e.target.value) }} />{Buttons()}
+                </div>
+                <div className="spotlightSectionContainer">
+                    <p>Spotlight</p>
+                    <div className="companies-container">
+                        {companies.length > 0 && (
+                            <div className="companies">
+                                {companies.map(company => (
+                                    <CompanyBox company={company} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </div>
+                <div className="actualContent">
+                    <div className="filterContainer">
+                        <Filter />
+                    </div>
+                    <div className="jobFeedContainer">
+                        <div className="titleContainer">
+                            <p className='jobFeedContainerp'>Now Hiring</p>
+                        </div>
+                        {Display()}
+                    </div>
+                    <div className="userInfoContainer">
+                        <div className="user"><UserComponent /></div>
+                        <div className="notifications"><NotificationComponent /></div>
+                    </div>
+                </div>
+            </div>
             {/* <Footer /> */}
-        </div >
+        </div>
     )
 }
 

@@ -3,10 +3,28 @@ import './sentOffersStyles.css'
 import CandidatesBox from './candidatesBox/CandidatesBox'
 import ApplicationBox from './applicationBox/applicationBox'
 
-function SentOffersPage({ candidatesOfferSent }) {
-    console.log(candidatesOfferSent)
+function SentOffersPage({ selectedJob }) {
+    //console.log(candidatesOfferSent)
 
     const applicationStatus = "Offer Sent"
+    const [candidatesOfferSent, setCandidatesOfferSent] = useState([])
+
+    const getCandidatesByJobIdOfferSent = async (id, status) => {
+        try {
+            // setIsLoading(true)
+            const response = await fetch(
+                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
+            )
+                .then((response) => response.json());
+            // console.log(response)
+            // setIsLoading(false)
+            setCandidatesOfferSent(response)
+        }
+        catch (error) {
+            // setIsLoading(true)
+            console.log(error)
+        }
+    }
 
     const [chosenCandidateId, setChoosenCandidateId] = useState()
     const [chosenCandidate, setChosenCandidate] = useState([])
@@ -30,9 +48,11 @@ function SentOffersPage({ candidatesOfferSent }) {
     }
 
     useEffect(() => {
+        if (selectedJob) {
+            getCandidatesByJobIdOfferSent(selectedJob, "Offer Sent")
+        }
         getCandidateById(chosenCandidateId)
-    }, [chosenCandidateId])
-
+    }, [chosenCandidateId, selectedJob])
 
     return (
         <>

@@ -47,10 +47,11 @@ function App() {
                   <Route element={<Profile />} path='/profile' />
                   <Route element={<JobApplication />} path='/jobapplication' />
                   <Route element={<HomePage />} path='/home' />
-                  <Route element={<SpecificJobs/>} path='/specificjobs'/>  
+                  <Route element={<SpecificJobs />} path='/specificjobs' />
                   {/* </Route> */}
                   {/* <Route element={<EmployerRoute />} >  */}
                   <Route path='/employer/job/post' element={<JobPost />} />
+                  <Route path='/employer/job/post/summary' element={<JobPostSummary />} />
                   <Route path='/dashboard' element={<Dashboard />} />
                   {/* </Route> */}
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./dashboardStyles.css"
 import NavbarSignedIn from '../navigationSignedIn/navbarHome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -26,8 +26,6 @@ function Dashboard() {
     const goToCandidatesPage = (candidatesPage) => {
         setPage(candidatesPage)
     }
-
-    console.log(JobFromMyJobs, "from dsahboard")
 
     const pageDisplay = () => {
         if (page === 0) {
