@@ -34,13 +34,14 @@ return(
                     <a href='/cvhelp' ><p> Cv Help </p></a>
                     <a href='/jobsearch' ><p> Job Search </p></a>
                     <a href='/contactus' ><p> Contact Us </p></a>
+                    <a href='/FaqPage'>   <p>FAQ</p></a>
                     
                 </div>
                 <div className="footer_link_section">
                     <h4> LEGAL </h4>
                     <a href='/aboutus' ><p> About Us </p></a>
                     <a href='/privacy' ><p> Privacy </p></a>
-                    <a href='/terms' ><p> Terms </p></a>
+                    <a href='/Term' ><p> Terms </p></a>
                     <a href='/cookies' ><p> Cookies </p></a>
                 </div>
                

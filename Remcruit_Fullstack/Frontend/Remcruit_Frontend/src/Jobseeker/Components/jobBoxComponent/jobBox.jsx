@@ -5,6 +5,8 @@ import { faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
 import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons'
 import './jobBox.css'
 import JobSeekerContext from '../../../context/JobSeekerContext'
+import AuthContext from '../../../context/AuthContext'
+
 // import toggleBookmark from '../../Pages/SpecificJobsPage/components/FullJobDescription/toggleBookmark';
 // import savedjobs from '../savedjobsComponents/savedjobs'
 
@@ -12,16 +14,60 @@ function JobBox({ job }) {
 
 
     let { jobSeeker } = useContext(JobSeekerContext)
-    const [bookmark, setBookmark] = useState("false")
+    
+    const [bookmark, setBookmark] = useState(false);
     const navigate = useNavigate()
+    let{jobseeker} = useContext(AuthContext)
+   console.log(jobseeker)
 
-    const toggleBookmark = () => {
-        if (bookmark === "false") {
-            setBookmark("true")
-            return;
-        }
-        setBookmark("false")
+
+
+    const savingJob = async (jobId, jobSeekerId) => {
+        try {
+            let res = await fetch("http://127.0.0.1:8000/jobseekers/saveajob/",
+            
+              {
+                method: "POST",
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "job": jobId,
+                    "job_seeker": jobSeekerId
+                }),
+              });
+            let resJson = await res.json();
+            if (res.status === 200) {
+              console.log(resJson)
+             
+            } else {
+              console.log(resJson)
+              alert("something went wrong")
+            }
+          } catch (err) {
+            console.log(err);
+          }
+         
+        };
+
+    
+    
+
+    function toggleBookmark(jobId,jobSeekerId) {
+        
+        setBookmark(!bookmark);
+        savingJob(jobId,jobSeekerId)
     }
+
+
+    // const toggleBookmark = () => {
+    //     if (bookmark === "false") {
+    //         setBookmark("true")
+    //         return;
+    //     }
+    //     setBookmark("false")
+    // }
     const [jobId, setJobId] = useState(job.id)
     const [showMore, setShowMore] = useState(false);
 
@@ -39,10 +85,10 @@ function JobBox({ job }) {
                     </div>
                 </div>
                 <div className="left">
-                    <button onClick={toggleBookmark} className='bookmarkBtn'>
+                <button onClick={() => {toggleBookmark(job.id, jobseeker.id)}} className='bookmarkBtn'>
                       
-                        {bookmark === "false" ? <FontAwesomeIcon icon={regularBookmark} className='bookmark' /> : <FontAwesomeIcon icon={filledBookmark} className='bookmark' />}
-                    </button>
+                      {bookmark  ? <FontAwesomeIcon icon={filledBookmark} className='bookmark' />:<FontAwesomeIcon icon={regularBookmark} className='bookmark' /> }
+                  </button>
                     {/* <toggleBookmark /> */}
                     <Link to={'/specificjobs'} state={{ job: job }}> <button className="detailsBtn">View Details</button></Link>
 

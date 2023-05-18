@@ -17,10 +17,12 @@ function FullJobDescription({specificjob, showDescription}) {
    
     let{jobseeker} = useContext(AuthContext)
    console.log(jobseeker)
+   
 
 
 
     const savingJob = async (jobId, jobSeekerId) => {
+        console.log("i clicked a job")
         try {
             let res = await fetch("http://127.0.0.1:8000/jobseekers/saveajob/",
             
@@ -38,6 +40,7 @@ function FullJobDescription({specificjob, showDescription}) {
             let resJson = await res.json();
             if (res.status === 200) {
               console.log(resJson)
+              
              
             } else {
               console.log(resJson)
@@ -56,8 +59,16 @@ function FullJobDescription({specificjob, showDescription}) {
         
         setBookmark(!bookmark);
         savingJob(jobId,jobSeekerId)
-      }
+        console.log("saved?")
+        
+    }
+
+      
+    
     const DisplayFullDescription = () => {
+        console.log("description",showDescription)
+        console.log("specific",specificjob)
+
         if (showDescription){
             return(
                 <div className="job-description-main-container">
@@ -72,7 +83,11 @@ function FullJobDescription({specificjob, showDescription}) {
                         </div>
                     <div className="share-save">
                     <FontAwesomeIcon icon={faShareNodes}/>
-                    <FontAwesomeIcon icon={faBookmark}  />
+                    {/* <FontAwesomeIcon icon={faBookmark}  /> */}
+                    <button onClick={() => {toggleBookmark(specificjob.id, jobseeker.id)}} className='bookmarkBtn'>
+                      
+                        {bookmark  ? <FontAwesomeIcon icon={filledBookmark} className='bookmark' />:<FontAwesomeIcon icon={regularBookmark} className='bookmark' /> }
+                    </button>
                     </div>
                 </div>
                 <div className="horizontal-line">

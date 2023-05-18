@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import React, { useContext } from 'react'
+// import React, { useContext } from 'react'
 import "./navbarSignedIn.css"
 import Logo from "../../../assets/fullLogo-cropped.svg"
 import { Link } from 'react-router-dom';
 import AuthContext from '../../../context/AuthContext';
-import AuthContext from '../../../context/AuthContext';
+// import AuthContext from '../../../context/AuthContext';
 
 function NavbarSignedIn() {
 
