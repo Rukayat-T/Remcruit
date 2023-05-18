@@ -8,6 +8,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
+from django.contrib import messages
+
 from django.utils.encoding import force_bytes, force_str, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.core.mail import EmailMessage
@@ -87,6 +89,22 @@ class EmployerRegister(generics.GenericAPIView):
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
  
+class UserUpdate(generics.RetrieveUpdateAPIView):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    
+    def put(self, request):
+        if self.queryset:
+            serializer = UserSerializer(self.queryset, data = request.data, partial = True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            else:
+                return Response(serializer.errors_messages)
+        else:
+            messages.error(request, "This employer does not exist")
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    
 
 class LoginAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):

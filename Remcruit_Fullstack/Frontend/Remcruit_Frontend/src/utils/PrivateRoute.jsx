@@ -6,6 +6,7 @@ import CompanyContext from '../context/CompanyContext'
 
 
 function PrivateRoute({allowedRoles}) {
+  console.log('ji')
     let  {user} = useContext(AuthContext)
     let {jobseeker} = useContext(JobSeekerContext)
     let {company} = useContext(CompanyContext)

@@ -4,6 +4,7 @@
     text-align: center;
     width: 80%;
     margin: 0 auto;
+    position: relative;
 }
 .form input{
     border: 2px solid black;
@@ -12,7 +13,7 @@
     font-weight: 500;
     margin: 10px 0;
     padding: 0 10px;
-    font-size: 20px;   
+    font-size: 20px; 
 }
 
 .form input[type=submit]{
@@ -39,5 +40,18 @@ p a{
     color: #CA61C3;
 }
 
+.togglebtn{
+    border: 2px solid red;
+    border: none;
+    background: none;
+    position: absolute;
+    right: 3%;
+    top: 36%;
+    font-size: 1.3rem;
+}
+.passwordInput{
+    position: relative;
+    border: 5px solid red;
+}
 
 

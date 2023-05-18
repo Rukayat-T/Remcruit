@@ -25,6 +25,28 @@ class JobType(models.TextChoices):
         PART_TIME = 'Part Time'
         INTERNSHIP = 'Internship'
 
+class SubjectOfStudy(models.TextChoices):
+        MASS_COMMUNICATION = "Mass Communication"
+        ACCOUNTING = "Accounting"
+        COSMETOLOGY = "Cosmetology"
+        CHEMISTRY = "Chemistry"
+        MATHEMATICS = "Mathematics"
+        ECONOMICS = "Economics"
+        ARCHITECTURE = "Architecture"
+        HISTORY = "History"
+        CIVIL_ENGINEERING = "Civil Engineering"
+        BIOCHEMISTRY = "Biochemistry"
+        HUMANITIES = "Humanities"
+        MICROBIOLOGY = "Microbiology"
+        ELECTRICAL_ENGINEERING = "Electrical Engineering"
+        VETERINARY_MEDICINE = "Veterinary Medicine"
+        ANATOMY = "Anatomy"
+        BUSINESS_ADMINISTRATION = "Business Administration"
+        COMPUTER_SCIENCE = "Computer Science"
+        PETROLEUM_ENGINEERING ="Petroleum Engineering"
+        PHARMACY = "Pharmacy"
+        LAW = "Law"  
+    
 # class Industry(models.TextChoices):
        
 #         BCM = 'Business, consulting and management'
@@ -64,21 +86,24 @@ class JobSeeker(models.Model):
     ECONOMICS = ""
     LAW = ""
 
-    SUBJECT_OF_STUDY_CHOICES = (
-        ("COMPUTER_SCIENCE", "Computer Science"),
-        ("PETROLEUM_ENGINEERING", "Petroleum Engineering"),
-        ("PHARMACY", "Pharmacy"),
-        ("ECONOMICS", "Economics"),
-        ("LAW", "Law"),  
-    )
-
 
     YEAR_OF_GRADUATION_CHOICES = (
+        ("2011", "2011"),
+        ("2012", "2012"),
+        ("2013", "2013"),
+        ("2014", "2014"),
+        ("2015", "2015"),
+        ("2016", "2016"),
         ("2017", "2017"),
         ("2018", "2018"),
         ("2019", "2019"),
         ("2020", "2020"),
         ("2021", "2021"),
+        ("2022", "2022"),
+        ("2023", "2023"),
+        ("2024", "2024"),
+        ("2025", "2025"),
+        ("2026", "2026"),
     )
 
 
@@ -134,7 +159,7 @@ class JobSeeker(models.Model):
     user = models.OneToOneField(User, related_name="user_jobSeeker", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
     university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, null=True, blank=True)
-    subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES,null=True, blank=True)
+    subject_of_study = models.TextField(choices=SubjectOfStudy.choices, null=True, blank=True)
     year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES,null=True, blank=True)
     degree_classification = models.TextField(choices=DegreeClassification.choices, null=False)
     highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, null=True)

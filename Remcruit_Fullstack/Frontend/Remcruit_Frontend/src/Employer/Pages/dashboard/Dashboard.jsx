@@ -71,7 +71,6 @@ function Dashboard() {
                 <div className="top2">
                     <button onClick={() => {
                         setIsNavExpanded(!isNavExpanded); //set it to not collapse
-                        console.log("clicked");
                     }}>
                         <FontAwesomeIcon icon={faBars} />
                     </button>

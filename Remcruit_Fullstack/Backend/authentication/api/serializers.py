@@ -18,13 +18,13 @@ from JobSeekers.models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=[ 'email', 'is_jobSeeker']
+        fields=[ 'first_name', 'last_name',  'email', 'is_jobSeeker']
 
 class JobSeekerRegisterSerializer(serializers.ModelSerializer):
     password2=serializers.CharField(style={"input_type":"password"}, write_only=True)
     year_of_graduation = serializers.ChoiceField(choices=JobSeeker.YEAR_OF_GRADUATION_CHOICES, required=True)
     university_name = serializers.ChoiceField(choices=JobSeeker.UNIVERSITY_CHOICES, required=True)
-    subject_of_study = serializers.ChoiceField(choices=JobSeeker.SUBJECT_OF_STUDY_CHOICES, required=True)
+    subject_of_study = serializers.ChoiceField(choices=SubjectOfStudy.choices, required=True)
     degree_classification = serializers.ChoiceField(choices=DegreeClassification.choices,required=True)
     highest_qualification = serializers.ChoiceField(choices=JobSeeker.HIGHEST_QUALIFICATION_CHOICES, required=True)
     gender = serializers.ChoiceField(choices=Gender.choices, required=True)

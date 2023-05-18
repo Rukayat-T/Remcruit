@@ -14,9 +14,6 @@ function MyCompany() {
 
 
     const [profileData, setProfileData] = useState({
-        email: company?.user.username,
-        first_name: company.user.first_name,
-        last_name: company.user.last_name,
         gender: company?.gender,
         organisation_name: company?.organisation_name,
         office_address: company?.office_address,
@@ -25,6 +22,11 @@ function MyCompany() {
         website: company?.website,
         employees: company?.employees,
         phone_number: company?.phone_number
+    })
+
+    const [userData, setUserData] = useState({
+        first_name: company.user.first_name,
+        last_name: company.user.last_name
     })
 
     const updateEmployerInformation = async (companyId) => {
@@ -49,6 +51,33 @@ function MyCompany() {
             console.log(error)
         }
     }
+
+    const updateUserInformation = async (userId) => {
+
+        try {
+            let response = await fetch(`http://127.0.0.1:8000/authentication/updateUser/${userId}`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData),
+                }).then((response) => response.json());
+            console.log(response)
+            getEmployerCompany(company?.user.id)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    const updateEmployer = () => {
+        updateUserInformation(company?.user?.id)
+
+        setTimeout(() => {
+            updateEmployerInformation(company?.id)
+        }, 600)
+    }
+
     const [genderChoices, setGenderChoices] = useState([])
     const genderDefaultValue = company?.gender
 
@@ -85,16 +114,16 @@ function MyCompany() {
                                         <input
                                             type="text"
                                             disabled={isedit ? false : true}
-                                            value={isedit === false ? company?.user.first_name : profileData.first_name}
-                                            onChange={(e) => setProfileData({ ...profileData, first_name: e.target.value })} />
+                                            value={isedit === false ? company?.user.first_name : userData.first_name}
+                                            onChange={(e) => setUserData({ ...userData, first_name: e.target.value })} />
                                     </div>
                                     <div className="info">
                                         <label htmlFor="">Last Name</label>
                                         <input
                                             type="text"
                                             disabled={isedit ? false : true}
-                                            value={isedit === false ? company?.user.last_name : profileData.last_name}
-                                            onChange={(e) => setProfileData({ ...profileData, last_name: e.target.value })} />
+                                            value={isedit === false ? company?.user.last_name : userData.last_name}
+                                            onChange={(e) => setUserData({ ...userData, last_name: e.target.value })} />
                                     </div>
                                     <div className="info">
                                         <label htmlFor="">Gender</label>
@@ -229,7 +258,7 @@ function MyCompany() {
                                     <button className='edit-button' onClick={() => { setIsEdit(true) }}>Edit</button>
                                     :
                                     <div>
-                                        <button onClick={() => { updateEmployerInformation(company?.id) }}>Submit</button>
+                                        <button onClick={() => { updateEmployer() }}>Submit</button>
                                         <button onClick={() => { setIsEdit(false) }}>Cancel</button>
                                     </div>
                                 }

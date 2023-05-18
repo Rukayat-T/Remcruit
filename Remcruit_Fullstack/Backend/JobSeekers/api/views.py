@@ -297,7 +297,7 @@ def get_choices(request):
     gender_choices = Gender.choices
     role_choices = JobType.choices
     industry_choices = JobSeeker.INDUSTRY_SECTORS
-    subject_choices= JobSeeker.SUBJECT_OF_STUDY_CHOICES
+    subject_choices= SubjectOfStudy.choices
     qualification_choices= JobSeeker.HIGHEST_QUALIFICATION_CHOICES
     context = {
         "university_choices": university_choices,

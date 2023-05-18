@@ -17,8 +17,7 @@ function LandingPage() {
   return (
     <div>
       <Navbar />
-      {/* {user && <p>Hello {user.username}</p>} */}
-      <Banner/>
+     <Banner/>
       <Steps />
       <Community />
       <MostPopular/>
