@@ -12,7 +12,6 @@ function SpecificJobs() {
   const location = useLocation();
   const specificjob = location.state.job;
   const [selectedJob, setSelectedJob] = useState(null);
-
   const [isSearch, setIsSearch] = useState(false)
   const [searchValue, setsearchValue] = useState()
   const [searchResults, setSearchResults] = useState([])

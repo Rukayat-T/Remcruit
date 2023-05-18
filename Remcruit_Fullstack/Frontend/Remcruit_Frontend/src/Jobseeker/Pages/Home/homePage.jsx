@@ -21,6 +21,7 @@ function HomePage() {
     const [jobs, setJobs] = useState([])
     let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
     let { user } = useContext(AuthContext)
+    console.log(user)
 
     const getJobs = async () => {
         const response = await fetch(

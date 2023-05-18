@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import AuthContext from '../../../context/AuthContext'
 import './userComponent.css'
+import { Link } from 'react-router-dom'
 
 function UserComponent() {
     let { user } = useContext(AuthContext)
@@ -17,7 +18,7 @@ function UserComponent() {
                 <p className="industrySector"> Computer science</p>
             </div>
             <div className="editProfile">
-                <button className='editProfileBtn'>Edit Profile</button>
+                <Link to="/profile"><button className='editProfileBtn'>Edit Profile</button></Link>
             </div>
 
         </div>

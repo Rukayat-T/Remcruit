@@ -7,10 +7,10 @@ const Navbar = () => {
   return (
     <div>
       <nav className='nav'>
-        <img src={Logo} alt="" srcSet="" />
+       <Link to='/'><img src={Logo} alt="" srcSet="" /></Link> 
         <ul>
           <li><Link to='/' >Home</Link></li>
-          <li><Link to='/home' >Home signed in</Link></li>
+          <li><Link to='/aboutus' >About Us</Link></li>
           <li><Link to='/login' >Login</Link></li>
           <li><Link to='/jobseeker/register' >Register</Link></li>
           <li><Link to='/employer' className='register'>Recruiter?</Link></li>
