@@ -23,6 +23,13 @@ function JobBox({ job }) {
 
     const description = job?.description
 
+    const getDaysAgo = (date) => {
+        const postDate = new Date(date);
+        const currentDate = new Date();
+        const timeDifference = currentDate.getTime() - postDate.getTime();
+        const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
+        return daysDifference;
+      };
     return (
         <div className='boxContainer'>
             <div className="boxHeaderSection">
@@ -72,7 +79,7 @@ function JobBox({ job }) {
                 <Link to={'/jobapplication'} state={{ jobid: jobId }}>
                     <p>Apply Now</p></Link>
                 <p>.</p>
-                <p>Posted 5 days ago</p>
+                <p>Posted {getDaysAgo(job?.created_at)} days ago</p>
                 <p>.</p>
                 <p>{job?.location}</p>
             </div>

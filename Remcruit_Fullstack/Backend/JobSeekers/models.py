@@ -25,38 +25,43 @@ class JobType(models.TextChoices):
         PART_TIME = 'Part Time'
         INTERNSHIP = 'Internship'
 
-# class Industry(models.TextChoices):
-       
-#         BCM = 'Business, consulting and management'
-#         CVW = 'Charity and voluntary work'
-#         CGR = 'Consumer goods and retail'
-#         ENGINEERING_AND_CONSTRUCTION = 'Engineering and Construction'
-#         ENTERTAINMENT = 'Entertainment'
-#         EA = 'Environment and Agriculture'
-#         EU = 'Energy and Utilities'
+class UniversityName(models.TextChoices):
+    AMERICAN_UNIVERSITY_OF_NIGERIA = "American University of Nigeria"
+    AMBROSE_ALLI_UNIVERSITY ="Ambrose Alli University"
+    BAZE_UNIVERSITY = "Baze University"
+    BELLS_UNIVERSITY_OF_TECHNOLOGY = "Bells University of Technology"
+    BENSON_IDAHOSA_UNIVERSITY = "Benson Idahosa University"
+    CALEB_UNIVERSITY = "Caleb University"
+    COVENANT_UNIVERSITY = "Covenant University"
+    BABCOCK_UNIVERSITY = "Babcock University"
+    UNIVERSITY_OF_LAGOS = "University of Lagos"
+    UNIVERSITY_OF_BENIN = "University of Benin"
+    AFE_BABALOLA_UNIVERSITY_ADO_EKITI = "Afe Babalola University Ado-Ekiti"
+    YABA_COLLEGE_OF_TECHNOLOGY = "Yaba College Of Technology"
+    BOWEN_UNIVERSITY = "Bowen University"
+    NILE_UNIVERSITY_OF_NIGERIA = "Nile University of Nigeria"
+    OBAFEMI_AWOLOWO_UNIVERSITY = "Obafemi Awolowo University"
+    REDEEMERS_UNIVERITY_NIGERIA = "Redeemer's University Nigeria"
+    UNIVERSITY_OF_CALABAR = "University of Calabar"
+    UNIVERSITY_OF_DELTA = "University of Delta"
+    UNIVERSITY_OF_PORT_HARCOURT = "University of Port Harcourt"
+    ADELEKE_UNIVERSITY = "Adeleke University"
+
+class Industry(models.TextChoices):
+        ACCOUNTING_AND_FINANCE = "Accounting And Finance"
+        BUSINESS_CONSULTING_AND_MANAGEMENT = 'Business Consulting And Management'
+        CHARITY_AND_VOLUNTARY_WORK= 'Charity And Voluntary Work'
+        CONSUMER_GOODS_AND_RETAIL = 'Consumer Goods and etail'
+        ENGINEERING_AND_CONSTRUCTION = 'Engineering and Construction'
+        ENTERTAINMENT = 'Entertainment'
+        ENVIRONMENT_AND_AGRICULTURE = 'Environment and Agriculture'
+        ENERGY_AND_UTILITIES = 'Energy and Utilities'
         
 class JobSeeker(models.Model):
 
     def delete(self, *args, **kwargs):
         self.user.delete()
         return super(self.__class__, self).delete(*args, **kwargs)
-
-    BABCOCK_UNIVERSITY = "babcock_university"
-    UNILAG = "unilag"
-    UNIBEN = "uniben"
-    ABUAD = "abuad"
-    YABATECH = "yabatech"
-    BOWEN = "bowen"
-
-    UNIVERSITY_CHOICES = (
-        ("BABCOCK_UNIVERSITY", "Babcock University"),
-        ("UNILAG", "University of Lagos"),
-        ("UNIBEN", "University of Benin"),
-        ("ABUAD", "Afe Babalola University Ado-Ekiti"),
-        ("YABATECH", "Yaba College Of Technology"),
-        ("BOWEN", "Bowen University"),
-    )
-
 
     COMPUTER_SCIENCE = ""
     PETROLEUM_ENGINEERING = ""
@@ -80,20 +85,6 @@ class JobSeeker(models.Model):
         ("2020", "2020"),
         ("2021", "2021"),
     )
-
-
-    # FIRST = "first"
-    # SECOND_UPPER = "second_upper"
-    # SECOND_LOWER = "second_lower"
-    # THIRD = "third"
-
-    # DEGREE_CLASSIFICATION_CHOICES = (
-    #     ("FIRST", "First Class Honours"),
-    #     ("SECOND_UPPER", "Second Class Honours(upper)"),
-    #     ("SECOND_LOWER", "Second Class Honours(lower)"),
-    #     ("THIRD", "Third Class Honours"),
-    # )
-
     
     UNDERGRADUATE = "UNDERGRADUATE"
     POSTGRADUATE_T = "POSTGRADUATE(T)"
@@ -108,32 +99,12 @@ class JobSeeker(models.Model):
         ("OLEVEL", "Senior Secondary Certificate"),
         ("HND", "Higher National Diploma"),
     )
-    ABF = 'Accounting, Banking and finance'
-    BCM = 'Business, consulting and management'
-    CVW = 'Charity and voluntary work'
-    CGR = 'Consumer goods and retail'
-    EC = 'Engineering and Construction'
-    ENTERTAINMENT = 'Entertainment'
-    EA = 'Environment and Agriculture'
-    EU = 'Energy and Utilities'
-
-    INDUSTRY_SECTORS = (
-        ('ABF', 'Accounting, Banking and finance'),
-        ('BCM', 'Business, consulting and management'),
-        ('CVW', 'Charity and voluntary work'),
-        ('CGR','Consumer goods and retail'),
-        ('EC', 'Engineering and Construction'),
-        ('ENTERTAINMENT',  'Entertainment'),
-        ('EA', 'Environment and Agriculture'),
-        ('EU', 'Energy and Utilities'),
-    )
-
     #Classes take in the right side and display left side in title and underscore as space. while choices in the
     #model take in left and display right
 
     user = models.OneToOneField(User, related_name="user_jobSeeker", on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12)
-    university_name = models.CharField(max_length=200, choices=UNIVERSITY_CHOICES, null=True, blank=True)
+    university_name = models.TextField(choices=UniversityName.choices, null=True, blank=True)
     subject_of_study = models.CharField(max_length=200, choices=SUBJECT_OF_STUDY_CHOICES,null=True, blank=True)
     year_of_graduation = models.CharField(max_length=200, choices=YEAR_OF_GRADUATION_CHOICES,null=True, blank=True)
     degree_classification = models.TextField(choices=DegreeClassification.choices, null=False)
@@ -145,7 +116,7 @@ class JobSeeker(models.Model):
     nin = models.CharField(max_length=11, null = True)
     professional_summary = models.TextField(max_length=400, default='Old')
     role_type = models.TextField(choices=JobType.choices, default='Old')
-    industry = models.TextField(choices=INDUSTRY_SECTORS, default='Old')
+    industry = models.TextField(choices=Industry.choices, default='Old')
     
 
     USERNAME_FIELD = 'email'
