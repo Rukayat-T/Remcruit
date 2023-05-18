@@ -36,12 +36,14 @@ function App() {
               <CompanyProvider>
                 <Routes>
                   <Route path='/' exact element={<LandingPage />} />
+                  <Route path='*' element={<div>Page Not Found</div>}/>
                   <Route path='/employer' exact element={<EmployerLandingPage />} />
-                  <Route path='/login' element={<Login />} />
+                  <Route path='/login' element={<Login/>} />
                   {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
                   <Route path='/employer/register' element={<EmployerRegister />} />
+                  <Route element={<AboutUs />} path='/aboutus' />
                   <Route element={<PrivateRoute />} >
-                    <Route element={<AboutUs />} path='/aboutus' />
+                   
                   </Route>
                   <Route element={<JobSeekerRoute />} > 
                   <Route element={<Profile />} path='/profile' />

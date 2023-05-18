@@ -3,8 +3,18 @@ import './AccountInformationStyles.css'
 // import './AccountInformationstyles.css'
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function AccountInformationTab({ formData, setFormData }) {
+let [passwordType, setPasswordType] = useState("password");
+let [passwordType2, setPasswordType2] = useState("password"); 
+  const ToggleButton = () => {
+    return (passwordType === "password" ?  (<button className="" onClick= { () => {setPasswordType("text")}} type="button" ><FontAwesomeIcon icon={faEye} /></button>) : <button className="" onClick={ () => {setPasswordType("password")}} type="button"><FontAwesomeIcon icon={faEyeSlash} /></button>)
+    }
+    const ConfirmToggleButton = () => {
+        return (passwordType2 === "password" ?  (<button className="" onClick= { () => {setPasswordType2("text")}} type="button" ><FontAwesomeIcon icon={faEye} /></button>) : <button className="" onClick={ () => {setPasswordType2("password")}} type="button"><FontAwesomeIcon icon={faEyeSlash} /></button>)
+        }
 
     return (
         <>
@@ -100,18 +110,20 @@ function AccountInformationTab({ formData, setFormData }) {
                 <div className="password">
                     <label>Password*</label>
                     <input
-                        type="password"
+                        type={passwordType}
                         name="password"
                         value={formData.password}
                         onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+                        {ToggleButton()}
                 </div>
                 <div className="confPassword">
                     <label>Confirm Password*</label>
                     <input
-                        type="password"
+                        type={passwordType2}
                         name="password2"
                         value={formData.password2}
                         onChange={(e) => setFormData({ ...formData, password2: e.target.value })} />
+                        {ConfirmToggleButton()}
                 </div>
             </div>
         </>
