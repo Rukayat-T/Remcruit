@@ -103,6 +103,7 @@ export const AuthProvider = ({ children }) => {
     user,
     company,
     getEmployerCompany,
+    // jobsByCompany: jobsByCompany,
     loginUser,
     logoutUser,
     jobseeker,

@@ -90,9 +90,8 @@ function JobBox({ job }) {
                 <div className="companyinformation">
                     <div className="companyLogo">Logo</div>
                     <div className="company">
-                        <div className="jobTitle">{job?.title} {job?.company.title}</div>
+                        <div className="jobTitle">{job?.title}</div>
                         <div className="companyName">{job?.company?.organisation_name}</div>
-
                     </div>
                 </div>
                 <div className="left">
@@ -123,11 +122,11 @@ function JobBox({ job }) {
             </div>
             <div className="jobDescriptionSection">
                 <div className="description">
-                 <p> {showMore ? description : `${description?.substring(0,250)}`}
-                 <Link to={'/specificjobs'} state={{ job: job }}> <a href="" onClick={() => navigate('/specificjobs')}>
-                    {showMore ? "Show less" : "...Learn more"}
-                 </a></Link>
-                    
+                    <p> {showMore ? description : `${description?.substring(0, 250)}`}
+                        <Link to={'/specificjobs'} state={{ job: job }}> <a href="" onClick={() => navigate('/specificjobs')}>
+                            {showMore ? "Show less" : "...Show more"}
+                        </a></Link>
+
                     </p>
                 </div>
             </div>

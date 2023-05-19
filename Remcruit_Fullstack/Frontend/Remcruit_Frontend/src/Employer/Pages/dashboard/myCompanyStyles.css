@@ -104,3 +104,27 @@
     transition: all 0.3s ease-in; 
 }
 
+.edit-button{
+    background-color: #CA61C3;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 15px;
+    width: 60px;
+    height: 32px;
+
+}
+
+.info button{
+    background-color: #CA61C3;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    margin-right: 20px;
+    margin-top: 20px;
+    font-size: 15px;
+    width: 65px;
+    height: 32px;
+}

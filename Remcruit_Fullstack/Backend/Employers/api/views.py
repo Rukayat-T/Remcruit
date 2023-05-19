@@ -219,7 +219,7 @@ class GetCandidatesByJobIdAndStatus(APIView):
                     return Response(serializer.data, status=status.HTTP_200_OK)
                 else:
                     message['response'] = "No Applications Found"
-                    return Response(message, status=status.HTTP_404_NOT)
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
                 
 
 class GetCandidatesForAllJobsByCompany(APIView):

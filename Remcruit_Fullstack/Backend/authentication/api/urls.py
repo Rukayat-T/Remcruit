@@ -30,6 +30,8 @@ urlpatterns = [
     path('employer/home/', EmployerOnlyView.as_view(), name='employerhome'),
     path('jobseeker/home/', JobSeekerOnlyView.as_view(), name='jobseekerhome'),
 
+    path('updateUser/<str:pk>', UserUpdate.as_view(), name = 'updateUser'),
+
 
     path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
     path('change-password/', ChangePasswordView.as_view(), name='change-password'),

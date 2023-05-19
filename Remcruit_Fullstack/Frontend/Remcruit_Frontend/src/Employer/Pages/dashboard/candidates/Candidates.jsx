@@ -7,31 +7,36 @@ import DeclinedPage from './DeclinedPage'
 import AuthContext from '../../../../context/AuthContext'
 
 function Candidates({ JobFromMyJobs }) {
-    let { company } = useContext(AuthContext)
-    console.log(JobFromMyJobs)
+    let { company, jobsByCompany } = useContext(AuthContext)
 
     const [page, setPage] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
 
+    const [chosenJobUpdate, setChosenJobUpdate] = useState(false)
+
+    const setNewChosenJob = (value) => {
+        if (value) {
+            setChosenJobUpdate(value)
+            // console.log(value)
+        }
+    }
+    // console.log(chosenJobUpdate)
+
     const [jobsByCompanyId, setJobsByCompanyId] = useState([])
     const [candidatesByJobId, setCandidatesByJobId] = useState([])
-    const [candidatesInReview, setCandidatesInReview] = useState([])
-    const [candidatesInterview, setCandidatesInterview] = useState([])
-    const [candidatesDeclined, setCandidatesDeclined] = useState([])
-    const [candidatesOfferSent, setCandidatesOfferSent] = useState([])
+
+
     const [selectedJob, setSelectedJob] = useState(JobFromMyJobs.id)
-    console.log(selectedJob)
+    const chooseAJob = "Choose A Job"
 
     const getJobsByCompanyId = async (id) => {
         try {
             // setIsLoading(true)
             const response = await fetch(
                 `http://127.0.0.1:8000/employer/getJobByCompanyId/${id}/`
-
-
             )
                 .then((response) => response.json());
-            console.log(response)
+            // console.log(response)
             // setIsLoading(false)
             setJobsByCompanyId(response)
         }
@@ -46,74 +51,10 @@ function Candidates({ JobFromMyJobs }) {
                 `http://127.0.0.1:8000/employer/getCandidatesByJobId/${id}`
             )
                 .then((response) => response.json());
-            console.log(response)
+            //console.log(response)
             setCandidatesByJobId(response)
         }
         catch (error) {
-            console.log(error)
-        }
-    }
-    const getCandidatesByJobIdInReview = async (id, status) => {
-        try {
-            // setIsLoading(true)
-            const response = await fetch(
-                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
-            )
-                .then((response) => response.json());
-            // console.log(response)
-            // setIsLoading(false)
-            setCandidatesInReview(response)
-        }
-        catch (error) {
-            // setIsLoading(true)
-            console.log(error)
-        }
-    }
-    const getCandidatesByJobIdInterview = async (id, status) => {
-        try {
-            // setIsLoading(true)
-            const response = await fetch(
-                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
-            )
-                .then((response) => response.json());
-            // console.log(response)
-            // setIsLoading(false)
-            setCandidatesInterview(response)
-        }
-        catch (error) {
-            // setIsLoading(true)
-            console.log(error)
-        }
-    }
-    const getCandidatesByJobIdDeclined = async (id, status) => {
-        try {
-            // setIsLoading(true)
-            const response = await fetch(
-                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
-            )
-                .then((response) => response.json());
-            // console.log(response)
-            // setIsLoading(false)
-            setCandidatesDeclined(response)
-        }
-        catch (error) {
-            // setIsLoading(true)
-            console.log(error)
-        }
-    }
-    const getCandidatesByJobIdOfferSent = async (id, status) => {
-        try {
-            // setIsLoading(true)
-            const response = await fetch(
-                `http://127.0.0.1:8000/employer/getCandidatesByJobIdAndStatus/${id}/${status}`
-            )
-                .then((response) => response.json());
-            // console.log(response)
-            // setIsLoading(false)
-            setCandidatesOfferSent(response)
-        }
-        catch (error) {
-            // setIsLoading(true)
             console.log(error)
         }
     }
@@ -122,33 +63,19 @@ function Candidates({ JobFromMyJobs }) {
         getJobsByCompanyId(company?.id)
     }, [company?.id])
 
-    useEffect(() => {
-        if (selectedJob) {
-            getCandidatesByJobIdInReview(selectedJob, "In Review")
-            getCandidatesByJobIdInterview(selectedJob, "Interview")
-            getCandidatesByJobIdDeclined(selectedJob, "Declined")
-            getCandidatesByJobIdOfferSent(selectedJob, "Declined")
-        }
-        console.log(candidatesInterview, "candidates in interview")
-
-    }, [selectedJob?.subject])
-
-
     const pageDisplay = () => {
         if (page === 0) {
-            return <ToReviewPage
-                candidatesInReview={candidatesInReview}
+            return <ToReviewPage selectedJob={selectedJob} chosenJobUpdate={chosenJobUpdate}
             />
         }
         if (page === 1) {
-            return <ToInterviewPage
-                candidatesInterview={candidatesInterview} />
+            return <ToInterviewPage selectedJob={selectedJob} />
         }
         if (page === 2) {
-            return <SentOffersPage candidatesOfferSent={candidatesOfferSent} />
+            return <SentOffersPage selectedJob={selectedJob} />
         }
         if (page === 3) {
-            return <DeclinedPage candidatesDeclined={candidatesDeclined} />
+            return <DeclinedPage selectedJob={selectedJob} />
         }
     }
 
@@ -165,10 +92,10 @@ function Candidates({ JobFromMyJobs }) {
                     <div className="head-section">
 
                         {jobsByCompanyId && (
-                            <select name="jobs" id="jobs-dropdown" value={JobFromMyJobs ? JobFromMyJobs.id : ""} onChange={(e) => { setSelectedJob(e.target.value) }}>
-                                <option value={JobFromMyJobs ? JobFromMyJobs.id : ""}> {JobFromMyJobs ? JobFromMyJobs.title : "choose a job"}</option>
+                            <select name="jobs" id="jobs-dropdown" value={JobFromMyJobs.length > 0 ? JobFromMyJobs.id : selectedJob} onChange={(e) => { setSelectedJob(e.target.value); setNewChosenJob(true) }}>
+                                <option value={JobFromMyJobs.length > 0 ? JobFromMyJobs.id : ""}> {JobFromMyJobs.length > 0 ? JobFromMyJobs.title : chooseAJob}</option>
                                 {jobsByCompanyId.map(job => (
-                                    <option className='kkkk' key={job?.title} value={job?.id}>{JobFromMyJobs?.title === job.title ? "" : job?.title}</option>
+                                    <option className='kkkk' key={job?.title} value={job?.id}>{job?.title}</option>
                                 ))}
                             </select>
                         )}
