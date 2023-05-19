@@ -14,8 +14,10 @@ import NavbarSignedIn from "../../Components/navbarSignedin/NavbarSignedIn";
 
 function Profile() {
   let { user } = useContext(AuthContext);
-  let { jobseeker, jobSeeker } = useContext(JobSeekerContext);
+  let { jobseeker, jobSeeker} = useContext(JobSeekerContext);
+  let {  getJobSeeker } = useContext(AuthContext);
   const [choices, setChoices] = useState([]);
+  const [editProfile, setEditProfile] = useState(false);
   useEffect(() => {
     jobSeeker();
     jobseeker;
@@ -38,10 +40,49 @@ function Profile() {
   let subject = choices?.subject_choices;
   let qualification = choices?.qualification_choices;
 
+  const [profileData, setProfileData] = useState({
+    email: user.username,
+    phone_number: jobseeker?.phone_number,
+    first_name: user.first_name,
+    professional_summary: jobseeker?.professional_summary,
+    last_name: user.last_name,
+    gender: jobseeker?.gender,
+    university_name: jobseeker?.university_name,
+    role_type: jobseeker?.role_type,
+    year_of_graduation: jobseeker?.year_of_graduation,
+    degree_classification: jobseeker?.degree_classification,
+    industry: jobseeker?.industry,
+    subject_of_study: jobseeker?.subject_of_study,
+    highest_qualification: jobseeker?.highest_qualification,
+  });
+
   const navigate = useNavigate();
   const back = () => {
     navigate("/home");
   };
+  const updateProfile = async (jobseekerId) => {
+    console.log(profileData)
+    console.log(user.id)
+    console.log(jobseeker.user.id)
+    try {
+      let response = await fetch(
+        `http://127.0.0.1:8000/jobseekers/profile/${jobseekerId}/`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(profileData),
+        }
+      ).then((response) => response.json());
+      setEditProfile(false)
+      getJobSeeker(user.id)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   const randomImage = faker.image.city();
   const randomAvatar = faker.image.avatar();
@@ -57,18 +98,6 @@ function Profile() {
 
   const defaultValue = "String";
 
-  // console.log(jobseeker)
-  // console.log(qualificationDefaultValue)
-  // console.log(degreeDefualtValue)
-
-  //     const [select, setSelect] = useState();
-  //     const numbers = ['1', '2', '3'];
-
-  //     const handleClick = (i) => {
-  //     setSelect(i);
-  //   };
-  //   console.log(select)
-  
   return (
     <div>
       {/* <NavbarSignedIn/> */}
@@ -113,16 +142,20 @@ function Profile() {
                   <label htmlFor="first_name">First Name</label>
                   <input
                     type="text"
-                    value={user.first_name}
+                    value={editProfile === false ? user.first_name : profileData.first_name}
                     id="first_name"
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, first_name: e.target.value })}
                   />
                 </div>
                 <div className="profile-input">
                   <label htmlFor="last_name">Last Name</label>
                   <input
                     type="text"
-                    value={user.last_name}
+                    value={editProfile === false ? user.last_name : profileData.last_name}
                     id="last_name"
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, last_name: e.target.value })}
                   />
                 </div>
                 <div className="profile-input">
@@ -130,7 +163,9 @@ function Profile() {
                   <select
                     name=""
                     id="gender"
-                    value={genderDefaultValue}
+                    value={editProfile === false ? genderDefaultValue : profileData.gender}
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, gender: e.target.value })}
                   >
                     {gender?.map((choice) => (
                       <option
@@ -146,16 +181,20 @@ function Profile() {
                   <label htmlFor="email">Email Address</label>
                   <input
                     type="text"
-                    value={user.username}
+                    value={editProfile === false ? user.username : profileData.email}
                     id="email"
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, email: e.target.value })}
                   />
                 </div>
                 <div className="profile-input">
                   <label htmlFor="phone">Phone Number</label>
                   <input
                     type="tel"
-                    value={jobseeker?.phone_number}
-                    id="email"
+                    value={editProfile === false ? jobseeker?.phone_number : profileData.phone_number}
+                    id="phone"
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, phone_number: e.target.value })}
                   />
                 </div>
               </div>
@@ -172,7 +211,9 @@ function Profile() {
                   <select
                     name=""
                     id="role"
-                    value={roleDefualtValue}
+                    disabled={editProfile ? false : true}
+                    value={editProfile === false ? roleDefualtValue : profileData.role_type}
+                    onChange={(e) => setProfileData({ ...profileData, role_type: e.target.value })}
                   >
                     {role?.map((choice) => (
                       <option
@@ -189,7 +230,9 @@ function Profile() {
                   <select
                     name=""
                     id="industry"
-                    value={industryDefaultValue}
+                    value={editProfile === false ? industryDefaultValue : profileData.industry}
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, industry: e.target.value })}
                   >
                     {industry?.map((choice) => (
                       <option
@@ -209,14 +252,16 @@ function Profile() {
                   <select
                     name=""
                     id="university"
-                    value={uniDefaultValue}
+                    value={editProfile === false ? uniDefaultValue : profileData.university_name}
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, university_name: e.target.value })}
                   >
                     {uni?.map((choice) => (
                       <option
                         key={choice[0]}
                         value={choice[0]}
                       >
-                        {choice[1]}
+                        {choice[0]}
                       </option>
                     ))}
                   </select>
@@ -226,7 +271,9 @@ function Profile() {
                   <select
                     name=""
                     id="course"
-                    value={courseDefaultValue}
+                    value={editProfile === false ? courseDefaultValue : profileData.subject_of_study}
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, subject_of_study: e.target.value })}
                   >
                     {subject?.map((choice) => (
                       <option
@@ -243,7 +290,9 @@ function Profile() {
                   <select
                     name=""
                     id="qualification"
-                    value={qualificationDefaultValue}
+                    value={editProfile === false ? qualificationDefaultValue : profileData.highest_qualification}
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, highest_qualification: e.target.value })}
                   >
                     {qualification?.map((choice) => (
                       <option
@@ -260,7 +309,9 @@ function Profile() {
                   <select
                     name=""
                     id="degree"
-                    value={degreeDefualtValue}
+                    value={editProfile === false ? degreeDefualtValue : profileData.degree_classification}
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, degree_classification: e.target.value })}
                   >
                     {degree?.map((choice) => (
                       <option
@@ -277,7 +328,9 @@ function Profile() {
                   <select
                     name=""
                     id="year"
-                    value={yearDefaultValue}
+                    value={editProfile === false ? yearDefaultValue : profileData.year_of_graduation}
+                    disabled={editProfile ? false : true}
+                    onChange={(e) => setProfileData({ ...profileData, year_of_graduation: e.target.value })}
                   >
                     {year?.map((choice) => (
                       <option
@@ -357,24 +410,21 @@ function Profile() {
             </div>
           </div>
           <div className="profile-button">
-            <button type="submit">Save Changes</button>
-            <button
-              type="button"
-              className="cancelbtn"
-            >
-              Cancel
-            </button>
+            {editProfile === false ? (
+              <button type="button" onClick = {() => {setEditProfile(true)}}>Edit</button>
+            ) : (
+              <div className="subcan">
+                <button type="button" onClick = {() => {updateProfile(jobseeker?.id)}}>Save Changes</button>
+                <button
+                  type="button"
+                  className="cancelbutton"
+                  onClick = {() => {setEditProfile(false)}}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
           </div>
-          {/* <ul>
-      {numbers.map((item, index) => (
-        <h1
-          key={index}
-          onClick={() => handleClick(index)}
-          className={index === select ? 'selected' : ''}>
-          {index}
-        </h1>
-      ))}
-    </ul> */}
         </div>
       </div>
     </div>
