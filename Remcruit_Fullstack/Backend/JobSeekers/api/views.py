@@ -9,20 +9,35 @@ from django.contrib.auth.decorators import login_required
 from .serializers import *
 from Employers.models import *
 from Employers.api.serializers import *
-import json 
+import json
+import requests
+
+
+class Universities(APIView):
+    def get(self, request):
+        url = "https://nigeria-universites.p.rapidapi.com/universities/"
+        headers = {
+            "X-RapidAPI-Key": "00c812a1e7msh10302a3d8f4c5b7p1b8ebajsn4f3c072e3bf5",
+            "X-RapidAPI-Host": "nigeria-universites.p.rapidapi.com"
+        }
+        response = requests.get(url, headers=headers)
+        print(response.json())
+        return response
 
 
 class AllJobSeekers(APIView):
     serializer_class = JobSeekerSerializer
+
     def get(self, request):
         if request.method == 'GET':
             jobSeekers = JobSeeker.objects.all()
             serializer = JobSeekerSerializer(jobSeekers, many=True)
             return Response(serializer.data)
-        
-class JobSeekerView(APIView):
+
+
+class JobSeekerView(generics.GenericAPIView):
     serializer_class = JobSeekerSerializer
-    
+
     def get(self, request, id):
         if request.method == "GET":
             if id:
@@ -33,28 +48,27 @@ class JobSeekerView(APIView):
                 else:
                     messages.error(request, "This jobseeker does not exist")
                     return Response(status=status.HTTP_404_NOT_FOUND)
-    
-    def put(self, request, id): 
+
+    def put(self, request, id):
         jobseeker = JobSeeker.objects.get(id=id)
-        data = {}
         if jobseeker:
-            serializer = JobSeekerSerializer(jobseeker, data=request.data, partial=True)
+            serializer = JobSeekerSerializer(
+                jobseeker, data=request.data, partial=True)
             if serializer.is_valid():
                 serializer.save()
-                data['response'] = "Edit Successful"
-                return Response(data, serializer.data)
+                return Response(serializer.data)
             else:
                 return Response(serializer.error_messages)
         else:
             messages.error(request, "This jobseeker does not exist")
             return Response(status=status.HTTP_404_NOT_FOUND)
-    
+
     def delete(self, request, id):
         jobseeker = get_object_or_404(JobSeeker, id=id)
         data = {}
         if jobseeker:
             jobseeker.delete()
-            data['response'] = "Jobseeker Deleted"             
+            data['response'] = "Jobseeker Deleted"
             return Response(data, status=status.HTTP_200_OK)
         else:
             data['response'] = "Please confirm your email address to complete the registration"
@@ -63,12 +77,14 @@ class JobSeekerView(APIView):
 
 class AllJobApplications(generics.GenericAPIView):
     serializer_class = JobApplicationSerializer
+
     def get(self, request):
         if request.method == 'GET':
             job_application = JobApplication.objects.all()
             serializer = JobApplicationSerializer(job_application, many=True)
             return Response(serializer.data)
-        
+
+
 class getJobSeekerByUserId(APIView):
     serializer_class = JobSeekerSerializer
 
@@ -84,14 +100,16 @@ class getJobSeekerByUserId(APIView):
                 else:
                     return Response(status=status.HTTP_404_NOT_FOUND)
 
-       
+
 class jobApp(generics.GenericAPIView):
-      serializer_class = JobApplicationSerializer
-      def post (self, request, id):
+    serializer_class = JobApplicationSerializer
+
+    def post(self, request, id):
         if request.method == 'POST':
             job = Job.objects.get(id=id)
             data = request.data
-            serializer = self.serializer_class(data=data, context={'request': request})
+            serializer = self.serializer_class(
+                data=data, context={'request': request})
             # print(request.data)
             message = {}
             if serializer.is_valid():
@@ -110,6 +128,7 @@ class jobApp(generics.GenericAPIView):
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class JobApplicationView(generics.GenericAPIView):
     serializer_class = JobApplicationSerializer
 
@@ -124,18 +143,19 @@ class JobApplicationView(generics.GenericAPIView):
                     return Response(serializer.data)
                 else:
                     return Response(status=status.HTTP_404_NOT_FOUND)
-    
+
     def delete(self, request, id):
         job_application = get_object_or_404(JobApplication, id=id)
         data = {}
         if job_application:
             job_application.delete()
-            data['response'] = "Job Application Deleted"             
+            data['response'] = "Job Application Deleted"
             return Response(data, status=status.HTTP_200_OK)
         else:
             data['response'] = "Unable to delete Job Application"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
-        
+
+
 class GetJobApplicationByStatus(APIView):
     serializer_class = JobApplicationSerializer
 
@@ -143,7 +163,8 @@ class GetJobApplicationByStatus(APIView):
         if request.method == "GET":
             message = {}
             if status:
-                application = JobApplication.objects.filter(status=applicationStatus)
+                application = JobApplication.objects.filter(
+                    status=applicationStatus)
                 serializer = JobApplicationSerializer(application, many=True)
                 if application:
                     message['response'] = "Application found"
@@ -151,8 +172,7 @@ class GetJobApplicationByStatus(APIView):
                 else:
                     message['response'] = "No Application with status Found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
- 
-        
+
 
 class GetApplicationByJobSeekerId(APIView):
     serializer_class = JobApplicationSerializer
@@ -161,7 +181,8 @@ class GetApplicationByJobSeekerId(APIView):
         if request.method == "GET":
             message = {}
             if job_seeker_id:
-                application = JobApplication.objects.filter(job_seeker=job_seeker_id)
+                application = JobApplication.objects.filter(
+                    job_seeker=job_seeker_id)
                 serializer = JobApplicationSerializer(application, many=True)
                 if application:
                     message['response'] = "Application found"
@@ -169,7 +190,8 @@ class GetApplicationByJobSeekerId(APIView):
                 else:
                     message['response'] = "No Application with Jobseeker Found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
-                
+
+
 class GetApplicationByJobId(APIView):
     serializer_class = JobApplicationSerializer
 
@@ -231,8 +253,7 @@ class SavedJobsView(APIView):
                 else:
                     messages.error(request, "This job does not exist")
                     return Response(status=status.HTTP_404_NOT_FOUND)
-    
-   
+
 
 class GetSavedJobsByJobSeeker(APIView):
     serializer_class = SavedJobSerializer
@@ -249,25 +270,26 @@ class GetSavedJobsByJobSeeker(APIView):
                 else:
                     message['response'] = "No Saved Jobs with Jobseeker Found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
-    
-    
+
+
 class DeleteSavedJobByJobSeeker(APIView):
     serializers = SavedJobSerializer
 
     def delete(self, request, job_seeker_id, id):
-        saved = get_object_or_404(SavedJob, job_seeker = job_seeker_id, id=id)
+        saved = get_object_or_404(SavedJob, job_seeker=job_seeker_id, id=id)
         data = {}
         if saved:
             saved.delete()
-            data['response'] = "Saved Job Deleted"           
+            data['response'] = "Saved Job Deleted"
             return Response(data, status=status.HTTP_200_OK)
         else:
             data['response'] = "Saved Job Could Not be Deleted"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
 
+
 class ArchivedJobsView(APIView):
     serializer_class = ArchivedJobSerializer
-    
+
     def get(self, request, id):
         if request.method == "GET":
             if id:
@@ -278,7 +300,7 @@ class ArchivedJobsView(APIView):
                 else:
                     messages.error(request, "This job does not exist")
                     return Response(status=status.HTTP_404_NOT_FOUND)
-    
+
 
 class GetArchivedJobsByJobSeeker(APIView):
     serializer_class = ArchivedJobSerializer
@@ -295,41 +317,45 @@ class GetArchivedJobsByJobSeeker(APIView):
                 else:
                     message['response'] = "No Archived Jobs with Jobseeker Found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
-        
+
+
 class DeleteArchivedJobByJobSeeker(APIView):
     serializers = ArchivedJobSerializer
 
     def delete(self, request, job_seeker_id, id):
-        archived = get_object_or_404(ArchivedJob, job_seeker = job_seeker_id, id=id)
+        archived = get_object_or_404(
+            ArchivedJob, job_seeker=job_seeker_id, id=id)
         data = {}
         if archived:
             archived.delete()
-            data['response'] = "Archived Job Deleted"           
+            data['response'] = "Archived Job Deleted"
             return Response(data, status=status.HTTP_200_OK)
         else:
             data['response'] = "Archived Job Could Not be Deleted"
             return Response(data, status=status.HTTP_204_NO_CONTENT)
 
+
 def get_choices(request):
-    university_choices = JobSeeker.UNIVERSITY_CHOICES
+    university_choices = UniversityName.choices
     degree_choices = DegreeClassification.choices
     year_choices = JobSeeker.YEAR_OF_GRADUATION_CHOICES
     gender_choices = Gender.choices
     role_choices = JobType.choices
-    industry_choices = JobSeeker.INDUSTRY_SECTORS
-    subject_choices= JobSeeker.SUBJECT_OF_STUDY_CHOICES
-    qualification_choices= JobSeeker.HIGHEST_QUALIFICATION_CHOICES
+    industry_choices = Industry.choices
+    subject_choices = JobSeeker.SUBJECT_OF_STUDY_CHOICES
+    qualification_choices = JobSeeker.HIGHEST_QUALIFICATION_CHOICES
     context = {
         "university_choices": university_choices,
-        "year_choices":year_choices,
-        'degree_choices':degree_choices,
+        "year_choices": year_choices,
+        'degree_choices': degree_choices,
         'gender_choices':  gender_choices,
         'role_choices': role_choices,
-        'industry_choices':industry_choices,
+        'industry_choices': industry_choices,
         'subject_choices': subject_choices,
-        'qualification_choices':qualification_choices
+        'qualification_choices': qualification_choices
     }
     return JsonResponse(context, safe=False)
+
 
 class SearchJobs(generics.ListCreateAPIView):
     serializer_class = ViewJobSerializer

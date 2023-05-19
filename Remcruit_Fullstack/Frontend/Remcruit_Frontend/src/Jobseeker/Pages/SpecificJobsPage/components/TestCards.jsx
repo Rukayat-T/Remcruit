@@ -73,6 +73,14 @@ function TestCards({ job, getDisplayedJob, GetClickedJob}) {
       return "Remote";
     }
   };
+
+  const getDaysAgo = (date) => {
+    const postDate = new Date(date);
+    const currentDate = new Date();
+    const timeDifference = currentDate.getTime() - postDate.getTime();
+    const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
+    return daysDifference;
+  };
   
   const [showMore, setShowMore] = useState(false);
   const description = job?.description;
@@ -126,8 +134,9 @@ function TestCards({ job, getDisplayedJob, GetClickedJob}) {
           <div className="horizontal-line"></div>
           <div className="jobs-card-footer">
             <p>
-              Posted 2 days ago • From <span>{job?.location}</span>{" "}
+              Posted {getDaysAgo(job?.created_at)} days ago • From <span>{job?.location}</span>{" "}
             </p>
+            <p></p>
           </div>
         </div>
       </div>
