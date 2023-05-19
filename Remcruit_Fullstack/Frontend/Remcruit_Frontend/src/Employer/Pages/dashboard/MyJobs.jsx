@@ -5,10 +5,8 @@ import LoadingSpinner from '../../../components/loading/LoadingSpinner'
 
 function MyJobs({ getJobFromMyJobs, goToCandidatesPage }) {
 
-
-
-
-    let { company } = useContext(AuthContext)
+    let { company, jobsByCompany } = useContext(AuthContext)
+    //console.log(jobsByCompany)
     const [jobsByCompanyId, setJobsByCompanyId] = useState([])
     const [candidatesCount, setCandidatesCount] = useState([])
     const [isLoadingCandidates, setIsLoadingCanididates] = useState(true)
@@ -16,12 +14,28 @@ function MyJobs({ getJobFromMyJobs, goToCandidatesPage }) {
 
     getJobFromMyJobs(choosenJob)
 
+    const getJobsByCompanyId = async (id) => {
+        try {
+            // setIsLoading(true)
+            const response = await fetch(
+                `http://127.0.0.1:8000/employer/getJobByCompanyId/${id}/`
+            )
+                .then((response) => response.json());
+            // console.log(response)
+            // setIsLoading(false)
+            setJobsByCompanyId(response)
+        }
+        catch (error) {
+            // setIsLoading(true)
+            console.log(error)
+        }
+    }
+
     const getcandidatesCountByCompanyId = async (id) => {
         try {
             setIsLoadingCanididates(true)
             const response = await fetch(
                 `http://0.0.0.0:8000/employer/JobsCount/${id}`
-
             )
                 .then((response) => response.json());
             //console.log(response)
@@ -42,29 +56,13 @@ function MyJobs({ getJobFromMyJobs, goToCandidatesPage }) {
         else {
             return (<p>{count}</p>)
         }
-
-    }
-
-    const getJobsByCompanyId = async (id) => {
-        try {
-            // setIsLoading(true)
-            const response = await fetch(
-                `http://0.0.0.0:8000/employer/getJobByCompanyId/${id}/`
-            )
-                .then((response) => response.json());
-            // console.log(response)
-            // setIsLoading(false)
-            setJobsByCompanyId(response)
-        }
-        catch (error) {
-            // setIsLoading(true)
-            console.log(error)
-        }
     }
 
     useEffect(() => {
-        getJobsByCompanyId(company?.id)
         getcandidatesCountByCompanyId(company?.id)
+
+        getJobsByCompanyId(company?.id)
+
     }, [company?.id])
 
     return (
@@ -89,12 +87,12 @@ function MyJobs({ getJobFromMyJobs, goToCandidatesPage }) {
                             <th>Job Type</th>
                             <th>Location</th>
                         </tr>
-                        {jobsByCompanyId.length > 0 && (
+                        {jobsByCompanyId?.length > 0 && (
 
                             jobsByCompanyId?.map((job, index) => (
 
-                                <tr key={job.id} >
-                                    <td onClick={() => { setChoosenJob(job); setTimeout(() => { goToCandidatesPage(5) }, 1000); }}>{job?.title}</td>
+                                <tr key={job.id} onClick={() => { setChoosenJob(job); setTimeout(() => { goToCandidatesPage(5) }, 300); }} className='jobRow'>
+                                    <td>{job?.title}</td>
                                     <td>{ReturnCount(index)}</td>
                                     <td>{job?.open_spots}</td>
                                     <td>{job?.created_at}</td>

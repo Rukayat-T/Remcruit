@@ -25,3 +25,7 @@ table{
     padding: 10px;
     border-bottom: 1px solid #C9C9C9;
 }
+
+.jobRow{
+    cursor: pointer;
+}

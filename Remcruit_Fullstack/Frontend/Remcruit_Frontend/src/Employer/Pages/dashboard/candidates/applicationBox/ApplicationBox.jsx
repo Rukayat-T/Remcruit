@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './applicationBox.css'
 import { useNavigate } from 'react-router'
 
-function ApplicationBox({ chosenCandidate, applicationStatus }) {
+function ApplicationBox({ chosenCandidate, applicationStatus, setNewStatusInt, setNewStatus }) {
 
     const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ function ApplicationBox({ chosenCandidate, applicationStatus }) {
                     body: JSON.stringify(statusdata),
                 }).then((response) => response.json());
             console.log(response)
-            navigate("/dashboard")
+            // navigate()
         } catch (error) {
             console.log(error)
         }
@@ -37,10 +37,11 @@ function ApplicationBox({ chosenCandidate, applicationStatus }) {
                 <div className="buttonsSection">
                     <button onClick={() => {
                         updateStatusToInterview(chosenCandidate?.id, "Declined");
+                        setNewStatus(true);
                     }}>Decline</button>
-
                     <button onClick={() => {
                         updateStatusToInterview(chosenCandidate?.id, "Interview");
+                        setNewStatus(true);
                     }}>Interview</button>
                 </div>
             )
@@ -49,13 +50,15 @@ function ApplicationBox({ chosenCandidate, applicationStatus }) {
             return (
                 <div className="buttonsSection">
                     <button onClick={() => {
-                        // updateStatusToInterview(chosenCandidate?.id, "Declined");
-                        updateStatusToInterview(chosenCandidate?.id, "In Review");
+                        updateStatusToInterview(chosenCandidate?.id, "Declined");
+                        //updateStatusToInterview(chosenCandidate?.id, "In Review");
+                        setNewStatusInt(true);
                         console.log("you clicked declined!")
                     }}>Decline</button>
 
                     <button onClick={() => {
                         updateStatusToInterview(chosenCandidate?.id, "Send Offer");
+                        setNewStatusInt(true);
                     }}>Send Offer</button>
                 </div>
             )
