@@ -24,24 +24,7 @@ function JobBox({ job }) {
 
 //    const [isBookmarked, setIsBookmarked] = useState(false);
 
-   useEffect(() => {
-    checkIfJobIsSaved();
-  }, []);
-
-  const checkIfJobIsSaved = async () => {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/jobseekers/{job_seeker_id}/savedjobs");
-      if (response.ok) {
-        const savedJobs = await response.json();
-        setBookmark(savedJobs.includes(job.jobId));
-      } else {
-        console.error('Error checking bookmark status:', response.status);
-      }
-    } catch (error) {
-      console.error('Error checking bookmark status:', error);
-    }
-    console.log("jobhasbeensavbefore")
-  };
+   
 
     const savingJob = async (jobId, jobSeekerId) => {
         try {
