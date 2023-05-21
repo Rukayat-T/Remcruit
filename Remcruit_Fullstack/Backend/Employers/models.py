@@ -33,7 +33,7 @@ class Employer(models.Model):
     employees = models.IntegerField()
     recruitment_agency = models.BooleanField(max_length=200, default=False,null=True, blank=True)
     industry = models.CharField(max_length=225)
-    company_logo = models.ImageField(upload_to='images/',null=True, blank=True)
+    company_logo = models.ImageField(null=True, blank=True)
     terms_and_conditions = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

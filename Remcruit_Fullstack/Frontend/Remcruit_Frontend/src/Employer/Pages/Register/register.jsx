@@ -17,6 +17,12 @@ function EmployerRegister() {
     navigate(-1);
   }
 
+  const [company_logo, setCompany_logo] = useState([])
+
+  const setLogo = (image) => {
+    setCompany_logo(image)
+  }
+
   const [page, setPage] = useState(0)
 
   const nextPage = () => {
@@ -61,13 +67,10 @@ function EmployerRegister() {
     website: "",
     employees: 0,
     terms_and_conditions: "",
-    phone_number: 0
-    // country: "",
-    // street: "",
-    // city: "",
-    // state: "",
-    // postcode: "",
+    phone_number: 0,
+    company_logo: company_logo[0]
   })
+  console.log(formData)
 
   useEffect(() => {
     const nextBtn = document.getElementById('next')
@@ -90,21 +93,37 @@ function EmployerRegister() {
       return <YourOrganisationTab formData={formData} setFormData={setFormData} />
     }
     else {
-      return <LogoAndTermsTab formData={formData} setFormData={setFormData} />
+      return <LogoAndTermsTab formData={formData} setFormData={setFormData} setLogo={setLogo} />
     }
   }
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      var data = new FormData();
+      data.append("company_logo", company_logo[0]);
+      data.append("email", formData.email)
+      data.append("first_name", formData.first_name)
+      data.append("last_name", formData.last_name)
+      data.append("password", formData.password)
+      data.append("password2", formData.password2)
+      data.append("title", formData.title)
+      data.append("gender", formData.gender)
+      data.append("job_title", formData.job_title)
+      data.append("organisation_name", formData.organisation_name)
+      data.append("office_address", formData.office_address)
+      data.append("organisation_description", formData.organisation_description)
+      data.append("recruitment_agency", formData.recruitment_agency)
+      data.append("industry", formData.industry)
+      data.append("website", formData.website)
+      data.append("employees", formData.employees)
+      data.append("terms_and_conditions", formData.terms_and_conditions)
+      data.append("phone_number", formData.phone_number)
+
       let res = await fetch("http://127.0.0.1:8000/authentication/register/employer/",
-      // let res = await fetch("http://0.0.0.0:8000/authentication/register/employer/",
+        // let res = await fetch("http://0.0.0.0:8000/authentication/register/employer/",
         {
           method: "POST",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData),
+          body: form,
         });
       let resJson = await res.json();
       if (res.status === 201) {

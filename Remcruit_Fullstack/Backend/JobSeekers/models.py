@@ -163,7 +163,7 @@ class JobSeeker(models.Model):
 class ApplicantCredential(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='job_seeker')
     credential_name = models.CharField(max_length=30) 
-    credential = models.FileField(upload_to='credentials/',  blank=True, null=True)
+    credential = models.FileField(blank=True, null=True)
 
     def __str__(self):
         return self.credential_name

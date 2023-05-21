@@ -4,7 +4,7 @@ import GloLogo from "../static/Frame.png";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function TestCards({ job, getDisplayedJob, GetClickedJob}) {
+function TestCards({ job, getDisplayedJob, GetClickedJob }) {
   const [jobClicked, setBoxClicked] = useState();
 
   const handleJobClick = (clickedjob) => {
@@ -28,7 +28,7 @@ function TestCards({ job, getDisplayedJob, GetClickedJob}) {
     const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
     return daysDifference;
   };
-  
+
   const [showMore, setShowMore] = useState(false);
   const description = job?.description;
 
@@ -44,7 +44,7 @@ function TestCards({ job, getDisplayedJob, GetClickedJob}) {
           <div className="jobs-card-header">
             <div className="card-logo">
               <img
-                src={GloLogo}
+                src={job?.company?.company_logo}
                 alt=""
               />
             </div>

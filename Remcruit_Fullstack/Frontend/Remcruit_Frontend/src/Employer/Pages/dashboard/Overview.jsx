@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './overviewStyles.css'
+
+import ImageUpload from '../../components/imageUpload/imageUpload';
 
 function Overview() {
   return (
-    <div>Overview</div>
+    <>Overview</>
   )
 }
 
