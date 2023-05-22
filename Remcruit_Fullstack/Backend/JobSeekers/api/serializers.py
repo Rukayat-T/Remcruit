@@ -28,5 +28,11 @@ class ArchivedJobSerializer(serializers.ModelSerializer):
         model = ArchivedJob
         fields = '__all__'
 
+class ViewSavedJobsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SavedJob
+        fields = '__all__'
+        depth = 2
+
 
   

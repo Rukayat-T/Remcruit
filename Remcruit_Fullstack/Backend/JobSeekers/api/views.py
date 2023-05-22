@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework import status, filters, generics, viewsets, parsers
+from rest_framework import status, filters, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import JsonResponse
@@ -228,7 +228,7 @@ class saveAJob(generics.GenericAPIView):
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SavedJobsView(APIView):
-#     serializer_class = SavedJobSerializer
+    serializer_class = ViewSavedJobsSerializer
     
 #     def post (self, request, id):
 #         if request.method == 'POST':
@@ -247,7 +247,7 @@ class SavedJobsView(APIView):
         if request.method == "GET":
             if id:
                 saved = SavedJob.objects.get(id=id)
-                serializer = SavedJobSerializer(saved)
+                serializer = ViewSavedJobsSerializer(saved)
                 if saved:
                     return Response(serializer.data)
                 else:
@@ -256,14 +256,14 @@ class SavedJobsView(APIView):
 
 
 class GetSavedJobsByJobSeeker(APIView):
-    serializer_class = SavedJobSerializer
+    serializer_class = ViewSavedJobsSerializer
 
     def get(self, request, job_seeker_id):
         if request.method == "GET":
             message = {}
             if job_seeker_id:
                 saved = SavedJob.objects.filter(job_seeker=job_seeker_id)
-                serializer = SavedJobSerializer(saved, many=True)
+                serializer = ViewSavedJobsSerializer(saved, many=True)
                 if saved:
                     message['response'] = "Saved Job(s) found"
                     return Response(serializer.data, status=status.HTTP_200_OK)
