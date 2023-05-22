@@ -143,9 +143,7 @@ function MyCompany() {
                                     :
                                     <div></div>}
 
-
                             </div>
-                            {/* <p> <FontAwesomeIcon icon={faImage} /> Change Your Logo</p> */}
                         </div>
                         <div className="half2">
                             <div className="col-title">
