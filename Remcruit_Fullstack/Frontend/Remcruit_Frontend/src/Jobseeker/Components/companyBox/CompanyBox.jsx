@@ -4,12 +4,17 @@ import AuthContext from '../../../context/AuthContext'
 
 function CompanyBox({ company }) {
     console.log(company)
+    const companyLogo = company?.company_logo
     const description = company?.organisation_description
     return (
         <>
             <div id='cBox'>
                 <div className="company-header-section">
-                    <div className="companylogo"></div>
+                    <div className="companylogo">
+                        {
+                            companyLogo != null ? <img src={company?.company_logo} alt="" /> : <div className="noLogo"></div>
+                        }
+                    </div>
                     <div className="company-name">{company?.organisation_name}</div>
 
                 </div>

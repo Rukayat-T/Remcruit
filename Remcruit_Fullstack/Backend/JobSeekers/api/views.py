@@ -102,7 +102,8 @@ class getJobSeekerByUserId(APIView):
 
 
 class jobApp(generics.GenericAPIView):
-    serializer_class = JobApplicationSerializer
+    serializer_class = CreateJobApplicationSerializer 
+    # serializer_class = JobApplicationSerializer 
 
     def post(self, request, id):
         if request.method == 'POST':
@@ -110,19 +111,9 @@ class jobApp(generics.GenericAPIView):
             data = request.data
             serializer = self.serializer_class(
                 data=data, context={'request': request})
-            # print(request.data)
             message = {}
             if serializer.is_valid():
                 jobApplication = serializer.save()
-                # print(serializer.save())
-                # applicantData = {
-                #     "job_application": jobApplication,
-                #     "status": "In Review"
-                # }
-                # applicant = ApplicantSerializer(data=applicantData, context={'request': request})
-                # print(applicant)
-                # # if applicant.is_valid():
-                # #     Applicant = applicant.save()
                 message['response'] = "Job application created"
                 return Response(message, status=status.HTTP_201_CREATED)
             else:

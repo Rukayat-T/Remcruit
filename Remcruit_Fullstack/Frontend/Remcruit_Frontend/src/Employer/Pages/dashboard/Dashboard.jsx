@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "./dashboardStyles.css"
 import NavbarSignedIn from '../navigationSignedIn/navbarHome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -18,6 +18,10 @@ function Dashboard() {
     const [page, setPage] = useState(0)
 
     const [JobFromMyJobs, setJobFromMyJobs] = useState([])
+
+    const screenWidth = useRef(window.innerWidth)
+
+    // console.log(screenWidth)
 
     const getJobFromMyJobs = (aJob) => {
         setJobFromMyJobs(aJob)
@@ -172,8 +176,12 @@ function Dashboard() {
         if (isNavExpanded) { // it is expanded
             return <FullSideNav />
         }
+        else if (screenWidth < 401) {
+            return <CollapsedSideNav />
+        }
         else {
             return <CollapsedSideNav />
+
         }
     }
 

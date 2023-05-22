@@ -6,14 +6,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faImage } from '@fortawesome/free-solid-svg-icons'
 import AuthContext from '../../../context/AuthContext'
 import { useNavigate } from 'react-router'
+import { useDropzone } from 'react-dropzone'
 
 
 function MyCompany() {
     let navigate = useNavigate()
     let { company, getEmployerCompany } = useContext(AuthContext)
 
+    const [image, setImage] = useState([])
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        acceptedFiles: 'image/*',
+        onDrop: (acceptedFiles) => {
+            setImage(
+                acceptedFiles.map((upFile) => Object.assign(upFile, {
+                    preview: URL.createObjectURL(upFile)
+                }))
+            );
+        }
+    })
+
 
     const [profileData, setProfileData] = useState({
+        company_logo: company?.company_logo,
         gender: company?.gender,
         organisation_name: company?.organisation_name,
         office_address: company?.office_address,
@@ -32,14 +47,20 @@ function MyCompany() {
     const updateEmployerInformation = async (companyId) => {
 
         try {
+            var data = new FormData();
+            data.append("company_logo", image[0]);
+
+            data.append("gender", profileData.gender)
+            data.append("organisation_name", profileData.organisation_name)
+            data.append("office_address", profileData.office_address)
+            data.append("organisation_description", profileData.organisation_description)
+            data.append("industry", profileData.industry)
+            data.append("phone_number", profileData.phone_number)
+            console.log(data)
             let response = await fetch(`http://0.0.0.0:8000/employer/Employer/${companyId}/`,
                 {
                     method: "PUT",
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(profileData),
+                    body: data,
                 }).then((response) => response.json());
             console.log(response)
             setIsEdit(false)
@@ -99,8 +120,30 @@ function MyCompany() {
                     <div className="col-body">
 
                         <div className="half1">
-                            <div className="company-logo"></div>
-                            <p> <FontAwesomeIcon icon={faImage} /> Change Your Logo</p>
+                            <div className="company-logo">
+                                {isedit ? <div className=""></div> : <img src={company?.company_logo} alt="" />}
+
+                            </div>
+                            <div className="image-container">
+                                {isedit ?
+                                    <><div {...getRootProps()} disabled={isedit ? false : true}>
+                                        <input {...getInputProps()} />
+                                        {
+                                            isDragActive ? <p>drag and drop your image here..</p> : <p>drag and drop  <br />or <br /> click to upload</p>
+                                        }
+                                    </div>
+                                        <div>
+                                            {image.map((upFile) => {
+                                                return (
+                                                    <img src={upFile.preview} alt="preview" className='image-preview' />
+                                                )
+                                            })}
+                                        </div>
+                                    </>
+                                    :
+                                    <div></div>}
+
+                            </div>
                         </div>
                         <div className="half2">
                             <div className="col-title">

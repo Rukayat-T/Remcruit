@@ -11,6 +11,8 @@ function JobBox({ job }) {
     const [bookmark, setBookmark] = useState("false")
     const navigate = useNavigate()
 
+    const companyLogo = job?.company?.company_logo
+
     const toggleBookmark = () => {
         if (bookmark === "false") {
             setBookmark("true")
@@ -29,12 +31,16 @@ function JobBox({ job }) {
         const timeDifference = currentDate.getTime() - postDate.getTime();
         const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
         return daysDifference;
-      };
+    };
     return (
         <div className='boxContainer'>
             <div className="boxHeaderSection">
                 <div className="companyinformation">
-                    <div className="companyLogo">Logo</div>
+                    <div className="companyLogo">
+                        {
+                            companyLogo != null ? <img src={job?.company?.company_logo} alt="" /> : <div className="noCLogo"></div>
+                        }
+                    </div>
                     <div className="company">
                         <div className="jobTitle">{job?.title}</div>
                         <div className="companyName">{job?.company?.organisation_name}</div>
