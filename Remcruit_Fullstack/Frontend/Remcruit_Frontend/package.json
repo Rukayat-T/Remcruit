@@ -25,7 +25,8 @@
     "react-phone-number-input": "^3.2.19",
     "react-responsive": "^9.0.2",
     "react-router": "^6.10.0",
-    "react-router-dom": "^6.10.0"
+    "react-router-dom": "^6.10.0",
+    "react-world-flags": "^1.5.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
