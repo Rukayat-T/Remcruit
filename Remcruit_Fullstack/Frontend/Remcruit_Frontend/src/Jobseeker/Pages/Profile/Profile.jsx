@@ -31,6 +31,7 @@ function Profile() {
       .then((data) => setChoices(data))
       .catch((error) => console.log(error));
   }, []);
+
   let uni = choices?.university_choices;
   let year = choices?.year_choices;
   let degree = choices?.degree_choices;
@@ -61,9 +62,6 @@ function Profile() {
     navigate("/home");
   };
   const updateProfile = async (jobseekerId) => {
-    console.log(profileData)
-    console.log(user.id)
-    console.log(jobseeker.user.id)
     try {
       let response = await fetch(
         `http://127.0.0.1:8000/jobseekers/profile/${jobseekerId}/`,
