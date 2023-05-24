@@ -121,7 +121,7 @@ function HomePage() {
                         value={searchValue}
                         onChange={(e) => { setsearchValue(e.target.value) }} />{Buttons()}
                 </div>
-                <div className="spotlightSectionContainer">
+                {/* <div className="spotlightSectionContainer">
                     <p>Spotlight</p>
                     <div className="companies-container">
                         {companies.length > 0 && (
@@ -132,7 +132,7 @@ function HomePage() {
                             </div>
                         )}
                     </div>
-                </div>
+                </div> */}
                 <div className="actualContent">
                     <div className="filterContainer">
                         <Filter />
@@ -149,7 +149,7 @@ function HomePage() {
                     </div>
                 </div>
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </div>
     )
 }

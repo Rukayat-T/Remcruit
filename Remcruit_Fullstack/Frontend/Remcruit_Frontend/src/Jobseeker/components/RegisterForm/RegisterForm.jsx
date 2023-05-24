@@ -3,8 +3,9 @@ import React from 'react'
 
 import './RegisterForm.css'
   
-import 'react-phone-number-input/style.css'
+// import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
+import PhoneNumberInput from './PhoneNumberInput'
 
 
 
@@ -13,6 +14,7 @@ import PhoneInput from 'react-phone-number-input'
     const checkboxHandler = (e) => {
         setFormData({ ...formData, terms_and_conditions: "True" })
     }
+    
     
   
       return (
@@ -80,7 +82,9 @@ import PhoneInput from 'react-phone-number-input'
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder='Email' />
                   </div>
+                  
                   <div className="phoneNo">
+                  
                   <label>Phone number*</label>
                       <input
                           type="tel"
@@ -110,6 +114,7 @@ import PhoneInput from 'react-phone-number-input'
                           placeholder=' Confirm Password' />
                   </div>
               </div>
+              <PhoneNumberInput />
 
               <div className="terms-And-Conditions">
                

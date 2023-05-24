@@ -26,9 +26,9 @@ function ContactUs() {
 
   return (
     <div>
-         <img src={Logo} alt="" srcset="" className='empLogo' />
         <div className="contactus-main-container">
         <div className="leftinfo">
+        <img src={Logo} alt="" srcset="" className='empLogo' />
             <div className="chatus">
 
             <FontAwesomeIcon icon={faComments} className='commentbubble'  />
@@ -60,6 +60,7 @@ function ContactUs() {
 
         <div className="blacbox">
       <h1>How can we help?</h1>
+      <p>You can reach us via <span>contactus@remcruit.com</span>  </p>
       <form onSubmit={handleSubmit}>
         <div className="username">
         <label>
@@ -69,6 +70,7 @@ function ContactUs() {
             name="name"
             value={userInput.name}
             onChange={handleInputChange}
+            placeholder='Your Name'
           />
         </label>
         </div>
@@ -80,16 +82,18 @@ function ContactUs() {
             name="email"
             value={userInput.email}
             onChange={handleInputChange}
+            placeholder='you@example.com'
           />
         </label>
         </div>
         <div className="message">
         <label>
-          Message
+          How can we help ?
           <textarea
             name="message"
             value={userInput.message}
             onChange={handleInputChange}
+            placeholder='Write your message here'
           />
         </label>
         </div>

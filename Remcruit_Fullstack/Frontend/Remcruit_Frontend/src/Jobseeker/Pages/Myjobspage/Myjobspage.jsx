@@ -8,12 +8,11 @@ import CompanyBox from '../../Components/companyBox/companyBox'
 import AuthContext from '../../../context/AuthContext'
 import JobSeekerContext from '../../../context/JobSeekerContext'
 import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn';
-import TestCards from '../SpecificJobsPage/components/TestCards';
-import JobBox from '../../Components/jobBoxComponent/jobBox';
 import Toappliedjobs from './Toappliedjobs/Toappliedjobs';
 import Toarchivejobs from './Toarchivejobs/Toarchivejobs';
 import Tointerview from './ToInterview/Tointerview';
 import './Myjob.css';
+import Footer from '../../../components/Footer/Footer';
 
 function Myjobspage({ job_seeker_id,  }) {
   const { user } = useContext(AuthContext);
@@ -24,42 +23,19 @@ function Myjobspage({ job_seeker_id,  }) {
   const [page, setPage] = useState(0)
   const navigate = useNavigate();
   const randomAvatar = faker.image.avatar();
-
+  
   useEffect(() => {
     jobSeeker();
     jobseeker;
   }, []);
 
   
-//   const fetchSavedJobs = async (job_seeker_id) => {
-//     try {
-//       const response = await fetch(`http://127.0.0.1:8000/jobseekers/${job_seeker_id}/savedjobs`);
-//       if (response.ok) {
-//         const data = await response.json();
-        
-//         setSavedJobs(data);
-//       } else {
-//         console.error('Failed to fetch saved jobs:', response.status);
-//       }
-//       setIsLoading(false);
-//     } catch (error) {
-//       console.error('Error fetching saved jobs:', error);
-//     }
-   
-//   };
-
-//   console.log(savedJobs)
-//   useEffect(() => {
-//     console.log(fetchSavedJobs(19))
-//     // fetchSavedJobs(job_seeker_id);
-//   }, []);
-
-
-const fetchSavedJobs = async (job_seeker_id) => {
+  const fetchSavedJobs = async (job_seeker_id) => {
     try {
       const response = await fetch(`http://127.0.0.1:8000/jobseekers/${job_seeker_id}/savedjobs`);
       if (response.ok) {
         const data = await response.json();
+        
         setSavedJobs(data);
       } else {
         console.error('Failed to fetch saved jobs:', response.status);
@@ -68,7 +44,16 @@ const fetchSavedJobs = async (job_seeker_id) => {
     } catch (error) {
       console.error('Error fetching saved jobs:', error);
     }
+   
   };
+
+  console.log(savedJobs)
+  useEffect(() => {
+    console.log(fetchSavedJobs(19))
+    // fetchSavedJobs(job_seeker_id);
+  }, []);
+
+
 
   useEffect(() => {
     fetchSavedJobs((19));
@@ -102,23 +87,22 @@ const fetchSavedJobs = async (job_seeker_id) => {
   return (
     <div>
       <NavbarSignedIn/>
-      <div className="profile-main-container">
+      <div className="my-jobs-page-main-container">
+      
+      {/* <div className="profile-main-container">
         <div className="profile-header">
           <FontAwesomeIcon icon={faArrowLeft} style={{ color: '#000000' }} onClick={back} />
           <img src={randomAvatar} alt="" />
           <h1>Hi, {user.first_name}</h1>
         </div>
         <div className="hori"></div>
-      </div>
+      </div> */}
 
       <div className="spotlightSectionContainer">
-        <p>New Jobs</p>
-        <div className="companies">
-          <CompanyBox />
-          <CompanyBox />
-          <CompanyBox />
-        </div>
+      <p> My Jobs </p>
+  
       </div>
+      
       <div className="pages-tabs">
                             <p className={page === 0 ? "activePages" : ""} onClick={() => { setPage(0) }}>Saved Jobs</p>
                             <p className={page === 1 ? "activePages" : ""} onClick={() => { setPage(1) }}>Applied Jobs</p>
@@ -129,9 +113,9 @@ const fetchSavedJobs = async (job_seeker_id) => {
                             {pageDisplay()}
 
                         </div>
-
+                        <Footer />
      
-
+                        </div>
       
     </div>
   );

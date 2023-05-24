@@ -12,7 +12,8 @@ import {
     } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 // import {
-        
+   import ContactUs from '../../pages/contactus/ContactUs';
+     
 //       } from "@fortawesome/free-solid-svg-icons";
 
 
@@ -25,15 +26,13 @@ return(
 
 
     <div className="footer_section">
-        <div className="footer_logo"> 
-         <img src={Logo} alt="" srcSet="" />
-        </div>
+        
             <div className="footer_link">
                  <div className="footer_link_section">
                     <h4> USEFUL LINKS </h4>
                     <a href='/cvhelp' ><p> Cv Help </p></a>
                     <a href='/jobsearch' ><p> Job Search </p></a>
-                    <a href='/contactus' ><p> Contact Us </p></a>
+                    <Link to='/ContactUs'>Contact Us</Link>
                     <a href='/FaqPage'>   <p>FAQ</p></a>
                     
                 </div>

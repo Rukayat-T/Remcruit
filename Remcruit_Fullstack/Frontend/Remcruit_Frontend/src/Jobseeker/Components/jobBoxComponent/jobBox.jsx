@@ -57,12 +57,21 @@ function JobBox({ job }) {
 
     
     
-
-    function toggleBookmark(jobId,jobSeekerId) {
+        const toggleBookmark = async (jobId, jobSeekerId) => {
+            try {
+              setBookmark(!bookmark);
+              await savingJob(jobId, jobSeekerId);
+              // Update the bookmark status on the server
+            } catch (error) {
+              console.log(error);
+            }
+          };
+          
+    // function toggleBookmark(jobId,jobSeekerId) {
         
-        setBookmark(!bookmark);
-        savingJob(jobId,jobSeekerId)
-    }
+    //     setBookmark(!bookmark);
+    //     savingJob(jobId,jobSeekerId)
+    // }
 
 
     // const toggleBookmark = () => {

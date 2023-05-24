@@ -1,5 +1,8 @@
-.pages-tabs{
-    background-color: black;
+.my-jobs-page-main-container {
+    background-color: rgba(131, 131, 131, 0.06);
+  }
+  
+  .pages-tabs {
     border-radius: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -10,24 +13,57 @@
     margin-left: 5rem;
     display: flex;
     justify-content: space-between;
-
-}
-.pages-tabs p{
+  }
+  
+  .pages-tabs p {
     font-size: 1.2rem;
-    font-weight: 200;
+    font-weight: 400;
     margin: 0;
     padding-left: 5px;
     padding-right: 5px;
     cursor: pointer;
-    color: white;
-    border: 1px solid #FFCC33;
+    color: black;
+    border: 1px solid #ffcc33;
     border-radius: 6px;
     transition: color 0.3s ease;
-
-}
-
-.pages-tabs p:hover {
-    color:#FFCC33;
+    padding: 10px;
   }
   
+  .pages-tabs p:hover {
+    color: black;
+    background-color: #ffcc33;
+  }
+  
+  .pages-tabs .activePages {
+    background-color: #ffcc33;
+    color: black;
+  }
+  
+  .spotlightSectionContainer p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: black;
+    margin: 0;
+    padding-top: 2rem;
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+  
+  /* Responsive Adjustments */
+  @media screen and (max-width: 768px) {
+    .pages-tabs {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin-right: 2rem;
+      margin-left: 2rem;
+    }
+  
+    .pages-tabs p {
+      font-size: 1rem;
+    }
+  
+    .spotlightSectionContainer p {
+      font-size: 1.2rem;
+    }
+  }
   

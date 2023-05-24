@@ -1,28 +1,31 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import './filtersalary.css';
 
-const FilterBySalary = () => {
-  const [salary, setSalary] = useState(0);
+const FilterbySalary = ({ onFilter }) => {
+  const [salaryRange, setSalaryRange] = useState({ min: 0, max: 100000 });
 
-  const handleInput = (e) => {
-    setSalary(e.target.value);
+  const handleSalaryChange = (event) => {
+    const newSalary = parseFloat(event.target.value);
+    setSalaryRange({ ...salaryRange, min: newSalary });
   };
 
   return (
-    <div className="mb-5">
-      <h1 className="py-2">
-        {" "}
-        <span className="text-purple">Salary</span> : {salary},000
-      </h1>
-      <input
-        type="range"
-        min="0"
-        max="100"
-        value={salary}
-        className="range range-xs range-warning md:w-96 lg:md:w-96 xl:w-96"
-        onInput={handleInput}
-      />
+    <div className="filter-container">
+      
+      <div>
+        <label>Salary:</label>
+        <input
+          type="range"
+          min={0}
+          max={100000}
+          step={1000}
+          value={salaryRange.min}
+          onChange={handleSalaryChange}
+        />
+        <span>{salaryRange.min}</span> - <span>{salaryRange.max}</span>
+      </div>
     </div>
   );
 };
 
-export default FilterBySalary;
+export default FilterbySalary;

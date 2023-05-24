@@ -21,7 +21,7 @@ function AboutUs() {
       {user ?  <NavbarSignedIn /> :  <Navbar/> }
       
       <div className="aboutus-main">
-       <NavbarSignedIn />
+     
        <div className="firstcontain">
        <div className="aboutus">
         <h1>About Us</h1>
