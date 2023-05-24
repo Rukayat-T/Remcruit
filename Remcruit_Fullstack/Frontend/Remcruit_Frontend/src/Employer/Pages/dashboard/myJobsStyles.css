@@ -15,17 +15,42 @@ table{
     font-size: 14px;
     padding-left: 10px;
     padding-right: 10px;
-    /* border: 2px solid red; */
 }
 
 #jobs td{
-    /* border: 2px solid greenyellow; */
-    /* padding-top: 10px;
-    padding-bottom: 10px; */
     padding: 10px;
     border-bottom: 1px solid #C9C9C9;
+    font-size: 16px;
 }
 
 .jobRow{
     cursor: pointer;
+}
+
+@media screen and (max-width: 850px) {
+
+    #jobs th{
+        font-size: 11px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    #jobs td{
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    #jobs th{
+        font-size: 8px;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+
+    #jobs td{
+        padding: 6px;
+        font-size: 10px;
+    }
 }

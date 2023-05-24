@@ -5,10 +5,13 @@
 }
 
 .navigation-menu{
-    min-height: 90vh;
-    min-width: 5vw;
+    min-height: 100vh;
+    max-width: 5vw;
     padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: black;
+    /* border:3px solid #FFCC33; */
     background-color: black;
     border-radius: 0px 15px 0px 0px;
     display: flex;
@@ -16,10 +19,11 @@
 }
 
 .navigation-menu-expanded{
-    min-height: 90vh;
-    min-width: 20vw;
+    max-height: 100vh;
+    max-width: 20vw;
     padding-top: 20px;
     padding-right: 15px;
+    padding-left: 15px;
     color: white;
     background-color: black;
     border-radius: 0px 15px 0px 0px;
@@ -101,6 +105,7 @@
     min-height: 70vh; 
     display: grid;
     grid-template-columns: auto auto;
+    margin-left: 15px;
 }
 .f-sideNav-container{
     display: flex;
@@ -131,19 +136,43 @@
 .pageTitle.focus{
     color: white;
     cursor: pointer;
-    padding-right: 10px;
+    /* padding-right: 10px; */
     border-right: 2px solid #FFCC33;
+    font-size: 1rem;
 }
 
 .rightDisplay{
     width: 100%;
     margin-top: 30px;
-    margin-left: 5%;
+    margin-left: 3vw;
     margin-right: 5%;
 }
 
-@media screen and (max-width: 480px) {
-    body {
-      background-color: lightgreen;
+@media screen and (max-width: 800px) {
+    .ic{
+        font-size: 24px;
     }
+}
+
+@media screen and (max-width: 600px) {
+    .ic{
+        font-size: 22px;
+    }
+
+    /* .pageTitle.focus{
+        font-size: 14px;
+    }
+
+    .pageTitle{
+        font-size: 14px;
+    } */
+
+    .top1 button{
+        font-size: 18px;
+    }
+    
+    .top2 button{
+        font-size: 22px;
+    }
+   
 }

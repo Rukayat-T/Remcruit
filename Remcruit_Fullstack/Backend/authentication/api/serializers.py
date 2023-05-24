@@ -92,6 +92,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
     recruitment_agency = serializers.BooleanField(required=True)
     gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
+    company_logo = serializers.ImageField(required=False)
 
     class Meta:
         model = User
@@ -102,6 +103,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             'last_name',
             'password',
             'password2',
+            'company_logo',
             'title',
             'gender',
             'job_title',

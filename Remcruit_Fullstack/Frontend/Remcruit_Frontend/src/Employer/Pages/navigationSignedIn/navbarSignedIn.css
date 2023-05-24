@@ -31,3 +31,43 @@
     padding-top: 5px;
     padding-bottom: 0;
 }
+
+@media screen and (max-width: 850px) {
+    .Menu li{
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 14px;
+    }
+
+    .comp p{
+        font-size: 14px;
+    }
+
+    .empLogo{
+        width: 130px;
+    }
+
+    .forEmp{
+        font-size: 14px;
+    } 
+}
+
+@media screen and (max-width: 600px) {
+    .Menu li{
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 12px;
+    }
+
+    .comp p{
+        font-size: 10px;
+    }
+
+    .empLogo{
+        width: 95px;
+    }
+
+    .forEmp{
+        font-size: 10px;
+    }
+}

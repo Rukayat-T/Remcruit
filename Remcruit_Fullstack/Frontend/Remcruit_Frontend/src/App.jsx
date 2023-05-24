@@ -35,6 +35,7 @@ import SpecificJobs from './Jobseeker/Pages/SpecificJobsPage/SpecificJobs';
 import Myjobspage from './Jobseeker/Pages/Myjobspage/Myjobspage';
 import JobSeekerRoute from './utils/JobSeekerRoute';
 import EmployerRoute from './utils/EmployerRoute';
+import JobApplicationReview from './Jobseeker/Pages/JobApplication/components/JobApplicationReview';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 import terms from './pages/Legal/LegalPage';
 import Legal from './pages/Legal/Term';
@@ -67,6 +68,7 @@ function App() {
                   <Route path='/Cookies' element={<Cookies/>}/>
                   {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
                   <Route path='/employer/register' element={<EmployerRegister />} />
+                  <Route path='/review' element={<JobApplicationReview />} />
                   <Route element={<AboutUs />} path='/aboutus' />
                   
                   <Route element={<PrivateRoute />} >

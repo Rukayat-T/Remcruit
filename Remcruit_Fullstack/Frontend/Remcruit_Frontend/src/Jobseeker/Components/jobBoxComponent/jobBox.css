@@ -137,3 +137,16 @@
     font-size: 14px;
     color: black;
 }
+
+.companyLogo img{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.noCLogo{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: rgb(170, 170, 170);
+}

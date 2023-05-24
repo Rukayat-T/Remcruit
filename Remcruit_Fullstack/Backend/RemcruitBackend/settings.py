@@ -263,14 +263,14 @@ EMAIL_TIMEOUT = 1200 #20 minutes
 
 DISABLE_SERVER_SIDE_CURSORS = True
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
 # sending email from shell
 # from django.core.mail import send_mail
 #  email = EmailMessage(subject='testing testing', body="testing smtp again", from_email='contact@remcruit.com', to=["jainedoeeee@gmail.com"])
 #  email.send()
 
 
+<<<<<<< HEAD
 
 
 
@@ -540,3 +540,18 @@ MEDIA_URL = '/media/'
 # #  email = EmailMessage(subject='testing testing', body="testing smtp again", from_email='contact@remcruit.com', to=["jainedoeeee@gmail.com"])
 # #  email.send()
 
+=======
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+
+
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = 'remcruit-media'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+>>>>>>> 85041731d9f6bbe96bf30bdd5f786910f2e63d23

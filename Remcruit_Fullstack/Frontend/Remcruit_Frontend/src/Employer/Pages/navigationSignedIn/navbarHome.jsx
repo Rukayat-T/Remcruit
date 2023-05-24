@@ -12,8 +12,8 @@ function NavbarSignedIn() {
         <>
             <div>
                 <nav className='employerNav'>
-                    <Link to="/dashboard"><img src={Logo} alt="" srcSet="" className='empLogo' /></Link>
-                    <p>for employers</p>
+                    <Link to="/dashboard"><img src={Logo} alt="" className='empLogo' /></Link>
+                    <p className='forEmp'>for employers</p>
                     <ul className='Menu'>
                         <li><Link to='/dashboard' >Dashboard</Link></li>
                         <li><Link to='/employer/job/post' >Post a Job</Link></li>

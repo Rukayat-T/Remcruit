@@ -6,6 +6,7 @@ import AuthContext from "../../../../context/AuthContext";
 import JobSeekerContext from "../../../../context/JobSeekerContext";
 import FormContext from "../../../../context/FormContext";
 import NavbarSignedIn from "../../../Components/navbarSignedin/NavbarSignedIn";
+import { Link } from "react-router-dom";
 
 function JobApplication() {
   let { user } = useContext(AuthContext)
@@ -34,8 +35,19 @@ function JobApplication() {
         "credential": 1,
       }),
     });
-  };
-  console.log(job_id)
+  }; 
+
+  const reviewbtn = () => {
+    return (
+            <Link to={'/review'} state={{job_id:job_id}}>
+            <button
+                    type="button"
+                    id="reviewbtn"
+                  >Review</button>
+            </Link>
+
+          )
+  }
 
   return (
     <div>
@@ -85,7 +97,7 @@ function JobApplication() {
                 Back
               </button>
               <div className="contsub">
-                {page === FormTitles.length - 1 ? submitbtn() : nextbtn()}
+                {page === FormTitles.length - 1 ? reviewbtn() : nextbtn()}
               </div>
 
             </div>

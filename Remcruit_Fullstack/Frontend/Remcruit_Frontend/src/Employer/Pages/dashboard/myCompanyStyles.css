@@ -51,15 +51,6 @@
     height: 43vh;
 }
 
-.company-logo{
-    margin-top: 10px;
-    background-color: rgb(20, 20, 254);
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    margin-bottom: 35px;
-}
-
 .half2-body{
     display: flex;
     justify-content: center; 
@@ -127,4 +118,37 @@
     font-size: 15px;
     width: 65px;
     height: 32px;
+}
+.image-preview{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 35px;
+}
+
+.imageBox{
+    height: 50%;
+    width: 50%;
+    border: 3px solid red;
+}
+
+.company-logo img{
+    height: 135px;
+    width: 135px;
+    border-radius: 50%;
+
+}
+.image-container{
+    text-align: center;
+}
+.image-container p{
+  margin-bottom: 15px;
+}
+
+.image-upload-header{
+    border: 3px solid green;
+}
+
+.none{
+    display: none;
 }

@@ -18,69 +18,13 @@ function JobBox({ job }) {
     const [bookmark, setBookmark] = useState(false);
     const navigate = useNavigate()
 
-
-    let{jobseeker} = useContext(AuthContext)
-   console.log(jobseeker)
-
-//    const [isBookmarked, setIsBookmarked] = useState(false);
-
-   
-
-    const savingJob = async (jobId, jobSeekerId) => {
-        try {
-            let res = await fetch("http://127.0.0.1:8000/jobseekers/saveajob/",
-            
-              {
-                method: "POST",
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "job": jobId,
-                    "job_seeker": jobSeekerId
-                }),
-              });
-            let resJson = await res.json();
-            if (res.status === 200) {
-              console.log(resJson)
-             
-            } else {
-              console.log(resJson)
-              alert("something went wrong")
-            }
-          } catch (err) {
-            console.log(err);
-          }
-         
-        };
-
-    
-    
-        const toggleBookmark = async (jobId, jobSeekerId) => {
-            try {
-              setBookmark(!bookmark);
-              await savingJob(jobId, jobSeekerId);
-              // Update the bookmark status on the server
-            } catch (error) {
-              console.log(error);
-            }
-          };
-          
-    // function toggleBookmark(jobId,jobSeekerId) {
-        
-    //     setBookmark(!bookmark);
-    //     savingJob(jobId,jobSeekerId)
-    // }
-
-
-    // const toggleBookmark = () => {
-    //     if (bookmark === "false") {
-    //         setBookmark("true")
-    //         return;
-    //     }
-    //     setBookmark("false")
-    // }
+    const toggleBookmark = () => {
+        if (bookmark === "false") {
+            setBookmark("true")
+            return;
+        }
+        setBookmark("false")
+    }
     const [jobId, setJobId] = useState(job.id)
     const [showMore, setShowMore] = useState(false);
 
@@ -92,12 +36,16 @@ function JobBox({ job }) {
         const timeDifference = currentDate.getTime() - postDate.getTime();
         const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
         return daysDifference;
-      };
+    };
     return (
         <div className='boxContainer'>
             <div className="boxHeaderSection">
                 <div className="companyinformation">
-                    <div className="companyLogo">Logo</div>
+                    <div className="companyLogo">
+                        {
+                            companyLogo != null ? <img src={job?.company?.company_logo} alt="" /> : <div className="noCLogo"></div>
+                        }
+                    </div>
                     <div className="company">
                         <div className="jobTitle">{job?.title}</div>
                         <div className="companyName">{job?.company?.organisation_name}</div>
