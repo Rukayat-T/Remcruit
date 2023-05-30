@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import NavbarSignedIn from "../../../Components/navbarSignedin/NavbarSignedIn";
-import FullJobDescription from "../../Specific Jobs Page/components/FullJobDescription";
+import FullJobDescription from "../../SpecificJobsPage/components/FullJobDescription"
 import { useLocation } from "react-router";
 import "../static/JobApplication.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

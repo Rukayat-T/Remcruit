@@ -4,8 +4,8 @@ import React from 'react'
 import './RegisterForm.css'
   
 // import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
-import PhoneNumberInput from './PhoneNumberInput'
+// import PhoneInput from 'react-phone-number-input'
+// import PhoneNumberInput from './PhoneNumberInput'
 
 
 
@@ -114,7 +114,7 @@ import PhoneNumberInput from './PhoneNumberInput'
                           placeholder=' Confirm Password' />
                   </div>
               </div>
-              <PhoneNumberInput />
+              {/* <PhoneNumberInput /> */}
 
               <div className="terms-And-Conditions">
                

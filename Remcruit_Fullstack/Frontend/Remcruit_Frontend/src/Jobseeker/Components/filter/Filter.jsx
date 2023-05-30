@@ -5,7 +5,8 @@ import FilterByAvailability from "./FilterByAvailability"
 // import FilterByRole from "./FilterByRole";
 function Filter() {
     return (
-        <div className='filter'>filter
+        <div className='filter'>
+            <h3> Filter </h3>
         <FilterBySalary />
         <FilterByAvailability />
         </div>

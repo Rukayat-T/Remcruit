@@ -11,7 +11,7 @@ import AuthContext from '../../../context/AuthContext'
 // import savedjobs from '../savedjobsComponents/savedjobs'
 
 function JobBox({ job }) {
-
+const companyLogo = job?.company?.company_logo
 
     let { jobSeeker } = useContext(JobSeekerContext)
     

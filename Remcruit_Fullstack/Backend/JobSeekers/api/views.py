@@ -166,7 +166,7 @@ class GetJobApplicationByStatus(APIView):
 
 
 class GetApplicationByJobSeekerId(APIView):
-    serializer_class = JobApplicationSerializer
+    serializer_class = ViewJobApplicationSerializer
 
     def get(self, request, job_seeker_id):
         if request.method == "GET":
@@ -174,7 +174,7 @@ class GetApplicationByJobSeekerId(APIView):
             if job_seeker_id:
                 application = JobApplication.objects.filter(
                     job_seeker=job_seeker_id)
-                serializer = JobApplicationSerializer(application, many=True)
+                serializer = ViewJobApplicationSerializer(application, many=True)
                 if application:
                     message['response'] = "Application found"
                     return Response(serializer.data, status=status.HTTP_200_OK)

@@ -8,11 +8,12 @@ import CompanyBox from '../../Components/companyBox/companyBox'
 import AuthContext from '../../../context/AuthContext'
 import JobSeekerContext from '../../../context/JobSeekerContext'
 import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn';
-import Toappliedjobs from './Toappliedjobs/Toappliedjobs';
+import Toappliedjobs from './Toappliedjobs/AppliedJobsPage';
 import Toarchivejobs from './Toarchivejobs/Toarchivejobs';
 import Tointerview from './ToInterview/Tointerview';
 import './Myjob.css';
 import Footer from '../../../components/Footer/Footer';
+import AppliedJobsPage from './Toappliedjobs/AppliedJobsPage';
 
 function Myjobspage({ job_seeker_id,  }) {
   const { user } = useContext(AuthContext);
@@ -22,6 +23,7 @@ function Myjobspage({ job_seeker_id,  }) {
   const [savedJobs, setSavedJobs] = useState([]);
   const [page, setPage] = useState(0)
   const navigate = useNavigate();
+  const [jobapplication, setJobApplication] = useState([]);
   const randomAvatar = faker.image.avatar();
   
   useEffect(() => {
@@ -46,6 +48,20 @@ function Myjobspage({ job_seeker_id,  }) {
     }
    
   };
+  const fetchAppliedJobs = async (job_seeker_id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/jobseekers/${job_seeker_id}/application`);
+      if (response.ok) {
+        const data = await response.json();
+        setJobApplication(data);
+      } else {
+        console.error('Failed to fetch applied jobs:', response.status);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching applied jobs:', error);
+    }
+  };
 
   console.log(savedJobs)
   useEffect(() => {
@@ -60,7 +76,14 @@ function Myjobspage({ job_seeker_id,  }) {
   }, [job_seeker_id]);
 
   
- 
+console.log(jobapplication)
+  useEffect(() => {
+    console.log(fetchAppliedJobs(19));
+  }, []);
+
+  useEffect(() => {
+    fetchAppliedJobs(19);
+  }, [job_seeker_id]);
 
   const back = () => {
     navigate('/home');
@@ -68,20 +91,21 @@ function Myjobspage({ job_seeker_id,  }) {
 
 
   const [MyJob, setMyJob] = useState(savedJobs.id)
+  const [AppliedJob, setAppliedJob]= useState(jobapplication.id)
 
   const pageDisplay = () => {
     if (page === 0) {
         return <SavedJobsPage MyJob={MyJob} setMyJob={setMyJob} />
     }
     if (page === 1) {
-        return <Toappliedjobs />
+        return <AppliedJobsPage AppliedJob={AppliedJob} setAppliedJob={setAppliedJob} />
     }
-    if (page === 2) {
-        return <Toarchivejobs  />
-    }
-    if (page === 3) {
-        return <Tointerview/>
-    }
+    // if (page === 2) {
+    //     return <Toarchivejobs  />
+    // }
+    // if (page === 3) {
+    //     return <Tointerview/>
+    // }
 }
 
   return (
@@ -106,8 +130,8 @@ function Myjobspage({ job_seeker_id,  }) {
       <div className="pages-tabs">
                             <p className={page === 0 ? "activePages" : ""} onClick={() => { setPage(0) }}>Saved Jobs</p>
                             <p className={page === 1 ? "activePages" : ""} onClick={() => { setPage(1) }}>Applied Jobs</p>
-                            <p className={page === 2 ? "activePages" : ""} onClick={() => { setPage(2) }}>Archived Jobs</p>
-                            <p className={page === 3 ? "activePages" : ""} onClick={() => { setPage(3) }}>Interviews</p>
+                            {/* <p className={page === 2 ? "activePages" : ""} onClick={() => { setPage(2) }}>Archived Jobs</p>
+                            <p className={page === 3 ? "activePages" : ""} onClick={() => { setPage(3) }}>Interviews</p> */}
                         </div>
                         <div className="myjobs-body">
                             {pageDisplay()}

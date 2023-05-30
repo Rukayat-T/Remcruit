@@ -3,7 +3,7 @@ import './savedjob.css'
 import { Link } from 'react-router-dom';
 
 
-function SavedJobsPage({ job_seeker_id},specificjob) {
+function SavedJobsPage({ job_seeker_id,specificjob}) {
   const [savedJobs, setSavedJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
  
@@ -82,12 +82,13 @@ function SavedJobsPage({ job_seeker_id},specificjob) {
                   <p>{job.job.location}</p>
                   {/* <p>Saved on  {formatSavedTime(job.created_at)}</p> */}
                   <p>Saved {getDaysAgo(job?.created_at)} days ago</p>
-                  <div className="saved-job-button">
+                 
+                </div>
+                <div className="saved-job-button">
                     <Link to={'/jobapplication'} state={{ jobid: specificjob?.id }}>
                       <button>Apply Now</button>
                     </Link>
                   </div>
-                </div>
               </div>
             </div>
           ))
