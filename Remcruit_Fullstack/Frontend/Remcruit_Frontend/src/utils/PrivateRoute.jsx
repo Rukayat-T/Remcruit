@@ -5,8 +5,7 @@ import JobSeekerContext from '../context/JobSeekerContext'
 import CompanyContext from '../context/CompanyContext'
 
 
-function PrivateRoute({allowedRoles}) {
-  console.log('ji')
+function PrivateRoute({allowedRoles}) {f
     let  {user} = useContext(AuthContext)
     let {jobseeker} = useContext(JobSeekerContext)
     let {company} = useContext(CompanyContext)

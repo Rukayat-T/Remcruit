@@ -25,6 +25,7 @@ import Dashboard from './Employer/Pages/dashboard/Dashboard';
 import SpecificJobs from './Jobseeker/Pages/Specific Jobs Page/SpecificJobs';
 import JobSeekerRoute from './utils/JobSeekerRoute';
 import EmployerRoute from './utils/EmployerRoute';
+import JobApplicationReview from './Jobseeker/Pages/JobApplication/components/JobApplicationReview';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
                   <Route path='/login' element={<Login />} />
                   {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
                   <Route path='/employer/register' element={<EmployerRegister />} />
+                  <Route path='/review' element={<JobApplicationReview />} />
                   <Route element={<AboutUs />} path='/aboutus' />
                   <Route element={<PrivateRoute />} >
 

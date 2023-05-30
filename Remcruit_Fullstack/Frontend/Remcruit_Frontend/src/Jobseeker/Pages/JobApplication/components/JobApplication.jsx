@@ -6,11 +6,12 @@ import AuthContext from "../../../../context/AuthContext";
 import JobSeekerContext from "../../../../context/JobSeekerContext";
 import FormContext from "../../../../context/FormContext";
 import NavbarSignedIn from "../../../Components/navbarSignedin/NavbarSignedIn";
+import { Link } from "react-router-dom";
 
 function JobApplication() {
   let { user } = useContext(AuthContext)
   let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
-  let { next, back, page, FormTitles, PageDisplay, submitbtn, nextbtn } = useContext(FormContext)
+  let { next, back, page, FormTitles, PageDisplay, nextbtn, data } = useContext(FormContext)
   const navigate = useNavigate()
 
   const location = useLocation()
@@ -20,22 +21,18 @@ function JobApplication() {
     jobSeeker()
 
   }, [])
+  
+  const reviewbtn = () => {
+    return (
+            <Link to={'/review'} state={{job_id:job_id, jobseekerData:data}}>
+            <button
+                    type="button"
+                    id="reviewbtn"
+                  >Review</button>
+            </Link>
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    let response = await fetch(`http://127.0.0.1:8000/jobseekers/job/${job_id}/application`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "job_seeker": jobseeker.id,
-        "job": job_id,
-        "credential": 1,
-      }),
-    });
-  };
-  console.log(job_id)
+          )
+  }
 
   return (
     <div>
@@ -65,7 +62,6 @@ function JobApplication() {
 
           <form
             className="application-form"
-            onSubmit={handleSubmit}
           >
             <div className="appl-button-container">
               <button
@@ -85,7 +81,7 @@ function JobApplication() {
                 Back
               </button>
               <div className="contsub">
-                {page === FormTitles.length - 1 ? submitbtn() : nextbtn()}
+                {page === FormTitles.length - 1 ? reviewbtn() : nextbtn()}
               </div>
 
             </div>

@@ -11,7 +11,7 @@ urlpatterns = [
       path('getJobApplicationByStatus/<applicationStatus>',  GetJobApplicationByStatus.as_view(), name = "getApplicationByStatus" ),
       path('jobseekerbyuserid/<str:userid>/', getJobSeekerByUserId.as_view(), name=''),
       path('<str:job_seeker_id>/application/', GetApplicationByJobSeekerId.as_view(), name=''),
-       path('/applications/<str:job_id>', GetApplicationByJobId.as_view(), name=''),
+       path('applications/<str:job_id>', GetApplicationByJobId.as_view(), name=''),
       path('savedjobs/<str:id>/', SavedJobsView.as_view()),
       path('<str:job_seeker_id>/savedjobs', GetSavedJobsByJobSeeker.as_view()),
       path('archivedjobs/<str:id>/', ArchivedJobsView.as_view()),
@@ -19,9 +19,8 @@ urlpatterns = [
       path('<str:job_seeker_id>/<str:id>/deletesaved/', DeleteSavedJobByJobSeeker.as_view(), name=''),
       path('<str:job_seeker_id>/<str:id>/deletearchived/', DeleteArchivedJobByJobSeeker.as_view(), name=''),
       path('searchJob/',  SearchJobs.as_view(), name='searchJobs'),
-      path('universities/', Universities.as_view(), name=""),
-     
-
+      path('credential/<str:id>', ApplicantCredentialsView.as_view(), name=''),
+      path('credential/byjobseeker/<str:job_seeker_id>/', GetCredentialByJobSeeker.as_view(), name=''),    
       path('choices/', views.get_choices)
 
 ]
