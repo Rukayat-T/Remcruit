@@ -26,6 +26,9 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
     university_name = serializers.ChoiceField(choices=UniversityName.choices, required=True)
     subject_of_study = serializers.ChoiceField(choices=SubjectOfStudy.choices, required=True)
     degree_classification = serializers.ChoiceField(choices=DegreeClassification.choices,required=True)
+    profile_picture = serializers.ImageField(required=False)
+    credential_name = serializers.CharField(required=False)
+    credential = serializers.FileField(required=False)
     highest_qualification = serializers.ChoiceField(choices=JobSeeker.HIGHEST_QUALIFICATION_CHOICES, required=True)
     gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
@@ -42,6 +45,9 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
             'subject_of_study',
             'university_name',
             'year_of_graduation',
+            'credential_name',
+            'credential',
+            'profile_picture',
             'degree_classification',
             'highest_qualification',
             'gender',
@@ -67,6 +73,8 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
         first_name = validated_data.pop('first_name')
         last_name = validated_data.pop('last_name')
         password = validated_data.pop('password')
+        credential = validated_data.pop('credential')
+        credential_name = validated_data.pop('credential_name')
 
         user = User(username=username, first_name=first_name, last_name=last_name)
         user.set_password(password)
@@ -74,9 +82,10 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
         user.is_jobSeeker=True
         user.save()
 
-
-        jobseeker = JobSeeker.objects.create(**validated_data, user=user)
-        return jobseeker
+        job_seeker = JobSeeker.objects.create(**validated_data, user=user)
+        applicationCredential = ApplicantCredential(job_seeker=job_seeker, credential=credential, credential_name=credential_name)
+        applicationCredential.save()
+        return job_seeker
         
 
 class EmployerRegisterSerializer(serializers.ModelSerializer):

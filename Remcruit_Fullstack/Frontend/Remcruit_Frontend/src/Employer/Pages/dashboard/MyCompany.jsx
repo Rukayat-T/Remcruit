@@ -49,7 +49,6 @@ function MyCompany() {
         try {
             var data = new FormData();
             data.append("company_logo", image[0]);
-
             data.append("gender", profileData.gender)
             data.append("organisation_name", profileData.organisation_name)
             data.append("office_address", profileData.office_address)

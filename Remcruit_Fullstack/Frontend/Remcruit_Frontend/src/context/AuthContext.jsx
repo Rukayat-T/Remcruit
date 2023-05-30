@@ -25,15 +25,15 @@ export const AuthProvider = ({ children }) => {
   );
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user) {
-      if (user.is_jobSeeker === true) {
-        getJobSeeker(user.id);
-      } else if (user.is_employer === true) {
-        getEmployerCompany(user.id);
-      }
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     if (user.is_jobSeeker === true) {
+  //       getJobSeeker(user.id);
+  //     } else if (user.is_employer === true) {
+  //       getEmployerCompany(user.id);
+  //     }
+  //   }
+  // }, [user]);
 
   const getEmployerCompany = async (id) => {
     try {
@@ -69,6 +69,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const navigateUsers = (user) => {
+
+    if (user) {
+      if (user.is_jobSeeker === true) {
+        getJobSeeker(user.id);
+      } else if (user.is_employer === true) {
+        getEmployerCompany(user.id);
+      }
+    }
+
+  }
+
   const loginUser = async (e) => {
     e.preventDefault();
     const response = await fetch("http://127.0.0.1:8000/authentication/token/", {
@@ -83,6 +95,10 @@ export const AuthProvider = ({ children }) => {
       setAuthTokens(data);
       setUser(jwtDecode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
+
+      navigateUsers(jwtDecode(data.access))
+
+
     } else {
       alert("Something went wrong");
     }

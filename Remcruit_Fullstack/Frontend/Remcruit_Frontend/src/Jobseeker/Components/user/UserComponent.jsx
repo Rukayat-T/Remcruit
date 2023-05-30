@@ -4,11 +4,14 @@ import './userComponent.css'
 import { Link } from 'react-router-dom'
 
 function UserComponent() {
-    let { user } = useContext(AuthContext)
+    let { user , jobseeker } = useContext(AuthContext)
 
     return (
         <div className='userComponent'>
-            <div className="profilePicture"></div>
+            <div className="profilePicture"> <img
+                    src={jobseeker?.profile_picture}
+                    alt=""
+                  /></div>
             <div>
                 {user && <p className='name'>{user.first_name} {user.last_name}</p>}
             </div>

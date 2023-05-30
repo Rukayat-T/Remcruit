@@ -9,8 +9,49 @@ const FormContext = createContext()
 export default FormContext
 
 export const FormProvider = ({ children }) => {
+  let { user, jobseeker } = useContext(AuthContext)
+  const [file, setFile] = useState("")
+  const [fileData, setFileData] = useState('')
+  const [fileName, setFileName] = useState("")
+  const jobseekerID = jobseeker?.id
+
+  const [data, setData] = useState({
+    first_name: user?.first_name,
+    last_name: user?.last_name,
+    email: user?.username,
+    state: jobseeker?.state,
+    phone_number: jobseeker?.phone_number,
+    nin:jobseeker?.nin,
+    credential: '',
+})
+
+  useEffect(() => {
+    const fetchCredential = async () => {
+      const url = `http://127.0.0.1:8000/jobseekers/credential/byjobseeker/${jobseekerID}/`
+      try{
+        const response = await fetch(url, {
+          method: 'GET',
+        })
+        const credential = await response.json() 
+        setFileData(credential[0])
+        setData({ ...data, credential: credential[0] })
+        setFile(credential[0].credential)
+        setFileName(credential[0].credential_name)
+        // fileDownload(data[0].credential, fileName) 
+      }
+      catch(error) {
+        console.log(error)
+      }
+    }
+    if (jobseekerID) {
+      fetchCredential()
+    }
+  }
+  ,[jobseekerID])
+
     const [page, setPage] = useState(0)
     const navigate = useNavigate()
+    
 
     const next = () => {
       setPage((currentPage) => currentPage + 1)
@@ -18,17 +59,6 @@ export const FormProvider = ({ children }) => {
 
     const back = () => {
       setPage((currentPage) => currentPage - 1)
-    }
-
-    const submitbtn = () => {
-      return (
-        <button type="submit" onClick={
-          () => {
-            if (page == FormTitles.length - 1)
-            navigate("/home")
-          }
-        }>Submit</button>
-      )
     }
     const nextbtn = () => {
       return (
@@ -52,7 +82,7 @@ export const FormProvider = ({ children }) => {
         return <PersonalInformation data={data} setData={setData}/>
       }
       else if (page === 1){
-        return <CVUpload/>
+        return <CVUpload data={data} setData={setData} fileData={fileData}/>
       }
       else {
         return <EmployerQuestions/>
@@ -60,19 +90,6 @@ export const FormProvider = ({ children }) => {
     }
     
     
-    const [data, setData] = useState({
-        first_name: "",
-        last_name: "",
-        email: "",
-        state: "",
-        phone_number: "",
-        nin:"",
-        cv:"",
-        // validLicence: false,
-        // job_title: "",
-        // company:"",
-    })
-
     
 
     let contextData = {
@@ -84,8 +101,8 @@ export const FormProvider = ({ children }) => {
       PageDisplay: PageDisplay,
       data: data,
       setData: setData,
-      submitbtn:submitbtn,
       nextbtn:nextbtn,
+      fileData: fileData,
 
   }
 

@@ -5,18 +5,19 @@
     grid-template-columns: 2fr 3fr;
     padding-top: 2%;
     overflow-y: scroll;
-    max-height: 90vh;
+    max-height: 73vh;
     background: fixed;
 }
 
 .specific-job-body{
+    height: 90vh;
     background: #F7F7F7;
     
 }
 
 .specific{
     max-height: 100vh;
-    background: fixed;
+    position: fixed;
 }
 
 @media only screen and (min-width:1400px) {

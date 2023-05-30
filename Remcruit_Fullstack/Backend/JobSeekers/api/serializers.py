@@ -22,7 +22,6 @@ class CreateJobApplicationSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'job',
-            'credential',
             'status',
             'job_seeker',
             'credential_name',
@@ -32,16 +31,32 @@ class CreateJobApplicationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         job_seeker = validated_data.pop('job_seeker')
-        credential_name = validated_data.pop('credential_name')
-        credential = validated_data.pop('credential')
+        credential_name = self.validated_data.get('credential_name')
+        credential = self.validated_data.get('credential')   
+        # credential_name = validated_data.pop('credential_name')
+        # credential = validated_data.pop('credential')
         status = validated_data.pop('status')
         job = validated_data.pop('job')
 
-        applicantCredential = ApplicantCredential(job_seeker=job_seeker, credential_name=credential_name, credential=credential)
-        applicantCredential.save()
+        if credential_name != None:
+            applicantCredential = ApplicantCredential(job_seeker=job_seeker, credential = credential, credential_name=credential_name)
+            applicantCredential.save()
+
+            jobApplication = JobApplication.objects.create(job_seeker=job_seeker, job=job, credential=applicantCredential, status=status)
+            return jobApplication
+        else:
+            jobApplication = JobApplication.objects.create(job_seeker=job_seeker, job=job, status=status) 
+            jobApplication.save() 
+            return jobApplication
+
         
-        jobApplication = JobApplication.objects.create(job_seeker=job_seeker, job=job, credential=applicantCredential, status=status)
-        return jobApplication
+        
+        
+class ViewSavedJobsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SavedJob
+        fields = '__all__'
+        depth = 2
 
 class ViewJobApplicationSerializer(serializers.ModelSerializer):
     class Meta:
@@ -59,11 +74,7 @@ class ArchivedJobSerializer(serializers.ModelSerializer):
         model = ArchivedJob
         fields = '__all__'
 
-class ViewSavedJobsSerializer(serializers.ModelSerializer):
+class ApplicantCredentialSerializer(serializers.ModelSerializer):
     class Meta:
-        model = SavedJob
+        model = ApplicantCredential
         fields = '__all__'
-        depth = 2
-
-
-  

@@ -10,20 +10,6 @@ from .serializers import *
 from Employers.models import *
 from Employers.api.serializers import *
 import json
-import requests
-
-
-class Universities(APIView):
-    def get(self, request):
-        url = "https://nigeria-universites.p.rapidapi.com/universities/"
-        headers = {
-            "X-RapidAPI-Key": "00c812a1e7msh10302a3d8f4c5b7p1b8ebajsn4f3c072e3bf5",
-            "X-RapidAPI-Host": "nigeria-universites.p.rapidapi.com"
-        }
-        response = requests.get(url, headers=headers)
-        print(response.json())
-        return response
-
 
 class AllJobSeekers(APIView):
     serializer_class = JobSeekerSerializer
@@ -34,6 +20,41 @@ class AllJobSeekers(APIView):
             serializer = JobSeekerSerializer(jobSeekers, many=True)
             return Response(serializer.data)
 
+class ApplicantCredentialsView(generics.GenericAPIView):
+    serializer_class = ApplicantCredentialSerializer
+
+    def get(self, request, id):
+        if request.method == 'GET':
+            if id:
+                applicant_credential = ApplicantCredential.objects.get(id=id)
+                serializer = ApplicantCredentialSerializer(applicant_credential)
+                if applicant_credential:
+                    return Response(serializer.data)
+                else:
+                    messages.error(request, "This credential does not exist")
+                    return Response(status=status.HTTP_404_NOT_FOUND)
+                
+    def put(self, request, id):
+        applicant_credential = ApplicantCredential.objects.get(id=id)
+        if applicant_credential:
+            serializer = ApplicantCredentialSerializer(applicant_credential, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+        else:
+            messages.error(request, "This credential does not exist")
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+    def delete(self, request, id):
+        applicant_credential = get_object_or_404(ApplicantCredential, id=id)
+        data = {}
+        if applicant_credential:
+            applicant_credential.delete()
+            data['response'] = "Credential Deleted"
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            data['response'] = "No credential"
+            return Response(data, status=status.HTTP_204_NO_CONTENT)    
 
 class JobSeekerView(generics.GenericAPIView):
     serializer_class = JobSeekerSerializer
@@ -245,7 +266,21 @@ class SavedJobsView(APIView):
                     messages.error(request, "This job does not exist")
                     return Response(status=status.HTTP_404_NOT_FOUND)
 
+class GetCredentialByJobSeeker(APIView):   
+    serializers_class = ApplicantCredentialSerializer
 
+    def get(self, request, job_seeker_id):
+        if request.method == "GET":
+            message = {}
+            if job_seeker_id:
+                credential = ApplicantCredential.objects.filter(job_seeker=job_seeker_id)
+                serializer = ApplicantCredentialSerializer(credential, many=True)
+                if credential:
+                    message['response'] = "Credential found"
+                    return Response(serializer.data, status=status.HTTP_200_OK)
+                else:
+                    message['response'] = "No Credential with Jobseeker Found"
+                    return Response(message, status=status.HTTP_404_NOT_FOUND)
 class GetSavedJobsByJobSeeker(APIView):
     serializer_class = ViewSavedJobsSerializer
 

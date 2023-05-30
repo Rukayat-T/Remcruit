@@ -1,163 +1,214 @@
-body{
-    padding: 0;
-    margin: 0;
-    height: 100vh;
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
 }
 
-.jobapplication-main-container{
-    display: flex;
-    height: 85vh;
-    align-items: center;
-    text-align: center;
+.jobapplication-main-container {
+  display: flex;
+  height: 85vh;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
-.jobapplication-main-container img{
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    margin: 0;
-    padding: 0;
-    z-index: -1;
+.jobapplication-main-container img {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  z-index: -1;
 }
 
-.jobapplication-container{
-    width: 80%;
-    margin: 0 auto;
-    height: 70vh;
-    background-color: white;
-    border-radius: 13px;
-    box-shadow: -173px 314px 143px rgba(0, 0, 0, 0.01), -97px 177px 121px rgba(0, 0, 0, 0.05), -43px 79px 90px rgba(0, 0, 0, 0.09), -11px 20px 49px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
-    border: 1px solid #E3E3E3;
+.jobapplication-container {
+  width: 80%;
+  margin: 0 auto;
+  height: 70vh;
+  background-color: white;
+  border-radius: 13px;
+  box-shadow: -173px 314px 143px rgba(0, 0, 0, 0.01),
+    -97px 177px 121px rgba(0, 0, 0, 0.05), -43px 79px 90px rgba(0, 0, 0, 0.09),
+    -11px 20px 49px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e3e3;
 }
 
-.jobapplication-content{
-    width: 80%;
-    margin: 0 auto;
-    height:25%;
+.jobapplication-content {
+  width: 80%;
+  margin: 0 auto;
+  height: 25%;
 }
 
-.bar{
-    width: 250px;
-    height: 3px;
-    margin: 2%;
-    background-color: #858585;
-    color: #636363;
-    font-weight: 500;
-    
+.bar {
+  width: 250px;
+  height: 3px;
+  margin: 2%;
+  background-color: #858585;
+  color: #636363;
+  font-weight: 500;
 }
-.active{
-    background-color: #CA61C3;
-    width: 250px;
-    height: 3px;
-    margin: 2%;
-    color: #636363;
-    font-weight: 500;
-}
-
-.progress-bars{
-    display: flex;
-    justify-content: center;
-    text-align: left;
+.active {
+  background-color: #ca61c3;
+  width: 250px;
+  height: 3px;
+  margin: 2%;
+  color: #636363;
+  font-weight: 500;
 }
 
-.progress-bars p{
-    margin-bottom: 10px;
-    margin-top: 10px;
-    font-size: 18px;
+.progress-bars {
+  display: flex;
+  justify-content: center;
+  text-align: left;
 }
 
-.bar .title{
-    margin-bottom: 0;
-    color: #989898;
-    font-weight: 400;
-    font-size: 14px;
+.progress-bars p {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 18px;
 }
 
-.page-display-container{
-    width: inherit;
-    margin: 0 auto;
-    min-height: 35vh;
-    margin-top: 3%;
+.bar .title {
+  margin-bottom: 0;
+  color: #989898;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.page-display-container {
+  width: inherit;
+  margin: 0 auto;
+  min-height: 35vh;
+  margin-top: 3%;
 }
 .appl-button-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
-.appl-button-container button{
-    font-size: 1.2rem;
-    padding: 1.1rem 5rem;
-    margin: 1rem;
-    border-radius: 7rem;
-    border: 1px solid #CA61C3;
-    background-color: transparent;
-    color: #CA61C3;
-    font-weight: 700;
+.appl-button-container button {
+  font-size: 1.2rem;
+  padding: 1.1rem 5rem;
+  margin: 1rem;
+  border-radius: 7rem;
+  border: 1px solid #ca61c3;
+  background-color: transparent;
+  color: #ca61c3;
+  font-weight: 700;
 }
 
-.contsub button{
-    background-color: #CA61C3;
-    color: white;
+.contsub button {
+  background-color: #ca61c3;
+  color: white;
 }
 
-.review-container{
-    height: 90vh;
+.review-container {
+  height: 90vh;
+  padding: 2rem;
+}
+.review-content-continer {
+  height: inherit;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin: 0 auto;
+}
+.review-application-container {
+  height: 85vh;
+  background-color: black;
+  border-radius: 1.3rem;
+  color: white;
+  text-align: center;
 }
 
-.review-content-continer{
-    border: 2px solid red;
-    height: inherit;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin: 0 auto;
-    
-}
-.review-application-container{
-    height: 85vh;
-    background-color: black;
-    border-radius: 1.3rem;
-    color: white;
-    text-align: center;
+.content-content {
+  border: 2px solid rebeccapurple;
+  display: flex;
+  width: 100%;
 }
 
-.content-content{
-    border: 2px solid rebeccapurple;
-    display: flex;
-    width:100%;
+.all-container-review {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  margin: 0 auto;
+}
+.review-card {
+  border: 2px solid lightsalmon;
+  min-height: max-content;
+  border-radius: 1rem;
+  padding: 0 1.2rem;
+  background-color: white;
+  color: black;
 }
 
-.all-container-review{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-    margin: 0 auto;
+hr {
+  border: 0.1px solid rgb(213, 213, 213);
+  width: 100%;
 }
-.review-card{
-    border: 2px solid lightsalmon;
-    min-height:max-content;
-    border-radius: 1rem;
-    padding: 0 1.2rem;
+.review-body h4 {
+  margin-bottom: 0.3rem;
 }
 
-
-
-.review-head{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.review-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
 }
 
-.review-body{
-    display: none;
-    text-align: left;
-}
-.show .review-body{
-    display: block;
+.openbutton {
+  transition: transform 0.3s;
 }
 
-.openbutton:hover{
-    transform: rotate(180deg);
-    cursor: pointer;
+.openbutton.displayed {
+  transform: rotate(180deg);
+}
+
+.review-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+  text-align: left;
+}
+.review-body-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.review-body.displayed {
+  max-height: 300px;
+}
+
+.credential-box {
+  background-color: #f1f1f1;
+  min-height: 3rem;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  margin: 1rem auto;
+  border-radius: 10px;
+  font-weight: bold;
+  align-items: center;
+  
+}
+.poppp{
+  border: 1px solid red;
+}
+.credential-box p {
+  margin-left: 1rem;
+}
+
+.credential-icon {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
 }

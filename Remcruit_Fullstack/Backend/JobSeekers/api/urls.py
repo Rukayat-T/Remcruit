@@ -21,9 +21,8 @@ urlpatterns = [
       path('<str:job_seeker_id>/<str:id>/deletesaved/', DeleteSavedJobByJobSeeker.as_view(), name=''),
       path('<str:job_seeker_id>/<str:id>/deletearchived/', DeleteArchivedJobByJobSeeker.as_view(), name=''),
       path('searchJob/',  SearchJobs.as_view(), name='searchJobs'),
-      path('universities/', Universities.as_view(), name=""),
-     
-
+      path('credential/<str:id>', ApplicantCredentialsView.as_view(), name=''),
+      path('credential/byjobseeker/<str:job_seeker_id>/', GetCredentialByJobSeeker.as_view(), name=''),    
       path('choices/', views.get_choices)
 
 ]
