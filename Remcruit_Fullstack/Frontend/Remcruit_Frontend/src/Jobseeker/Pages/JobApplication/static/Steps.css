@@ -4,7 +4,8 @@ form.personal-info{
     border-radius: 14px;
     display: grid;
     grid-template-columns: auto auto;
-    gap: 3rem;
+    gap: 4rem;
+    box-sizing: border-box;
 }
 .personal-info input[type], .personal-info select{
     font-size: 1.3rem;
@@ -12,10 +13,16 @@ form.personal-info{
     padding: 1rem 1rem;
     border: 0;
     border-radius: 10px;
+    width: 100%;
+    
 }
 .personal-info-form-container{
     width:75%;
     margin: 0 auto;
+    
+}
+.personal-info select{
+    width: 108%;
 }
 
 .personal-info ::placeholder{
@@ -31,6 +38,14 @@ form.personal-info{
     border-radius: 13px;
     padding: 5rem 3rem;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-inputs input{
+    margin-left: auto;
+    padding-right: 0;
 }
 
 .file-inputs button{
@@ -46,15 +61,6 @@ form.personal-info{
     right: 40%;
     
 }
-
-.file-inputs input{
-    position: absolute;
-    z-index: 1;
-    right: 28%;
-    bottom: 13%;
-    opacity: 0;
-}
-
 .icc{
     font-size: 2rem;
 }
