@@ -3,7 +3,6 @@ import './companyBox.css'
 import AuthContext from '../../../context/AuthContext'
 
 function CompanyBox({ company }) {
-    console.log(company)
     const companyLogo = company?.company_logo
     const description = company?.organisation_description
     return (

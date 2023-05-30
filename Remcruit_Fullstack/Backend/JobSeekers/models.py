@@ -145,7 +145,7 @@ class JobSeeker(models.Model):
     highest_qualification = models.CharField(max_length=200, choices=HIGHEST_QUALIFICATION_CHOICES, null=True)
     gender = models.TextField(choices=Gender.choices)
     terms_and_conditions = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to='images/', null=True, blank=True)
+    profile_picture = models.ImageField(null=True, blank=True)
     state = models.CharField(max_length=200, null=True)
     nin = models.CharField(max_length=11, null = True)
     professional_summary = models.TextField(max_length=400, default='Old')
@@ -162,11 +162,11 @@ class JobSeeker(models.Model):
 
 class ApplicantCredential(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='job_seeker')
-    credential_name = models.CharField(max_length=30) 
+    credential_name = models.CharField(max_length=100, null=True, blank=True) 
     credential = models.FileField(blank=True, null=True)
 
     def __str__(self):
-        return self.credential_name
+        return str(self.job_seeker) + "'s " +  self.credential_name
     
 class JobApplication(models.Model):
     job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE, related_name='Job_Seeker')

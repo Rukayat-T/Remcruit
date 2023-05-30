@@ -15,7 +15,7 @@ function FullJobDescription({ specificjob, showDescription }) {
                     <div className="description-main-content">
                         <div className="description-header">
                             <div className="random">
-                                <img src={specificjob?.company?.company_logo} alt="" />
+                                <img src={specificjob?.company?.company_logo} alt="" className='header-logo' />
                             </div>
                             <div className="header-job-title">
                                 <h1>{showDescription?.title}</h1>

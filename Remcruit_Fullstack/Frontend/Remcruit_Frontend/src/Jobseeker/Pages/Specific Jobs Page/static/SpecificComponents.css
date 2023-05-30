@@ -1,16 +1,19 @@
+body{
+    scroll-behavior: smooth;
+}
 .description-main-content{
     height: 90vh;
     border-radius: 20px;
     border: 1px solid #C9C9C9;
     background: #FFFFFF;
-    height: max-content;
+    height: 73vh;
     position: fixed;
-    width: 50%;
+    margin-right: 15rem;
 }
 .job-description-main-container{
-        max-height: 90vh;
+        min-height: 90vh;
         width: 50%;
-        position: fixed;   
+        position: fixed;  
 }
 .scrollable-description{
     overflow-y: scroll;
@@ -53,12 +56,15 @@
     justify-content: space-between;
     width: 95%;
     margin: 4% auto;
+    gap: 2rem;
 }
-
 .content-card{
-    padding: 1.2rem 5rem;
+    padding: 1rem 1rem;
     text-align: center;
     border-radius: 7px;
+    width: 13rem;
+    height: 5rem;
+    
 }
 .content-card p{
     margin: 0;
@@ -98,7 +104,6 @@ p.dynamic{
     display: flex;
     width: 100%;
     align-items: center;
-    
     justify-content: center;
 }
 .description-button button{
@@ -118,6 +123,7 @@ p.dynamic{
     background: white;
     border-radius: 10px;
     padding: 2rem;
+    
 }
 
 .card-logo img{
@@ -137,7 +143,7 @@ p.dynamic{
 .share-save{
     font-size: 1.9rem;
 }
-.jobs-card-description, .jobs-card-footer, .jobs-card-cards{
+.jobs-card-description, .jobs-card-footer, .jobs-card-cards, .description-header{
     width: 96%;
     margin: 0 auto;
 }
@@ -148,6 +154,7 @@ p.dynamic{
     color: #CA61C3;
     margin-top: 5%;
     margin-bottom: 6%;
+    
 
 }
 .jobs-card-cards .job-card{
@@ -230,4 +237,13 @@ button.cancel{
     width: 100px;
     height: 100px;
     border-radius: 50%;
+}
+
+.description-header img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.description-header{
+    margin: 1rem;
 }

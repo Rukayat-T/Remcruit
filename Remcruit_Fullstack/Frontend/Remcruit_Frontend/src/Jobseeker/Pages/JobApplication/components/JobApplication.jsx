@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function JobApplication() {
   let { user } = useContext(AuthContext)
   let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
-  let { next, back, page, FormTitles, PageDisplay, submitbtn, nextbtn } = useContext(FormContext)
+  let { next, back, page, FormTitles, PageDisplay, nextbtn, data } = useContext(FormContext)
   const navigate = useNavigate()
 
   const location = useLocation()
@@ -21,25 +21,10 @@ function JobApplication() {
     jobSeeker()
 
   }, [])
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    let response = await fetch(`http://127.0.0.1:8000/jobseekers/job/${job_id}/application`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "job_seeker": jobseeker.id,
-        "job": job_id,
-        "credential": 1,
-      }),
-    });
-  }; 
-
+  
   const reviewbtn = () => {
     return (
-            <Link to={'/review'} state={{job_id:job_id}}>
+            <Link to={'/review'} state={{job_id:job_id, jobseekerData:data}}>
             <button
                     type="button"
                     id="reviewbtn"
@@ -77,7 +62,6 @@ function JobApplication() {
 
           <form
             className="application-form"
-            onSubmit={handleSubmit}
           >
             <div className="appl-button-container">
               <button
