@@ -6,6 +6,7 @@ import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn'
 import About from './About'
 import JobsAndOpportunities from './JobsAndOpportunities'
 import Advice from './Advice'
+import Footer from '../../../components/Footer/Footer'
 
 function SpecificCompanyPage() {
 
@@ -51,6 +52,7 @@ function SpecificCompanyPage() {
                         {PageDisplay()}
                     </div>
                 </div>
+                <Footer />
 
             </div>
         </>
