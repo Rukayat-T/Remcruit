@@ -38,7 +38,7 @@ function JobBox({ job }) {
                 <div className="companyinformation">
                     <div className="companyLogo">
                         {
-                            companyLogo != null ? <img src={job?.company?.company_logo} alt="" /> : <div className="noCLogo"></div>
+                            companyLogo != null ? <Link to={'/specificCompany'} state={{ company: job?.company }}><img src={job?.company?.company_logo} alt="" /> </Link> : <div className="noCLogo"></div>
                         }
                     </div>
                     <div className="company">

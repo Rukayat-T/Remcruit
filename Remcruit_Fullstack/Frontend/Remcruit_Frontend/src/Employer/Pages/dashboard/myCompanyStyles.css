@@ -125,6 +125,17 @@
     border-radius: 50%;
     margin-bottom: 35px;
 }
+.banner-preview{
+    height: 100px;
+    width: 150px;
+    margin-bottom: 35px;
+}
+
+.company-banner img{
+    height: 100px;
+    width: 200px;
+    margin-bottom: 35px;
+}
 
 .imageBox{
     height: 50%;

@@ -46,7 +46,7 @@ class EmployerView(generics.GenericAPIView):
                 serializer.save()
                 return Response(serializer.data)
             else:
-                return Response(serializer.error_messages)
+                return Response(serializer.errors)
         else:
             messages.error(request, "This employer does not exist")
             return Response(status=status.HTTP_404_NOT_FOUND)
