@@ -36,14 +36,15 @@ function JobBox({ job }) {
         <div className='boxContainer'>
             <div className="boxHeaderSection">
                 <div className="companyinformation">
-                    <div className="companyLogo">
+                    <div className="companyLogo">  <Link to={'/specificCompany'} state={{ company: job?.company }}>
                         {
                             companyLogo != null ? <img src={job?.company?.company_logo} alt="" /> : <div className="noCLogo"></div>
                         }
+                    </Link>
                     </div>
                     <div className="company">
                         <div className="jobTitle">{job?.title}</div>
-                        <div className="companyName">{job?.company?.organisation_name}</div>
+                        <div className="companyName"><Link to={'/specificCompany'} state={{ company: job?.company }}>{job?.company?.organisation_name}</Link></div>
                     </div>
                 </div>
                 <div className="left">
