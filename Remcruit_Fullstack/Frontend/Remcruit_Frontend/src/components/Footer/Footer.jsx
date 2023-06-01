@@ -4,8 +4,8 @@ import Logo from '../../assets/footerlogo.svg'
 
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-    
+import {
+
     faFacebookSquare,
     faInstagramSquare,
     faLinkedin, faYoutube,
@@ -17,7 +17,7 @@ import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 //       } from "@fortawesome/free-solid-svg-icons";
 
 
-const Footer=()=>{
+const Footer = () => {
 
     
 return(
@@ -82,10 +82,10 @@ return(
         <div className="copyright">
         <p> &copy; 2023 Remcruit</p>
 
+            </div>
+
         </div>
-        
-    </div>
-)
+    )
 
 }
 

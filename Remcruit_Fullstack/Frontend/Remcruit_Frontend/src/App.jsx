@@ -36,6 +36,7 @@ import Myjobspage from './Jobseeker/Pages/Myjobspage/Myjobspage';
 import JobSeekerRoute from './utils/JobSeekerRoute';
 import EmployerRoute from './utils/EmployerRoute';
 import JobApplicationReview from './Jobseeker/Pages/JobApplication/components/JobApplicationReview';
+import SpecificCompanyPage from './Jobseeker/Pages/SpecificCompanyPage/SpecificCompanyPage';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
 import terms from './pages/Legal/LegalPage';
 import Legal from './pages/Legal/Term';
@@ -80,6 +81,7 @@ function App() {
                     <Route element={<HomePage />} path='/home' />
                     <Route element={<SpecificJobs />} path='/specificjobs' />
                     <Route element={<Myjobspage />} path='/Myjobspage' />
+                    <Route element={<SpecificCompanyPage />} path='/specificCompany' />
                   </Route>
                   <Route element={<EmployerRoute />} >
                     <Route path='/employer/job/post' element={<JobPost />} />

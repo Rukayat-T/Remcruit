@@ -28,12 +28,13 @@ class Employer(models.Model):
     phone_number = models.CharField(max_length=12)
     organisation_name = models.CharField(max_length=225)
     office_address = models.CharField(max_length=225)
-    organisation_description = models.CharField(max_length=225,null=True, blank=True)
+    organisation_description = models.CharField(max_length=1000,null=True, blank=True)
     website = models.CharField(max_length=225,null=True, blank=True)
     employees = models.IntegerField()
     recruitment_agency = models.BooleanField(max_length=200, default=False,null=True, blank=True)
     industry = models.CharField(max_length=225)
     company_logo = models.ImageField(null=True, blank=True)
+    company_banner = models.ImageField(null=True, blank=True)
     terms_and_conditions = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

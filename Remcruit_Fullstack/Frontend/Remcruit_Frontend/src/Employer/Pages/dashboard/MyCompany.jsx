@@ -14,13 +14,32 @@ function MyCompany() {
     let { company, getEmployerCompany } = useContext(AuthContext)
 
     const [image, setImage] = useState([])
+    const [banner, setBanner] = useState([])
+    // console.log(image)
+    // console.log(banner)
 
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    const { getRootProps: getRootImageProps, getInputProps: getInputImageProps, isDragActive: isImageDragActive } = useDropzone({
         acceptedFiles: 'image/*',
         onDrop: (acceptedFiles) => {
+
             setImage(
                 acceptedFiles.map((upFile) => Object.assign(upFile, {
                     preview: URL.createObjectURL(upFile)
+                }))
+            );
+            // setProfileData({...profileData, company_logo:acceptedFiles.map(upFile) => Object.assign(upFile, {
+            //     preview: URL.createObjectURL(upFile)
+            // })});
+
+        },
+    })
+
+    const { getRootProps: getRootBannerProps, getInputProps: getInputBannerProps, isDragActive: isBannerDragActive } = useDropzone({
+        acceptedFiles: 'image/*',
+        onDrop: (acceptedFiles) => {
+            setBanner(
+                acceptedFiles.map((upBanner) => Object.assign(upBanner, {
+                    preview: URL.createObjectURL(upBanner)
                 }))
             );
         }
@@ -29,6 +48,7 @@ function MyCompany() {
 
     const [profileData, setProfileData] = useState({
         company_logo: company?.company_logo,
+        company_banner: company?.company_banner,
         gender: company?.gender,
         organisation_name: company?.organisation_name,
         office_address: company?.office_address,
@@ -48,7 +68,12 @@ function MyCompany() {
 
         try {
             var data = new FormData();
-            data.append("company_logo", image[0]);
+            if (image.length > 0) {
+                data.append("company_logo", image[0])
+            }
+            if (banner.length > 0) {
+                data.append("company_banner", banner[0])
+            }
             data.append("gender", profileData.gender)
             data.append("organisation_name", profileData.organisation_name)
             data.append("office_address", profileData.office_address)
@@ -125,10 +150,10 @@ function MyCompany() {
                             </div>
                             <div className="image-container">
                                 {isedit ?
-                                    <><div {...getRootProps()} disabled={isedit ? false : true}>
-                                        <input {...getInputProps()} />
+                                    <><div {...getRootImageProps()} disabled={isedit ? false : true}>
+                                        <input {...getInputImageProps()} />
                                         {
-                                            isDragActive ? <p>drag and drop your image here..</p> : <p>drag and drop  <br />or <br /> click to upload</p>
+                                            isImageDragActive ? <p>drag and drop your image here..</p> : <p>drag and drop  <br />or <br /> click to upload</p>
                                         }
                                     </div>
                                         <div>
@@ -266,33 +291,36 @@ function MyCompany() {
                 </div>
                 <div className="column1">
                     <div className="col-title">
-                        <p>Billing Information</p>
+                        <p>Company Banner</p>
                     </div>
                     <div className="col-body">
                         <div className="formTag">
-                            <div className="info">
-                                <label htmlFor="">Card Number</label>
-                                <input type="text"
-                                    disabled={isedit ? false : true}
-                                //value={isedit === false ? company?.first_name : profileData.first_name}
-                                //onChange={(e) => setProfileData({ ...profileData, first_name: e.target.value })}
-                                />
-                            </div>
-                            <div className="info">
-                                <label htmlFor="">Name on card</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info">
-                                <label htmlFor="">Security Code</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info">
-                                <label htmlFor="">expiry</label>
-                                <input type="text" />
-                            </div>
-                            <div className="info">
-                                <label htmlFor="">Billing Address</label>
-                                <input type="text" />
+                            <div className="half1">
+                                <div className="company-banner">
+                                    {isedit ? <div className=""></div> : <img src={company?.company_banner} alt="" />}
+
+                                </div>
+                                <div className="image-container">
+                                    {isedit ?
+                                        <><div {...getRootBannerProps()} disabled={isedit ? false : true}>
+                                            <input {...getInputBannerProps()} />
+                                            {
+                                                isBannerDragActive ? <p>drag and drop your image here..</p> : <p>drag and drop  <br />or <br /> click to upload</p>
+                                            }
+                                        </div>
+                                            <div>
+                                                {banner.map((upBanner) => {
+                                                    return (
+                                                        <img src={upBanner.preview} alt="preview" className='banner-preview' />
+                                                    )
+                                                })}
+                                            </div>
+                                        </>
+                                        :
+                                        <div></div>}
+
+                                </div>
+
                             </div>
 
                             <div className="info">

@@ -102,6 +102,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
     gender = serializers.ChoiceField(choices=Gender.choices, required=True)
     terms_and_conditions = serializers.BooleanField(required=True)
     company_logo = serializers.ImageField(required=False)
+    company_banner = serializers.ImageField(required=False)
 
     class Meta:
         model = User
