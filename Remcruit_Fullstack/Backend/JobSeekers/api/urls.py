@@ -2,6 +2,7 @@ from django.urls import path
 from .views import  *
 from . import views
 
+
 urlpatterns = [
       path('allJobseekers/', AllJobSeekers.as_view(), name = 'AllJobSeekers'),
       path('profile/<str:id>/', JobSeekerView.as_view(), name = 'JobSeeker'),
@@ -11,8 +12,9 @@ urlpatterns = [
       path('getJobApplicationByStatus/<applicationStatus>',  GetJobApplicationByStatus.as_view(), name = "getApplicationByStatus" ),
       path('jobseekerbyuserid/<str:userid>/', getJobSeekerByUserId.as_view(), name=''),
       path('<str:job_seeker_id>/application/', GetApplicationByJobSeekerId.as_view(), name=''),
-       path('applications/<str:job_id>', GetApplicationByJobId.as_view(), name=''),
-      path('savedjobs/<str:id>/', SavedJobsView.as_view()),
+      path('/applications/<str:job_id>', GetApplicationByJobId.as_view(), name=''),
+      # path('savedjobs/<str:id>/', SavedJobsView.as_view()),
+      path('saveajob/', saveAJob.as_view(), name = "save a job"),
       path('<str:job_seeker_id>/savedjobs', GetSavedJobsByJobSeeker.as_view()),
       path('archivedjobs/<str:id>/', ArchivedJobsView.as_view()),
       path('<str:job_seeker_id>/archivedjobs', GetArchivedJobsByJobSeeker.as_view()),

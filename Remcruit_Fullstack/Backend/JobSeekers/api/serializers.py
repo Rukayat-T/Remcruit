@@ -52,6 +52,11 @@ class CreateJobApplicationSerializer(serializers.ModelSerializer):
         
         
         
+class ViewSavedJobsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SavedJob
+        fields = '__all__'
+        depth = 2
 
 class ViewJobApplicationSerializer(serializers.ModelSerializer):
     class Meta:

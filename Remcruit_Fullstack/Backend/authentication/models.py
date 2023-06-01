@@ -31,14 +31,15 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
 
+
 @receiver(reset_password_token_created)
 def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
 
-    email_plaintext_message = "http://127.0.0.1:8000/api/change-password/"
+    email_plaintext_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
 
     send_mail(
         # title:
-        "Password Reset for {title}".format(title="Remcruit"),
+        "Password Reset for {title}".format(title="Some website title"),
         # message:
         email_plaintext_message,
         # from:
@@ -46,5 +47,21 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
         # to:
         [reset_password_token.user.email]
     )
+
+# @receiver(reset_password_token_created)
+# def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+#     email_plaintext_message = "http://127.0.0.1:8000/authentication/change-password/"
+
+#     send_mail(
+#         # title:
+#         "Password Reset for {title}".format(title="Remcruit"),
+#         # message:
+#         email_plaintext_message,
+#         # from:
+#         "contact@remcruit.com",
+#         # to:
+#         [reset_password_token.user.email]
+#     )
     
-    Token.objects.create(user=instance)
+#     Token.objects.create(user=instance)

@@ -14,7 +14,7 @@ import { faker } from "@faker-js/faker";
 import NavbarSignedIn from "../../Components/navbarSignedin/NavbarSignedIn";
 import { useDropzone } from "react-dropzone";
 import { Link } from "react-router-dom";
-import fileDownload from "js-file-download";
+// import fileDownload from "js-file-download";
 
 function Profile() {
   let { user } = useContext(AuthContext);

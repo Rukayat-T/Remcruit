@@ -7,9 +7,13 @@ import { Route } from 'react-router';
 import LandingPage from './pages/LandingPage/LandingPage'
 import Login from '../src/pages/Login/Login'
 import Navbar from './components/Navbar/Navbar'
-import EmployerRegister from './Employer/Pages/Register/register'
-import AboutUs from './Pages/AboutUs/AboutUs'
+import EmployerRegister from './Employer/Pages/Register/register';
+import AboutUs from './pages/AboutUs/AboutUs'
 import HomePage from './Jobseeker/Pages/Home/homePage';
+import FaqPage from './pages/Faq/FaqPage';
+import Terms from './pages/Legal/LegalPage';
+import JobseekerRegisterpage2 from './Jobseeker/Pages/Registerpage2/Registerpage2'
+// import JobseekerRegisterpage3 from './Jobseeker/Pages/Registerpage3/Registerpage3'
 import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
 import { AuthProvider } from './context/AuthContext';
@@ -17,17 +21,34 @@ import PrivateRoute from './utils/PrivateRoute';
 import JobApplication from './Jobseeker/Pages/JobApplication/components/JobApplication';
 import JobPostSummary from './Employer/Pages/jobPostSummary/JobPostSummary';
 import { JobSeekerProvider } from './context/JobSeekerContext';
+// import Forgotpassword from './pages/Forgotpassword/Forgotpassword'
+// import Checkemail from './pages/checkemail/Checkemail';
+
+
 import { FormProvider } from './context/FormContext';
 import JobPost from './Employer/Pages/JobPost/components/JobPost';
 import { CompanyProvider } from './context/CompanyContext';
 import Profile from './Jobseeker/Pages/Profile/Profile';
 import Dashboard from './Employer/Pages/dashboard/Dashboard';
-import SpecificJobs from './Jobseeker/Pages/Specific Jobs Page/SpecificJobs';
+import SpecificJobs from './Jobseeker/Pages/SpecificJobsPage/SpecificJobs';
+// import ContactUs from './pages/contactus/contactus';
+import Myjobspage from './Jobseeker/Pages/Myjobspage/Myjobspage';
 import JobSeekerRoute from './utils/JobSeekerRoute';
 import EmployerRoute from './utils/EmployerRoute';
 import JobApplicationReview from './Jobseeker/Pages/JobApplication/components/JobApplicationReview';
 import SpecificCompanyPage from './Jobseeker/Pages/SpecificCompanyPage/SpecificCompanyPage';
 // import Forgotpassword from './components/Forgotpassword/Forgotpassword'
+import terms from './pages/Legal/LegalPage';
+import Legal from './pages/Legal/Term';
+import Privacy from './pages/Legal/Privacy';
+import Cookies from './pages/Legal/Cookies';
+import Term from './pages/Legal/Term';
+import ContactUs from './pages/contactus/ContactUs';
+import NotificationComponent from './Jobseeker/Components/notification/notificationComponent';
+
+
+
+
 function App() {
   return (
     <div className="App">
@@ -41,10 +62,16 @@ function App() {
                   <Route path='*' element={<div>Page Not Found</div>} />
                   <Route path='/employer' exact element={<EmployerLandingPage />} />
                   <Route path='/login' element={<Login />} />
+                  
+                  <Route path='/FaqPage' element={<FaqPage/>}/>
+                  <Route path='/Term' element={<Term/>}/>
+                  <Route path='/Privacy' element={<Privacy/>}/>
+                  <Route path='/Cookies' element={<Cookies/>}/>
                   {/* <Route path='/Forgotpassword' component={Forgotpassword } /> */}
                   <Route path='/employer/register' element={<EmployerRegister />} />
                   <Route path='/review' element={<JobApplicationReview />} />
                   <Route element={<AboutUs />} path='/aboutus' />
+                  
                   <Route element={<PrivateRoute />} >
 
                   </Route>
@@ -53,6 +80,7 @@ function App() {
                     <Route element={<JobApplication />} path='/jobapplication' />
                     <Route element={<HomePage />} path='/home' />
                     <Route element={<SpecificJobs />} path='/specificjobs' />
+                    <Route element={<Myjobspage />} path='/Myjobspage' />
                     <Route element={<SpecificCompanyPage />} path='/specificCompany' />
                   </Route>
                   <Route element={<EmployerRoute />} >
@@ -60,7 +88,10 @@ function App() {
                     <Route path='/employer/job/post/summary' element={<JobPostSummary />} />
                     <Route path='/dashboard' element={<Dashboard />} />
                   </Route>
+                  <Route path='/ContactUs' element={<ContactUs />} />
+                  <Route path='/notif' element={<NotificationComponent />} />
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />
+                  <Route path='/jobseeker/registerpage2' element={<JobseekerRegisterpage2 />} />
                 </Routes>
               </CompanyProvider>
 

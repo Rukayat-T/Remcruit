@@ -1,0 +1,143 @@
+
+    .gends label{
+        margin-top: 10px;
+        position: relative;
+        color: #242F40;
+        display: block;
+        transition: all 0.3s ease-in;  
+    } 
+    .names label{
+        margin-top: 10px;
+        position: relative;
+        color: #242F40;
+        display: block;
+        transition: all 0.3s ease-in;   
+    }
+    .pass-word label{
+        margin-top: 10px;
+        position: relative;
+        color: #242F40;
+        display: block;
+        transition: all 0.3s ease-in;   
+    }
+
+.names{
+    width: 100%;
+    height: 30%;
+    
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+.gends{
+    width: 100%;
+    height: 30%;
+    
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+.contacts{
+    width: 100%;
+    height: 30%;
+    
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+.pass-word{
+    width: 100%;
+    height: 30%;
+    
+    padding-left: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+.genders{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 85%;
+    height:2.5rem;
+    background: rgba(198, 198, 198, 0.2);
+    border: 0.5px solid #000000;
+    padding-left: 10px;
+    border-radius: 8px;
+    border-color: 2px black;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+.first-Name input{
+    width: 85%;
+    height:2.5rem;
+    background: rgba(198, 198, 198, 0.2);
+    border: 0.5px solid #000000;
+    padding-left: 10px;
+    border-radius: 8px;
+    
+    
+    }
+
+.last-Name input{
+   width: 85%;
+  height:2.5rem;
+   background: rgba(198, 198, 198, 0.2);
+  border: 0.5px solid #000000;
+   padding-left: 10px;
+ border-radius: 8px;
+        
+ }
+
+.email input{
+  width: 85%;
+  height:2.5rem;
+   background: rgba(198, 198, 198, 0.2);
+   border: 1px solid #000000;
+   padding-left: 10px;
+  border-radius: 8px; 
+  margin-bottom: 10px;
+  }
+
+.phoneNo input{
+   width: 85%;
+   height:2.5rem;
+  background: rgba(198, 198, 198, 0.2);
+   border: 0.5px solid #000000;
+    padding-left: 10px;
+  border-radius: 8px;
+ }
+
+.passwords input{
+  width: 85%;
+  height:2.5rem;
+   background: rgba(198, 198, 198, 0.2);
+ border: 0.5px solid #000000;
+  padding-left: 10px;
+  border-radius: 8px;
+  
+}
+
+.conf-Password input{
+   width: 85%;
+  height:2.5rem;
+   background: rgba(198, 198, 198, 0.2);
+    border: 0.5px solid #000000;
+   padding-left: 10px;
+    border-radius: 8px;                  
+   margin-bottom: 10px;
+  }
+
+.terms-And-Conditions label{
+ margin-top: 10px;
+   position: relative;
+   color: #242F40;
+  display: block;
+  transition: all 0.3s ease-in;   
+    }
+    

@@ -187,7 +187,7 @@ class GetJobApplicationByStatus(APIView):
 
 
 class GetApplicationByJobSeekerId(APIView):
-    serializer_class = JobApplicationSerializer
+    serializer_class = ViewJobApplicationSerializer
 
     def get(self, request, job_seeker_id):
         if request.method == "GET":
@@ -195,7 +195,7 @@ class GetApplicationByJobSeekerId(APIView):
             if job_seeker_id:
                 application = JobApplication.objects.filter(
                     job_seeker=job_seeker_id)
-                serializer = JobApplicationSerializer(application, many=True)
+                serializer = ViewJobApplicationSerializer(application, many=True)
                 if application:
                     message['response'] = "Application found"
                     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -219,30 +219,47 @@ class GetApplicationByJobId(APIView):
                 else:
                     message['response'] = "No Application with ID Found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
+ 
 
 
-class SavedJobsView(APIView):
+
+class saveAJob(generics.GenericAPIView):
     serializer_class = SavedJobSerializer
 
-    def post(self, request, id):
+    def post(self, request):
         if request.method == 'POST':
-            saved = SavedJob.objects.get(id=id)
-            data = request.data
             serializer = self.serializer_class(
-                data=data, context={'request': request})
-            message = {}
+                data=request.data, context={'request': request}
+            )
+            data = {}
             if serializer.is_valid():
-                saved = serializer.save()
-                message['response'] = "Job Saved"
-                return Response(message, status=status.HTTP_201_CREATED)
+                savedJob = serializer.save()
+                data['response'] = "job saved"
+                return Response(serializer.data, status.HTTP_200_OK)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class SavedJobsView(APIView):
+    serializer_class = ViewSavedJobsSerializer
+    
+#     def post (self, request, id):
+#         if request.method == 'POST':
+#             saved = SavedJob.objects.get(id=id)
+#             data = request.data
+#             serializer = self.serializer_class(data=data, context={'request': request})
+#             message = {}
+#             if serializer.is_valid():
+#                 saved = serializer.save()
+#                 message['response'] = "Job Saved"
+#                 return Response(message, status=status.HTTP_201_CREATED)
+#             else:
+#                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
     def get(self, request, id):
         if request.method == "GET":
             if id:
                 saved = SavedJob.objects.get(id=id)
-                serializer = SavedJobSerializer(saved)
+                serializer = ViewSavedJobsSerializer(saved)
                 if saved:
                     return Response(serializer.data)
                 else:
@@ -265,14 +282,14 @@ class GetCredentialByJobSeeker(APIView):
                     message['response'] = "No Credential with Jobseeker Found"
                     return Response(message, status=status.HTTP_404_NOT_FOUND)
 class GetSavedJobsByJobSeeker(APIView):
-    serializer_class = SavedJobSerializer
+    serializer_class = ViewSavedJobsSerializer
 
     def get(self, request, job_seeker_id):
         if request.method == "GET":
             message = {}
             if job_seeker_id:
                 saved = SavedJob.objects.filter(job_seeker=job_seeker_id)
-                serializer = SavedJobSerializer(saved, many=True)
+                serializer = ViewSavedJobsSerializer(saved, many=True)
                 if saved:
                     message['response'] = "Saved Job(s) found"
                     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -371,3 +388,5 @@ class SearchJobs(generics.ListCreateAPIView):
     search_fields = ['title', 'company__organisation_name']
     filter_backends = (filters.SearchFilter,)
     queryset = Job.objects.all()
+
+

@@ -15,6 +15,7 @@ function NavbarSignedIn() {
                 <ul className='navMenu'>
                     <li><Link to='/home' >Home</Link></li>
                     <li><Link to='/profile'>Profile</Link></li>
+                    <li><Link to='/Myjobspage'> My Jobs</Link></li>
                     <li><Link to='/aboutus '>About Us</Link></li>
                     <li><Link to='/notif '>Notification</Link></li>
                     <li onClick={logoutUser}>Logout</li>
