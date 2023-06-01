@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../static/SpecificComponents.css";
 import GloLogo from "../static/Frame.png";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark as regularBookmark } from '@fortawesome/free-regular-svg-icons'
+import AuthContext from '../../../../context/AuthContext';
 
 function TestCards({ job, getDisplayedJob, GetClickedJob}) {
   const [jobClicked, setBoxClicked] = useState();
+  const [bookmark, setBookmark] = useState(false);
+ 
+  let{jobseeker} = useContext(AuthContext)
+  console.log(jobseeker)
 
   const handleJobClick = (clickedjob) => {
     setBoxClicked(clickedjob);
@@ -28,7 +35,50 @@ function TestCards({ job, getDisplayedJob, GetClickedJob}) {
     const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
     return daysDifference;
   };
-  
+  const savingJob = async (jobId, jobSeekerId) => {
+    console.log("i clicked a job")
+    try {
+        let res = await fetch("http://127.0.0.1:8000/jobseekers/saveajob/",
+        
+          {
+            method: "POST",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "job": jobId,
+                "job_seeker": jobSeekerId
+            }),
+          });
+        let resJson = await res.json();
+        if (res.status === 200) {
+          console.log(resJson)
+          
+         
+        } else {
+          console.log(resJson)
+          alert("something went wrong")
+        }
+      } catch (err) {
+        console.log(err);
+      }
+     
+    };
+
+
+
+
+function toggleBookmark(jobId,jobSeekerId) {
+    
+    setBookmark(!bookmark);
+    savingJob(jobId,jobSeekerId)
+    console.log(jobId)
+    
+ 
+    
+}
+
   const [showMore, setShowMore] = useState(false);
   const description = job?.description;
 
@@ -53,7 +103,10 @@ function TestCards({ job, getDisplayedJob, GetClickedJob}) {
               <p>{job?.company?.organisation_name}</p>
             </div>
             <div className="share-save">
-              <FontAwesomeIcon icon={faBookmark} />
+            <button onClick={() => {toggleBookmark(job?.id, jobseeker?.id)}} className='bookmarkBtn'>
+                      
+                      {bookmark  ? <FontAwesomeIcon icon={filledBookmark} className='bookmark' />:<FontAwesomeIcon icon={regularBookmark} className='bookmark' /> }
+                  </button>
             </div>
           </div>
           <div className="jobs-card-description">

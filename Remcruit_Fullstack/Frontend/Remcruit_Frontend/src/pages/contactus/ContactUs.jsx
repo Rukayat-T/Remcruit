@@ -37,7 +37,7 @@ function ContactUs() {
                 </h4>
                 <p>Our friendly team is here to help.</p>
                 
-                <Link to={`mailto:contact@remcruit.com`}>contact@remcruit.com</Link>
+                <Link to={`mailto:contact@remcruit.com`}><h4>contact@remcruit.com</h4> </Link>
             </div>
 
             <div className="callus">

@@ -9,7 +9,7 @@ function AppliedJobsPage({ job_seeker_id }) {
   const [isLoading, setIsLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedStatus, setSelectedStatus] = useState('');
-  const [filterStatus, setFilterStatus] = useState(''); // State variable for the selected filter
+  const [filterStatus, setFilterStatus] = useState(''); 
 
   useEffect(() => {
     fetchAppliedJobs();
@@ -97,13 +97,16 @@ function AppliedJobsPage({ job_seeker_id }) {
   const handleFilterChange = (e) => {
     setFilterStatus(e.target.value);
   };
-
   const filteredJobApplication = filterStatus
-    ? jobapplication.filter(job => job.status === filterStatus)
-    : jobapplication;
+  ? jobapplication.filter(job => {
+      console.log(job.status, filterStatus);
+      return filterStatus === '' || job.status === filterStatus;
+    })
+  : jobapplication;
 
 
 console.log(filteredJobApplication)
+
   return (
     <div className="appliedjobs-main">
       <div className="applied">
@@ -120,7 +123,9 @@ console.log(filteredJobApplication)
           </select>
         </div>
         {isLoading ? (
-          <p>Loading...</p>
+         <div className="loading-spinner">
+         <p>Loading...</p>
+       </div>
         ) : filteredJobApplication.length > 0 ? (
           <div className="appliedJobsList">
             {filteredJobApplication.map(job => (
@@ -135,7 +140,9 @@ console.log(filteredJobApplication)
                 </div>
                 <div className="statusupdtaes"  >
                   <p data-status={job.status}> • {job.status}</p>
+                  {(job.status !== 'DECLINED' && job.status !== 'OFFER_DECLINED') && (
                   <button onClick={() => handleUpdateStatus(job.status)}>Update Status</button>
+      )}
                   </div>
               </div>
             ))}

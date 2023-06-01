@@ -13,18 +13,21 @@ import AuthContext from '../../../context/AuthContext'
 function JobBox({ job }) {
 const companyLogo = job?.company?.company_logo
 
+let{jobseeker} = useContext(AuthContext)
+console.log(jobseeker)
+
     let { jobSeeker } = useContext(JobSeekerContext)
     
     const [bookmark, setBookmark] = useState(false);
     const navigate = useNavigate()
 
-    const toggleBookmark = () => {
-        if (bookmark === "false") {
-            setBookmark("true")
-            return;
-        }
-        setBookmark("false")
-    }
+    // const toggleBookmark = () => {
+    //     if (bookmark === "false") {
+    //         setBookmark("true")
+    //         return;
+    //     }
+    //     setBookmark("false")
+    // }
     const [jobId, setJobId] = useState(job.id)
     const [showMore, setShowMore] = useState(false);
 
@@ -37,6 +40,50 @@ const companyLogo = job?.company?.company_logo
         const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
         return daysDifference;
     };
+
+    const savingJob = async (jobId, jobSeekerId) => {
+        console.log("i clicked a job")
+        try {
+            let res = await fetch("http://127.0.0.1:8000/jobseekers/saveajob/",
+            
+              {
+                method: "POST",
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "job": jobId,
+                    "job_seeker": jobSeekerId
+                }),
+              });
+            let resJson = await res.json();
+            if (res.status === 200) {
+              console.log(resJson)
+              
+             
+            } else {
+              console.log(resJson)
+              alert("something went wrong")
+            }
+          } catch (err) {
+            console.log(err);
+          }
+         
+        };
+    
+    
+    
+    
+    function toggleBookmark(jobId,jobSeekerId) {
+        
+        setBookmark(!bookmark);
+        savingJob(jobId,jobSeekerId)
+        console.log(jobId)
+        
+     
+        
+    }
     return (
         <div className='boxContainer'>
             <div className="boxHeaderSection">

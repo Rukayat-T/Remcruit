@@ -70,7 +70,9 @@ function SavedJobsPage({ job_seeker_id,specificjob}) {
     <div className="saved-job-main">
       <div className="testing">
         {isLoading ? (
-          <p>Loading...</p>
+         <div className="loading-spinner">
+         <p>Loading...</p>
+       </div>
         ) : savedJobs.length > 0 ? (
           savedJobs.map((job) => (
             <div className="saved-jobs-container" key={job.id}>
