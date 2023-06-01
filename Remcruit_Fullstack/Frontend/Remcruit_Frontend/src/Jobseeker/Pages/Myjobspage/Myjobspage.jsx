@@ -9,8 +9,6 @@ import AuthContext from '../../../context/AuthContext'
 import JobSeekerContext from '../../../context/JobSeekerContext'
 import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn';
 import Toappliedjobs from './Toappliedjobs/AppliedJobsPage';
-import Toarchivejobs from './Toarchivejobs/Toarchivejobs';
-import Tointerview from './ToInterview/Tointerview';
 import './Myjob.css';
 import Footer from '../../../components/Footer/Footer';
 import AppliedJobsPage from './Toappliedjobs/AppliedJobsPage';
