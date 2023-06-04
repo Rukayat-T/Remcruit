@@ -18,6 +18,7 @@ function NavbarSignedIn() {
                     <li><Link to='/Myjobspage'> My Jobs</Link></li>
                     <li><Link to='/aboutus '>About Us</Link></li>
                     <li><Link to='/notif '>Notification</Link></li>
+                    <li><Link to='/testing'>Test</Link></li>
                     <li onClick={logoutUser}>Logout</li>
                 </ul>
             </nav>

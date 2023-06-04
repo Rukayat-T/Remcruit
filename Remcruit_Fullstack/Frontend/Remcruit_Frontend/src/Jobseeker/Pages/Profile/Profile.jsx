@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 function Profile() {
   let { user } = useContext(AuthContext);
   let { jobseeker, jobSeeker } = useContext(JobSeekerContext);
-  let { getJobSeeker } = useContext(AuthContext);
+  let { getJobSeeker , getJobSeekerForProfile} = useContext(AuthContext);
   const [choices, setChoices] = useState([]);
   const [editProfile, setEditProfile] = useState(false);
   const [image, setImage] = useState([]);
@@ -27,10 +27,11 @@ function Profile() {
   const [fileName, setFileName] = useState("");
   const [fileData, setFileData] = useState("");
 
+
   const docs = [
     {
       uri: fileLink,
-      fileType: "pdf"
+      fileType: "pdf",
     },
   ];
 
@@ -83,7 +84,6 @@ function Profile() {
       fetchCredential();
     }
   }, [jobseekerID]);
-  
 
   let uni = choices?.university_choices;
   let year = choices?.year_choices;
@@ -144,15 +144,13 @@ function Profile() {
         }
       ).then((response) => response.json());
       setEditProfile(false);
-      getJobSeeker(user.id);
+      getJobSeekerForProfile(user.id);
       setEditProfile(false);
+      navigate(0)
     } catch (error) {
       console.log(error);
     }
   };
-
-  const randomImage = faker.image.city();
-  const randomAvatar = faker.image.avatar();
 
   const genderDefaultValue = jobseeker?.gender;
   const uniDefaultValue = jobseeker?.university_name;
@@ -162,9 +160,6 @@ function Profile() {
   const industryDefaultValue = jobseeker?.industry;
   const courseDefaultValue = jobseeker?.subject_of_study;
   const qualificationDefaultValue = jobseeker?.highest_qualification;
-
-  const defaultValue = "String";
-
   return (
     <div>
       {/* <NavbarSignedIn/> */}
@@ -182,7 +177,6 @@ function Profile() {
           <h1>Hi, {user.first_name}</h1>
         </div>
         <div className="hori">
-          <hr />
         </div>
         <div className="profile-main-content">
           <div className="profile-content">
@@ -604,8 +598,6 @@ function Profile() {
                     </div>
                   ) : (
                     <div className="">
-                      {/* <p>{fileData.credential_name}</p> */}
-                      {/* <a href={fileData}><button>View CV</button></a> */}
                       <DocViewer
                         pluginRenderers={DocViewerRenderers}
                         documents={docs}
