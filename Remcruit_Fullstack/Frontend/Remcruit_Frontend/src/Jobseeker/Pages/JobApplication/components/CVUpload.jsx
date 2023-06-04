@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 function CVUpload({ data, setData, fileData}) {
   const [clicked, setClicked] = useState(false);
-  const [fileName, setFileName] = useState(data.credential.credential_name);
+  const [fileName, setFileName] = useState(data?.credential?.credential_name);
 
   // data.credential.credential_name is the old name of the file then the new name
   // becomes data.credential.name

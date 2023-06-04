@@ -134,6 +134,15 @@ class EmployerOnlyView(generics.RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
+class TestView(APIView):
+     
+   permission_classes = (permissions.IsAuthenticated,)
+   def get(self, request):
+       content = {"message": 'You are authorized to view this page.'}       
+       return Response(content)
+
+
+
 
 class JobSeekerOnlyView(generics.RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated&IsJobSeekerUser]

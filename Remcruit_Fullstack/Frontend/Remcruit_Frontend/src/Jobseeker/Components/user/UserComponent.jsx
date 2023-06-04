@@ -8,10 +8,12 @@ function UserComponent() {
 
     return (
         <div className='userComponent'>
-            <div className="profilePicture"> <img
+            <div className="profilePicture"> 
+            <img
                     src={jobseeker?.profile_picture}
                     alt=""
-                  /></div>
+                  />
+                  </div>
             <div>
                 {user && <p className='name'>{user.first_name} {user.last_name}</p>}
             </div>

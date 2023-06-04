@@ -69,6 +69,22 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const getJobSeekerForProfile = async (id) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/jobseekers/jobseekerbyuserid/${id}/`);
+      const resJson = await response.json();
+      if (response.status === 200) {
+        localStorage.setItem("jobseeker", JSON.stringify(resJson));
+        setJobSeeker(resJson);
+      } else {
+        console.log(resJson);
+        alert("Something went wrong with getting the job seeker details");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const navigateUsers = (user) => {
 
     if (user) {
@@ -123,7 +139,8 @@ export const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser,
     jobseeker,
-    getJobSeeker
+    getJobSeeker,
+    getJobSeekerForProfile
   };
 
   return <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>;

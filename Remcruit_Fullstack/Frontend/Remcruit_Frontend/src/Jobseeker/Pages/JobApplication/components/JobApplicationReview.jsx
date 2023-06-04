@@ -37,6 +37,7 @@ function JobApplicationReview() {
         `http://127.0.0.1:8000/employer/job/${id}`
       ).then((response) => response.json());
       setJob(response);
+      navigate('/home')
     } catch (err) {
       console.log(err);
     }
