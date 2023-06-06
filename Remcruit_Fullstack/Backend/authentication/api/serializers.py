@@ -114,6 +114,7 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             'password',
             'password2',
             'company_logo',
+            'company_banner',
             'title',
             'gender',
             'job_title',

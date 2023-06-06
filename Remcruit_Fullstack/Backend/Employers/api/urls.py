@@ -16,6 +16,10 @@ urlpatterns = [
       path('getCandidateById/<str:id>', GetCandidateById.as_view(), name = "getCandidatebyId" ),
       path('JobsCount/<str:companyId>', GetCandidatesForAllJobsByCompany.as_view(), name='jobsCount'),
       #path('savejob/', saveAJob.as_view(), name = "save a job"),
+      path('latestCanididates/<str:companyId>', GetLatestCandidatesByCompany.as_view(),  name='latestCandidates'),
+      path('latest3Jobs/<str:companyId>', GetLatestJobsView.as_view(), name='latestJobs'),
+
+    
       
 
      

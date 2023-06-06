@@ -13,6 +13,7 @@ function MyJobs({ getJobFromMyJobs, goToCandidatesPage }) {
     const [choosenJob, setChoosenJob] = useState([])
 
     getJobFromMyJobs(choosenJob)
+    console.log(jobsByCompanyId)
 
     const getJobsByCompanyId = async (id) => {
         try {
