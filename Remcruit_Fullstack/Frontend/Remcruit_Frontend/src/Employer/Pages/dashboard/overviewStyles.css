@@ -1,13 +1,153 @@
-/* .imageBox{
-    background-color: rgba(255, 255, 0, 0.156);
-    height: 500px;
-    width: 450px;
+.overview-container{
+    border: 3px solid red;
+    min-height: 85vh;
+}
+
+.overview-header{
+    border: 3px solid green;
+    min-height: 20vh;
+}
+
+.overview-header-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.overview-header-foot{
+    /* border: 3px solid blue; */
+    display: flex;
+    column-gap: 12%;
+    margin-bottom: 30px;
+}
+
+.overview-header-head-left{
+    /* border: 3px solid yellow; */
+}
+
+.overview-header-head-right{
+    /* border: 3px solid hotpink; */
+}
+
+.recruiter-name{
+    margin: 0;
+    font-weight: 500;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+.company-notifications{
+    margin: 0;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.notif{
+    background-color: #FFCC33;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
-} */
+   align-items: center;
+}
 
-/* .image-preview{
-    width: 100px;
-    height: 100px;
-} */
+.bell{
+    font-size: 25px;
+    animation: animate-bell 3s infinite;
+}
+
+@keyframes animate-bell{
+    0%{
+        transform: rotate(0deg);
+
+    }
+    50%{
+        transform: rotate(30deg);
+
+    }
+    100%{
+        transform: rotate(0deg);
+
+    }
+}
+
+.new-candidates{
+    padding-left: 1%;
+    width: 180px;
+    height: 80px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    background: rgba(202, 97, 195, 0.3);
+}
+
+.awaiting-feedback{
+    padding-left: 1%;
+    width: 180px;
+    height: 80px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    background: rgba(255, 128, 76, 0.3);
+}
+
+.interviews-to-go{
+    padding-left: 1%;
+    width: 180px;
+    height: 80px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    background: rgba(111, 230, 246, 0.25);
+}
+
+.people-employed{
+    padding-left: 1%;
+    width: 180px;
+    height: 80px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    background: rgba(114, 231, 139, 0.3);
+}
+
+
+.new-candidates svg{
+    font-size: 28px;
+    color: rgba(202, 97, 195);
+}
+
+.awaiting-feedback svg{
+    font-size: 28px;
+    color: rgba(255, 128, 76);
+}
+
+.interviews-to-go svg{
+    font-size: 28px;
+    color: rgba(121, 239, 255);
+}
+
+.people-employed svg{
+    font-size: 28px;
+    color: rgba(114, 231, 139);
+}
+
+.overview-body{
+    border: 3px solid hotpink;
+}
+
+.overview-body-1{
+    border: 3px solid yellow;
+}
+
+.overview-body-2{
+    border: 3px solid blue;
+}
+
