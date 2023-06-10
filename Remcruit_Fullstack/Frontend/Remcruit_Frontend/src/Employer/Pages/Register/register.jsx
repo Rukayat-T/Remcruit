@@ -60,6 +60,8 @@ function EmployerRegister() {
     gender: "",
     job_title: "",
     organisation_name: "",
+    city: "",
+    state: "",
     office_address: "",
     organisation_description: "",
     recruitment_agency: "",
@@ -108,6 +110,8 @@ function EmployerRegister() {
       data.append("password2", formData.password2)
       data.append("title", formData.title)
       data.append("gender", formData.gender)
+      data.append('city', formData.city)
+      data.append('state', formData.state)
       data.append("job_title", formData.job_title)
       data.append("organisation_name", formData.organisation_name)
       data.append("office_address", formData.office_address)

@@ -15,6 +15,7 @@ import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import RegisterForm1 from "../../Components/RegisterForm1/RegisterForm1";
 import RegisterForm2 from '../../Components/RegisterForm2/RegisterForm2';
 
+import CityData from "../../../data/CityData.json"
 
 
 function Registerpage2() {

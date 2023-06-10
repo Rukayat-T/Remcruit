@@ -146,6 +146,7 @@ class JobSeeker(models.Model):
     gender = models.TextField(choices=Gender.choices)
     terms_and_conditions = models.BooleanField(default=False)
     profile_picture = models.ImageField(null=True, blank=True)
+    city = models.CharField(max_length=200, null=True)
     state = models.CharField(max_length=200, null=True)
     nin = models.CharField(max_length=11, null = True)
     professional_summary = models.TextField(max_length=400, default='Old')
@@ -155,7 +156,7 @@ class JobSeeker(models.Model):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'title', 'phone_number',
-                        'terms_and_conditions']
+                        'terms_and_conditions', 'city', 'state',]
     
     def __str__(self):
         return self.user.get_full_name()

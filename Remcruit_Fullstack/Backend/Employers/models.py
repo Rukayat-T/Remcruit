@@ -28,6 +28,8 @@ class Employer(models.Model):
     phone_number = models.CharField(max_length=12)
     organisation_name = models.CharField(max_length=225)
     office_address = models.CharField(max_length=225)
+    city = models.CharField(max_length=20, blank=True)
+    state = models.CharField(max_length=20, blank=True)
     organisation_description = models.CharField(max_length=1000,null=True, blank=True)
     website = models.CharField(max_length=225,null=True, blank=True)
     employees = models.IntegerField()
@@ -39,7 +41,7 @@ class Employer(models.Model):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'gender', 'title', 'phone_number',
-                       'organisation_name', 'recruitment_agency', 'terms_and_conditions', 'job_title', 'office_address','industry']
+                       'organisation_name', 'city', 'state', 'recruitment_agency', 'terms_and_conditions', 'job_title', 'office_address','industry']
 
     def __str__(self):
         return self.organisation_name
@@ -57,7 +59,8 @@ class Job(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField()
     company = models.ForeignKey(Employer, related_name='employer', on_delete=models.CASCADE)
-    location = models.CharField(max_length=30)
+    city = models.CharField(max_length=200, blank=True)
+    state = models.CharField(max_length=200, blank=True)
     job_post_duration = models.DateField( default=None)
     salary = models.FloatField()
     pay_rate = models.TextField(choices=PayRate.choices, default=PayRate.MONTHLY)

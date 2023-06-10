@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CityData from "./CityData.json";
+import CityData from '../../data/CityData.json'
 
 function Testing() {
   const [state, setState] = useState('--State--');
