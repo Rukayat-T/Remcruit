@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./YourOrganisationStyles.css";
-import CityData from "../../../pages/Testing/CityData.json";
+import CityData from '../../../data/CityData.json'
 
 function YourOrganisationTab({ formData, setFormData }) {
   const [state, setState] = useState("--State--");

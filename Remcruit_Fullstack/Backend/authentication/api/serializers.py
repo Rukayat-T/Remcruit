@@ -28,6 +28,8 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
     degree_classification = serializers.ChoiceField(choices=DegreeClassification.choices,required=True)
     profile_picture = serializers.ImageField(required=False)
     credential_name = serializers.CharField(required=False)
+    city = serializers.CharField(required=True)
+    state = serializers.CharField(required=True)
     credential = serializers.FileField(required=False)
     highest_qualification = serializers.ChoiceField(choices=JobSeeker.HIGHEST_QUALIFICATION_CHOICES, required=True)
     gender = serializers.ChoiceField(choices=Gender.choices, required=True)
@@ -47,6 +49,8 @@ class JobSeekerRegisterSerializer(serializers.ModelSerializer):
             'year_of_graduation',
             'credential_name',
             'credential',
+            'city',
+            'state',
             'profile_picture',
             'degree_classification',
             'highest_qualification',
@@ -94,6 +98,8 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
     title = serializers.CharField(required=True)
     organisation_name = serializers.CharField(required=True)
     office_address = serializers.CharField(required=True)
+    city = serializers.CharField(required=True)
+    state = serializers.CharField(required=True)
     industry = serializers.CharField(required=True)
     employees = serializers.CharField(required=True)
     phone_number = serializers.CharField(required=True)
@@ -121,11 +127,13 @@ class EmployerRegisterSerializer(serializers.ModelSerializer):
             'phone_number',
             'organisation_name',
             'office_address',
+            'city',
+            'state',
             'organisation_description',
             'employees',
             'recruitment_agency',
             'industry',
-            'terms_and_conditions',
+            'terms_and_conditions',  
         ]
         read_only_fields = ["id"]
         extra_Kwargs={
