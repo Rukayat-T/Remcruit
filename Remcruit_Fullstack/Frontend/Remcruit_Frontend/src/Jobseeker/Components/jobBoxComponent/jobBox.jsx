@@ -14,8 +14,6 @@ function JobBox({ job }) {
 const companyLogo = job?.company?.company_logo
 
 let{jobseeker} = useContext(AuthContext)
-console.log(jobseeker)
-
     let { jobSeeker } = useContext(JobSeekerContext)
     
     const [bookmark, setBookmark] = useState(false);
@@ -128,9 +126,7 @@ console.log(jobseeker)
             <div className="jobDescriptionSection">
                 <div className="description">
                     <p> {showMore ? description : `${description?.substring(0, 250)}`}
-                        <Link to={'/specificjobs'} state={{ job: job }}> <a href="" onClick={() => navigate('/specificjobs')}>
-                            {showMore ? "Show less" : "...Show more"}
-                        </a></Link>
+                        <Link to={'/specificjobs'} state={{ job: job }} onClick={() => navigate('/specificjobs')}>{showMore ? "Show less" : "...Show more"}</Link>
 
                     </p>
                 </div>

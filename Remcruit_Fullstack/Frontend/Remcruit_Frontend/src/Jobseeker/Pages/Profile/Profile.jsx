@@ -162,9 +162,8 @@ function Profile() {
   const qualificationDefaultValue = jobseeker?.highest_qualification;
   return (
     <div>
-      {/* <NavbarSignedIn/> */}
       <div className="profile-main-container">
-        <div className="profile-header">
+        {/* <div className="profile-header">
           <FontAwesomeIcon
             icon={faArrowLeft}
             style={{ color: "#000000" }}
@@ -175,7 +174,7 @@ function Profile() {
             alt=""
           />
           <h1>Hi, {user.first_name}</h1>
-        </div>
+        </div> */}
         <div className="hori">
         </div>
         <div className="profile-main-content">

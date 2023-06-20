@@ -16,7 +16,7 @@ import JobseekerRegisterpage2 from './Jobseeker/Pages/Registerpage2/Registerpage
 // import JobseekerRegisterpage3 from './Jobseeker/Pages/Registerpage3/Registerpage3'
 import JobseekerRegister from './Jobseeker/Pages/Register/Register'
 import EmployerLandingPage from './Employer/Pages/Landing/LandingPage';
-import { AuthProvider } from './context/AuthContext';
+import AuthContext, { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 import JobApplication from './Jobseeker/Pages/JobApplication/components/JobApplication';
 import JobPostSummary from './Employer/Pages/jobPostSummary/JobPostSummary';
@@ -45,12 +45,17 @@ import Privacy from './pages/Legal/Privacy';
 import Cookies from './pages/Legal/Cookies';
 import Term from './pages/Legal/Term';
 import ContactUs from './pages/contactus/ContactUs';
-import NotificationComponent from './Jobseeker/Components/notification/notificationComponent';
+import NavbarSignedIn from './Jobseeker/Components/navbarSignedin/NavbarSignedIn';
+import { useContext } from 'react';
+import Notifications from './Jobseeker/Pages/Notifications/Notifications';
 
 
 
 
-function App() {
+function App() {  
+  const isLoggedIn = localStorage.getItem('authTokens')
+
+  const getSeeker = JSON.parse(localStorage.getItem("jobseeker"))
   return (
     <div className="App">
       <Router>
@@ -58,6 +63,10 @@ function App() {
           <FormProvider>
             <JobSeekerProvider>
               <CompanyProvider>
+                {
+                  isLoggedIn ? <NavbarSignedIn /> : <Navbar/>
+                }
+  
                 <Routes>
                   <Route path='/' exact element={<LandingPage />} />
                   <Route path='*' element={<div>Page Not Found</div>} />
@@ -76,6 +85,7 @@ function App() {
                   <Route element={<PrivateRoute />} >
 
                   </Route>
+                  
                   <Route element={<JobSeekerRoute />} >
                     <Route element={<Profile />} path='/profile' />
                     <Route element={<JobApplication />} path='/jobapplication' />
@@ -84,6 +94,8 @@ function App() {
                     <Route element={<Myjobspage />} path='/Myjobspage' />
                     <Route element={<SpecificCompanyPage />} path='/specificCompany' />
                     <Route element={<Testing />} path='/testing' />
+                    <Route element={<Notifications />} path='/notification' />
+
                   </Route>
                   <Route element={<EmployerRoute />} >
                     <Route path='/employer/job/post' element={<JobPost />} />
@@ -91,7 +103,6 @@ function App() {
                     <Route path='/dashboard' element={<Dashboard />} />
                   </Route>
                   <Route path='/ContactUs' element={<ContactUs />} />
-                  <Route path='/notif' element={<NotificationComponent />} />
                   <Route path='/jobseeker/register' element={<JobseekerRegister />} />
                   <Route path='/jobseeker/registerpage2' element={<JobseekerRegisterpage2 />} />
                 </Routes>

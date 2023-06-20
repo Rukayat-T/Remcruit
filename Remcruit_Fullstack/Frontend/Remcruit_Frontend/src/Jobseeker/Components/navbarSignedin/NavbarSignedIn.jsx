@@ -1,29 +1,63 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Logo from "../../../assets/fullLogo-cropped.svg";
 
-import Logo from '../../../assets/fullLogo-cropped.svg'
-
-import './navbarSignedIn.css'
-import AuthContext from '../../../context/AuthContext'
+import "./navbarSignedIn.css";
+import AuthContext from "../../../context/AuthContext";
+import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import Dropdown from "./Dropdown";
 
 function NavbarSignedIn() {
-    let {logoutUser} = useContext(AuthContext)
-    return (
-        <div className='n'>
-            <nav className='employerNav'>
-                <Link to="/home"><img src={Logo} alt="" srcSet="" className='empLogo' /></Link>
-                <ul className='navMenu'>
-                    <li><Link to='/home' >Home</Link></li>
-                    <li><Link to='/profile'>Profile</Link></li>
-                    <li><Link to='/Myjobspage'> My Jobs</Link></li>
-                    <li><Link to='/aboutus '>About Us</Link></li>
-                    <li><Link to='/notif '>Notification</Link></li>
-                    <li><Link to='/testing'>Test</Link></li>
-                    <li onClick={logoutUser}>Logout</li>
-                </ul>
-            </nav>
-        </div>
-    )
+  let { logoutUser } = useContext(AuthContext);
+  let { user, jobseeker } = useContext(AuthContext);
+  const [dropdown, setDropdown] = useState(false);
+  return (
+    <div className="n">
+      <nav className="employerNav">
+        <Link to="/home">
+          <img
+            src={Logo}
+            alt=""
+            srcSet=""
+            className="empLogo"
+          />
+        </Link>
+        <ul className="navMenu">
+          <li>
+            <Link to="/home">Home</Link>
+          </li>
+          <li>
+            <Link to="/">Find Jobs</Link>
+          </li>
+          <li>
+            <Link to="/">Companies</Link>
+            
+          </li>
+         
+          <li
+          onMouseEnter={() => {setDropdown(true);}}
+          onMouseLeave={() => {setDropdown(false);}}
+          >
+            <div 
+            className="profile-header"
+            
+            >
+              <img
+                src="http://source.unsplash.com/3TLl_97HNJo"
+                alt=""
+              />
+            </div>
+            <FontAwesomeIcon icon={faCaretDown} size="sm" style={{color: "#000000",}} />
+            {dropdown && <Dropdown/>}
+          </li>
+          <li onClick={logoutUser}>Logout</li>
+          {/* <button>Logout</button> */}
+        </ul>
+      </nav>
+      <Dropdown/>
+    </div>
+  );
 }
 
-export default NavbarSignedIn
+export default NavbarSignedIn;

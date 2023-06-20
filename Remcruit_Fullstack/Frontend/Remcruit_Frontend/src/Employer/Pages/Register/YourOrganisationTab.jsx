@@ -7,10 +7,11 @@ function YourOrganisationTab({ formData, setFormData }) {
   const [city, setCity] = useState("--City--");
   const [cities, setCities] = useState([]);
   
-//   const changeStateHandler = (e) => {
-//     setFormData({ ...formData, state: e.target.value })}
-//     setCities(CityData.find((state) => state.name === e.target.value).cities);
-//   };
+  const changeStateHandler = (e) => {
+    // setFormData({ ...formData, state: e.target.value })}
+    setCities(CityData.find((state) => state.name === e.target.value).cities);
+  };
+  console.log(formData)
 console.log(formData);2
 
 //   const changeCityHandler = (e) => {
@@ -50,7 +51,7 @@ console.log(formData);2
         name=""
         id=""
         value={state}
-        onChange={changeStateHandler}
+        onChange={(e)=>{ setFormData({ ...formData, state: e.target.value }); changeStateHandler(e);  setState(e.target.value);}}
       >
         <option value="">--State--</option>
         {
@@ -64,7 +65,7 @@ console.log(formData);2
         name=""
         id=""
         value={city}
-        onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+        onChange={(e) => {setFormData({ ...formData, city: e.target.value }); setCity(e.target.value);}}
       >
         <option value="">--City</option>
         {
