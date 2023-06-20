@@ -13,12 +13,13 @@
 ul {
   display: inline-flex;
 }
-li {
-  padding: 20px 30px;
+.nav li {
+  padding: 0px 30px;
   list-style: none;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 a {
   text-decoration: none;
