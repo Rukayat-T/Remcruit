@@ -48,7 +48,9 @@ function NavbarSignedIn() {
           </li>
           <li>
             <Link to="/comp">Companies</Link>
-            
+          </li>
+          <li>
+            <Link to="/Faq">FAQ</Link>
           </li>
         </ul>
       </nav>

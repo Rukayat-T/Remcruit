@@ -16,7 +16,6 @@ function LandingPage() {
   
   return (
     <div>
-      <Navbar />
      <Banner/>
       <Steps />
       <Community />
