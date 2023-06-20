@@ -5,11 +5,11 @@ import Logo from '../../assets/fullLogo.svg'
 
 const Navbar = () => {
   return (
-    <div>
+    <div className='navbarnot'>
       <nav className='nav'>
        <Link to='/'><img src={Logo} alt="" srcSet="" /></Link> 
-        <ul>
-          <li><Link to='/' >Home</Link></li>
+        <ul className='just'>
+          <li className='selectedli'><Link to='/' >Home</Link></li>
           <li><Link to='/aboutus' >About Us</Link></li>
           <li><Link to='/login' >Login</Link></li>
           <li><Link to='/jobseeker/register' >Register</Link></li>

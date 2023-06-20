@@ -14,7 +14,7 @@ function NavbarSignedIn() {
   const [dropdown, setDropdown] = useState(false);
   return (
     <div className="n">
-      <nav className="employerNav">
+      <nav className="employerNav nav">
         <Link to="/home">
           <img
             src={Logo}
@@ -27,14 +27,6 @@ function NavbarSignedIn() {
           <li>
             <Link to="/home">Home</Link>
           </li>
-          <li>
-            <Link to="/">Find Jobs</Link>
-          </li>
-          <li>
-            <Link to="/">Companies</Link>
-            
-          </li>
-         
           <li
           onMouseEnter={() => {setDropdown(true);}}
           onMouseLeave={() => {setDropdown(false);}}
@@ -51,11 +43,15 @@ function NavbarSignedIn() {
             <FontAwesomeIcon icon={faCaretDown} size="sm" style={{color: "#000000",}} />
             {dropdown && <Dropdown/>}
           </li>
-          <li onClick={logoutUser}>Logout</li>
-          {/* <button>Logout</button> */}
+          <li>
+            <Link to="/find">Find Jobs</Link>
+          </li>
+          <li>
+            <Link to="/comp">Companies</Link>
+            
+          </li>
         </ul>
       </nav>
-      <Dropdown/>
     </div>
   );
 }
