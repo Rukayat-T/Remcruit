@@ -10,7 +10,7 @@ import Navbar from './components/Navbar/Navbar'
 import EmployerRegister from './Employer/Pages/Register/register';
 import AboutUs from './pages/AboutUs/AboutUs'
 import HomePage from './Jobseeker/Pages/Home/homePage';
-import FaqPage from './pages/Faq/FaqPage';
+import Faq from './pages/Faq/Faq';
 import Terms from './pages/Legal/LegalPage';
 import JobseekerRegisterpage2 from './Jobseeker/Pages/Registerpage2/Registerpage2'
 // import JobseekerRegisterpage3 from './Jobseeker/Pages/Registerpage3/Registerpage3'
@@ -73,7 +73,7 @@ function App() {
                   <Route path='/employer' exact element={<EmployerLandingPage />} />
                   <Route path='/login' element={<Login />} />
                   
-                  <Route path='/FaqPage' element={<FaqPage/>}/>
+                  <Route path='/Faq' element={<Faq/>}/>
                   <Route path='/Term' element={<Term/>}/>
                   <Route path='/Privacy' element={<Privacy/>}/>
                   <Route path='/Cookies' element={<Cookies/>}/>
