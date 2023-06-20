@@ -10,23 +10,23 @@ const FilterByAvailability = () => {
       </h1>
       <div>
         <div className="flex items-center gap-8 mb-2">
-          <label class="input-container">
+          <label className="input-container">
             <input type="checkbox" />
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
           </label>{" "}
           Remote
         </div>
         <div className="flex items-center gap-8 mb-2">
-          <label class="input-container">
+          <label className="input-container">
             <input type="checkbox" />
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
           </label>{" "}
           Urgent
         </div>
         <div className="flex items-center gap-8">
-          <label class="input-container">
+          <label className="input-container">
             <input type="checkbox" />
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
           </label>{" "}
           Full-Time
         </div>

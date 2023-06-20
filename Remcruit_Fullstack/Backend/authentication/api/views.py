@@ -17,6 +17,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from .serializers import *
 from .permissions import IsEmployerUser, IsJobSeekerUser
@@ -112,6 +114,7 @@ class LoginAuthToken(ObtainAuthToken):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         token, created= Token.objects.get_or_create(user=user)
+        print(user)
         return Response({
             'token':token.key,
             'user_id': user.pk,
@@ -135,8 +138,8 @@ class EmployerOnlyView(generics.RetrieveAPIView):
         return self.request.user
 
 class TestView(APIView):
-     
-   permission_classes = (permissions.IsAuthenticated,)
+#    permission_classes = (permissions.IsAuthenticated,)
+   @method_decorator(login_required)
    def get(self, request):
        content = {"message": 'You are authorized to view this page.'}       
        return Response(content)

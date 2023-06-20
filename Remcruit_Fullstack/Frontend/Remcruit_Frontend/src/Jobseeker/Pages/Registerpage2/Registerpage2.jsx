@@ -38,14 +38,6 @@ function Registerpage2() {
         goBack()
       }
     }
-  
-    
-   
-
-    
-
-    
-    
 
     const [formData, setFormData] = useState({
         email: "",
@@ -54,6 +46,8 @@ function Registerpage2() {
         password: "",
         password2: "",
         gender: "",
+        city,
+        state,
         terms_and_conditions: "",
         phone_number: "",
         university_name: "",

@@ -108,7 +108,6 @@ console.log(jobapplication)
 
   return (
     <div>
-      <NavbarSignedIn/>
       <div className="my-jobs-page-main-container">
       
       {/* <div className="profile-main-container">

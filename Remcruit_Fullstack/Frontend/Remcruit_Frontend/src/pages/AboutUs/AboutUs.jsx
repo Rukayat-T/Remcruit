@@ -18,7 +18,7 @@ function AboutUs() {
   return (
    
     <div>
-      {user ?  <NavbarSignedIn /> :  <Navbar/> }
+      {/* {user ?  <NavbarSignedIn /> :  <Navbar/> } */}
       
       <div className="aboutus-main">
      

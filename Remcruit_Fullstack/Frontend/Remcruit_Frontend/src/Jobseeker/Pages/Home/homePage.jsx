@@ -11,10 +11,9 @@ import AuthContext from '../../../context/AuthContext'
 import NavbarSignedIn from '../../Components/navbarSignedin/NavbarSignedIn'
 import CompanyBox from '../../Components/companyBox/companyBox'
 import Filter from '../../Components/filter/filter'
-import UserComponent from '../../Components/user/userComponent'
-import NotificationComponent from '../../Components/notification/notificationComponent'
 import JobSeekerContext from '../../../context/JobSeekerContext'
 import CompanyContext from '../../../context/CompanyContext'
+import UserComp from '../../Components/UserComponent/UserComponent'
 
 function HomePage() {
 
@@ -22,13 +21,14 @@ function HomePage() {
     const [companies, setCompanies] = useState([])
     let { jobSeeker, jobseeker } = useContext(JobSeekerContext)
     let { user } = useContext(AuthContext)
-    console.log(jobs)
     const getJobs = async () => {
         const response = await fetch(
             "http://127.0.0.1:8000/employer/AllJobs/"
         ).then((response) => response.json());
         setJobs(response);
     };
+
+    const profile_pic = jobseeker?.profile_picture
 
     const getCompanies = async () => {
         const response = await fetch(
@@ -95,7 +95,10 @@ function HomePage() {
                         {searchResults.length > 0 && (
                             <div className="search-feed-content">
                                 {searchResults.map(job => (
-                                    <JobBox job={job} />
+                                    <div key={job?.id}>
+                                        <JobBox job={job} />
+                                    </div>
+                                    
                                 ))}
                             </div>
                         )}
@@ -107,7 +110,7 @@ function HomePage() {
 
     return (
         <div>
-            <NavbarSignedIn />
+            {/* <NavbarSignedIn profile_pic={profile_pic} /> */}
             <div className="pageContent">
                 <div className="searchBarContainer" >
                     <button className='locationBtn'>
@@ -133,8 +136,7 @@ function HomePage() {
                         {Display()}
                     </div>
                     <div className="userInfoContainer">
-                        <div className="user"><UserComponent /> </div>
-                        <div className="notifications"><NotificationComponent /></div>
+                        <div className="user"> <UserComp  profile_pic={profile_pic}/></div>
                     </div>
                 </div>
             </div>
@@ -142,5 +144,12 @@ function HomePage() {
         </div>
     )
 }
+
+
+
+
+
+
+
 
 export default HomePage
